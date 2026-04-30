@@ -1,0 +1,45 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-bar {
+  display: flex;
+  background: #ffffff;
+  border-bottom: 2px solid #FFCE02;
+  padding: 0 24px;
+  gap: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  align-items: center;
+}
+
+.tab-bar-logo {
+  height: 28px;
+  width: auto;
+  margin-right: 20px;
+}
+
+.tab-btn {
+  padding: 14px 28px;
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: color 0.15s, border-color 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.tab-btn:hover { color: #005FAB; }
+.tab-btn.active { color: #005FAB; border-bottom-color: #005FAB; }
+
+@media print {
+  .no-print { display: none !important; }
+}
