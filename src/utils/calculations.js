@@ -11,6 +11,18 @@ const roundup = (val, dec) => {
 export function computeCalc(p) {
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
+  // Edge-case guards — throw descriptive errors caught by useCalc
+  if (!p.annualMwhHelioScope || p.annualMwhHelioScope <= 0)
+    throw new Error('Annual generation (MWh) must be greater than 0.');
+  if (!p.systemSizeDCkW || p.systemSizeDCkW <= 0)
+    throw new Error('System size DC (kW) must be greater than 0.');
+  if (!p.annualSiteLoadMwh || p.annualSiteLoadMwh <= 0)
+    throw new Error('Annual site load (MWh) must be greater than 0.');
+  if (!p.roofTotalSqFt || p.roofTotalSqFt <= 0)
+    throw new Error('Total roof area (sq ft) must be greater than 0.');
+  if (!p.moduleWp || p.moduleWp <= 0)
+    throw new Error('Module wattage (Wp) must be greater than 0.');
+
   const annualMwh  = p.annualMwhHelioScope;
   const annualKwh  = annualMwh * 1000;
   const monthlyMwh = p.monthlyPct.map(pct => pct / 100 * annualMwh);

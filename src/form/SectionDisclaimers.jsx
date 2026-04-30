@@ -5,15 +5,16 @@ import FormField from './FormField';
 export default function SectionDisclaimers() {
   const { state, dispatch } = useProject();
   const p = state.project;
-  const txt = k => e => dispatch({ type: 'UPDATE_FIELD', key: k, value: e.target.value });
+  const e = state.formErrors;
+  const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
   return (
     <SectionWrapper title="Disclaimers" defaultOpen={false}>
-      <FormField label="Grid Emissions Disclaimer" style={{ gridColumn: '1 / -1' }}>
+      <FormField label="Grid Emissions Disclaimer" fieldId="gridEmissionsDisclaimer" error={e?.gridEmissionsDisclaimer} className="full-width">
         <textarea value={p.gridEmissionsDisclaimer} onChange={txt('gridEmissionsDisclaimer')} rows={3} />
       </FormField>
       {p.waireEnabled && (
-        <FormField label="WAIRE Disclaimer" style={{ gridColumn: '1 / -1' }}>
+        <FormField label="WAIRE Disclaimer" fieldId="waireDisclaimer" error={e?.waireDisclaimer} className="full-width">
           <textarea value={p.waireDisclaimer} onChange={txt('waireDisclaimer')} rows={3} />
         </FormField>
       )}

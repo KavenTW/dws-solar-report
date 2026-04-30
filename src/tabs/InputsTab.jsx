@@ -1,5 +1,5 @@
 import { useProject } from '../context/ProjectContext';
-import { monthlyPctSum } from '../constants/validation';
+import { validateProject, monthlyPctSum } from '../constants/validation';
 import SaveLoadBar from '../form/SaveLoadBar';
 import SectionIdentity from '../form/SectionIdentity';
 import SectionSystem from '../form/SectionSystem';
@@ -22,8 +22,17 @@ export default function InputsTab() {
   const monthlyOk = Math.abs(sum - 100) <= 0.2;
 
   function handlePreview() {
+    const errors = validateProject(project);
+    if (Object.keys(errors).length > 0) {
+      dispatch({ type: 'SET_FORM_ERRORS', errors });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    dispatch({ type: 'SET_FORM_ERRORS', errors: {} });
     dispatch({ type: 'SET_TAB', tab: 'report' });
   }
+
+  const errorCount = Object.keys(state.formErrors).length;
 
   return (
     <div className="inputs-tab">
@@ -57,6 +66,11 @@ export default function InputsTab() {
         </button>
         {!monthlyOk && (
           <p className="preview-hint">Monthly % must sum to 100 before previewing.</p>
+        )}
+        {monthlyOk && errorCount > 0 && (
+          <p className="validation-error-count">
+            {errorCount} required field{errorCount > 1 ? 's' : ''} need attention — see highlighted fields above.
+          </p>
         )}
       </div>
     </div>

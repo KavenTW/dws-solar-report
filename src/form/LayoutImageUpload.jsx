@@ -1,16 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useProject } from '../context/ProjectContext';
 
 export default function LayoutImageUpload() {
   const { state, dispatch } = useProject();
   const { layoutImageDataUrl } = state.project;
   const inputRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   function handleFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
     const reader = new FileReader();
     reader.onload = e => dispatch({ type: 'SET_LAYOUT_IMAGE', dataUrl: e.target.result });
     reader.readAsDataURL(file);
+  }
+
+  function handleDrop(e) {
+    e.preventDefault();
+    setIsDragging(false);
+    handleFile(e.dataTransfer.files[0]);
   }
 
   return layoutImageDataUrl ? (
@@ -29,10 +36,12 @@ export default function LayoutImageUpload() {
     </div>
   ) : (
     <div
-      className="image-upload-area"
+      className={`image-upload-area${isDragging ? ' image-upload-area--dragging' : ''}`}
       onClick={() => inputRef.current?.click()}
-      onDragOver={e => e.preventDefault()}
-      onDrop={e => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); }}
+      onDragEnter={e => { e.preventDefault(); setIsDragging(true); }}
+      onDragOver={e => { e.preventDefault(); setIsDragging(true); }}
+      onDragLeave={() => setIsDragging(false)}
+      onDrop={handleDrop}
     >
       <p>Click or drag to upload HelioScope layout image</p>
       <small>JPEG, PNG, etc. — stored with project data</small>

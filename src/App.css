@@ -39,6 +39,7 @@
 
 .tab-btn:hover { color: #005FAB; }
 .tab-btn.active { color: #005FAB; border-bottom-color: #005FAB; }
+.tab-btn:focus-visible { outline: 2px solid #005FAB; outline-offset: -2px; border-radius: 3px; }
 
 @media print {
   .no-print { display: none !important; }

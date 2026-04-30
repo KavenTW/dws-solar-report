@@ -4,9 +4,9 @@ import { computeCalc } from '../utils/calculations';
 export function useCalc(project) {
   return useMemo(() => {
     try {
-      return computeCalc(project);
-    } catch {
-      return null;
+      return { result: computeCalc(project), error: null };
+    } catch (e) {
+      return { result: null, error: e.message };
     }
   }, [project]);
 }

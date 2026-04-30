@@ -1,42 +1,56 @@
 export function validateProject(p) {
-  const errs = [];
+  const errs = {};
 
-  const required = [
-    'companyName','address','city','clientName','tenantName',
-    'annualMwhHelioScope','systemSizeDCkW','ppaTerm','ppaDiscountRate',
-    'year1AvoidedChargesUSD','degradationRate','monthlyPct',
-    'gridEmissionsIntensity','utilityEscalationRates','referenceScenarioIndex',
-    'waireEnabled','recEnabled','currency',
-    'gridEmissionsSource','gridEmissionsRegion','equivHomesLabel',
-    'recProgramName','gridEmissionsDisclaimer',
-  ];
-  required.forEach(k => { if (p[k] === undefined || p[k] === '') errs.push(`${k} is required`); });
+  const textRequired = {
+    companyName:             'Company name is required',
+    address:                 'Property address is required',
+    city:                    'City / state is required',
+    clientName:              'Client name is required',
+    tenantName:              'Tenant / offtaker name is required',
+    gridEmissionsSource:     'Source citation is required',
+    gridEmissionsRegion:     'Emissions region is required',
+    equivHomesLabel:         'Equiv. homes label is required',
+    gridEmissionsDisclaimer: 'Emissions disclaimer is required',
+  };
+  Object.entries(textRequired).forEach(([k, msg]) => {
+    if (!p[k]) errs[k] = msg;
+  });
 
-  if (p.annualMwhHelioScope <= 0) errs.push('Annual generation must be > 0');
-  if (p.systemSizeDCkW <= 0)      errs.push('System size DC must be > 0');
-  if (p.ppaTerm < 1 || p.ppaTerm > 40) errs.push('PPA term must be 1–40 years');
-  if (p.ppaDiscountRate <= 0 || p.ppaDiscountRate >= 1) errs.push('PPA discount rate must be between 0 and 1');
-  if (p.year1AvoidedChargesUSD <= 0) errs.push('Year-1 avoided charges must be > 0');
-  if (p.degradationRate < 0 || p.degradationRate >= 0.1) errs.push('Degradation rate must be 0–10%');
+  if (!p.annualMwhHelioScope || p.annualMwhHelioScope <= 0)
+    errs.annualMwhHelioScope = 'Must be > 0';
+  if (!p.systemSizeDCkW || p.systemSizeDCkW <= 0)
+    errs.systemSizeDCkW = 'Must be > 0';
+  if (!p.ppaTerm || p.ppaTerm < 1 || p.ppaTerm > 40)
+    errs.ppaTerm = 'Must be 1–40 years';
+  if (!p.ppaDiscountRate || p.ppaDiscountRate <= 0 || p.ppaDiscountRate >= 1)
+    errs.ppaDiscountRate = 'Must be between 0 and 1 (e.g. 0.10)';
+  if (!p.year1AvoidedChargesUSD || p.year1AvoidedChargesUSD <= 0)
+    errs.year1AvoidedChargesUSD = 'Must be > 0';
+  if (p.degradationRate < 0 || p.degradationRate >= 0.1)
+    errs.degradationRate = 'Must be 0–10% (e.g. 0.005)';
+  if (!p.gridEmissionsIntensity || p.gridEmissionsIntensity <= 0)
+    errs.gridEmissionsIntensity = 'Must be > 0';
 
   if (!Array.isArray(p.monthlyPct) || p.monthlyPct.length !== 12) {
-    errs.push('Monthly % must have exactly 12 values');
+    errs.monthlyPct = 'Must have exactly 12 values';
   } else {
     const sum = p.monthlyPct.reduce((a, b) => a + b, 0);
-    if (Math.abs(sum - 100) > 0.2) errs.push(`Monthly % sums to ${sum.toFixed(2)}, must equal 100`);
-  }
-
-  if (!Array.isArray(p.utilityEscalationRates) || p.utilityEscalationRates.length !== 3) {
-    errs.push('Utility escalation rates must have exactly 3 values');
+    if (Math.abs(sum - 100) > 0.2)
+      errs.monthlyPct = `Sums to ${sum.toFixed(2)}%, must equal 100%`;
   }
 
   if (p.waireEnabled) {
-    ['waireInstallPtsPerMW','waireGenMwhPerPt','year1WAIREPointValue','waireDisclaimer']
-      .forEach(k => { if (!p[k] && p[k] !== 0) errs.push(`${k} is required when WAIRE is enabled`); });
+    if (!p.waireInstallPtsPerMW) errs.waireInstallPtsPerMW = 'Required when WAIRE is enabled';
+    if (!p.waireGenMwhPerPt)     errs.waireGenMwhPerPt     = 'Required when WAIRE is enabled';
+    if (p.year1WAIREPointValue == null || p.year1WAIREPointValue === '')
+      errs.year1WAIREPointValue = 'Required when WAIRE is enabled';
+    if (!p.waireDisclaimer) errs.waireDisclaimer = 'Required when WAIRE is enabled';
   }
 
-  if (p.recEnabled && !p.year1RECValue && p.year1RECValue !== 0) {
-    errs.push('year1RECValue is required when RECs are enabled');
+  if (p.recEnabled) {
+    if (p.year1RECValue == null || p.year1RECValue === '')
+      errs.year1RECValue = 'Required when RECs are enabled';
+    if (!p.recProgramName) errs.recProgramName = 'Required when RECs are enabled';
   }
 
   return errs;

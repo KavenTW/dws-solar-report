@@ -2,10 +2,7 @@ import { makeFmt } from '../utils/formatters';
 
 export default function ReportSectionSavings({ p, calc }) {
   const FMT = makeFmt(p.currency);
-  const escRates = p.utilityEscalationRates;
-
   const scenarioClasses = ['scenario-low', 'scenario-mid', 'scenario-high'];
-  const scenarioLabelClasses = ['scenario-label-low', 'scenario-label-mid', 'scenario-label-high'];
 
   return (
     <div className="section two-col">

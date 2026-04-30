@@ -1,13 +1,5 @@
+/* form-specific sizing tokens (colors live in index.css :root) */
 :root {
-  --primary: #005FAB;
-  --primary-dark: #0B468D;
-  --primary-light: #e8f2fc;
-  --accent: #FFCE02;
-  --accent-2: #FBA31B;
-  --text: #1e1e1e;
-  --muted: #6b7280;
-  --border: #e2e8f0;
-  --white: #ffffff;
   --radius: 8px;
   --shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
@@ -129,7 +121,14 @@
 
 .form-field .field-error {
   font-size: 11px;
-  color: #dc2626;
+  color: var(--error);
+}
+
+.form-field input[aria-invalid="true"],
+.form-field select[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
 }
 
 /* ── TOGGLE ── */
@@ -287,8 +286,8 @@
 .btn-outline { background: #fff; color: var(--primary); border-color: var(--primary); }
 .btn-outline:hover { background: var(--primary-light); }
 
-.btn-danger { background: #fff; color: #dc2626; border-color: #fca5a5; }
-.btn-danger:hover { background: #fef2f2; }
+.btn-danger { background: #fff; color: var(--error); border-color: #fca5a5; }
+.btn-danger:hover { background: var(--error-light); }
 
 .btn-success { background: #16a34a; color: #fff; }
 .btn-success:hover { background: #15803d; }
@@ -428,5 +427,58 @@
 .preview-hint {
   margin-top: 8px;
   font-size: 12px;
-  color: #dc2626;
+  color: var(--error);
+}
+
+/* ── FOCUS VISIBLE (keyboard nav) ── */
+.btn:focus-visible,
+.btn-preview:focus-visible,
+.modal-close:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ── DRAG-OVER STATE ── */
+.image-upload-area--dragging {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* ── STATUS BANNER (SaveLoadBar feedback) ── */
+.status-banner {
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 6px;
+  flex-basis: 100%;
+  margin-top: 4px;
+}
+
+.status-banner--success {
+  background: var(--success-light);
+  color: #14532d;
+  border: 1px solid #bbf7d0;
+}
+
+.status-banner--error {
+  background: var(--error-light);
+  color: #7f1d1d;
+  border: 1px solid #fecaca;
+}
+
+/* ── INLINE DELETE CONFIRM ── */
+.delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--error);
+}
+
+/* ── VALIDATION ERROR SUMMARY ── */
+.validation-error-count {
+  font-size: 12px;
+  color: var(--error);
+  margin-top: 8px;
+  font-weight: 500;
 }

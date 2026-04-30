@@ -1,11 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-
-const STYLES = [
-  { color: '#005FAB', bg: 'rgba(0,95,171,0.07)',   fill: false, width: 2.0 },
-  { color: '#16a34a', bg: 'rgba(22,163,74,0.04)',  fill: true,  width: 2.0 },
-  { color: '#FBA31B', bg: 'rgba(251,163,27,0.04)', fill: false, width: 2.0 },
-];
+import { CHART_COLORS } from '../constants/theme';
 
 export default function CashflowChart({ scenarios, labels, ppaTerm }) {
   const canvasRef = useRef(null);
@@ -18,13 +13,13 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
     const datasets = scenarios.map((s, i) => ({
       label: `${Math.round(s.rate * 100)}% Ann. Utility Escalation`,
       data: s.cumSavings,
-      borderColor: STYLES[i].color,
-      backgroundColor: STYLES[i].bg,
-      fill: STYLES[i].fill,
+      borderColor: CHART_COLORS[i].line,
+      backgroundColor: CHART_COLORS[i].fill,
+      fill: CHART_COLORS[i].filled,
       tension: 0.35,
-      borderWidth: STYLES[i].width,
+      borderWidth: 2,
       pointRadius: s.cumSavings.map((_, j) => j === ppaTerm - 1 ? 4 : 1),
-      pointBackgroundColor: STYLES[i].color,
+      pointBackgroundColor: CHART_COLORS[i].line,
     }));
 
     chartRef.current = new Chart(canvasRef.current, {
@@ -59,5 +54,5 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
     return () => { if (chartRef.current) chartRef.current.destroy(); };
   }, [scenarios, labels, ppaTerm]);
 
-  return <canvas id="cashflowChart" height="80" ref={canvasRef} />;
+  return <canvas id="cashflowChart" height="80" ref={canvasRef} aria-label="Cumulative savings over PPA term" role="img" />;
 }
