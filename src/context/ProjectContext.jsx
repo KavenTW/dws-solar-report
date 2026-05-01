@@ -29,6 +29,42 @@ function reducer(state, action) {
       rates[action.index] = action.value;
       return { ...state, project: { ...state.project, utilityEscalationRates: rates } };
     }
+
+    // ── Distribution actions ──────────────────────────────────────────────
+    case 'SELECT_DISTRIBUTION': {
+      const dist = state.project.monthlyDistributions[action.index];
+      if (!dist) return state;
+      return {
+        ...state,
+        project: {
+          ...state.project,
+          activeDistributionIndex: action.index,
+          monthlyPct: [...dist.pct],
+        },
+        formErrors: { ...state.formErrors, monthlyPct: undefined },
+      };
+    }
+    case 'UPDATE_DISTRIBUTION_PCT': {
+      const dists = state.project.monthlyDistributions.map((d, i) =>
+        i === action.distIndex
+          ? { ...d, pct: d.pct.map((v, j) => (j === action.monthIndex ? action.value : v)) }
+          : d
+      );
+      const updates = { monthlyDistributions: dists };
+      // Keep monthlyPct in sync with the active distribution
+      if (action.distIndex === state.project.activeDistributionIndex) {
+        updates.monthlyPct = dists[action.distIndex].pct;
+      }
+      return { ...state, project: { ...state.project, ...updates } };
+    }
+    case 'UPDATE_DISTRIBUTION_LABEL': {
+      const dists = state.project.monthlyDistributions.map((d, i) =>
+        i === action.index ? { ...d, label: action.label } : d
+      );
+      return { ...state, project: { ...state.project, monthlyDistributions: dists } };
+    }
+    // ─────────────────────────────────────────────────────────────────────
+
     case 'SET_TAB':
       return { ...state, activeTab: action.tab };
     case 'LOAD_PROJECT':

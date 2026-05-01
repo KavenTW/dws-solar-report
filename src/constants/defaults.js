@@ -21,6 +21,18 @@ export const DEFAULT_PROJECT = {
 
   // Generation
   annualMwhHelioScope: 2475,
+
+  // Monthly distributions (5 state/province presets — one active at a time)
+  monthlyDistributions: [
+    { label: 'CA', pct: [5.87, 6.39, 8.61, 9.37, 10.23, 11.14, 10.66, 10.39, 8.56, 7.37, 5.96, 5.45] },
+    { label: 'AZ', pct: [5.50, 7.00, 9.50, 10.50, 11.00, 11.00, 9.50, 9.50, 9.00, 8.00, 5.50, 4.00] },
+    { label: 'NV', pct: [5.00, 6.50, 9.00, 10.50, 12.00, 12.50, 10.50, 10.50, 9.00, 7.50, 5.00, 2.00] },
+    { label: 'FL', pct: [7.00, 7.50, 8.50, 9.00, 9.50, 9.00, 9.00, 9.00, 8.50, 8.50, 7.50, 7.00] },
+    { label: 'TX', pct: [6.00, 7.00, 9.00, 10.00, 10.50, 11.00, 11.00, 11.00, 9.50, 8.00, 6.00, 1.00] },
+  ],
+  activeDistributionIndex: 0,
+
+  // monthlyPct mirrors the active distribution and drives calculations
   monthlyPct: [5.87, 6.39, 8.61, 9.37, 10.23, 11.14, 10.66, 10.39, 8.56, 7.37, 5.96, 5.45],
 
   // Site load

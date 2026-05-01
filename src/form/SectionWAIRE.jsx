@@ -1,29 +1,31 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
 import FormField from './FormField';
+import NumberInput from './NumberInput';
 
 export default function SectionWAIRE() {
   const { state, dispatch } = useProject();
   if (!state.project.waireEnabled) return null;
   const p = state.project;
-  const num = k => e => dispatch({ type: 'UPDATE_FIELD', key: k, value: parseFloat(e.target.value) || 0 });
-  const txt = k => e => dispatch({ type: 'UPDATE_FIELD', key: k, value: e.target.value });
+  const e = state.formErrors;
+  const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
+  const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
   return (
     <SectionWrapper title="WAIRE (CA/SCAQMD — Rule 2305)">
-      <FormField label="Year-1 WAIRE Point Value ($/point)">
-        <input type="number" min="0" value={p.year1WAIREPointValue} onChange={num('year1WAIREPointValue')} />
+      <FormField label="Year-1 WAIRE Point Value ($/point)" fieldId="year1WAIREPointValue" error={e?.year1WAIREPointValue}>
+        <NumberInput value={p.year1WAIREPointValue} onValueChange={field('year1WAIREPointValue')} />
       </FormField>
-      <FormField label="WAIRE Escalation Rate (e.g. 0 = flat)">
-        <input type="number" min="0" step="0.01" value={p.waireEscalationRate} onChange={num('waireEscalationRate')} />
+      <FormField label="WAIRE Escalation Rate (e.g. 0 = flat)" fieldId="waireEscalationRate">
+        <NumberInput value={p.waireEscalationRate} onValueChange={field('waireEscalationRate')} decimals={2} />
       </FormField>
-      <FormField label="Installation Credit (pts/MW DC)">
-        <input type="number" min="0" value={p.waireInstallPtsPerMW} onChange={num('waireInstallPtsPerMW')} />
+      <FormField label="Installation Credit (pts/MW DC)" fieldId="waireInstallPtsPerMW" error={e?.waireInstallPtsPerMW}>
+        <NumberInput value={p.waireInstallPtsPerMW} onValueChange={field('waireInstallPtsPerMW')} decimals={1} />
       </FormField>
-      <FormField label="Generation Credit (MWh per point)">
-        <input type="number" min="0" value={p.waireGenMwhPerPt} onChange={num('waireGenMwhPerPt')} />
+      <FormField label="Generation Credit (MWh per point)" fieldId="waireGenMwhPerPt" error={e?.waireGenMwhPerPt}>
+        <NumberInput value={p.waireGenMwhPerPt} onValueChange={field('waireGenMwhPerPt')} decimals={1} />
       </FormField>
-      <FormField label="WAIRE Disclaimer" className="full-width" style={{ gridColumn: '1 / -1' }}>
+      <FormField label="WAIRE Disclaimer" fieldId="waireDisclaimer" className="full-width" error={e?.waireDisclaimer}>
         <textarea value={p.waireDisclaimer} onChange={txt('waireDisclaimer')} rows={3} />
       </FormField>
     </SectionWrapper>
