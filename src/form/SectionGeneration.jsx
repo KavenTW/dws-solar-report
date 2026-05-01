@@ -11,13 +11,15 @@ export default function SectionGeneration() {
   const e = state.formErrors;
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
+  const hasErrors = !!(e?.annualMwhHelioScope || e?.monthlyPct);
+
   return (
-    <SectionWrapper title="Generation & Layout">
-      <FormField label="Annual Generation — HelioScope (MWh)" fieldId="annualMwhHelioScope" error={e?.annualMwhHelioScope}>
-        <NumberInput value={p.annualMwhHelioScope} onValueChange={field('annualMwhHelioScope')} />
+    <SectionWrapper title="Generation & Layout" hasErrors={hasErrors}>
+      <FormField label="Annual Generation — HelioScope" fieldId="annualMwhHelioScope" error={e?.annualMwhHelioScope}>
+        <NumberInput value={p.annualMwhHelioScope} onValueChange={field('annualMwhHelioScope')} unit="MWh" />
       </FormField>
-      <FormField label="Annual Site Load (MWh)" fieldId="annualSiteLoadMwh">
-        <NumberInput value={p.annualSiteLoadMwh} onValueChange={field('annualSiteLoadMwh')} decimals={1} />
+      <FormField label="Annual Site Load" fieldId="annualSiteLoadMwh">
+        <NumberInput value={p.annualSiteLoadMwh} onValueChange={field('annualSiteLoadMwh')} decimals={1} unit="MWh" />
       </FormField>
       <div style={{ gridColumn: '1 / -1' }}>
         <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '6px' }}>

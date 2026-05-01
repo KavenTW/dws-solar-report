@@ -1,18 +1,22 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
 import FormField from './FormField';
+import NumberInput from './NumberInput';
 
 export default function SectionEmissions() {
   const { state, dispatch } = useProject();
   const p = state.project;
   const e = state.formErrors;
-  const num = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: parseFloat(ev.target.value) || 0 });
+  const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
   const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
+  const hasErrors = !!(e?.gridEmissionsIntensity || e?.gridEmissionsSource ||
+                       e?.gridEmissionsRegion || e?.equivHomesLabel || e?.gridEmissionsDisclaimer);
+
   return (
-    <SectionWrapper title="Grid Emissions">
-      <FormField label="Grid Emissions Intensity (lbs CO₂/MWh)" fieldId="gridEmissionsIntensity" error={e?.gridEmissionsIntensity}>
-        <input type="number" min="0" value={p.gridEmissionsIntensity} onChange={num('gridEmissionsIntensity')} />
+    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors}>
+      <FormField label="Grid Emissions Intensity" fieldId="gridEmissionsIntensity" error={e?.gridEmissionsIntensity}>
+        <NumberInput value={p.gridEmissionsIntensity} onValueChange={field('gridEmissionsIntensity')} unit="lbs/MWh" />
       </FormField>
       <FormField label="Region" fieldId="gridEmissionsRegion" error={e?.gridEmissionsRegion}>
         <input type="text" value={p.gridEmissionsRegion} onChange={txt('gridEmissionsRegion')} />

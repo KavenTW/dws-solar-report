@@ -4,6 +4,9 @@
   --shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
+/* ── FULL-WIDTH GRID SPAN ── */
+.form-field.full-width { grid-column: 1 / -1; }
+
 .inputs-tab {
   max-width: 900px;
   margin: 0 auto;
@@ -54,6 +57,22 @@
   user-select: none;
 }
 
+.form-section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-error-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--error);
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
 .form-section-header:hover { background: #f7faff; }
 .form-section-header.open { border-bottom: 1px solid var(--border); }
 
@@ -76,6 +95,30 @@
 }
 
 .form-section-body.full-width { grid-template-columns: 1fr; }
+
+/* ── UNIT BADGE ── */
+.input-unit-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-unit-wrap input {
+  flex: 1;
+  padding-right: 44px !important;
+}
+
+.input-unit {
+  position: absolute;
+  right: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
 
 /* ── FORM FIELD ── */
 .form-field {
@@ -467,10 +510,20 @@
   justify-content: flex-end;
 }
 
-/* ── PREVIEW BUTTON ── */
+/* ── PREVIEW BUTTON (sticky footer) ── */
 .preview-report-bar {
-  margin-top: 24px;
-  text-align: center;
+  position: sticky;
+  bottom: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.07);
+  padding: 14px 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
 }
 
 .btn-preview {

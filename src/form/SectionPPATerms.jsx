@@ -2,6 +2,7 @@ import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
+import PercentInput from './PercentInput';
 
 export default function SectionPPATerms() {
   const { state, dispatch } = useProject();
@@ -9,22 +10,24 @@ export default function SectionPPATerms() {
   const e = state.formErrors;
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
+  const hasErrors = !!(e?.ppaTerm || e?.ppaDiscountRate || e?.year1AvoidedChargesUSD);
+
   return (
-    <SectionWrapper title="PPA Terms & Pricing">
-      <FormField label="PPA Term (years)" fieldId="ppaTerm" error={e?.ppaTerm}>
-        <NumberInput value={p.ppaTerm} onValueChange={field('ppaTerm')} />
+    <SectionWrapper title="PPA Terms & Pricing" hasErrors={hasErrors}>
+      <FormField label="PPA Term" fieldId="ppaTerm" error={e?.ppaTerm}>
+        <NumberInput value={p.ppaTerm} onValueChange={field('ppaTerm')} unit="yrs" />
       </FormField>
-      <FormField label="PPA Discount Rate (e.g. 0.10 = 10%)" fieldId="ppaDiscountRate" error={e?.ppaDiscountRate}>
-        <NumberInput value={p.ppaDiscountRate} onValueChange={field('ppaDiscountRate')} decimals={2} />
+      <FormField label="PPA Discount Rate" fieldId="ppaDiscountRate" error={e?.ppaDiscountRate}>
+        <PercentInput value={p.ppaDiscountRate} onValueChange={field('ppaDiscountRate')} />
       </FormField>
-      <FormField label="PPA Escalation Rate (e.g. 0.03 = 3%/yr)" fieldId="ppaEscalationRate">
-        <NumberInput value={p.ppaEscalationRate} onValueChange={field('ppaEscalationRate')} decimals={2} />
+      <FormField label="PPA Escalation Rate" fieldId="ppaEscalationRate">
+        <PercentInput value={p.ppaEscalationRate} onValueChange={field('ppaEscalationRate')} />
       </FormField>
-      <FormField label="Est. Year-1 Avoided Utility Charges ($)" fieldId="year1AvoidedChargesUSD" error={e?.year1AvoidedChargesUSD}>
-        <NumberInput value={p.year1AvoidedChargesUSD} onValueChange={field('year1AvoidedChargesUSD')} />
+      <FormField label="Est. Year-1 Avoided Utility Charges" fieldId="year1AvoidedChargesUSD" error={e?.year1AvoidedChargesUSD}>
+        <NumberInput value={p.year1AvoidedChargesUSD} onValueChange={field('year1AvoidedChargesUSD')} unit="$" />
       </FormField>
-      <FormField label="Bundled PPA Rate Year 1 ($/MWh, shown to tenant)" fieldId="year1PPARateMWh">
-        <NumberInput value={p.year1PPARateMWh} onValueChange={field('year1PPARateMWh')} />
+      <FormField label="Bundled PPA Rate Year 1" fieldId="year1PPARateMWh">
+        <NumberInput value={p.year1PPARateMWh} onValueChange={field('year1PPARateMWh')} unit="$/MWh" />
       </FormField>
       <FormField label="Reference Scenario" fieldId="referenceScenarioIndex">
         <select
@@ -38,15 +41,14 @@ export default function SectionPPATerms() {
       </FormField>
       <div style={{ gridColumn: '1 / -1' }}>
         <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '8px' }}>
-          Utility Escalation Rate Scenarios (3 values)
+          Utility Escalation Rate Scenarios
         </label>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
           {[0, 1, 2].map(i => (
             <FormField key={i} label={`Scenario ${i + 1}`} fieldId={`utilityEscRate${i}`}>
-              <NumberInput
+              <PercentInput
                 value={p.utilityEscalationRates[i] ?? 0}
                 onValueChange={v => dispatch({ type: 'UPDATE_ESC_RATE', index: i, value: v })}
-                decimals={2}
               />
             </FormField>
           ))}

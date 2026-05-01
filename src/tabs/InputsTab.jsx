@@ -1,5 +1,5 @@
 import { useProject } from '../context/ProjectContext';
-import { validateProject, monthlyPctSum } from '../constants/validation';
+import { validateProject } from '../constants/validation';
 import SaveLoadBar from '../form/SaveLoadBar';
 import SectionIdentity from '../form/SectionIdentity';
 import SectionSystem from '../form/SectionSystem';
@@ -18,14 +18,19 @@ import '../styles/form.css';
 export default function InputsTab() {
   const { state, dispatch } = useProject();
   const { project } = state;
-  const sum = monthlyPctSum(project.monthlyPct);
-  const monthlyOk = Math.abs(sum - 100) <= 0.2;
 
   function handlePreview() {
     const errors = validateProject(project);
     if (Object.keys(errors).length > 0) {
       dispatch({ type: 'SET_FORM_ERRORS', errors });
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Wait for sections to force-open, then scroll to the first invalid field
+      setTimeout(() => {
+        const firstInvalid = document.querySelector('[aria-invalid="true"]');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalid.focus({ preventScroll: true });
+        }
+      }, 150);
       return;
     }
     dispatch({ type: 'SET_FORM_ERRORS', errors: {} });
@@ -57,19 +62,12 @@ export default function InputsTab() {
       <SectionDisclaimers />
 
       <div className="preview-report-bar">
-        <button
-          className="btn-preview"
-          onClick={handlePreview}
-          disabled={!monthlyOk}
-        >
+        <button className="btn-preview" onClick={handlePreview}>
           Preview Report →
         </button>
-        {!monthlyOk && (
-          <p className="preview-hint">Monthly % must sum to 100 before previewing.</p>
-        )}
-        {monthlyOk && errorCount > 0 && (
+        {errorCount > 0 && (
           <p className="validation-error-count">
-            {errorCount} required field{errorCount > 1 ? 's' : ''} need attention — see highlighted fields above.
+            {errorCount} field{errorCount > 1 ? 's' : ''} need attention — see highlighted sections above.
           </p>
         )}
       </div>

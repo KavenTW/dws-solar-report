@@ -11,11 +11,11 @@ export default function SectionRoof() {
 
   return (
     <SectionWrapper title="Roof Parameters">
-      <FormField label="Roof Area Used (sq ft)" fieldId="roofUsedSqFt" error={e?.roofUsedSqFt}>
-        <NumberInput value={p.roofUsedSqFt} onValueChange={field('roofUsedSqFt')} />
+      <FormField label="Roof Area Used" fieldId="roofUsedSqFt" error={e?.roofUsedSqFt}>
+        <NumberInput value={p.roofUsedSqFt} onValueChange={field('roofUsedSqFt')} unit="sq ft" />
       </FormField>
-      <FormField label="Total Roof Area (sq ft)" fieldId="roofTotalSqFt" error={e?.roofTotalSqFt}>
-        <NumberInput value={p.roofTotalSqFt} onValueChange={field('roofTotalSqFt')} />
+      <FormField label="Total Roof Area" fieldId="roofTotalSqFt" error={e?.roofTotalSqFt}>
+        <NumberInput value={p.roofTotalSqFt} onValueChange={field('roofTotalSqFt')} unit="sq ft" />
       </FormField>
     </SectionWrapper>
   );

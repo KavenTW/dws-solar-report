@@ -8,8 +8,10 @@ export default function SectionDisclaimers() {
   const e = state.formErrors;
   const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
+  const hasErrors = !!(e?.gridEmissionsDisclaimer || (p.waireEnabled && e?.waireDisclaimer));
+
   return (
-    <SectionWrapper title="Disclaimers" defaultOpen={false}>
+    <SectionWrapper title="Disclaimers" defaultOpen={false} hasErrors={hasErrors}>
       <FormField label="Grid Emissions Disclaimer" fieldId="gridEmissionsDisclaimer" error={e?.gridEmissionsDisclaimer} className="full-width">
         <textarea value={p.gridEmissionsDisclaimer} onChange={txt('gridEmissionsDisclaimer')} rows={3} />
       </FormField>

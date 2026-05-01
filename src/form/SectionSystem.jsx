@@ -9,16 +9,18 @@ export default function SectionSystem() {
   const e = state.formErrors;
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
+  const hasErrors = !!(e?.systemSizeDCkW);
+
   return (
-    <SectionWrapper title="System Specifications">
-      <FormField label="System Size DC (kW)" fieldId="systemSizeDCkW" error={e?.systemSizeDCkW}>
-        <NumberInput value={p.systemSizeDCkW} onValueChange={field('systemSizeDCkW')} />
+    <SectionWrapper title="System Specifications" hasErrors={hasErrors}>
+      <FormField label="System Size DC" fieldId="systemSizeDCkW" error={e?.systemSizeDCkW}>
+        <NumberInput value={p.systemSizeDCkW} onValueChange={field('systemSizeDCkW')} unit="kW" />
       </FormField>
-      <FormField label="System Size AC (kW)" fieldId="systemSizeACkW">
-        <NumberInput value={p.systemSizeACkW} onValueChange={field('systemSizeACkW')} />
+      <FormField label="System Size AC" fieldId="systemSizeACkW">
+        <NumberInput value={p.systemSizeACkW} onValueChange={field('systemSizeACkW')} unit="kW" />
       </FormField>
-      <FormField label="Module Wattage (Wp)" fieldId="moduleWp">
-        <NumberInput value={p.moduleWp} onValueChange={field('moduleWp')} />
+      <FormField label="Module Wattage" fieldId="moduleWp">
+        <NumberInput value={p.moduleWp} onValueChange={field('moduleWp')} unit="Wp" />
       </FormField>
     </SectionWrapper>
   );

@@ -8,9 +8,10 @@ import { useState } from 'react';
  *   value          {number}   current numeric value
  *   onValueChange  {fn}       called with parsed number on blur
  *   decimals       {number}   decimal places to display (default 0 = integer)
+ *   unit           {string}   optional unit badge shown inside input (e.g. "kW", "MWh")
  *   All other props forwarded to <input> (id, aria-invalid, min, max, etc.)
  */
-export default function NumberInput({ value, onValueChange, decimals = 0, ...rest }) {
+export default function NumberInput({ value, onValueChange, decimals = 0, unit, ...rest }) {
   const [focused, setFocused] = useState(false);
   const [draft, setDraft] = useState('');
 
@@ -21,7 +22,7 @@ export default function NumberInput({ value, onValueChange, decimals = 0, ...res
       })
     : Math.round(value).toLocaleString();
 
-  return (
+  const input = (
     <input
       type="text"
       inputMode={decimals > 0 ? 'decimal' : 'numeric'}
@@ -39,4 +40,14 @@ export default function NumberInput({ value, onValueChange, decimals = 0, ...res
       {...rest}
     />
   );
+
+  if (unit) {
+    return (
+      <div className="input-unit-wrap">
+        {input}
+        <span className="input-unit">{unit}</span>
+      </div>
+    );
+  }
+  return input;
 }

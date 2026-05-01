@@ -23,11 +23,11 @@ export function validateProject(p) {
   if (!p.ppaTerm || p.ppaTerm < 1 || p.ppaTerm > 40)
     errs.ppaTerm = 'Must be 1–40 years';
   if (!p.ppaDiscountRate || p.ppaDiscountRate <= 0 || p.ppaDiscountRate >= 1)
-    errs.ppaDiscountRate = 'Must be between 0 and 1 (e.g. 0.10)';
+    errs.ppaDiscountRate = 'Must be between 0% and 100%';
   if (!p.year1AvoidedChargesUSD || p.year1AvoidedChargesUSD <= 0)
     errs.year1AvoidedChargesUSD = 'Must be > 0';
   if (p.degradationRate < 0 || p.degradationRate >= 0.1)
-    errs.degradationRate = 'Must be 0–10% (e.g. 0.005)';
+    errs.degradationRate = 'Must be between 0% and 10%';
   if (!p.gridEmissionsIntensity || p.gridEmissionsIntensity <= 0)
     errs.gridEmissionsIntensity = 'Must be > 0';
 
