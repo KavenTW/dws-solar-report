@@ -17,7 +17,7 @@ export default function ReportSectionChart({ p, calc }) {
           Cumulative Electricity Savings vs. Full Utility Rate ({p.currency}) &mdash; {subtitle}
         </div>
         <CashflowChart scenarios={calc.scenarios} labels={calc.savingsLabels} ppaTerm={p.ppaTerm} />
-        <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '10px', textAlign: 'right' }}>
+        <div className="chart-scenario-note">
           &bull; {p.ppaTerm}-year cumulative electricity savings at {refRatePct}% utility escalation:{' '}
           <strong style={{ color: 'var(--primary)' }}>{FMT.kilo(refTotal)} {p.currency}</strong>
         </div>

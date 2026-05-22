@@ -33,5 +33,5 @@ export default function DonutChart({ annualMwh, gridImport }) {
     return () => { if (chartRef.current) chartRef.current.destroy(); };
   }, [annualMwh, gridImport]);
 
-  return <canvas ref={canvasRef} />;
+  return <canvas ref={canvasRef} role="img" aria-label="Energy mix: solar generation vs. grid import" />;
 }
