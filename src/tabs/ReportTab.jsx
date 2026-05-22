@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import { useCalc } from '../hooks/useCalc';
+import ErrorBoundary from '../ErrorBoundary';
 import ReportCover from '../report/ReportCover';
 import ReportSectionOverview from '../report/ReportSectionOverview';
 import ReportSectionLayout from '../report/ReportSectionLayout';
@@ -32,6 +33,20 @@ export default function ReportTab() {
     );
   }
 
+  const reportFallback = err => (
+    <div className="report-error" role="alert">
+      <h3>Something went wrong rendering the report</h3>
+      <p>An unexpected error occurred. Try going back and checking your inputs.</p>
+      {err && <div className="report-error-detail">{err.message}</div>}
+      <button
+        className="report-error-back"
+        onClick={() => dispatch({ type: 'SET_TAB', tab: 'inputs' })}
+      >
+        ← Back to Inputs
+      </button>
+    </div>
+  );
+
   return (
     <>
       <div className="report-toolbar no-print">
@@ -49,17 +64,19 @@ export default function ReportTab() {
         </button>
       </div>
 
-      <ReportCover p={p} />
-      <div className="container">
-        <ReportSectionOverview p={p} calc={calc} />
-        <ReportSectionLayout p={p} calc={calc} />
-        <ReportSectionGeneration p={p} calc={calc} />
-        <ReportSectionSavings p={p} calc={calc} />
-        <ReportSectionChart p={p} calc={calc} />
-        <ReportSectionSiteInfo p={p} />
-        <ReportDisclaimer p={p} />
-      </div>
-      <ReportFooter p={p} />
+      <ErrorBoundary fallback={reportFallback}>
+        <ReportCover p={p} />
+        <div className="container">
+          <ReportSectionOverview p={p} calc={calc} />
+          <ReportSectionLayout p={p} calc={calc} />
+          <ReportSectionGeneration p={p} calc={calc} />
+          <ReportSectionSavings p={p} calc={calc} />
+          <ReportSectionChart p={p} calc={calc} />
+          <ReportSectionSiteInfo p={p} />
+          <ReportDisclaimer p={p} />
+        </div>
+        <ReportFooter p={p} />
+      </ErrorBoundary>
     </>
   );
 }

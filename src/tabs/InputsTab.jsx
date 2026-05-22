@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useProject } from '../context/ProjectContext';
 import { validateProject } from '../constants/validation';
 import SaveLoadBar from '../form/SaveLoadBar';
@@ -19,18 +20,27 @@ export default function InputsTab() {
   const { state, dispatch } = useProject();
   const { project } = state;
 
-  function handlePreview() {
-    const errors = validateProject(project);
-    if (Object.keys(errors).length > 0) {
-      dispatch({ type: 'SET_FORM_ERRORS', errors });
-      // Wait for sections to force-open, then scroll to the first invalid field
-      setTimeout(() => {
+  // After SET_FORM_ERRORS, SectionWrapper forces error sections open on the next
+  // render.  Two rAF ticks give React time to re-render and the DOM to settle
+  // before we query for the first invalid field.
+  useEffect(() => {
+    if (Object.keys(state.formErrors).length === 0) return;
+    const id = requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
         const firstInvalid = document.querySelector('[aria-invalid="true"]');
         if (firstInvalid) {
           firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
           firstInvalid.focus({ preventScroll: true });
         }
-      }, 150);
+      });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [state.formErrors]);
+
+  function handlePreview() {
+    const errors = validateProject(project);
+    if (Object.keys(errors).length > 0) {
+      dispatch({ type: 'SET_FORM_ERRORS', errors });
       return;
     }
     dispatch({ type: 'SET_FORM_ERRORS', errors: {} });

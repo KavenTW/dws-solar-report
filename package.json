@@ -1,12 +1,13 @@
 {
   "name": "solar-report-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "format": "prettier --write src",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -23,6 +24,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
+    "prettier": "^3.8.3",
     "vite": "^8.0.10"
   }
 }

@@ -1,10 +1,25 @@
 const STORAGE_KEY = 'gcsr_projects';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
+export const CURRENT_VERSION = 1;
+
+/**
+ * Applies any schema migrations needed to bring an older saved entry up to the
+ * current version.  Add new `if (entry.version < N)` blocks here as the schema
+ * evolves — never mutate the data in place, always return a new entry object.
+ */
+function migrateProject(entry) {
+  // v0 → v1: version field didn't exist before this infrastructure was added.
+  // No data-shape changes at this point; just stamp the version.
+  if ((entry.version ?? 0) < 1) {
+    entry = { ...entry, version: 1 };
+  }
+  return entry;
+}
 
 export function loadAllProjects() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : [];
+    return raw ? JSON.parse(raw).map(migrateProject) : [];
   } catch {
     return [];
   }
@@ -22,10 +37,10 @@ export function saveProject(data, name) {
   const projects = loadAllProjects();
   const existing = projects.findIndex(p => p.name === name);
   const entry = {
-    id: existing >= 0 ? projects[existing].id : String(Date.now()),
+    id: existing >= 0 ? projects[existing].id : crypto.randomUUID(),
     name,
     savedAt: new Date().toISOString(),
-    version: 1,
+    version: CURRENT_VERSION,
     data,
   };
   if (existing >= 0) {

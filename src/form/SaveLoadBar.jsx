@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useProject } from '../context/ProjectContext';
 import { exportProjectJSON } from '../utils/storage';
 import { DEFAULT_PROJECT } from '../constants/defaults';
+import { validateProject } from '../constants/validation';
 
 export default function SaveLoadBar() {
   const { state, dispatch } = useProject();
@@ -53,9 +54,24 @@ export default function SaveLoadBar() {
     const reader = new FileReader();
     reader.onload = e => {
       try {
-        const data = JSON.parse(e.target.result);
-        dispatch({ type: 'LOAD_PROJECT', data });
-        showStatus('Project imported successfully.');
+        const raw = JSON.parse(e.target.result);
+        if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+          showStatus('Invalid project file — expected a JSON object.', 'error');
+          return;
+        }
+        dispatch({ type: 'LOAD_PROJECT', data: raw });
+        // Validate the merged result (LOAD_PROJECT fills missing fields with defaults)
+        const merged = { ...DEFAULT_PROJECT, ...raw };
+        const errors = validateProject(merged);
+        const errCount = Object.keys(errors).length;
+        if (errCount > 0) {
+          showStatus(
+            `Imported with ${errCount} missing or invalid field${errCount > 1 ? 's' : ''} — check highlighted sections.`,
+            'error'
+          );
+        } else {
+          showStatus('Project imported successfully.');
+        }
       } catch {
         showStatus('Invalid JSON file — could not import.', 'error');
       }
