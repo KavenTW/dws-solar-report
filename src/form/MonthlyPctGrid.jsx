@@ -1,10 +1,7 @@
 import { useProject } from '../context/ProjectContext';
+import { monthlyPctSum } from '../constants/validation';
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-
-function pctSum(pct) {
-  return pct.reduce((a, b) => a + (parseFloat(b) || 0), 0);
-}
 
 export default function MonthlyPctGrid() {
   const { state, dispatch } = useProject();
@@ -72,7 +69,7 @@ export default function MonthlyPctGrid() {
           <tr>
             <td className="dist-sum-label">Sum</td>
             {monthlyDistributions.map((d, di) => {
-              const sum = pctSum(d.pct);
+              const sum = monthlyPctSum(d.pct);
               const ok = Math.abs(sum - 100) <= 0.2;
               const active = di === activeDistributionIndex;
               return (

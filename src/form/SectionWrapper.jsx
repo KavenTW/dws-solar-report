@@ -27,7 +27,7 @@ export default function SectionWrapper({ title, children, defaultOpen = true, ha
     // If forced open by errors, a click collapses back to the persisted state (false)
     setLocalOpen(o => {
       const next = hasErrors ? false : !o;
-      try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch { /* ignore */ }
+      try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch (e) { console.warn('SectionWrapper: failed to persist collapsed state', e); }
       return next;
     });
   };

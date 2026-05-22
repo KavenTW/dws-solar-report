@@ -14,6 +14,7 @@ import { useState } from 'react';
 export default function NumberInput({ value, onValueChange, decimals = 0, unit, ...rest }) {
   const [focused, setFocused] = useState(false);
   const [draft, setDraft] = useState('');
+  const [inputError, setInputError] = useState(null);
 
   const formatted = decimals > 0
     ? Number(value).toLocaleString(undefined, {
@@ -30,24 +31,39 @@ export default function NumberInput({ value, onValueChange, decimals = 0, unit, 
       onFocus={() => {
         setFocused(true);
         setDraft(String(value));
+        setInputError(null);
       }}
       onBlur={() => {
         setFocused(false);
-        const parsed = parseFloat(String(draft).replace(/,/g, '')) || 0;
-        onValueChange(parsed);
+        const stripped = String(draft).replace(/,/g, '');
+        if (stripped !== '' && isNaN(parseFloat(stripped))) {
+          setInputError('Enter a valid number');
+          onValueChange(0);
+        } else {
+          setInputError(null);
+          onValueChange(parseFloat(stripped) || 0);
+        }
       }}
-      onChange={e => setDraft(e.target.value)}
+      onChange={e => {
+        setDraft(e.target.value);
+        setInputError(null);
+      }}
       {...rest}
     />
   );
 
+  const error = inputError && <span className="field-error" role="alert">{inputError}</span>;
+
   if (unit) {
     return (
-      <div className="input-unit-wrap">
-        {input}
-        <span className="input-unit">{unit}</span>
-      </div>
+      <>
+        <div className="input-unit-wrap">
+          {input}
+          <span className="input-unit">{unit}</span>
+        </div>
+        {error}
+      </>
     );
   }
-  return input;
+  return <>{input}{error}</>;
 }

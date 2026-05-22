@@ -11,6 +11,7 @@ export default function SaveLoadBar() {
   const [showModal, setShowModal] = useState(false);
   const [status, setStatus] = useState(null);          // { text, type: 'success'|'error' }
   const [confirmDelete, setConfirmDelete] = useState(null); // project name pending delete
+  const [showResetConfirm, setShowResetConfirm] = useState(false);
   const importRef = useRef(null);
   const statusTimer = useRef(null);
 
@@ -81,16 +82,14 @@ export default function SaveLoadBar() {
   }
 
   function handleReset() {
-    setConfirmDelete('__reset__');
+    setShowResetConfirm(true);
   }
 
   function handleResetConfirm() {
     dispatch({ type: 'LOAD_PROJECT', data: DEFAULT_PROJECT });
-    setConfirmDelete(null);
+    setShowResetConfirm(false);
     showStatus('All fields reset to defaults.');
   }
-
-  const pendingReset = confirmDelete === '__reset__';
 
   return (
     <>
@@ -109,11 +108,11 @@ export default function SaveLoadBar() {
         <button className="btn btn-outline" onClick={handleExport}>Export JSON</button>
         <button className="btn btn-outline" onClick={() => importRef.current?.click()}>Import JSON</button>
 
-        {pendingReset ? (
+        {showResetConfirm ? (
           <span className="delete-confirm">
             Reset all fields?
             <button className="btn btn-danger" onClick={handleResetConfirm}>Yes, reset</button>
-            <button className="btn btn-outline" onClick={() => setConfirmDelete(null)}>Cancel</button>
+            <button className="btn btn-outline" onClick={() => setShowResetConfirm(false)}>Cancel</button>
           </span>
         ) : (
           <button className="btn btn-danger" onClick={handleReset}>Reset</button>

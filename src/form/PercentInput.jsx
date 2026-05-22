@@ -13,6 +13,7 @@ import { useState } from 'react';
 export default function PercentInput({ value, onValueChange, decimals = 2, ...rest }) {
   const [focused, setFocused] = useState(false);
   const [draft, setDraft] = useState('');
+  const [inputError, setInputError] = useState(null);
 
   const pctValue = (value || 0) * 100;
   const formatted =
@@ -22,22 +23,35 @@ export default function PercentInput({ value, onValueChange, decimals = 2, ...re
     }) + ' %';
 
   return (
-    <input
-      type="text"
-      inputMode="decimal"
-      value={focused ? draft : formatted}
-      onFocus={() => {
-        setFocused(true);
-        // Strip floating-point noise before showing editable draft
-        setDraft(String(+pctValue.toFixed(decimals + 2)));
-      }}
-      onBlur={() => {
-        setFocused(false);
-        const parsed = parseFloat(String(draft).replace(/,/g, '')) || 0;
-        onValueChange(parsed / 100);
-      }}
-      onChange={e => setDraft(e.target.value)}
-      {...rest}
-    />
+    <>
+      <input
+        type="text"
+        inputMode="decimal"
+        value={focused ? draft : formatted}
+        onFocus={() => {
+          setFocused(true);
+          // Strip floating-point noise before showing editable draft
+          setDraft(String(+pctValue.toFixed(decimals + 2)));
+          setInputError(null);
+        }}
+        onBlur={() => {
+          setFocused(false);
+          const stripped = String(draft).replace(/,/g, '');
+          if (stripped !== '' && isNaN(parseFloat(stripped))) {
+            setInputError('Enter a valid number');
+            onValueChange(0);
+          } else {
+            setInputError(null);
+            onValueChange((parseFloat(stripped) || 0) / 100);
+          }
+        }}
+        onChange={e => {
+          setDraft(e.target.value);
+          setInputError(null);
+        }}
+        {...rest}
+      />
+      {inputError && <span className="field-error" role="alert">{inputError}</span>}
+    </>
   );
 }

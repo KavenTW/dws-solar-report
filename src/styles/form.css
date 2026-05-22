@@ -5,6 +5,7 @@
 }
 
 /* ── FULL-WIDTH GRID SPAN ── */
+.full-width,
 .form-field.full-width { grid-column: 1 / -1; }
 
 .inputs-tab {
@@ -600,3 +601,40 @@
   margin-top: 8px;
   font-weight: 500;
 }
+
+/* ── FIELD GROUP LABEL (standalone label above non-FormField content) ── */
+.field-group-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* ── ESCALATION RATE GRID (3-column grid for scenario inputs) ── */
+.esc-rate-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── FEATURE FLAG TOGGLES (vertical flex stack) ── */
+.flag-toggles {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ── FEATURE SELECT (inline select, e.g. currency picker) ── */
+.feature-select {
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 8px;
+}
+
+/* ── TOGGLE ROW ── */
+.toggle-row label { cursor: pointer; }

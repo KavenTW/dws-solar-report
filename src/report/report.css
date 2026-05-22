@@ -259,6 +259,21 @@
   padding: 24px 32px; border-top: 1px solid var(--border);
 }
 
+/* ── SAVINGS SECTION HELPERS ── */
+.waire-subsection { margin-top: 18px; }
+.fin-table--mt    { margin-top: 14px; }
+.info-box--mt     { margin-top: 16px; }
+
+.table-footnote {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.muted-note {
+  font-size: 0.82em;
+  color: var(--muted);
+}
+
 /* ── PRINT ── */
 @media print {
   @page { size: letter; margin: 0.6in 0.65in; }

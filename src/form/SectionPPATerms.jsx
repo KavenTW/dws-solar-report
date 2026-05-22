@@ -39,11 +39,11 @@ export default function SectionPPATerms() {
           <option value={2}>High (Scenario 3)</option>
         </select>
       </FormField>
-      <div style={{ gridColumn: '1 / -1' }}>
-        <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.5px', display: 'block', marginBottom: '8px' }}>
+      <div className="full-width">
+        <label className="field-group-label">
           Utility Escalation Rate Scenarios
         </label>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+        <div className="esc-rate-grid">
           {[0, 1, 2].map(i => (
             <FormField key={i} label={`Scenario ${i + 1}`} fieldId={`utilityEscRate${i}`}>
               <PercentInput

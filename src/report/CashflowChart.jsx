@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Chart } from 'chart.js/auto';
-import { CHART_COLORS } from '../constants/theme';
+import { CHART_COLORS, CHART_AXIS_COLOR, CHART_GRID_COLOR } from '../constants/theme';
 
 export default function CashflowChart({ scenarios, labels, ppaTerm }) {
   const canvasRef = useRef(null);
@@ -28,7 +28,7 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
       options: {
         responsive: true,
         plugins: {
-          legend: { labels: { color: '#6b7280', font: { size: 12 } } },
+          legend: { labels: { color: CHART_AXIS_COLOR, font: { size: 12 } } },
           tooltip: {
             callbacks: {
               label: ctx => {
@@ -40,14 +40,14 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
         },
         scales: {
           y: {
-            title: { display: true, text: 'USD', color: '#6b7280', font: { size: 12 } },
-            grid: { color: '#e2e8f0' },
+            title: { display: true, text: 'USD', color: CHART_AXIS_COLOR, font: { size: 12 } },
+            grid: { color: CHART_GRID_COLOR },
             ticks: {
-              color: '#6b7280',
+              color: CHART_AXIS_COLOR,
               callback: v => v >= 1e6 ? `$${(v / 1e6).toFixed(1)}M` : v >= 1000 ? `$${Math.round(v / 1000)}K` : `$${v}`,
             },
           },
-          x: { grid: { display: false }, ticks: { color: '#6b7280', maxTicksLimit: 15 } },
+          x: { grid: { display: false }, ticks: { color: CHART_AXIS_COLOR, maxTicksLimit: 15 } },
         },
       },
     });
