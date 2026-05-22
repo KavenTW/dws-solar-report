@@ -638,3 +638,39 @@
 
 /* ── TOGGLE ROW ── */
 .toggle-row label { cursor: pointer; }
+
+/* ── REPORT SECTION INCLUDE/EXCLUDE CHIPS ── */
+.form-section-header-extras {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  margin-right: 12px;
+}
+
+.report-section-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border: 1px solid;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.6;
+}
+
+.report-section-toggle.included {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.report-section-toggle.excluded {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--muted);
+}

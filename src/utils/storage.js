@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'gcsr_projects';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 1;
+export const CURRENT_VERSION = 3;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -12,6 +12,34 @@ function migrateProject(entry) {
   // No data-shape changes at this point; just stamp the version.
   if ((entry.version ?? 0) < 1) {
     entry = { ...entry, version: 1 };
+  }
+  // v1 → v2: report section visibility flags added.
+  if (entry.version < 2) {
+    entry = {
+      ...entry,
+      data: {
+        ...entry.data,
+        showLayoutSection:     entry.data.showLayoutSection     ?? true,
+        showGenerationSection: entry.data.showGenerationSection ?? true,
+        showSavingsSection:    entry.data.showSavingsSection    ?? true,
+        showChartSection:      entry.data.showChartSection      ?? true,
+        showSiteInfoSection:   entry.data.showSiteInfoSection   ?? true,
+      },
+      version: 2,
+    };
+  }
+  // v2 → v3: cover, overview, and disclaimer visibility flags added.
+  if (entry.version < 3) {
+    entry = {
+      ...entry,
+      data: {
+        ...entry.data,
+        showCoverSection:      entry.data.showCoverSection      ?? true,
+        showOverviewSection:   entry.data.showOverviewSection   ?? true,
+        showDisclaimerSection: entry.data.showDisclaimerSection ?? true,
+      },
+      version: 3,
+    };
   }
   return entry;
 }

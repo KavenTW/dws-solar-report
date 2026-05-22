@@ -43,6 +43,16 @@ export const DEFAULT_PROJECT = {
   recEnabled:   true,
   currency:     'USD',
 
+  // Report section visibility (all true = include in output)
+  showCoverSection:      true,
+  showOverviewSection:   true,
+  showLayoutSection:     true,
+  showGenerationSection: true,
+  showSavingsSection:    true,
+  showChartSection:      true,
+  showSiteInfoSection:   true,
+  showDisclaimerSection: true,
+
   // PPA terms
   ppaTerm:               15,
   ppaDiscountRate:       0.10,

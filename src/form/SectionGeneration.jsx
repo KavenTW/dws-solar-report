@@ -12,9 +12,33 @@ export default function SectionGeneration() {
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
   const hasErrors = !!(e?.annualMwhHelioScope || e?.monthlyPct);
+  const toggleField = key => () => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] });
+
+  const chipKeyDown = fn => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } };
+
+  const headerExtras = (
+    <>
+      <span
+        role="button"
+        tabIndex={0}
+        className={`report-section-toggle ${p.showLayoutSection ? 'included' : 'excluded'}`}
+        onClick={toggleField('showLayoutSection')}
+        onKeyDown={chipKeyDown(toggleField('showLayoutSection'))}
+        title={p.showLayoutSection ? 'Remove Layout page from report' : 'Add Layout page to report'}
+      >Layout</span>
+      <span
+        role="button"
+        tabIndex={0}
+        className={`report-section-toggle ${p.showGenerationSection ? 'included' : 'excluded'}`}
+        onClick={toggleField('showGenerationSection')}
+        onKeyDown={chipKeyDown(toggleField('showGenerationSection'))}
+        title={p.showGenerationSection ? 'Remove Generation page from report' : 'Add Generation page to report'}
+      >Generation</span>
+    </>
+  );
 
   return (
-    <SectionWrapper title="Generation & Layout" hasErrors={hasErrors}>
+    <SectionWrapper title="Generation & Layout" hasErrors={hasErrors} headerExtras={headerExtras} collapseWhen={!p.showLayoutSection && !p.showGenerationSection}>
       <FormField label="Annual Generation — HelioScope" fieldId="annualMwhHelioScope" error={e?.annualMwhHelioScope}>
         <NumberInput value={p.annualMwhHelioScope} onValueChange={field('annualMwhHelioScope')} unit="MWh" />
       </FormField>

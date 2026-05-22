@@ -12,9 +12,18 @@ export default function SectionEmissions() {
 
   const hasErrors = !!(e?.gridEmissionsIntensity || e?.gridEmissionsSource ||
                        e?.gridEmissionsRegion || e?.equivHomesLabel || e?.gridEmissionsDisclaimer);
+  const chip = (key, label) => (
+    <span
+      role="button" tabIndex={0}
+      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
+      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
+      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
+      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
+    >{label}</span>
+  );
 
   return (
-    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors}>
+    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors} headerExtras={chip('showGenerationSection', 'Generation')} collapseWhen={!p.showGenerationSection}>
       <FormField label="Grid Emissions Intensity" fieldId="gridEmissionsIntensity" error={e?.gridEmissionsIntensity}>
         <NumberInput value={p.gridEmissionsIntensity} onValueChange={field('gridEmissionsIntensity')} unit="lbs/MWh" />
       </FormField>

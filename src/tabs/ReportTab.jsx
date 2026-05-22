@@ -65,15 +65,15 @@ export default function ReportTab() {
       </div>
 
       <ErrorBoundary fallback={reportFallback}>
-        <ReportCover p={p} />
+        {p.showCoverSection      && <ReportCover p={p} />}
         <div className="container">
-          <ReportSectionOverview p={p} calc={calc} />
-          <ReportSectionLayout p={p} calc={calc} />
-          <ReportSectionGeneration p={p} calc={calc} />
-          <ReportSectionSavings p={p} calc={calc} />
-          <ReportSectionChart p={p} calc={calc} />
-          <ReportSectionSiteInfo p={p} />
-          <ReportDisclaimer p={p} />
+          {p.showOverviewSection   && <ReportSectionOverview p={p} calc={calc} />}
+          {p.showLayoutSection     && <ReportSectionLayout p={p} calc={calc} />}
+          {p.showGenerationSection && <ReportSectionGeneration p={p} calc={calc} />}
+          {p.showSavingsSection    && <ReportSectionSavings p={p} calc={calc} />}
+          {p.showChartSection      && <ReportSectionChart p={p} calc={calc} />}
+          {p.showSiteInfoSection   && <ReportSectionSiteInfo p={p} />}
+          {p.showDisclaimerSection && <ReportDisclaimer p={p} />}
         </div>
         <ReportFooter p={p} />
       </ErrorBoundary>

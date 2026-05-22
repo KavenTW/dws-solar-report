@@ -1,4 +1,4 @@
-import { useState, useId } from 'react';
+import { useState, useId, useEffect } from 'react';
 
 /**
  * Collapsible form section.
@@ -8,7 +8,7 @@ import { useState, useId } from 'react';
  *   defaultOpen  {boolean}  Initial open state (default true); overridden by localStorage
  *   hasErrors    {boolean}  When true, forces section open and shows a red dot on the header
  */
-export default function SectionWrapper({ title, children, defaultOpen = true, hasErrors = false }) {
+export default function SectionWrapper({ title, children, defaultOpen = true, hasErrors = false, headerExtras, collapseWhen = false }) {
   const storageKey = `gcsr_section_${title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}`;
 
   const [localOpen, setLocalOpen] = useState(() => {
@@ -19,6 +19,14 @@ export default function SectionWrapper({ title, children, defaultOpen = true, ha
       return defaultOpen;
     }
   });
+
+  // Auto-collapse when the report section is excluded
+  useEffect(() => {
+    if (collapseWhen) {
+      setLocalOpen(false);
+      try { localStorage.setItem(storageKey, JSON.stringify(false)); } catch {}
+    }
+  }, [collapseWhen, storageKey]);
 
   // Derive open: always show when the section has validation errors
   const open = localOpen || hasErrors;
@@ -48,6 +56,11 @@ export default function SectionWrapper({ title, children, defaultOpen = true, ha
           {title}
           {hasErrors && <span className="section-error-dot" aria-label="has errors" />}
         </span>
+        {headerExtras && (
+          <span className="form-section-header-extras" onClick={e => e.stopPropagation()}>
+            {headerExtras}
+          </span>
+        )}
         <span className={`form-section-chevron ${open ? 'open' : ''}`}>▼</span>
       </button>
       {open && (
