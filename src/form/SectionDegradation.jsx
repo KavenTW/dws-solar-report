@@ -20,7 +20,7 @@ export default function SectionDegradation() {
   );
 
   return (
-    <SectionWrapper title="Module Degradation" hasErrors={hasErrors} headerExtras={chip('showChartSection', 'Chart')} collapseWhen={!p.showChartSection}>
+    <SectionWrapper title="Module Degradation" hasErrors={hasErrors} headerExtras={chip('showDegradationSection', 'Degradation')} collapseWhen={!p.showDegradationSection}>
       <FormField label="Annual Degradation Rate" fieldId="degradationRate" error={e?.degradationRate}>
         <PercentInput
           value={p.degradationRate}

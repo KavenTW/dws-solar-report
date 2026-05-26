@@ -25,7 +25,7 @@ export default function SectionWAIRE() {
   );
 
   return (
-    <SectionWrapper title="WAIRE (CA/SCAQMD — Rule 2305)" hasErrors={hasErrors} headerExtras={chip('showSavingsSection', 'Savings')} collapseWhen={!p.showSavingsSection}>
+    <SectionWrapper title="WAIRE (CA/SCAQMD — Rule 2305)" hasErrors={hasErrors} headerExtras={chip('showWAIRESection', 'WAIRE')} collapseWhen={!p.showWAIRESection}>
       <FormField label="Year-1 WAIRE Point Value" fieldId="year1WAIREPointValue" error={e?.year1WAIREPointValue}>
         <NumberInput value={p.year1WAIREPointValue} onValueChange={field('year1WAIREPointValue')} unit="$/pt" />
       </FormField>

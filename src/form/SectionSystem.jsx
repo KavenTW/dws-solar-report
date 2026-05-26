@@ -21,7 +21,7 @@ export default function SectionSystem() {
   );
 
   return (
-    <SectionWrapper title="System Specifications" hasErrors={hasErrors} headerExtras={chip('showOverviewSection', 'Overview')} collapseWhen={!p.showOverviewSection}>
+    <SectionWrapper title="System Specifications" hasErrors={hasErrors} headerExtras={chip('showSystemSection', 'System')} collapseWhen={!p.showSystemSection}>
       <FormField label="System Size DC" fieldId="systemSizeDCkW" error={e?.systemSizeDCkW}>
         <NumberInput value={p.systemSizeDCkW} onValueChange={field('systemSizeDCkW')} unit="kW" />
       </FormField>

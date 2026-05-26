@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'gcsr_projects';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 3;
+export const CURRENT_VERSION = 4;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -39,6 +39,36 @@ function migrateProject(entry) {
         showDisclaimerSection: entry.data.showDisclaimerSection ?? true,
       },
       version: 3,
+    };
+  }
+  // v3 → v4: replace shared flags with per-section flags; add market context fields.
+  if (entry.version < 4) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        // Per-section flags — inherit from the old shared flag they belonged to
+        showFeaturesSection:      d.showFeaturesSection      ?? true,
+        showSystemSection:        d.showSystemSection        ?? (d.showOverviewSection   ?? true),
+        showRoofSection:          d.showRoofSection          ?? (d.showOverviewSection   ?? true),
+        showPPATermsSection:      d.showPPATermsSection      ?? (d.showSavingsSection    ?? true),
+        showRECsSection:          d.showRECsSection          ?? (d.showSavingsSection    ?? true),
+        showWAIRESection:         d.showWAIRESection         ?? (d.showSavingsSection    ?? true),
+        showDegradationSection:   d.showDegradationSection   ?? (d.showChartSection      ?? true),
+        showEmissionsSection:     d.showEmissionsSection     ?? (d.showGenerationSection ?? true),
+        showMarketContextSection: d.showMarketContextSection ?? true,
+        // Market context fields — backfill to empty strings / empty arrays
+        marketContextTitle:              d.marketContextTitle              ?? 'California Market Context',
+        marketContextDescription:        d.marketContextDescription        ?? '',
+        marketContextMonetizationHeader: d.marketContextMonetizationHeader ?? 'Monetization Opportunities',
+        marketContextMonetizationIntro:  d.marketContextMonetizationIntro  ?? '',
+        marketContextMonetizationRows:   d.marketContextMonetizationRows   ?? [],
+        marketContextImplicationHeader:  d.marketContextImplicationHeader  ?? 'Strategic Implication',
+        marketContextImplicationIntro:   d.marketContextImplicationIntro   ?? '',
+        marketContextImplicationRows:    d.marketContextImplicationRows    ?? [],
+      },
+      version: 4,
     };
   }
   return entry;

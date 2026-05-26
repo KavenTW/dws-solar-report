@@ -24,7 +24,7 @@ export default function SectionRECs() {
   );
 
   return (
-    <SectionWrapper title="Renewable Energy Certificates (RECs)" hasErrors={hasErrors} headerExtras={chip('showSavingsSection', 'Savings')} collapseWhen={!p.showSavingsSection}>
+    <SectionWrapper title="Renewable Energy Certificates (RECs)" hasErrors={hasErrors} headerExtras={chip('showRECsSection', 'RECs')} collapseWhen={!p.showRECsSection}>
       <FormField label="Year-1 REC Value" fieldId="year1RECValue" error={e?.year1RECValue}>
         <NumberInput value={p.year1RECValue} onValueChange={field('year1RECValue')} unit="$/MWh" />
       </FormField>

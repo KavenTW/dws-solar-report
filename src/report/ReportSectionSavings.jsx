@@ -38,7 +38,7 @@ export default function ReportSectionSavings({ p, calc }) {
           </tbody>
         </table>
 
-        {p.waireEnabled && (
+        {p.waireEnabled && p.showWAIRESection && (
           <div className="waire-subsection">
             <div className="card-title">WAIRE Points &mdash; 15-Year Term Summary</div>
             <table className="fin-table">
@@ -86,14 +86,14 @@ export default function ReportSectionSavings({ p, calc }) {
               <td>${Math.round(calc.year1UtilityRate * 1000)}/MWh</td>
               <td>${Math.round(calc.ppaRate * 1000)}/MWh</td>
             </tr>
-            {p.recEnabled && (
+            {p.recEnabled && p.showRECsSection && (
               <tr>
                 <td><strong>{p.recProgramName}</strong></td>
                 <td>${Math.round(p.year1RECValue)}/MWh</td>
                 <td>${Math.round(calc.ppaRECPrice)}/MWh</td>
               </tr>
             )}
-            {p.waireEnabled && (
+            {p.waireEnabled && p.showWAIRESection && (
               <tr>
                 <td><strong>WAIRE Points</strong></td>
                 <td>${Math.round(calc.waireYear1MktMwhRate)}/MWh</td>
@@ -107,13 +107,13 @@ export default function ReportSectionSavings({ p, calc }) {
           <tbody>
             <tr className="sub-header"><td colSpan={2}>Year 1 Savings Summary</td></tr>
             <tr><td>Electricity Savings</td><td>{FMT.usd(calc.yr1ElecSavings)}</td></tr>
-            {p.recEnabled && <tr><td>{p.recProgramName} Savings</td><td>{FMT.usd(calc.yr1RECSavings)}</td></tr>}
-            {p.waireEnabled && <tr><td>WAIRE Points Savings</td><td>{FMT.usd(calc.waireYear1SavingsUSD)}</td></tr>}
+            {p.recEnabled && p.showRECsSection && <tr><td>{p.recProgramName} Savings</td><td>{FMT.usd(calc.yr1RECSavings)}</td></tr>}
+            {p.waireEnabled && p.showWAIRESection && <tr><td>WAIRE Points Savings</td><td>{FMT.usd(calc.waireYear1SavingsUSD)}</td></tr>}
             <tr className="total-row"><td><strong>Total Year 1 Savings</strong></td><td><strong>{FMT.usd(calc.yr1SubTotal)}</strong></td></tr>
           </tbody>
         </table>
 
-        {p.waireEnabled && (
+        {p.waireEnabled && p.showWAIRESection && (
           <div className="info-box info-box--mt">
             <strong>What are WAIRE Points?</strong><br />
             WAIRE (Warehouse Actions &amp; Investments to Reduce Emissions) is a compliance program under <strong>SCAQMD Rule 2305</strong>, requiring high-traffic warehouses to earn annual points through clean-air investments &mdash; including on-site solar &mdash; or pay a per-point mitigation fee. This system earns points two ways: a one-time <strong>installation credit</strong> ({calc.waireInstallPoints.toFixed(0)} pts in Year 1) plus annual <strong>generation credits</strong> (~{calc.waireYear1GenPoints.toFixed(0)} pts/yr), for a Year 1 total of {calc.waireYear1TotalPoints.toFixed(0)} pts. This PPA passes those points to {p.tenantName} at a {Math.round(p.ppaDiscountRate * 100)}% discount to the standard fee, directly reducing their annual WAIRE compliance cost.

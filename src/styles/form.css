@@ -674,3 +674,90 @@
   border-color: var(--border);
   color: var(--muted);
 }
+
+/* ── MARKET CONTEXT DYNAMIC TABLE ── */
+.market-subsection {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.market-subsection > .field-group-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--primary-dark);
+  margin-bottom: 10px;
+}
+
+.market-subsection .form-field-row { margin-bottom: 10px; }
+
+.market-dyn-table { margin-top: 8px; }
+
+.market-dyn-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 8px;
+  align-items: start;
+  margin-bottom: 10px;
+  padding: 10px;
+  background: var(--surface);
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.market-dyn-cell { display: flex; flex-direction: column; gap: 4px; }
+
+.market-dyn-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.market-dyn-row input,
+.market-dyn-row textarea {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--white);
+  resize: vertical;
+  font-family: inherit;
+  color: var(--text);
+}
+
+.market-dyn-del {
+  align-self: start;
+  margin-top: 20px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px 8px;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.market-dyn-del:hover { color: #c0392b; border-color: #c0392b; }
+
+.market-dyn-add {
+  background: none;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  width: 100%;
+  margin-top: 4px;
+  transition: background 0.15s;
+}
+
+.market-dyn-add:hover { background: var(--surface); }

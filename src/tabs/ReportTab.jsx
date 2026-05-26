@@ -8,6 +8,7 @@ import ReportSectionGeneration from '../report/ReportSectionGeneration';
 import ReportSectionSavings from '../report/ReportSectionSavings';
 import ReportSectionChart from '../report/ReportSectionChart';
 import ReportSectionSiteInfo from '../report/ReportSectionSiteInfo';
+import ReportSectionMarketContext from '../report/ReportSectionMarketContext';
 import ReportDisclaimer from '../report/ReportDisclaimer';
 import ReportFooter from '../report/ReportFooter';
 import '../report/report.css';
@@ -65,14 +66,15 @@ export default function ReportTab() {
       </div>
 
       <ErrorBoundary fallback={reportFallback}>
-        {p.showCoverSection      && <ReportCover p={p} />}
+        {p.showCoverSection && <ReportCover p={p} />}
         <div className="container">
-          {p.showOverviewSection   && <ReportSectionOverview p={p} calc={calc} />}
-          {p.showLayoutSection     && <ReportSectionLayout p={p} calc={calc} />}
-          {p.showGenerationSection && <ReportSectionGeneration p={p} calc={calc} />}
-          {p.showSavingsSection    && <ReportSectionSavings p={p} calc={calc} />}
-          {p.showChartSection      && <ReportSectionChart p={p} calc={calc} />}
-          {p.showSiteInfoSection   && <ReportSectionSiteInfo p={p} />}
+          {(p.showSystemSection || p.showRoofSection) && <ReportSectionOverview p={p} calc={calc} />}
+          {p.showLayoutSection && <ReportSectionLayout p={p} calc={calc} />}
+          {(p.showGenerationSection || p.showEmissionsSection) && <ReportSectionGeneration p={p} calc={calc} />}
+          {(p.showPPATermsSection || p.showRECsSection || p.showWAIRESection) && <ReportSectionSavings p={p} calc={calc} />}
+          {p.showPPATermsSection && <ReportSectionChart p={p} calc={calc} />}
+          {p.showSiteInfoSection && <ReportSectionSiteInfo p={p} />}
+          {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
           {p.showDisclaimerSection && <ReportDisclaimer p={p} />}
         </div>
         <ReportFooter p={p} />

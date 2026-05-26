@@ -19,7 +19,7 @@ export default function SectionRoof() {
   );
 
   return (
-    <SectionWrapper title="Roof Parameters" headerExtras={chip('showOverviewSection', 'Overview')} collapseWhen={!p.showOverviewSection}>
+    <SectionWrapper title="Roof Parameters" headerExtras={chip('showRoofSection', 'Roof')} collapseWhen={!p.showRoofSection}>
       <FormField label="Roof Area Used" fieldId="roofUsedSqFt" error={e?.roofUsedSqFt}>
         <NumberInput value={p.roofUsedSqFt} onValueChange={field('roofUsedSqFt')} unit="sq ft" />
       </FormField>

@@ -18,8 +18,18 @@ export default function SectionFeatureFlags() {
   const p = state.project;
   const f = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
+  const chip = (key, label) => (
+    <span
+      role="button" tabIndex={0}
+      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
+      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
+      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
+      title={p[key] ? `Remove ${label} from report` : `Add ${label} to report`}
+    >{label}</span>
+  );
+
   return (
-    <SectionWrapper title="Jurisdiction & Features">
+    <SectionWrapper title="Jurisdiction & Features" headerExtras={chip('showFeaturesSection', 'Features')} collapseWhen={!p.showFeaturesSection}>
       <div className="full-width flag-toggles">
         <Toggle label="WAIRE Enabled (CA/SCAQMD only)" checked={p.waireEnabled} onChange={f('waireEnabled')} />
         <Toggle label="RECs Enabled" checked={p.recEnabled} onChange={f('recEnabled')} />

@@ -23,7 +23,7 @@ export default function SectionEmissions() {
   );
 
   return (
-    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors} headerExtras={chip('showGenerationSection', 'Generation')} collapseWhen={!p.showGenerationSection}>
+    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors} headerExtras={chip('showEmissionsSection', 'Emissions')} collapseWhen={!p.showEmissionsSection}>
       <FormField label="Grid Emissions Intensity" fieldId="gridEmissionsIntensity" error={e?.gridEmissionsIntensity}>
         <NumberInput value={p.gridEmissionsIntensity} onValueChange={field('gridEmissionsIntensity')} unit="lbs/MWh" />
       </FormField>

@@ -11,33 +11,19 @@ export default function SectionPPATerms() {
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
   const hasErrors = !!(e?.ppaTerm || e?.ppaDiscountRate || e?.year1AvoidedChargesUSD);
-  const toggleField = key => () => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] });
 
-  const chipKeyDown = fn => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } };
-
-  const headerExtras = (
-    <>
-      <span
-        role="button"
-        tabIndex={0}
-        className={`report-section-toggle ${p.showSavingsSection ? 'included' : 'excluded'}`}
-        onClick={toggleField('showSavingsSection')}
-        onKeyDown={chipKeyDown(toggleField('showSavingsSection'))}
-        title={p.showSavingsSection ? 'Remove Savings page from report' : 'Add Savings page to report'}
-      >Savings</span>
-      <span
-        role="button"
-        tabIndex={0}
-        className={`report-section-toggle ${p.showChartSection ? 'included' : 'excluded'}`}
-        onClick={toggleField('showChartSection')}
-        onKeyDown={chipKeyDown(toggleField('showChartSection'))}
-        title={p.showChartSection ? 'Remove Chart page from report' : 'Add Chart page to report'}
-      >Chart</span>
-    </>
+  const chip = (key, label) => (
+    <span
+      role="button" tabIndex={0}
+      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
+      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
+      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
+      title={p[key] ? `Remove ${label} from report` : `Add ${label} to report`}
+    >{label}</span>
   );
 
   return (
-    <SectionWrapper title="PPA Terms & Pricing" hasErrors={hasErrors} headerExtras={headerExtras} collapseWhen={!p.showSavingsSection && !p.showChartSection}>
+    <SectionWrapper title="PPA Terms & Pricing" hasErrors={hasErrors} headerExtras={chip('showPPATermsSection', 'PPA Terms')} collapseWhen={!p.showPPATermsSection}>
       <FormField label="PPA Term" fieldId="ppaTerm" error={e?.ppaTerm}>
         <NumberInput value={p.ppaTerm} onValueChange={field('ppaTerm')} unit="yrs" />
       </FormField>
