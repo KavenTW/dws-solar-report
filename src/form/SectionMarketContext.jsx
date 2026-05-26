@@ -79,8 +79,8 @@ export default function SectionMarketContext() {
 
   return (
     <SectionWrapper
-      title="Market Context"
-      headerExtras={chip('showMarketContextSection', 'Market Context')}
+      title="State Overview"
+      headerExtras={chip('showMarketContextSection', 'State Overview')}
       collapseWhen={!p.showMarketContextSection}
     >
       <FormField label="Page Title" fieldId="marketContextTitle" className="full-width">

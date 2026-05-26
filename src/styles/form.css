@@ -18,6 +18,13 @@
   margin-bottom: 28px;
 }
 
+.inputs-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .inputs-header h1 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -28,6 +35,32 @@
 .inputs-header p {
   color: var(--muted);
   font-size: 14px;
+}
+
+.section-collapse-btns {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+  align-items: center;
+  padding-top: 4px;
+}
+
+.btn-section-ctrl {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--primary-dark);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.btn-section-ctrl:hover {
+  background: var(--surface);
+  border-color: var(--primary);
 }
 
 /* ── SECTION ── */

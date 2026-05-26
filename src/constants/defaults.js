@@ -107,7 +107,7 @@ export const DEFAULT_PROJECT = {
   layoutImageDataUrl: null,
 
   // Market Context
-  marketContextTitle:              'California Market Context',
+  marketContextTitle:              'California State Overview',
   marketContextDescription:        'California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.',
   marketContextMonetizationHeader: 'Monetization Opportunities',
   marketContextMonetizationIntro:  'The Net Billing Tariff (NBT) is California\'s standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.',

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useProject } from '../context/ProjectContext';
+import { SectionCollapseProvider, useSectionCollapse } from '../context/SectionCollapseContext';
 import { validateProject } from '../constants/validation';
 import SaveLoadBar from '../form/SaveLoadBar';
 import SectionIdentity from '../form/SectionIdentity';
@@ -17,13 +18,11 @@ import SectionMarketContext from '../form/SectionMarketContext';
 import SectionDisclaimers from '../form/SectionDisclaimers';
 import '../styles/form.css';
 
-export default function InputsTab() {
+function InputsTabInner() {
   const { state, dispatch } = useProject();
   const { project } = state;
+  const { expandAll, collapseAll } = useSectionCollapse();
 
-  // After SET_FORM_ERRORS, SectionWrapper forces error sections open on the next
-  // render.  Two rAF ticks give React time to re-render and the DOM to settle
-  // before we query for the first invalid field.
   useEffect(() => {
     if (Object.keys(state.formErrors).length === 0) return;
     const id = requestAnimationFrame(() => {
@@ -53,8 +52,16 @@ export default function InputsTab() {
   return (
     <div className="inputs-tab">
       <div className="inputs-header">
-        <h1>Project Inputs</h1>
-        <p>Fill in the fields below, then click "Preview Report" to generate the proposal.</p>
+        <div className="inputs-header-row">
+          <div>
+            <h1>Project Inputs</h1>
+            <p>Fill in the fields below, then click "Preview Report" to generate the proposal.</p>
+          </div>
+          <div className="section-collapse-btns">
+            <button className="btn-section-ctrl" onClick={expandAll}>Expand All</button>
+            <button className="btn-section-ctrl" onClick={collapseAll}>Collapse All</button>
+          </div>
+        </div>
       </div>
 
       <SaveLoadBar />
@@ -84,5 +91,13 @@ export default function InputsTab() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function InputsTab() {
+  return (
+    <SectionCollapseProvider>
+      <InputsTabInner />
+    </SectionCollapseProvider>
   );
 }

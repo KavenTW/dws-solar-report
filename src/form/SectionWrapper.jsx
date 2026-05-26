@@ -1,4 +1,5 @@
 import { useState, useId, useEffect } from 'react';
+import { useSectionCollapse } from '../context/SectionCollapseContext';
 
 /**
  * Collapsible form section.
@@ -19,6 +20,18 @@ export default function SectionWrapper({ title, children, defaultOpen = true, ha
       return defaultOpen;
     }
   });
+
+  // Respond to Expand All / Collapse All
+  const { override, tick } = useSectionCollapse();
+  useEffect(() => {
+    if (override === 'open' && !collapseWhen) {
+      setLocalOpen(true);
+      try { localStorage.setItem(storageKey, JSON.stringify(true)); } catch {}
+    } else if (override === 'closed') {
+      setLocalOpen(false);
+      try { localStorage.setItem(storageKey, JSON.stringify(false)); } catch {}
+    }
+  }, [tick]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-collapse when the report section is excluded
   useEffect(() => {
