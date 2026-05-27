@@ -9,7 +9,9 @@ export default function SectionSystem() {
   const e = state.formErrors;
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
-  const hasErrors = !!(e?.systemSizeDCkW);
+  const hasErrors = !!(e?.rooftopSizeDCkW || e?.carportSizeDCkW);
+  const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
+
   const chip = (key, label) => (
     <span
       role="button" tabIndex={0}
@@ -22,14 +24,20 @@ export default function SectionSystem() {
 
   return (
     <SectionWrapper title="System Specifications" hasErrors={hasErrors} headerExtras={chip('showSystemSection', 'System')} collapseWhen={!p.showSystemSection}>
-      <FormField label="System Size DC" fieldId="systemSizeDCkW" error={e?.systemSizeDCkW}>
-        <NumberInput value={p.systemSizeDCkW} onValueChange={field('systemSizeDCkW')} unit="kW" />
+      <FormField label="Rooftop DC" fieldId="rooftopSizeDCkW" error={e?.rooftopSizeDCkW}>
+        <NumberInput value={p.rooftopSizeDCkW} onValueChange={field('rooftopSizeDCkW')} unit="kW" />
+      </FormField>
+      <FormField label="Carport DC" fieldId="carportSizeDCkW">
+        <NumberInput value={p.carportSizeDCkW} onValueChange={field('carportSizeDCkW')} unit="kW" />
+      </FormField>
+      <FormField label="Total DC" fieldId="totalDCkW">
+        <div className="readonly-field">
+          <span className="readonly-value">{totalDCkW.toLocaleString()}</span>
+          <span className="readonly-unit">kW</span>
+        </div>
       </FormField>
       <FormField label="System Size AC" fieldId="systemSizeACkW">
         <NumberInput value={p.systemSizeACkW} onValueChange={field('systemSizeACkW')} unit="kW" />
-      </FormField>
-      <FormField label="Module Wattage" fieldId="moduleWp">
-        <NumberInput value={p.moduleWp} onValueChange={field('moduleWp')} unit="Wp" />
       </FormField>
     </SectionWrapper>
   );

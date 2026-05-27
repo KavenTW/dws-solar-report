@@ -130,6 +130,31 @@
 
 .form-section-body.full-width { grid-template-columns: 1fr; }
 
+/* ── READ-ONLY COMPUTED FIELD ── */
+.readonly-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 10px;
+  background: var(--bg-alt, #f4f4f4);
+  border: 1px solid var(--border, #ddd);
+  border-radius: 6px;
+  opacity: 0.75;
+}
+
+.readonly-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.readonly-unit {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
 /* ── UNIT BADGE ── */
 .input-unit-wrap {
   position: relative;

@@ -1,6 +1,6 @@
 export default function ReportSectionLayout({ p, calc }) {
   const cityShort = p.city.split(',')[0].trim();
-  const caption = `Figure 1 — HelioScope simulation output • ${p.address}, ${cityShort} • ~${calc.moduleCount} modules • ${p.systemSizeDCkW} kW DC`;
+  const caption = `Figure 1 — HelioScope simulation output • ${p.address}, ${cityShort} • ${calc.totalDCkW.toLocaleString()} kW DC`;
 
   return (
     <div className="section">

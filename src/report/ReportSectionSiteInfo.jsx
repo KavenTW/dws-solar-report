@@ -24,7 +24,16 @@ export default function ReportSectionSiteInfo({ p }) {
               {p.siteBuildingType && <tr><td>Building Type</td><td>{p.siteBuildingType}</td></tr>}
               {p.siteRoofType     && <tr><td>Roof Type</td><td>{p.siteRoofType}</td></tr>}
               <tr><td>Roof Age / Est. Install Yr</td><td>Est. 2026 Install Yr</td></tr>
-              <tr><td>Est. Usable Roof Area</td><td>{p.roofUsedSqFt.toLocaleString()} sq ft</td></tr>
+              {(p.rooftopAreaUsedSqFt > 0 || p.carportAreaUsedSqFt > 0) && (
+                <tr>
+                  <td>Est. Usable Area</td>
+                  <td>
+                    {p.rooftopAreaUsedSqFt > 0 && <span>{(p.rooftopAreaUsedSqFt || 0).toLocaleString()} sq ft rooftop</span>}
+                    {p.rooftopAreaUsedSqFt > 0 && p.carportAreaUsedSqFt > 0 && ' / '}
+                    {p.carportAreaUsedSqFt > 0 && <span>{(p.carportAreaUsedSqFt || 0).toLocaleString()} sq ft carport</span>}
+                  </td>
+                </tr>
+              )}
               <tr><td>Structural Assessment</td><td>Pending engineering review</td></tr>
               <tr><td>Shading / Obstructions</td><td>HVAC units screened in layout</td></tr>
               {p.siteUtility      && <tr><td>Utility</td><td>{p.siteUtility}</td></tr>}

@@ -6,14 +6,26 @@ export default function ReportSectionOverview({ p, calc }) {
   const cum15 = refScenario ? refScenario.cumSavings[p.ppaTerm - 1] : 0;
   const refRatePct = refScenario ? Math.round(refScenario.rate * 100) : '?';
 
+  const rooftopDC  = p.rooftopSizeDCkW || 0;
+  const carportDC  = p.carportSizeDCkW || 0;
+  const rooftopUsed  = p.rooftopAreaUsedSqFt || 0;
+  const rooftopTotal = p.rooftopTotalSqFt    || 0;
+  const carportUsed  = p.carportAreaUsedSqFt  || 0;
+  const carportTotal = p.carportTotalSqFt     || 0;
+
   return (
     <div className="section">
       <div className="section-title">System Overview</div>
       <div className="kpi-grid">
         <div className="kpi-card">
           <div className="kpi-label">System Size</div>
-          <div className="kpi-value">{p.systemSizeDCkW.toLocaleString()}</div>
-          <div className="kpi-unit">kW DC &nbsp;/&nbsp; {p.systemSizeACkW.toLocaleString()} kW AC</div>
+          <div className="kpi-value">{calc.totalDCkW.toLocaleString()}</div>
+          <div className="kpi-unit">
+            kW DC &nbsp;/&nbsp; {p.systemSizeACkW.toLocaleString()} kW AC
+            {(rooftopDC > 0 || carportDC > 0) && (
+              <span> &nbsp;&bull;&nbsp; {rooftopDC.toLocaleString()} kW rooftop / {carportDC.toLocaleString()} kW carport</span>
+            )}
+          </div>
         </div>
         <div className="kpi-card">
           <div className="kpi-label">YR-1 Generation</div>
@@ -27,8 +39,13 @@ export default function ReportSectionOverview({ p, calc }) {
         </div>
         <div className="kpi-card">
           <div className="kpi-label">Roof Area Used</div>
-          <div className="kpi-value">{p.roofUsedSqFt.toLocaleString()}</div>
-          <div className="kpi-unit">sq ft &nbsp;&bull;&nbsp; ~{Math.round(calc.roofUtil * 100)}% of {p.roofTotalSqFt.toLocaleString()} ft² total roof</div>
+          <div className="kpi-value">{rooftopUsed.toLocaleString()}</div>
+          <div className="kpi-unit">
+            sq ft rooftop &nbsp;&bull;&nbsp; ~{rooftopTotal > 0 ? Math.round(calc.roofUtil * 100) : 0}% of {rooftopTotal.toLocaleString()} ft² total
+            {carportTotal > 0 && (
+              <span> &nbsp;|&nbsp; {carportUsed.toLocaleString()} / {carportTotal.toLocaleString()} ft² carport</span>
+            )}
+          </div>
         </div>
 
         <div className="kpi-divider">PPA Savings Summary</div>
@@ -47,11 +64,6 @@ export default function ReportSectionOverview({ p, calc }) {
           <div className="kpi-label">15-Yr Cumulative Savings</div>
           <div className="kpi-value amber">{FMT.kilo(cum15)}</div>
           <div className="kpi-unit">{p.currency} &bull; electricity savings at {refRatePct}% escalation</div>
-        </div>
-        <div className="kpi-card">
-          <div className="kpi-label">Module Count</div>
-          <div className="kpi-value">~{calc.moduleCount.toLocaleString()}</div>
-          <div className="kpi-unit">&times; {p.moduleWp} W panels (est.)</div>
         </div>
       </div>
     </div>

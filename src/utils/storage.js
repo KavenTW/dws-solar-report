@@ -1,6 +1,6 @@
 const STORAGE_KEY = 'gcsr_projects';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 4;
+export const CURRENT_VERSION = 5;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -69,6 +69,23 @@ function migrateProject(entry) {
         marketContextImplicationRows:    d.marketContextImplicationRows    ?? [],
       },
       version: 4,
+    };
+  }
+  // v4 → v5: replace systemSizeDCkW with rooftop/carport split; rename roof area fields; remove moduleWp.
+  if (entry.version < 5) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        rooftopSizeDCkW:     d.rooftopSizeDCkW     ?? d.systemSizeDCkW ?? 0,
+        carportSizeDCkW:     d.carportSizeDCkW     ?? 0,
+        rooftopAreaUsedSqFt: d.rooftopAreaUsedSqFt ?? d.roofUsedSqFt   ?? 0,
+        rooftopTotalSqFt:    d.rooftopTotalSqFt    ?? d.roofTotalSqFt  ?? 0,
+        carportAreaUsedSqFt: d.carportAreaUsedSqFt ?? 0,
+        carportTotalSqFt:    d.carportTotalSqFt    ?? 0,
+      },
+      version: 5,
     };
   }
   return entry;

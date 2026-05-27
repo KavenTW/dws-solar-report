@@ -1,23 +1,25 @@
 export const DEFAULT_PROJECT = {
-  // Identity
-  companyName:  'Great Circle Solar Management Corp.',
-  address:      '450 E. Rider St',
-  city:         'Perris, California',
-  province:     'CA',
-  clientName:   'IDI Logistics',
-  tenantName:   'Exol',
-  projectName:  'Rider Logistics Center 2',
-  reportDate:   'March 2026',
+  // Identity — start blank, filled in per project
+  companyName:  '',
+  address:      '',
+  city:         '',
+  province:     '',
+  clientName:   '',
+  tenantName:   '',
+  projectName:  '',
+  reportDate:   '',
   reportType:   'PPA Proposal',
 
-  // System
-  systemSizeDCkW: 1500,
-  systemSizeACkW: 1250,
-  moduleWp:        550,
+  // System — rooftop + carport split (total is computed)
+  rooftopSizeDCkW: 0,
+  carportSizeDCkW: 0,
+  systemSizeACkW:  0,
 
-  // Roof
-  roofUsedSqFt:  250000,
-  roofTotalSqFt: 804803,
+  // Roof areas — rooftop and carport tracked separately
+  rooftopAreaUsedSqFt: 0,
+  rooftopTotalSqFt:    0,
+  carportAreaUsedSqFt: 0,
+  carportTotalSqFt:    0,
 
   // Generation
   annualMwhHelioScope: 2475,
@@ -66,8 +68,8 @@ export const DEFAULT_PROJECT = {
   referenceScenarioIndex: 1,
 
   // Pricing
-  year1AvoidedChargesUSD: 320000,
-  year1PPARateMWh:        139,
+  year1AvoidedChargesUSD: 0,
+  year1PPARateMWh:        0,
   utilityEscalationRates: [0.03, 0.04, 0.05],
 
   // RECs
@@ -92,16 +94,16 @@ export const DEFAULT_PROJECT = {
   gridEmissionsDisclaimer:  'California 2026 average grid emissions factor sourced from U.S. EPA eGRID — Western Electricity Coordinating Council (WECC).',
   waireDisclaimer:          'WAIRE compliance point generation is subject to CARB methodology and facility-specific activity data.',
 
-  // Site info
-  siteLatLong:     '33.79°N / 117.23°W',
-  siteClimateZone: 'Zone 3B (Hot-Dry)',
-  sitePSH:         '~5.7 PSH / day (annual avg)',
-  siteGHI:         '~2,060 kWh/m²/yr',
-  siteAvgTemp:     '~18.2°C',
-  siteBuildingType: 'Logistics / Distribution Center',
-  siteRoofType:    'TPO membrane (flat)',
-  siteUtility:     'Southern California Edison (SCE)',
-  siteSolarProgram: 'NEM 3.0 — TOU-8-D',
+  // Site info — start blank, filled in per project
+  siteLatLong:      '',
+  siteClimateZone:  '',
+  sitePSH:          '',
+  siteGHI:          '',
+  siteAvgTemp:      '',
+  siteBuildingType: '',
+  siteRoofType:     '',
+  siteUtility:      '',
+  siteSolarProgram: '',
 
   // Image (stored as base64 data URL)
   layoutImageDataUrl: null,

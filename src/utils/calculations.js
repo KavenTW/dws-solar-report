@@ -14,24 +14,24 @@ export function computeCalc(p) {
   // Edge-case guards — throw descriptive errors caught by useCalc
   if (!p.annualMwhHelioScope || p.annualMwhHelioScope <= 0)
     throw new Error('Annual generation (MWh) must be greater than 0.');
-  if (!p.systemSizeDCkW || p.systemSizeDCkW <= 0)
-    throw new Error('System size DC (kW) must be greater than 0.');
+
+  const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
+  if (totalDCkW <= 0)
+    throw new Error('Total system size DC (kW) must be greater than 0.');
+
   if (!p.annualSiteLoadMwh || p.annualSiteLoadMwh <= 0)
     throw new Error('Annual site load (MWh) must be greater than 0.');
-  if (!p.roofTotalSqFt || p.roofTotalSqFt <= 0)
-    throw new Error('Total roof area (sq ft) must be greater than 0.');
-  if (!p.moduleWp || p.moduleWp <= 0)
-    throw new Error('Module wattage (Wp) must be greater than 0.');
 
   const annualMwh  = p.annualMwhHelioScope;
   const annualKwh  = annualMwh * 1000;
   const monthlyMwh = p.monthlyPct.map(pct => pct / 100 * annualMwh);
   const pct        = p.monthlyPct;
-  const moduleCount = Math.round((p.systemSizeDCkW * 1000) / p.moduleWp);
-  const roofUtil    = p.roofUsedSqFt / p.roofTotalSqFt;
+  const roofUtil   = p.rooftopTotalSqFt > 0 ? p.rooftopAreaUsedSqFt / p.rooftopTotalSqFt : 0;
   const gridImport  = Math.max(0, p.annualSiteLoadMwh - annualMwh);
   const solarOffset = annualMwh / p.annualSiteLoadMwh;
-  const energyIntensity = (p.annualSiteLoadMwh * 1000) / p.roofTotalSqFt;
+  const energyIntensity = p.rooftopTotalSqFt > 0
+    ? (p.annualSiteLoadMwh * 1000) / p.rooftopTotalSqFt
+    : 0;
 
   // PPA pricing
   const year1UtilityRate = p.year1AvoidedChargesUSD / annualKwh;
@@ -52,7 +52,7 @@ export function computeCalc(p) {
   if (p.waireEnabled) {
     const WAIRE_INSTALL_PTS_PER_MW = p.waireInstallPtsPerMW;
     const WAIRE_GEN_PTS_PER_MWH   = 1 / p.waireGenMwhPerPt;
-    const systemMW                 = p.systemSizeDCkW / 1000;
+    const systemMW                 = totalDCkW / 1000;
     waireInstallPoints      = roundup(systemMW * WAIRE_INSTALL_PTS_PER_MW, 1);
     waireYear1GenPoints     = roundup(p.annualMwhHelioScope * WAIRE_GEN_PTS_PER_MWH, 1);
     waireYear1TotalPoints   = waireInstallPoints + waireYear1GenPoints;
@@ -105,7 +105,7 @@ export function computeCalc(p) {
   const waireYear1MktMwhRate = p.waireEnabled ? waireYear1MktValueUSD / annualMwh : 0;
 
   return {
-    months, annualMwh, annualKwh, monthlyMwh, pct, moduleCount, roofUtil,
+    months, annualMwh, annualKwh, monthlyMwh, pct, totalDCkW, roofUtil,
     gridImport, solarOffset, energyIntensity,
     year1UtilityRate, ppaRate, yr1ElecSavings, yr1TotalUtilBillNoSolar, yr1TotalUtilBillWithSolar,
     yr1BillReduction, yr1BillReductionPerMwh,

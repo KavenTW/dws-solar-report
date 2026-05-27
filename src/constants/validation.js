@@ -12,8 +12,9 @@ export function validateProject(p) {
 
   // System size — only required when System section is included
   if (p.showSystemSection !== false) {
-    if (!p.systemSizeDCkW || p.systemSizeDCkW <= 0)
-      errs.systemSizeDCkW = 'Must be > 0';
+    const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
+    if (totalDCkW <= 0)
+      errs.rooftopSizeDCkW = 'Rooftop + carport total must be > 0';
   }
 
   // Generation + monthly distribution — only required when Generation section is included

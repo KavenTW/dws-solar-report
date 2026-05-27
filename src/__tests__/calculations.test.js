@@ -3,10 +3,12 @@ import { computeCalc } from '../utils/calculations';
 
 const BASE = {
   annualMwhHelioScope: 2475,
-  systemSizeDCkW: 1500,
-  moduleWp: 550,
-  roofUsedSqFt: 250000,
-  roofTotalSqFt: 804803,
+  rooftopSizeDCkW: 1000,
+  carportSizeDCkW: 500,
+  rooftopAreaUsedSqFt: 250000,
+  rooftopTotalSqFt: 804803,
+  carportAreaUsedSqFt: 0,
+  carportTotalSqFt: 0,
   annualSiteLoadMwh: 3000,
   year1AvoidedChargesUSD: 350000,
   ppaDiscountRate: 0.10,
@@ -29,7 +31,7 @@ describe('computeCalc', () => {
   it('computes core PPA values correctly', () => {
     const c = computeCalc(BASE);
     expect(c.annualKwh).toBe(2_475_000);
-    expect(c.moduleCount).toBe(Math.round((1500 * 1000) / 550));
+    expect(c.totalDCkW).toBe(1500);
     // year1UtilityRate = 350000 / 2475000
     const expectedUtilRate = 350000 / 2_475_000;
     expect(c.year1UtilityRate).toBeCloseTo(expectedUtilRate, 6);
@@ -68,8 +70,8 @@ describe('computeCalc', () => {
     expect(() => computeCalc({ ...BASE, annualMwhHelioScope: 0 })).toThrow();
   });
 
-  it('throws when systemSizeDCkW is zero', () => {
-    expect(() => computeCalc({ ...BASE, systemSizeDCkW: 0 })).toThrow();
+  it('throws when total DC kW is zero', () => {
+    expect(() => computeCalc({ ...BASE, rooftopSizeDCkW: 0, carportSizeDCkW: 0 })).toThrow();
   });
 
   it('returns cumSavings array matching ppaTerm length for each scenario', () => {
