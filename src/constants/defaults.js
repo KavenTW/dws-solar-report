@@ -10,10 +10,12 @@ export const DEFAULT_PROJECT = {
   reportDate:   '',
   reportType:   'PPA Proposal',
 
-  // System — rooftop + carport split (total is computed)
+  // System — rooftop + carport split (totals are computed)
   rooftopSizeDCkW: 0,
   carportSizeDCkW: 0,
-  systemSizeACkW:  0,
+  rooftopSizeACkW: 0,
+  carportSizeACkW: 0,
+  systemSizeACkW:  0,  // legacy, kept for migration
 
   // Roof areas — rooftop and carport tracked separately
   rooftopAreaUsedSqFt: 0,

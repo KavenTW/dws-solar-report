@@ -11,6 +11,7 @@ export default function SectionSystem() {
 
   const hasErrors = !!(e?.rooftopSizeDCkW || e?.carportSizeDCkW);
   const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
+  const totalACkW = (p.rooftopSizeACkW || 0) + (p.carportSizeACkW || 0);
 
   const chip = (key, label) => (
     <span
@@ -30,14 +31,23 @@ export default function SectionSystem() {
       <FormField label="Carport DC" fieldId="carportSizeDCkW">
         <NumberInput value={p.carportSizeDCkW} onValueChange={field('carportSizeDCkW')} unit="kW" />
       </FormField>
-      <FormField label="Total DC" fieldId="totalDCkW">
+      <FormField label="Total DC">
         <div className="readonly-field">
           <span className="readonly-value">{totalDCkW.toLocaleString()}</span>
           <span className="readonly-unit">kW</span>
         </div>
       </FormField>
-      <FormField label="System Size AC" fieldId="systemSizeACkW">
-        <NumberInput value={p.systemSizeACkW} onValueChange={field('systemSizeACkW')} unit="kW" />
+      <FormField label="Rooftop AC" fieldId="rooftopSizeACkW">
+        <NumberInput value={p.rooftopSizeACkW} onValueChange={field('rooftopSizeACkW')} unit="kW" />
+      </FormField>
+      <FormField label="Carport AC" fieldId="carportSizeACkW">
+        <NumberInput value={p.carportSizeACkW} onValueChange={field('carportSizeACkW')} unit="kW" />
+      </FormField>
+      <FormField label="Total AC">
+        <div className="readonly-field">
+          <span className="readonly-value">{totalACkW.toLocaleString()}</span>
+          <span className="readonly-unit">kW</span>
+        </div>
       </FormField>
     </SectionWrapper>
   );

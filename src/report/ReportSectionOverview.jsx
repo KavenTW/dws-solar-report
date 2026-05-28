@@ -8,6 +8,9 @@ export default function ReportSectionOverview({ p, calc }) {
 
   const rooftopDC  = p.rooftopSizeDCkW || 0;
   const carportDC  = p.carportSizeDCkW || 0;
+  const rooftopAC  = p.rooftopSizeACkW || 0;
+  const carportAC  = p.carportSizeACkW || 0;
+  const totalACkW  = rooftopAC + carportAC || p.systemSizeACkW || 0;
   const rooftopUsed  = p.rooftopAreaUsedSqFt || 0;
   const rooftopTotal = p.rooftopTotalSqFt    || 0;
   const carportUsed  = p.carportAreaUsedSqFt  || 0;
@@ -21,9 +24,12 @@ export default function ReportSectionOverview({ p, calc }) {
           <div className="kpi-label">System Size</div>
           <div className="kpi-value">{calc.totalDCkW.toLocaleString()}</div>
           <div className="kpi-unit">
-            kW DC &nbsp;/&nbsp; {p.systemSizeACkW.toLocaleString()} kW AC
+            kW DC &nbsp;/&nbsp; {totalACkW.toLocaleString()} kW AC
             {(rooftopDC > 0 || carportDC > 0) && (
-              <span> &nbsp;&bull;&nbsp; {rooftopDC.toLocaleString()} kW rooftop / {carportDC.toLocaleString()} kW carport</span>
+              <span> &nbsp;&bull;&nbsp; {rooftopDC.toLocaleString()} kW rooftop / {carportDC.toLocaleString()} kW carport (DC)</span>
+            )}
+            {(rooftopAC > 0 || carportAC > 0) && (
+              <span> &nbsp;&bull;&nbsp; {rooftopAC.toLocaleString()} kW rooftop / {carportAC.toLocaleString()} kW carport (AC)</span>
             )}
           </div>
         </div>
