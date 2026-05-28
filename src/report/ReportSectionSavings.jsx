@@ -8,7 +8,7 @@ export default function ReportSectionSavings({ p, calc }) {
     <div className="section two-col">
       <div className="section-title">Energy Savings Overview</div>
 
-      <div className="card">
+      {p.showPPATermsSection && <div className="card">
         <div className="card-title">Electricity Savings ({p.currency})</div>
         <table className="fin-table">
           <tbody>
@@ -63,9 +63,9 @@ export default function ReportSectionSavings({ p, calc }) {
             </table>
           </div>
         )}
-      </div>
+      </div>}
 
-      <div className="card">
+      {p.showPPATermsSection && <div className="card">
         <div className="card-title">Value Offer</div>
 
         <table className="fin-table">
@@ -119,7 +119,7 @@ export default function ReportSectionSavings({ p, calc }) {
             WAIRE (Warehouse Actions &amp; Investments to Reduce Emissions) is a compliance program under <strong>SCAQMD Rule 2305</strong>, requiring high-traffic warehouses to earn annual points through clean-air investments &mdash; including on-site solar &mdash; or pay a per-point mitigation fee. This system earns points two ways: a one-time <strong>installation credit</strong> ({calc.waireInstallPoints.toFixed(0)} pts in Year 1) plus annual <strong>generation credits</strong> (~{calc.waireYear1GenPoints.toFixed(0)} pts/yr), for a Year 1 total of {calc.waireYear1TotalPoints.toFixed(0)} pts. This PPA passes those points to {p.tenantName} at a {Math.round(p.ppaDiscountRate * 100)}% discount to the standard fee, directly reducing their annual WAIRE compliance cost.
           </div>
         )}
-      </div>
+      </div>}
     </div>
   );
 }

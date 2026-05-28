@@ -20,58 +20,69 @@ export default function ReportSectionOverview({ p, calc }) {
     <div className="section">
       <div className="section-title">System Overview</div>
       <div className="kpi-grid">
-        <div className="kpi-card">
-          <div className="kpi-label">System Size</div>
-          <div className="kpi-value">{calc.totalDCkW.toLocaleString()}</div>
-          <div className="kpi-unit">
-            kW DC &nbsp;/&nbsp; {totalACkW.toLocaleString()} kW AC
-            {(rooftopDC > 0 || carportDC > 0) && (
-              <span> &nbsp;&bull;&nbsp; {rooftopDC.toLocaleString()} kW rooftop / {carportDC.toLocaleString()} kW carport (DC)</span>
-            )}
-            {(rooftopAC > 0 || carportAC > 0) && (
-              <span> &nbsp;&bull;&nbsp; {rooftopAC.toLocaleString()} kW rooftop / {carportAC.toLocaleString()} kW carport (AC)</span>
-            )}
+        {p.showSystemSection && (
+          <div className="kpi-card">
+            <div className="kpi-label">System Size</div>
+            <div className="kpi-value">{calc.totalDCkW.toLocaleString()}</div>
+            <div className="kpi-unit">
+              kW DC &nbsp;/&nbsp; {totalACkW.toLocaleString()} kW AC
+              {(rooftopDC > 0 || carportDC > 0) && (
+                <span> &nbsp;&bull;&nbsp; {rooftopDC.toLocaleString()} kW rooftop / {carportDC.toLocaleString()} kW carport (DC)</span>
+              )}
+              {(rooftopAC > 0 || carportAC > 0) && (
+                <span> &nbsp;&bull;&nbsp; {rooftopAC.toLocaleString()} kW rooftop / {carportAC.toLocaleString()} kW carport (AC)</span>
+              )}
+            </div>
           </div>
-        </div>
-        <div className="kpi-card">
-          <div className="kpi-label">YR-1 Generation</div>
-          <div className="kpi-value">{Math.round(calc.annualMwh).toLocaleString()}</div>
-          <div className="kpi-unit">MWh &nbsp;/&nbsp; {Math.round(calc.annualKwh).toLocaleString()} kWh</div>
-        </div>
-        <div className="kpi-card">
-          <div className="kpi-label">Annual &amp; Lifetime CO₂e Avoided</div>
-          <div className="kpi-value">{Math.round(calc.annualCO2e)} &nbsp;|&nbsp; {FMT.rnd100(calc.lifetimeCO2e).toLocaleString()}</div>
-          <div className="kpi-unit">t/yr annual &nbsp;|&nbsp; t lifetime ({p.ppaTerm} yr)</div>
-        </div>
-        <div className="kpi-card">
-          <div className="kpi-label">Roof Area Used</div>
-          <div className="kpi-value">
-            {rooftopUsed.toLocaleString()}
-            {carportUsed > 0 && <span style={{ fontSize: '0.6em', fontWeight: 'normal', color: '#555' }}> &nbsp;|&nbsp; {carportUsed.toLocaleString()}</span>}
+        )}
+        {p.showGenerationSection && (
+          <div className="kpi-card">
+            <div className="kpi-label">YR-1 Generation</div>
+            <div className="kpi-value">{Math.round(calc.annualMwh).toLocaleString()}</div>
+            <div className="kpi-unit">MWh &nbsp;/&nbsp; {Math.round(calc.annualKwh).toLocaleString()} kWh</div>
           </div>
-          <div className="kpi-unit">
-            sq ft rooftop{carportUsed > 0 && <span> &nbsp;|&nbsp; sq ft carport</span>}
-            &nbsp;&bull;&nbsp; ~{rooftopTotal > 0 ? Math.round(calc.roofUtil * 100) : 0}% of {rooftopTotal.toLocaleString()} ft² total
+        )}
+        {p.showEmissionsSection && (
+          <div className="kpi-card">
+            <div className="kpi-label">Annual &amp; Lifetime CO₂e Avoided</div>
+            <div className="kpi-value">{Math.round(calc.annualCO2e)} &nbsp;|&nbsp; {FMT.rnd100(calc.lifetimeCO2e).toLocaleString()}</div>
+            <div className="kpi-unit">t/yr annual &nbsp;|&nbsp; t lifetime ({p.ppaTerm} yr)</div>
           </div>
-        </div>
+        )}
+        {p.showRoofSection && (
+          <div className="kpi-card">
+            <div className="kpi-label">Roof Area Used</div>
+            <div className="kpi-value">
+              {rooftopUsed.toLocaleString()}
+              {carportUsed > 0 && <span style={{ fontSize: '0.6em', fontWeight: 'normal', color: '#555' }}> &nbsp;|&nbsp; {carportUsed.toLocaleString()}</span>}
+            </div>
+            <div className="kpi-unit">
+              sq ft rooftop{carportUsed > 0 && <span> &nbsp;|&nbsp; sq ft carport</span>}
+              &nbsp;&bull;&nbsp; ~{rooftopTotal > 0 ? Math.round(calc.roofUtil * 100) : 0}% of {rooftopTotal.toLocaleString()} ft² total
+            </div>
+          </div>
+        )}
 
-        <div className="kpi-divider">PPA Savings Summary</div>
-
-        <div className="kpi-card accent">
-          <div className="kpi-label">Yr-1 Electricity Savings</div>
-          <div className="kpi-value amber">{FMT.usd(calc.yr1ElecSavings)}</div>
-          <div className="kpi-unit">{p.currency} &bull; {Math.round(p.ppaDiscountRate * 100)}% savings vs. full utility rate</div>
-        </div>
-        <div className="kpi-card">
-          <div className="kpi-label">PPA Term</div>
-          <div className="kpi-value">{p.ppaTerm}</div>
-          <div className="kpi-unit">years &nbsp;&bull;&nbsp; fixed PPA rate</div>
-        </div>
-        <div className="kpi-card accent2">
-          <div className="kpi-label">15-Yr Cumulative Savings</div>
-          <div className="kpi-value amber">{FMT.kilo(cum15)}</div>
-          <div className="kpi-unit">{p.currency} &bull; electricity savings at {refRatePct}% escalation</div>
-        </div>
+        {p.showPPATermsSection && (
+          <>
+            <div className="kpi-divider">PPA Savings Summary</div>
+            <div className="kpi-card accent">
+              <div className="kpi-label">Yr-1 Electricity Savings</div>
+              <div className="kpi-value amber">{FMT.usd(calc.yr1ElecSavings)}</div>
+              <div className="kpi-unit">{p.currency} &bull; {Math.round(p.ppaDiscountRate * 100)}% savings vs. full utility rate</div>
+            </div>
+            <div className="kpi-card">
+              <div className="kpi-label">PPA Term</div>
+              <div className="kpi-value">{p.ppaTerm}</div>
+              <div className="kpi-unit">years &nbsp;&bull;&nbsp; fixed PPA rate</div>
+            </div>
+            <div className="kpi-card accent2">
+              <div className="kpi-label">{p.ppaTerm}-Yr Cumulative Savings</div>
+              <div className="kpi-value amber">{FMT.kilo(cum15)}</div>
+              <div className="kpi-unit">{p.currency} &bull; electricity savings at {refRatePct}% escalation</div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
