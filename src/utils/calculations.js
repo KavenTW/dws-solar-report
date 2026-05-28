@@ -16,8 +16,6 @@ export function computeCalc(p) {
     throw new Error('Annual generation (MWh) must be greater than 0.');
 
   const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
-  if (totalDCkW <= 0)
-    throw new Error('Total system size DC (kW) must be greater than 0.');
 
   // annualSiteLoadMwh is optional — omit for generation-only reports
 
