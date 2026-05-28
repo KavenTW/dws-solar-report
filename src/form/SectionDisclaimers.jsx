@@ -20,7 +20,10 @@ export default function SectionDisclaimers() {
   );
 
   return (
-    <SectionWrapper title="Disclaimers" defaultOpen={false} hasErrors={hasErrors} headerExtras={chip('showDisclaimerSection', 'Disclaimer')} collapseWhen={!p.showDisclaimerSection}>
+    <SectionWrapper title="Disclaimers & Notes" defaultOpen={false} hasErrors={hasErrors} headerExtras={<>{chip('showNextStepsSection', 'Next Steps')} {chip('showDisclaimerSection', 'Disclaimer')}</>} collapseWhen={!p.showDisclaimerSection && !p.showNextStepsSection}>
+      <FormField label="Additional Notes (one per line)" className="full-width">
+        <textarea value={p.additionalNotes} onChange={txt('additionalNotes')} rows={3} />
+      </FormField>
       <FormField label="Grid Emissions Disclaimer" fieldId="gridEmissionsDisclaimer" error={e?.gridEmissionsDisclaimer} className="full-width">
         <textarea value={p.gridEmissionsDisclaimer} onChange={txt('gridEmissionsDisclaimer')} rows={3} />
       </FormField>

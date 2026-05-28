@@ -88,6 +88,19 @@ function migrateProject(entry) {
       version: 5,
     };
   }
+  // v5 → v6: add additionalNotes and showNextStepsSection
+  if (entry.version < 6) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        additionalNotes:      d.additionalNotes      ?? 'Actual design would have to take into consideration other site plan requirements and constraints such as trees and parking lighting',
+        showNextStepsSection: d.showNextStepsSection  ?? true,
+      },
+      version: 6,
+    };
+  }
   return entry;
 }
 

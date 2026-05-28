@@ -9,6 +9,7 @@ import ReportSectionSavings from '../report/ReportSectionSavings';
 import ReportSectionChart from '../report/ReportSectionChart';
 import ReportSectionSiteInfo from '../report/ReportSectionSiteInfo';
 import ReportSectionMarketContext from '../report/ReportSectionMarketContext';
+import ReportSectionNextSteps from '../report/ReportSectionNextSteps';
 import ReportDisclaimer from '../report/ReportDisclaimer';
 import ReportFooter from '../report/ReportFooter';
 import '../report/report.css';
@@ -75,6 +76,7 @@ export default function ReportTab() {
           {p.showPPATermsSection && <ReportSectionChart p={p} calc={calc} />}
           {p.showSiteInfoSection && <ReportSectionSiteInfo p={p} />}
           {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
+          {p.showNextStepsSection && <ReportSectionNextSteps p={p} />}
           {p.showDisclaimerSection && <ReportDisclaimer p={p} />}
         </div>
         <ReportFooter p={p} />

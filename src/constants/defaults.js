@@ -59,7 +59,10 @@ export const DEFAULT_PROJECT = {
   showDegradationSection:   true,
   showSiteInfoSection:      true,
   showMarketContextSection: true,
+  showNextStepsSection:     true,
   showDisclaimerSection:    true,
+
+  additionalNotes: 'Actual design would have to take into consideration other site plan requirements and constraints such as trees and parking lighting',
 
   // PPA terms
   ppaTerm:               15,
