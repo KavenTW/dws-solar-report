@@ -296,34 +296,75 @@
   @page { size: letter; margin: 0.6in 0.65in; }
   @page :first { margin: 0; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* ── Base ── */
   body { background: white; font-size: 12px; line-height: 1.5; }
-  .scroll-header { display: none !important; }
-  .data-table tr:hover td { background: transparent !important; }
+
+  /* ── Hide screen-only chrome ── */
+  .scroll-header,
+  .report-toolbar,
+  .no-print { display: none !important; }
+
+  /* ── Cover ── */
   .cover-letterhead { padding: 10px 0.65in; border-bottom: 3px solid var(--accent); }
-  .cover { padding: 30px 0.65in 36px; page-break-after: always; }
+  .cover { padding: 30px 0.65in 36px; page-break-after: always; break-after: page; }
+
+  /* ── Page layout ── */
   .container { max-width: 100%; padding: 24px 0 40px; }
   .section { margin-bottom: 24px; break-inside: avoid; }
-  .card { box-shadow: none; border: 1px solid #dde8f5; padding: 16px; break-inside: avoid; }
-  .kpi-card { box-shadow: none; border: 1px solid #dde8f5; padding: 14px 12px; break-inside: avoid; }
+  .section--page-break { break-before: page; }
+
+  /* ── Cards ── */
+  .card {
+    box-shadow: none;
+    border: 1px solid #dde8f5;
+    padding: 16px;
+    break-inside: avoid;
+  }
+  .kpi-card {
+    box-shadow: none;
+    border: 1px solid #dde8f5;
+    padding: 14px 12px;
+    break-inside: avoid;
+  }
   .kpi-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .kpi-value { font-size: 1.45rem; }
-  .two-col { gap: 14px; break-inside: avoid; }
-  .fin-table { font-size: 12px; }
-  .fin-table td { padding: 6px 10px; }
+
+  /* ── Two-col: stack on print for readability ── */
+  .two-col { display: block; }
+  .two-col > .card { margin-bottom: 14px; break-inside: avoid; }
+
+  /* ── Tables ── */
+  .fin-table { font-size: 11px; }
+  .fin-table td { padding: 5px 10px; }
+  .fin-table th { padding: 5px 10px; }
+  .data-table { font-size: 11px; }
+  .data-table th, .data-table td { padding: 6px 10px; }
+  .data-table tr:hover td { background: transparent !important; }
+  .market-table { font-size: 11px; }
+  .market-table th, .market-table td { padding: 6px 10px; }
+
+  /* ── Scenario row colours ── */
   .scenario-low  td { background: rgba(0,95,171,0.07) !important; }
   .scenario-mid  td { background: rgba(22,163,74,0.07) !important; }
   .scenario-high td { background: rgba(251,163,27,0.09) !important; }
   .scenario-label-low  { background: #005FAB !important; color: #fff !important; }
   .scenario-label-mid  { background: #16a34a !important; color: #fff !important; }
   .scenario-label-high { background: #FBA31B !important; color: #fff !important; }
-  .data-table { font-size: 12px; }
-  .data-table th, .data-table td { padding: 7px 12px; }
-  .layout-photo { max-height: 300px; }
+
+  /* ── Layout photo ── */
+  .layout-photo { max-height: 280px; }
+
+  /* ── Chart ── */
   canvas { max-width: 100% !important; }
   #cashflowChart { height: 200px !important; }
-  .note-box, .info-box, .footnote, .disclaimer { font-size: 11px; break-inside: avoid; }
-  .report-footer { padding: 14px 0; margin-top: 8px; }
-  .market-table { font-size: 12px; }
-  .market-table th, .market-table td { padding: 7px 12px; }
-  .section--page-break { break-before: page; }
+
+  /* ── Misc ── */
+  .note-box,
+  .info-box,
+  .footnote,
+  .disclaimer { font-size: 11px; break-inside: avoid; }
+  .report-footer { padding: 14px 0; margin-top: 8px; border-top: 1px solid #dde8f5; }
+  .donut-wrap { gap: 16px; }
+  .donut-canvas-wrap { width: 110px; height: 110px; }
 }
