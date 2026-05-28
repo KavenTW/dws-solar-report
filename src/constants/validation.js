@@ -7,7 +7,7 @@ export function validateProject(p) {
     if (!p.address)     errs.address     = 'Property address is required';
     if (!p.city)        errs.city        = 'City / state is required';
     if (!p.clientName)  errs.clientName  = 'Client name is required';
-    if (!p.tenantName)  errs.tenantName  = 'Tenant / offtaker name is required';
+    // tenantName is optional — not all report types have a PPA offtaker
   }
 
   // System size — only required when System section is included
