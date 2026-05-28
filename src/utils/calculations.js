@@ -19,8 +19,7 @@ export function computeCalc(p) {
   if (totalDCkW <= 0)
     throw new Error('Total system size DC (kW) must be greater than 0.');
 
-  if (!p.annualSiteLoadMwh || p.annualSiteLoadMwh <= 0)
-    throw new Error('Annual site load (MWh) must be greater than 0.');
+  // annualSiteLoadMwh is optional — omit for generation-only reports
 
   const annualMwh  = p.annualMwhHelioScope;
   const annualKwh  = annualMwh * 1000;
