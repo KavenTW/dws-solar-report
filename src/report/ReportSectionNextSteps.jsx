@@ -12,33 +12,35 @@ export default function ReportSectionNextSteps({ p }) {
   return (
     <div className="section">
       <div className="section-title">Further Technical Analysis Required</div>
-      <table className="fin-table" style={{ width: '100%' }}>
-        <thead>
-          <tr className="sub-header">
-            <th style={{ width: '28%' }}>Category</th>
-            <th>Item / Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {TECHNICAL_ITEMS.map(({ category, notes }) => (
-            <tr key={category}>
-              <td><strong>{category}</strong></td>
-              <td>{notes}</td>
+      <div className="card">
+        <table className="fin-table" style={{ width: '100%' }}>
+          <thead>
+            <tr className="sub-header">
+              <th style={{ width: '28%' }}>Category</th>
+              <th>Item / Notes</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {p.additionalNotes && (
-        <div style={{ marginTop: '24px' }}>
-          <div className="card-title" style={{ marginBottom: '10px' }}>Additional Notes</div>
-          <ul style={{ paddingLeft: '20px', margin: 0 }}>
-            {p.additionalNotes.split('\n').filter(Boolean).map((line, i) => (
-              <li key={i} style={{ marginBottom: '6px' }}>{line}</li>
+          </thead>
+          <tbody>
+            {TECHNICAL_ITEMS.map(({ category, notes }) => (
+              <tr key={category}>
+                <td><strong>{category}</strong></td>
+                <td>{notes}</td>
+              </tr>
             ))}
-          </ul>
-        </div>
-      )}
+          </tbody>
+        </table>
+
+        {p.additionalNotes && (
+          <div style={{ marginTop: '24px' }}>
+            <div className="card-title" style={{ marginBottom: '10px' }}>Additional Notes</div>
+            <ul style={{ paddingLeft: '20px', margin: 0 }}>
+              {p.additionalNotes.split('\n').filter(Boolean).map((line, i) => (
+                <li key={i} style={{ marginBottom: '6px' }}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
