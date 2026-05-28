@@ -35,7 +35,7 @@ export default function ReportSectionSiteInfo({ p }) {
                 </tr>
               )}
               <tr><td>Structural Assessment</td><td>Pending engineering review</td></tr>
-              <tr><td>Shading / Obstructions</td><td>HVAC units screened in layout</td></tr>
+              <tr><td>Shading / Obstructions</td><td>Rooftop units screened in layout</td></tr>
               {p.siteUtility      && <tr><td>Utility</td><td>{p.siteUtility}</td></tr>}
               {p.siteSolarProgram && <tr><td>Solar Program / Tariff</td><td>{p.siteSolarProgram}</td></tr>}
             </tbody>

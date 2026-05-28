@@ -25,7 +25,7 @@ export default function ReportSectionSavings({ p, calc }) {
             <tr className="total-row"><td><strong>Yr-1 Electricity Savings</strong></td><td><strong>{FMT.usd(calc.yr1ElecSavings)}</strong></td></tr>
 
             <tr className="spacer"><td colSpan={2} /></tr>
-            <tr className="sub-header"><td>15-Year Cumulative Savings — Rate Scenarios</td><td>Cumulative</td></tr>
+            <tr className="sub-header"><td>{p.ppaTerm}-Year Cumulative Savings — Rate Scenarios</td><td>Cumulative</td></tr>
             {calc.scenarios.map((s, i) => (
               <tr key={i} className={`scenario-row ${scenarioClasses[i]}`}>
                 <td>{Math.round(s.rate * 100)}% Ann. Utility Escalation</td>
@@ -40,7 +40,7 @@ export default function ReportSectionSavings({ p, calc }) {
 
         {p.waireEnabled && p.showWAIRESection && (
           <div className="waire-subsection">
-            <div className="card-title">WAIRE Points &mdash; 15-Year Term Summary</div>
+            <div className="card-title">WAIRE Points &mdash; {p.ppaTerm}-Year Term Summary</div>
             <table className="fin-table">
               <tbody>
                 <tr className="sub-header"><td>Period</td><td>Points</td><td>Market Value</td></tr>
@@ -55,7 +55,7 @@ export default function ReportSectionSavings({ p, calc }) {
                   <td>~{FMT.usd(calc.waireYrs2to15MktValueUSD)}</td>
                 </tr>
                 <tr className="total-row">
-                  <td><strong>15-Year Total</strong></td>
+                  <td><strong>{p.ppaTerm}-Year Total</strong></td>
                   <td><strong>~{calc.waire15YrTotalPoints.toFixed(0)} pts</strong></td>
                   <td><strong>~{FMT.usd(calc.waire15YrTotalMktValueUSD)}</strong></td>
                 </tr>

@@ -24,7 +24,7 @@ export default function ReportCover({ p }) {
       <div className="scroll-header">
         <img src="/logo.png" alt="Great Circle Solar" className="scroll-header-logo" />
         <div className="scroll-header-project">
-          <strong>{p.address}, {cityShort}</strong> &nbsp;&mdash;&nbsp; PPA Proposal
+          <strong>{p.address}, {cityShort}</strong> &nbsp;&mdash;&nbsp; {p.reportType}
         </div>
       </div>
     </>

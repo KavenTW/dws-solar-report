@@ -71,7 +71,9 @@ export function computeCalc(p) {
 
   // Emissions
   const annualCO2e   = (annualKwh / 1000) * p.gridEmissionsIntensity / CONSTANTS.lbsPerTonne;
-  const lifetimeCO2e = annualCO2e * p.ppaTerm;
+  const lifetimeCO2e = Array.from({ length: p.ppaTerm }, (_, i) =>
+    (annualKwh * Math.pow(1 - p.degradationRate, i) / 1000) * p.gridEmissionsIntensity / CONSTANTS.lbsPerTonne
+  ).reduce((a, b) => a + b, 0);
   const equivHomes   = Math.round(annualKwh / (p.avgHomeKwhYr || CONSTANTS.avgHomeKwhYr));
 
   // Cumulative savings scenarios

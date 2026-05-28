@@ -11,7 +11,7 @@ export default function ReportSectionChart({ p, calc }) {
 
   return (
     <div className="section">
-      <div className="section-title">15-Year Cumulative Savings Outlook</div>
+      <div className="section-title">{p.ppaTerm}-Year Cumulative Savings Outlook</div>
       <div className="card">
         <div className="card-title">
           Cumulative Electricity Savings vs. Full Utility Rate ({p.currency}) &mdash; {subtitle}
