@@ -28,20 +28,20 @@ export default function SectionSystem() {
       <FormField label="Rooftop DC" fieldId="rooftopSizeDCkW" error={e?.rooftopSizeDCkW}>
         <NumberInput value={p.rooftopSizeDCkW} onValueChange={field('rooftopSizeDCkW')} unit="kW" />
       </FormField>
+      <FormField label="Rooftop AC" fieldId="rooftopSizeACkW">
+        <NumberInput value={p.rooftopSizeACkW} onValueChange={field('rooftopSizeACkW')} unit="kW" />
+      </FormField>
       <FormField label="Carport DC" fieldId="carportSizeDCkW">
         <NumberInput value={p.carportSizeDCkW} onValueChange={field('carportSizeDCkW')} unit="kW" />
+      </FormField>
+      <FormField label="Carport AC" fieldId="carportSizeACkW">
+        <NumberInput value={p.carportSizeACkW} onValueChange={field('carportSizeACkW')} unit="kW" />
       </FormField>
       <FormField label="Total DC">
         <div className="readonly-field">
           <span className="readonly-value">{totalDCkW.toLocaleString()}</span>
           <span className="readonly-unit">kW</span>
         </div>
-      </FormField>
-      <FormField label="Rooftop AC" fieldId="rooftopSizeACkW">
-        <NumberInput value={p.rooftopSizeACkW} onValueChange={field('rooftopSizeACkW')} unit="kW" />
-      </FormField>
-      <FormField label="Carport AC" fieldId="carportSizeACkW">
-        <NumberInput value={p.carportSizeACkW} onValueChange={field('carportSizeACkW')} unit="kW" />
       </FormField>
       <FormField label="Total AC">
         <div className="readonly-field">
