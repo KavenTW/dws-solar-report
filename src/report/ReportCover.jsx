@@ -11,20 +11,20 @@ export default function ReportCover({ p }) {
       </div>
       <div className="cover">
         <div className="cover-accent-bar" />
-        <div className="cover-meta">Power Purchase Agreement &mdash; PPA Proposal</div>
-        <h1>{p.address}</h1>
-        <div className="cover-subtitle">{p.city} &nbsp;&mdash;&nbsp; {p.reportType}</div>
+        <div className="cover-meta">{p.reportType}</div>
+        <h1>{p.projectName || p.address}</h1>
+        {p.projectName && <div className="cover-subtitle" style={{ opacity: 0.75, fontSize: '1rem', marginBottom: '6px' }}>{p.address}</div>}
+        <div className="cover-subtitle">{p.city}</div>
         <div className="cover-prepared-for">
-          Offered to: &nbsp;<span>{p.tenantName}</span>
-          &nbsp;<span style={{ opacity: 0.5, fontSize: '13px' }}>
-            | Property Owner: {p.clientName}
-          </span>
+          {(p.tenantName || p.clientName) && (
+            <>Issued to: &nbsp;<span>{p.tenantName || p.clientName}</span></>
+          )}
         </div>
       </div>
       <div className="scroll-header">
         <img src="/logo.png" alt="Great Circle Solar" className="scroll-header-logo" />
         <div className="scroll-header-project">
-          <strong>{p.address}, {cityShort}</strong>{p.projectName && <span> &nbsp;&mdash;&nbsp; {p.projectName}</span>}
+          <strong>{p.projectName || p.address}</strong>
         </div>
       </div>
     </>
