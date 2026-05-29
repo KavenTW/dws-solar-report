@@ -1,4 +1,4 @@
-import DonutChart from './DonutChart';
+import MonthlyProductionChart from './MonthlyProductionChart';
 
 function barColor(v, max) {
   if (v >= max * 0.90) return '#FFCE02';
@@ -57,15 +57,13 @@ export default function ReportSectionGeneration({ p, calc }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {p.showGenerationSection && (
           <div className="card">
-            <div className="card-title">Annual Solar Production</div>
-            <div className="donut-wrap">
-              <div className="donut-canvas-wrap">
-                <DonutChart annualMwh={calc.annualMwh} gridImport={0} />
-              </div>
-              <div className="donut-legend">
-                <div className="legend-item"><span className="legend-dot" style={{ background: '#005FAB' }} /><span>Solar ({Math.round(calc.annualMwh).toLocaleString()} MWh)</span></div>
-                <div className="legend-item" style={{ marginTop: '8px', fontSize: '13px', color: 'var(--muted)' }}>{Math.round(calc.annualKwh).toLocaleString()} kWh/yr</div>
-              </div>
+            <div className="card-title">Monthly Production Distribution</div>
+            <div style={{ marginBottom: '10px', fontSize: '13px', color: 'var(--muted)' }}>
+              Annual Total: <strong style={{ color: 'var(--primary-dark)' }}>{Math.round(calc.annualMwh).toLocaleString()} MWh</strong>
+              &nbsp;/&nbsp;{Math.round(calc.annualKwh).toLocaleString()} kWh
+            </div>
+            <div style={{ height: '200px' }}>
+              <MonthlyProductionChart monthlyMwh={calc.monthlyMwh} />
             </div>
           </div>
         )}
