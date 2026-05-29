@@ -57,17 +57,14 @@ export default function ReportSectionGeneration({ p, calc }) {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
         {p.showGenerationSection && (
           <div className="card">
-            <div className="card-title">Annual Consumption &amp; Solar Offset</div>
+            <div className="card-title">Annual Solar Production</div>
             <div className="donut-wrap">
               <div className="donut-canvas-wrap">
-                <DonutChart annualMwh={calc.annualMwh} gridImport={calc.gridImport} />
+                <DonutChart annualMwh={calc.annualMwh} gridImport={0} />
               </div>
               <div className="donut-legend">
                 <div className="legend-item"><span className="legend-dot" style={{ background: '#005FAB' }} /><span>Solar ({Math.round(calc.annualMwh).toLocaleString()} MWh)</span></div>
-                <div className="legend-item"><span className="legend-dot" style={{ background: '#dde8f5' }} /><span>Grid Import ({Math.round(calc.gridImport).toLocaleString()} MWh)</span></div>
-                <div className="legend-item" style={{ marginTop: '12px', fontSize: '12px', color: 'var(--muted)' }}>Est. Total Site Load: {Math.round(p.annualSiteLoadMwh).toLocaleString()} MWh/yr</div>
-                <div className="legend-item" style={{ fontSize: '13px', color: 'var(--primary-dark)', fontWeight: 700 }}>Solar Offset: ~{Math.round(calc.solarOffset * 100)}%</div>
-                <div className="legend-item" style={{ fontSize: '12px', color: 'var(--muted)' }}>Energy Intensity: {Math.round(calc.energyIntensity)} kWh/ft²/yr</div>
+                <div className="legend-item" style={{ marginTop: '8px', fontSize: '13px', color: 'var(--muted)' }}>{Math.round(calc.annualKwh).toLocaleString()} kWh/yr</div>
               </div>
             </div>
           </div>

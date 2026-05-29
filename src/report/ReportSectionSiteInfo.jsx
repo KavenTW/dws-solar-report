@@ -8,7 +8,7 @@ export default function ReportSectionSiteInfo({ p }) {
           <table className="fin-table">
             <tbody>
               {(p.address || p.city) && <tr><td>Address</td><td>{[p.address, p.city].filter(Boolean).join(', ')}</td></tr>}
-              {p.siteLatLong     && <tr><td>Lat / Long</td><td>{p.siteLatLong}</td></tr>}
+              {p.siteLatLong     && <tr><td>Lat / Long</td><td>{p.siteLatLong.split(',').map(v => { const n = parseFloat(v); return isNaN(n) ? v.trim() : n.toFixed(5); }).join(', ')}</td></tr>}
               {p.siteClimateZone && <tr><td>Climate Zone</td><td>{p.siteClimateZone}</td></tr>}
               {p.sitePSH         && <tr><td>Avg. Peak Sun Hours</td><td>{p.sitePSH}</td></tr>}
               {p.siteGHI         && <tr><td>Annual GHI</td><td>{p.siteGHI}</td></tr>}
@@ -23,7 +23,6 @@ export default function ReportSectionSiteInfo({ p }) {
             <tbody>
               {p.siteBuildingType && <tr><td>Building Type</td><td>{p.siteBuildingType}</td></tr>}
               {p.siteRoofType     && <tr><td>Roof Type</td><td>{p.siteRoofType}</td></tr>}
-              <tr><td>Roof Age / Est. Install Yr</td><td>Est. 2026 Install Yr</td></tr>
               {(p.rooftopAreaUsedSqFt > 0 || p.carportAreaUsedSqFt > 0) && (
                 <tr>
                   <td>Est. Usable Area</td>
