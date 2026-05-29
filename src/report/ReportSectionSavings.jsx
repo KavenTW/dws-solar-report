@@ -4,6 +4,9 @@ export default function ReportSectionSavings({ p, calc }) {
   const FMT = makeFmt(p.currency);
   const scenarioClasses = ['scenario-low', 'scenario-mid', 'scenario-high'];
 
+  const showAny = p.showPPATermsSection || (p.waireEnabled && p.showWAIRESection) || (p.recEnabled && p.showRECsSection);
+  if (!showAny) return null;
+
   return (
     <div className="section two-col">
       <div className="section-title">Energy Savings Overview</div>
