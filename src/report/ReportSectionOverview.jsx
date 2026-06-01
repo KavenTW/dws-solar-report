@@ -52,13 +52,13 @@ export default function ReportSectionOverview({ p, calc }) {
         {p.showRoofSection && (
           <div className="kpi-card">
             <div className="kpi-label">Roof Area Used</div>
-            <div className="kpi-value">
-              {rooftopUsed.toLocaleString()}
-              {carportUsed > 0 && <span style={{ fontSize: '0.6em', fontWeight: 'normal', color: '#555' }}> &nbsp;|&nbsp; {carportUsed.toLocaleString()}</span>}
-            </div>
+            <div className="kpi-value">{(rooftopUsed + carportUsed).toLocaleString()}</div>
             <div className="kpi-unit">
-              sq ft rooftop{carportUsed > 0 && <span> &nbsp;|&nbsp; sq ft carport</span>}
-              &nbsp;&bull;&nbsp; ~{rooftopTotal > 0 ? Math.round(calc.roofUtil * 100) : 0}% of {rooftopTotal.toLocaleString()} ft² total
+              sq ft total
+              <div style={{ marginTop: '4px' }}>
+                {rooftopUsed > 0 && <div>{rooftopUsed.toLocaleString()} sq ft rooftop{rooftopTotal > 0 && <span> (~{Math.round(rooftopUsed / rooftopTotal * 100)}% used)</span>}</div>}
+                {carportUsed > 0 && <div>{carportUsed.toLocaleString()} sq ft carport{carportTotal > 0 && <span> (~{Math.round(carportUsed / carportTotal * 100)}% used)</span>}</div>}
+              </div>
             </div>
           </div>
         )}
