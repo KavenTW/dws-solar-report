@@ -66,6 +66,16 @@ export const DEFAULT_PROJECT = {
 
   additionalNotes: 'Actual design would have to take into consideration other site plan requirements and constraints such as trees and parking lighting',
 
+  // Feasibility cost estimates (indicative, from licensed engineering firms)
+  feasElectricalMin:       5000,
+  feasElectricalMax:       10000,
+  feasStructuralMin:       5000,
+  feasStructuralMax:       15000,
+  feasGeotechnicalMin:     10000,
+  feasGeotechnicalMax:     15000,
+  feasInterconnectionMin:  5000,
+  feasInterconnectionMax:  5000,
+
   // PPA terms
   ppaTerm:               15,
   ppaDiscountRate:       0.10,

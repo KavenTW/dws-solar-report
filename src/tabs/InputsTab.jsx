@@ -15,6 +15,7 @@ import SectionDegradation from '../form/SectionDegradation';
 import SectionEmissions from '../form/SectionEmissions';
 import SectionSiteInfo from '../form/SectionSiteInfo';
 import SectionMarketContext from '../form/SectionMarketContext';
+import SectionFeasibility from '../form/SectionFeasibility';
 import SectionDisclaimers from '../form/SectionDisclaimers';
 import '../styles/form.css';
 
@@ -78,6 +79,7 @@ function InputsTabInner() {
       <SectionEmissions />
       <SectionSiteInfo />
       <SectionMarketContext />
+      <SectionFeasibility />
       <SectionDisclaimers />
 
       <div className="preview-report-bar">
