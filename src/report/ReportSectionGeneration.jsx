@@ -1,4 +1,5 @@
 import MonthlyProductionChart from './MonthlyProductionChart';
+import ReportDisclaimer from './ReportDisclaimer';
 
 function barColor(v, max) {
   if (v >= max * 0.90) return '#FFCE02';
@@ -89,6 +90,11 @@ export default function ReportSectionGeneration({ p, calc }) {
             <div className="footnote" style={{ marginTop: '10px' }}>
               * CO₂e avoidance estimates are based on the applicable regional grid emissions factor from {p.gridEmissionsSource || 'U.S. EPA eGRID / applicable grid authority'}. Figures assume full displacement of grid electricity by solar generation and include module degradation over the {p.ppaTerm}-year term. Actual avoided emissions may vary with changes to grid fuel mix, system output, and site consumption patterns. Equivalent homes calculation based on U.S. EIA average annual household electricity consumption (~10,632 kWh/yr).
             </div>
+            {p.showDisclaimerSection && (
+              <div style={{ marginTop: '16px' }}>
+                <ReportDisclaimer p={p} />
+              </div>
+            )}
           </div>
         )}
       </div>
