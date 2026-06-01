@@ -315,6 +315,8 @@
   .section--page-break { break-before: page; }
   /* No page break — keep this section on the same page as the previous */
   .section--no-break { break-before: avoid; margin-top: 0; }
+  /* Prevent orphaned section titles */
+  .section-title { break-after: avoid; page-break-after: avoid; }
 
   /* ── Cards ── */
   .card {

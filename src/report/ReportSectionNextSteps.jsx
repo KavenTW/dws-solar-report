@@ -27,7 +27,7 @@ export default function ReportSectionNextSteps({ p }) {
   const totalMax = feasItems.reduce((s, i) => s + (i.max || 0), 0);
 
   return (
-    <div className="section" style={{ breakInside: 'avoid' }}>
+    <div className="section">
       <div className="section-title">Further Technical Analysis Required</div>
       <div className="card">
         <table className="fin-table" style={{ width: '100%' }}>
