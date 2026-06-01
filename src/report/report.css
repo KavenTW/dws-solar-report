@@ -318,6 +318,18 @@
   /* Prevent orphaned section titles */
   .section-title { break-after: avoid; page-break-after: avoid; }
 
+  /* Next Steps — compact everything to fit on one page */
+  .section--next-steps { break-inside: avoid; page-break-inside: avoid; }
+  .section--next-steps .card { padding: 10px; margin-top: 10px !important; }
+  .section--next-steps .fin-table { font-size: 9.5px; }
+  .section--next-steps .fin-table td,
+  .section--next-steps .fin-table th { padding: 3px 8px; }
+  .section--next-steps .info-box { font-size: 9.5px; padding: 7px 10px; margin-bottom: 10px; }
+  .section--next-steps .note-box { font-size: 9.5px; padding: 7px 10px; margin-top: 8px; break-before: avoid; }
+  .section--next-steps .card-title { margin-bottom: 8px; font-size: 11px; }
+  .section--next-steps ul { margin: 4px 0; }
+  .section--next-steps li { margin-bottom: 3px; font-size: 9.5px; }
+
   /* ── Cards ── */
   .card {
     box-shadow: none;
