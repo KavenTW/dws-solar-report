@@ -9,7 +9,7 @@ const TECHNICAL_ITEMS = [
 ];
 
 function fmt(min, max) {
-  const f = v => '$' + (v >= 1000 ? (v / 1000) + 'k' : v.toLocaleString());
+  const f = v => '$' + v.toLocaleString();
   return min === max ? f(min) : `${f(min)} – ${f(max)}`;
 }
 
@@ -18,9 +18,9 @@ export default function ReportSectionNextSteps({ p }) {
 
   const feasItems = [
     { label: 'Electrical Feasibility',                  min: p.feasElectricalMin,      max: p.feasElectricalMax,      note: 'Cost relates to number of points of interconnection' },
-    { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof surfaces' },
-    ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'Required for carport structures' }] : []),
-    { label: 'Interconnection Document Preparation',     min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: 'Preparation and submission to utility' },
+    { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
+    ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
+    { label: 'Utility Interconnection Documentation',    min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
   const totalMin = feasItems.reduce((s, i) => s + (i.min || 0), 0);
