@@ -307,11 +307,11 @@
 
   /* ── Cover ── */
   .cover-letterhead { padding: 10px 0.65in; border-bottom: 3px solid var(--accent); }
-  .cover { padding: 30px 0.65in 36px; page-break-after: always; break-after: page; }
+  .cover { padding: 30px 0.65in 36px; }
 
   /* ── Page layout ── */
-  .container { max-width: 100%; padding: 24px 0 40px; }
-  .section { margin-bottom: 24px; break-inside: avoid; }
+  .container { max-width: 100%; padding: 16px 0 24px; }
+  .section { margin-bottom: 20px; break-inside: avoid; }
   .section--page-break { break-before: page; }
   /* No page break — keep this section on the same page as the previous */
   .section--no-break { break-before: avoid; margin-top: 0; }
