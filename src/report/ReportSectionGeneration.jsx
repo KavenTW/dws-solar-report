@@ -70,15 +70,15 @@ export default function ReportSectionGeneration({ p, calc }) {
 
         {p.showEmissionsSection && (
           <div className="card">
-            <div className="card-title">Avoided Grid Emissions</div>
+            <div className="card-title">Avoided Grid Emissions*</div>
             <table className="fin-table">
               <tbody>
                 {p.gridEmissionsRegion && <tr><td>Jurisdiction</td><td>{p.gridEmissionsRegion}</td></tr>}
-                <tr><td>Avg Grid Emissions Factor (2026)</td><td>{lbsMwhStr}</td></tr>
+                <tr><td>Avg Grid Emissions Factor ({new Date().getFullYear()})</td><td>{lbsMwhStr}</td></tr>
                 <tr><td>Annual Generation</td><td>{Math.round(calc.annualKwh).toLocaleString()} kWh</td></tr>
-                <tr><td>Annual Avoided CO₂e</td><td><strong>{Math.round(calc.annualCO2e)} tonnes</strong></td></tr>
-                <tr><td>{p.ppaTerm}-Year Avoided CO₂e</td><td><strong>{(Math.round(calc.lifetimeCO2e / 100) * 100).toLocaleString()} tonnes</strong></td></tr>
-                <tr><td>Equiv. {p.equivHomesLabel} Homes / Year</td><td>~{calc.equivHomes} homes</td></tr>
+                <tr><td>Annual Avoided CO₂e*</td><td><strong>{Math.round(calc.annualCO2e)} tonnes</strong></td></tr>
+                <tr><td>{p.ppaTerm}-Year Avoided CO₂e*</td><td><strong>{(Math.round(calc.lifetimeCO2e / 100) * 100).toLocaleString()} tonnes</strong></td></tr>
+                <tr><td>Equiv. {p.equivHomesLabel} Homes / Year*</td><td>~{calc.equivHomes} homes</td></tr>
               </tbody>
             </table>
             {p.gridEmissionsSource && (
@@ -86,6 +86,9 @@ export default function ReportSectionGeneration({ p, calc }) {
                 <strong>Source:</strong> {p.gridEmissionsSource}
               </div>
             )}
+            <div className="footnote" style={{ marginTop: '10px' }}>
+              * CO₂e avoidance estimates are based on the applicable regional grid emissions factor from {p.gridEmissionsSource || 'U.S. EPA eGRID / applicable grid authority'}. Figures assume full displacement of grid electricity by solar generation and include module degradation over the {p.ppaTerm}-year term. Actual avoided emissions may vary with changes to grid fuel mix, system output, and site consumption patterns. Equivalent homes calculation based on U.S. EIA average annual household electricity consumption (~10,632 kWh/yr).
+            </div>
           </div>
         )}
       </div>

@@ -44,9 +44,9 @@ export default function ReportSectionOverview({ p, calc }) {
         )}
         {p.showEmissionsSection && (
           <div className="kpi-card">
-            <div className="kpi-label">Annual &amp; Lifetime CO₂e Avoided</div>
+            <div className="kpi-label">Annual &amp; Lifetime CO₂e Avoided*</div>
             <div className="kpi-value">{Math.round(calc.annualCO2e)} &nbsp;|&nbsp; {FMT.rnd100(calc.lifetimeCO2e).toLocaleString()}</div>
-            <div className="kpi-unit">t/yr annual &nbsp;|&nbsp; t lifetime ({p.ppaTerm} yr)</div>
+            <div className="kpi-unit">t/yr annual &nbsp;|&nbsp; t lifetime ({p.ppaTerm} yr)*</div>
           </div>
         )}
         {p.showRoofSection && (
