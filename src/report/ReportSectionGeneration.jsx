@@ -13,7 +13,7 @@ export default function ReportSectionGeneration({ p, calc }) {
   const lbsMwhStr = `${p.gridEmissionsIntensity} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
 
   return (
-    <div className="section two-col">
+    <div className="section two-col section--page-break">
       <div className="section-title">Annual Generation &amp; Emissions</div>
 
       {p.showGenerationSection && (

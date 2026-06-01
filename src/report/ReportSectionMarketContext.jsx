@@ -7,7 +7,7 @@ export default function ReportSectionMarketContext({ p }) {
   );
 
   return (
-    <div className="section section--page-break">
+    <div className="section section--no-break">
       {p.marketContextTitle && (
         <div className="section-title">{p.marketContextTitle}</div>
       )}

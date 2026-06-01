@@ -3,7 +3,7 @@ export default function ReportSectionLayout({ p, calc }) {
   const caption = `Figure 1 — HelioScope simulation output • ${p.address}, ${cityShort} • ${calc.totalDCkW.toLocaleString()} kW DC`;
 
   return (
-    <div className="section">
+    <div className="section section--no-break">
       <div className="section-title">Proposed Array Layout</div>
       <div className="card">
         {p.layoutImageDataUrl ? (
