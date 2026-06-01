@@ -78,8 +78,8 @@ export default function ReportTab() {
           {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
           {p.showNextStepsSection && <ReportSectionNextSteps p={p} />}
           {p.showDisclaimerSection && <ReportDisclaimer p={p} />}
+          <ReportFooter p={p} />
         </div>
-        <ReportFooter p={p} />
       </ErrorBoundary>
     </>
   );
