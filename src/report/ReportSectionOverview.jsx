@@ -23,15 +23,12 @@ export default function ReportSectionOverview({ p, calc }) {
         {p.showSystemSection && (
           <div className="kpi-card">
             <div className="kpi-label">System Size</div>
-            <div className="kpi-value">{calc.totalDCkW.toLocaleString()}</div>
+            <div className="kpi-value" style={{ fontSize: '1.5rem' }}>{calc.totalDCkW.toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>kW DC</span></div>
             <div className="kpi-unit">
-              kW DC
-              {(rooftopDC > 0 || carportDC > 0) && (
-                <div style={{ marginTop: '4px' }}>
-                  {rooftopDC > 0 && <div>{rooftopDC.toLocaleString()} kW rooftop</div>}
-                  {carportDC > 0 && <div>{carportDC.toLocaleString()} kW carport</div>}
-                </div>
-              )}
+              <div style={{ marginTop: '2px' }}>
+                {rooftopDC > 0 && <div>Rooftop: {rooftopDC.toLocaleString()} DC{rooftopAC > 0 && ` / ${rooftopAC.toLocaleString()} AC`} kW</div>}
+                {carportDC > 0 && <div>Carport: {carportDC.toLocaleString()} DC{carportAC > 0 && ` / ${carportAC.toLocaleString()} AC`} kW</div>}
+              </div>
             </div>
           </div>
         )}
