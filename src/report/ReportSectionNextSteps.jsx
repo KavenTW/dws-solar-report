@@ -27,7 +27,7 @@ export default function ReportSectionNextSteps({ p }) {
   const totalMax = feasItems.reduce((s, i) => s + (i.max || 0), 0);
 
   return (
-    <div className="section">
+    <div className="section" style={{ breakInside: 'avoid' }}>
       <div className="section-title">Further Technical Analysis Required</div>
       <div className="card">
         <table className="fin-table" style={{ width: '100%' }}>
@@ -59,7 +59,7 @@ export default function ReportSectionNextSteps({ p }) {
         )}
       </div>
 
-      <div className="card" style={{ marginTop: '20px' }}>
+      <div className="card" style={{ marginTop: '16px', breakBefore: 'avoid', pageBreakBefore: 'avoid' }}>
         <div className="card-title">Indicative Feasibility Cost Estimates</div>
 
         <div className="info-box" style={{ marginBottom: '16px' }}>
