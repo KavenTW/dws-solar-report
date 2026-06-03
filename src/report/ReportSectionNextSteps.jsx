@@ -62,10 +62,6 @@ export default function ReportSectionNextSteps({ p }) {
       <div className="card" style={{ marginTop: '16px', breakBefore: 'avoid', pageBreakBefore: 'avoid' }}>
         <div className="card-title">Indicative Feasibility Cost Estimates</div>
 
-        <div className="info-box" style={{ marginBottom: '16px' }}>
-          All feasibility studies must be completed by locally licensed and certified engineering firms. Great Circle Solar can assist in coordinating appropriate firms upon engagement. Indicative quotes below are sourced from independent third-party licensed engineering firms based on the system sizing outlined above. <strong>Final quotations will depend on actual on-site conditions</strong> following desktop review of available drawings, and may vary based on: number of points of interconnection (electrical), number of roof surfaces (structural), and presence of carport structures (geotechnical).
-        </div>
-
         <table className="fin-table" style={{ width: '100%' }}>
           <thead>
             <tr className="sub-header">
@@ -93,7 +89,11 @@ export default function ReportSectionNextSteps({ p }) {
           </tbody>
         </table>
 
-        <div className="note-box" style={{ marginTop: '14px' }}>
+        <div className="footnote" style={{ marginTop: '10px' }}>
+          * All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
+        </div>
+
+        <div className="note-box" style={{ marginTop: '10px' }}>
           <strong>Stage-Gating:</strong> To manage project risk and capital expenditure, feasibility workstreams can be sequenced rather than run simultaneously. Recommended order: <strong>Electrical → Structural → Geotechnical → Interconnection</strong>. Each stage-gate allows the project to be paused or redirected before committing to subsequent costs, should any fatal constraints be identified.
         </div>
       </div>
