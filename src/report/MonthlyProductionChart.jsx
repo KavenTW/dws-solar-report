@@ -50,10 +50,11 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
           },
           datalabels: {
             anchor: 'end',
-            align: 'end',
-            offset: 2,
+            align: 'top',
+            offset: 0,
             font: { size: 10, weight: '600' },
             color: '#374151',
+            textAlign: 'center',
             formatter: (value) => `${Math.round(value / total * 100)}%`,
           },
         },
