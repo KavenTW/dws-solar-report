@@ -61,7 +61,6 @@ export default function ReportSectionGeneration({ p, calc }) {
             <div className="card-title">Monthly Production Distribution</div>
             <div style={{ marginBottom: '10px', fontSize: '13px', color: 'var(--muted)' }}>
               Annual Total: <strong style={{ color: 'var(--primary-dark)' }}>{Math.round(calc.annualMwh).toLocaleString()} MWh</strong>
-              &nbsp;/&nbsp;{Math.round(calc.annualKwh).toLocaleString()} kWh
             </div>
             <div style={{ height: '200px' }}>
               <MonthlyProductionChart monthlyMwh={calc.monthlyMwh} />

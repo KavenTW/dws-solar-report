@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip);
+Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, ChartDataLabels);
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -22,7 +23,8 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
     if (!canvasRef.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const max = Math.max(...monthlyMwh);
+    const total = monthlyMwh.reduce((s, v) => s + v, 0);
+    const max   = Math.max(...monthlyMwh);
     const colors = monthlyMwh.map(v => barColor(v, max));
 
     chartRef.current = new Chart(canvasRef.current, {
@@ -43,10 +45,19 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
           legend: { display: false },
           tooltip: {
             callbacks: {
-              label: ctx => ` ${ctx.parsed.y.toLocaleString()} MWh`,
+              label: ctx => ` ${ctx.parsed.y.toLocaleString()} MWh (${Math.round(ctx.parsed.y / total * 100)}%)`,
             },
           },
+          datalabels: {
+            anchor: 'end',
+            align: 'end',
+            offset: 2,
+            font: { size: 10, weight: '600' },
+            color: '#374151',
+            formatter: (value) => `${Math.round(value / total * 100)}%`,
+          },
         },
+        layout: { padding: { top: 20 } },
         scales: {
           x: {
             grid: { display: false },
