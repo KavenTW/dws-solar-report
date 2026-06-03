@@ -36,7 +36,7 @@ export default function ReportSectionOverview({ p, calc }) {
           <div className="kpi-card">
             <div className="kpi-label">YR-1 Generation</div>
             <div className="kpi-value">{Math.round(calc.annualMwh).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>MWh</span></div>
-            <div className="kpi-unit">{calc.totalDCkW > 0 ? (calc.annualMwh / (calc.totalDCkW / 1000)).toFixed(2) : '—'} MWh/MW DC</div>
+            <div className="kpi-unit">{calc.totalDCkW > 0 ? Math.round(calc.annualMwh / (calc.totalDCkW / 1000)).toLocaleString() : '—'} MWh/MW DC</div>
           </div>
         )}
         {p.showEmissionsSection && (
