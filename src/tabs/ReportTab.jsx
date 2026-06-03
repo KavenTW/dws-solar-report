@@ -58,7 +58,12 @@ export default function ReportTab() {
         </button>
         <button
           className="report-btn report-btn--primary"
-          onClick={() => window.print()}
+          onClick={() => {
+            const prev = document.title;
+            document.title = p.projectName || p.address || 'Solar Report';
+            window.print();
+            document.title = prev;
+          }}
         >
           Print / Save PDF
         </button>
