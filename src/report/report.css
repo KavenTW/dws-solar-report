@@ -343,8 +343,10 @@
     padding: 14px 12px;
     break-inside: avoid;
   }
-  .kpi-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; }
-  .kpi-value { font-size: 1.45rem; }
+  .kpi-grid { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .kpi-value { font-size: 1.3rem; }
+  .kpi-unit { font-size: 10px; line-height: 1.4; }
+  .kpi-label { font-size: 10px; }
 
   /* ── Two-col: stack on print for readability ── */
   .two-col { display: block; }
