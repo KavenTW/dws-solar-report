@@ -138,7 +138,7 @@ export const DEFAULT_PROJECT = {
   marketContextImplicationHeader: 'Strategic Implication',
   marketContextImplicationIntro:  'Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.',
   marketContextImplicationRows: [
-    { priority: 'Maximise on-site self-consumption', rationale: 'Each kWh consumed on-site offsets the full retail rate — the highest-value use of generation.' },
+    { priority: 'Maximise on-site self-consumption', rationale: 'Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation.' },
     { priority: 'Right-size to tenant load',          rationale: 'Sizing capacity to tenant load profiles avoids over-export at depressed midday rates.' },
     { priority: 'Integrated energy store',            rationale: 'Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours.' },
   ],
