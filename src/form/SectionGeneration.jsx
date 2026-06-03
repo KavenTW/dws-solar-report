@@ -34,6 +34,14 @@ export default function SectionGeneration() {
         onKeyDown={chipKeyDown(toggleField('showGenerationSection'))}
         title={p.showGenerationSection ? 'Remove Generation page from report' : 'Add Generation page to report'}
       >Generation</span>
+      <span
+        role="button"
+        tabIndex={0}
+        className={`report-section-toggle ${p.showMonthlyTable ? 'included' : 'excluded'}`}
+        onClick={toggleField('showMonthlyTable')}
+        onKeyDown={chipKeyDown(toggleField('showMonthlyTable'))}
+        title={p.showMonthlyTable ? 'Hide monthly table' : 'Show monthly table'}
+      >Monthly Table</span>
     </>
   );
 

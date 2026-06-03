@@ -17,7 +17,7 @@ export default function ReportSectionGeneration({ p, calc }) {
     <div className="section two-col">
       <div className="section-title">Annual Generation &amp; Emissions</div>
 
-      {p.showGenerationSection && (
+      {p.showGenerationSection && p.showMonthlyTable !== false && (
         <div className="card">
           <div className="card-title">Monthly Generation Breakdown</div>
           <table className="data-table">
