@@ -4,7 +4,7 @@ export default function ReportSectionLayout({ p, calc }) {
 
   return (
     <div className="section section--no-break">
-      <div className="section-title">Proposed Array Layout</div>
+      <div className="section-title">Illustrative Solar Array Layout</div>
       <div className="card">
         {p.layoutImageDataUrl ? (
           <img src={p.layoutImageDataUrl} alt={`HelioScope Array Layout — ${p.address}`} className="layout-photo" />
