@@ -55,7 +55,7 @@ export default function ReportSectionGeneration({ p, calc }) {
         </div>
       )}
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', gridColumn: (!p.showMonthlyTable || p.showMonthlyTable === false) ? '1 / -1' : undefined }}>
         {p.showGenerationSection && (
           <div className="card">
             <div className="card-title">Monthly Production Distribution</div>
