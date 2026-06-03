@@ -72,7 +72,6 @@ export default function ReportTab() {
           {(p.showGenerationSection || p.showEmissionsSection) && <ReportSectionGeneration p={p} calc={calc} />}
           {(p.showPPATermsSection || p.showRECsSection || p.showWAIRESection) && <ReportSectionSavings p={p} calc={calc} />}
           {p.showPPATermsSection && <ReportSectionChart p={p} calc={calc} />}
-          {p.showSiteInfoSection && <ReportSectionSiteInfo p={p} />}
           {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
           {p.showNextStepsSection && <ReportSectionNextSteps p={p} />}
         </div>

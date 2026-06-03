@@ -1,6 +1,7 @@
 export default function ReportSectionLayout({ p, calc }) {
   const cityShort = p.city.split(',')[0].trim();
-  const caption = `Figure 1 — HelioScope simulation output • ${p.address}, ${cityShort} • ${calc.totalDCkW.toLocaleString()} kW DC`;
+  const caption = `Simulated using HelioScope (NREL / NASA POWER) — ${p.address}, ${cityShort} — ${calc.totalDCkW.toLocaleString()} kW DC`;
+  const hasLocationData = p.siteLatLong || p.siteClimateZone || p.sitePSH || p.siteGHI || p.siteAvgTemp;
 
   return (
     <div className="section section--no-break">
@@ -20,6 +21,19 @@ export default function ReportSectionLayout({ p, calc }) {
           </div>
         )}
         <div className="photo-caption">{caption}</div>
+
+        {hasLocationData && (
+          <table className="fin-table" style={{ marginTop: '16px' }}>
+            <tbody>
+              {(p.address || p.city) && <tr><td>Address</td><td>{[p.address, p.city].filter(Boolean).join(', ')}</td></tr>}
+              {p.siteLatLong     && <tr><td>Lat / Long</td><td>{p.siteLatLong.split(',').map(v => { const n = parseFloat(v); return isNaN(n) ? v.trim() : n.toFixed(5); }).join(', ')}</td></tr>}
+              {p.siteClimateZone && <tr><td>Climate Zone</td><td>{p.siteClimateZone}</td></tr>}
+              {p.sitePSH         && <tr><td>Avg. Peak Sun Hours</td><td>{p.sitePSH}</td></tr>}
+              {p.siteGHI         && <tr><td>Annual GHI</td><td>{p.siteGHI}</td></tr>}
+              {p.siteAvgTemp     && <tr><td>Avg. Annual Temperature</td><td>{p.siteAvgTemp}</td></tr>}
+            </tbody>
+          </table>
+        )}
       </div>
     </div>
   );
