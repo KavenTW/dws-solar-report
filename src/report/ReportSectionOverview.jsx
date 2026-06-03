@@ -26,8 +26,8 @@ export default function ReportSectionOverview({ p, calc }) {
             <div className="kpi-value" style={{ fontSize: '1.5rem' }}>{calc.totalDCkW.toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>kW DC</span></div>
             <div className="kpi-unit">
               <div style={{ marginTop: '2px' }}>
-                {rooftopDC > 0 && <div>Rooftop: {rooftopDC.toLocaleString()} DC{rooftopAC > 0 && ` / ${rooftopAC.toLocaleString()} AC`} kW</div>}
-                {carportDC > 0 && <div>Carport: {carportDC.toLocaleString()} DC{carportAC > 0 && ` / ${carportAC.toLocaleString()} AC`} kW</div>}
+                {rooftopDC > 0 && <div><strong>Rooftop:</strong> {rooftopDC.toLocaleString()} DC{rooftopAC > 0 && ` / ${rooftopAC.toLocaleString()} AC`} kW</div>}
+                {carportDC > 0 && <div><strong>Carport:</strong> {carportDC.toLocaleString()} DC{carportAC > 0 && ` / ${carportAC.toLocaleString()} AC`} kW</div>}
               </div>
             </div>
           </div>
