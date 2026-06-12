@@ -96,8 +96,6 @@ src/
 └── main.jsx            # React entry point
 ```
 
-Note: `src/report/DonutChart.jsx`, `ReportFooter.jsx`, and `ReportSectionSiteInfo.jsx` are orphaned from earlier iterations (no longer rendered) — see `AUDIT.md`.
-
 ## How Calculations Work
 
 All core math lives in [`src/utils/calculations.js`](src/utils/calculations.js) inside `computeCalc(project)`. The key steps:
@@ -114,7 +112,9 @@ All core math lives in [`src/utils/calculations.js`](src/utils/calculations.js) 
 
 ## Data Persistence
 
-Projects are stored in `localStorage` under the key `gcsr_projects`. Each saved entry carries a schema `version`; `storage.js` applies forward migrations on load so older saved projects pick up newly added fields. Export/import via JSON is available from the save bar for backup or moving between machines. Note that layout images are stored inline as base64 and count toward the browser's localStorage quota (~5 MB).
+Projects are stored in `localStorage` under the key `gcsr_projects`. Each saved entry carries a schema `version`; `storage.js` applies forward migrations on load so older saved projects pick up newly added fields. Export/import via JSON is available from the save bar for backup or moving between machines. Note that layout images are stored inline as base64 and count toward the browser's localStorage quota (~5 MB) — if a save exceeds the quota, the save bar shows an error instead of failing silently.
+
+Unsaved work is protected two ways: the working project autosaves as a draft (`gcsr_draft`) ~1.5 s after each edit and is restored on the next visit, and closing the tab with unsaved changes triggers a browser confirmation prompt. Explicitly saving or loading a project clears the draft.
 
 ## Deployment
 

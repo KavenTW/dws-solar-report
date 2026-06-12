@@ -1,4 +1,45 @@
-# Audit — 2026-06-12 (branch `audit/2026-06-12`)
+# Re-audit — 2026-06-12 (post-fix, same branch)
+
+The Top-5 moves from the original audit below were implemented in commits `0407fec`, `e2bccc2`, `02c2c9b`, `12c392e`. Empirical results after fixes:
+
+- `npm test` — **PASS: 22/22** (was 19/20 with 1 failing)
+- `npm run lint` — **PASS: 0 problems** (was 9 errors)
+- `npm run build` — PASS (`✓ built in 207ms`, 157.64 kB gzipped)
+- `npm audit` — PASS (0 vulnerabilities)
+- Browser smoke (verified live): draft autosaves 1.5s after an edit under `gcsr_draft` stamped `version: 7`; draft restores into the form after reload; explicit Save stamps `version: 7` and clears the draft; with site load = 0 the report renders **no Infinity/NaN**, hides the bill-impact and solar-offset figures, and keeps the rate comparison.
+
+## Post-fix grades
+
+| Area | Was | Now | Why |
+|---|---|---|---|
+| Data integrity | prototype → solid | **solid** | Version chain re-aligned (v7) with migrations for all fields; computeCalc is total (null for absent inputs, never NaN/Infinity); WAIRE and scenario-index boundaries validated; quota failures surface in the UI. Verified by tests + live smoke. |
+| Speed | solid | **solid** | Unchanged; SectionWrapper no longer double-renders on expand/collapse-all. |
+| Design craft | solid | **solid** | Unchanged this pass — inline-style cleanup (O1) and print primitives (N5) remain open. |
+| Ergonomics | prototype → solid | **solid** | Draft autosave + beforeunload prompt close both silent-loss paths. Ctrl+S (O2) and NumberInput empty-state (O3) remain open. |
+| Engineering | solid | **solid → elite** | Lint zero, tests green and CI-enforced on every push, 16 chip copies collapsed into one component, 3 orphan files deleted (−253 lines net). |
+
+## Status of original findings
+
+| Finding | Status |
+|---|---|
+| C1 version drift + unmigrated fields | **Fixed** — `CURRENT_VERSION = 7`, v6→7 migration (AC split, `showMonthlyTable ?? true` preserving pre-toggle intent, feasibility fields) |
+| C2 NaN/Infinity division paths | **Fixed** — `hasSiteLoad` gate (null outputs), WAIRE `1/0` guard, `> 0` validation, savings rows conditional |
+| C3 failing test | **Fixed** — zero-DC contract test rewritten; new null-output and WAIRE-finite tests added (22 total) |
+| C4 silent data loss | **Fixed** — debounced draft autosave, beforeunload prompt, quota error surfaced in save bar |
+| N1 chip duplication ×16 | **Fixed** — `SectionToggleChip` component, 13 files updated |
+| N2 orphans + dead vars | **Fixed** — DonutChart/ReportFooter/ReportSectionSiteInfo deleted; dead import + unused vars removed; `ReportDisclaimer` kept (in use) |
+| N3 lint errors ×9 | **Fixed** — SectionWrapper derives state during render (no setState-in-effect), node globals for config files |
+| N4 referenceScenarioIndex bounds | **Fixed** — validated against `utilityEscalationRates.length` |
+| N5 print magic numbers | **Open** (opportunity) |
+| O1 inline styles | **Open** (opportunity) |
+| O2 Ctrl+S / O3 NumberInput empty-state / O4 chart update-in-place | **Open** (opportunities) |
+| O5 CI gate | **Fixed** — `.github/workflows/ci.yml` runs test + lint + build on every push/PR |
+
+Remaining to reach the full elite bar: print-layout primitives instead of per-section pixel tuning (N5), inline styles into the token scale (O1), Ctrl+S (O2), and a true empty-state for optional numeric fields (O3).
+
+---
+
+# Original audit — 2026-06-12 (branch `audit/2026-06-12`)
 
 Bar: Palantir-grade data integrity, Apple-grade craft, single-user internal tool.
 Scope assumptions: purpose = client-facing solar PPA/feasibility PDF reports; hosting = Vercel; data = project records + base64 images in browser localStorage that real client work depends on.
