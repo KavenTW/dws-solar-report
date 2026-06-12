@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
 import PercentInput from './PercentInput';
@@ -12,18 +13,8 @@ export default function SectionPPATerms() {
 
   const hasErrors = !!(e?.ppaTerm || e?.ppaDiscountRate || e?.year1AvoidedChargesUSD);
 
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} from report` : `Add ${label} to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="PPA Terms & Pricing" hasErrors={hasErrors} headerExtras={chip('showPPATermsSection', 'PPA Terms')} collapseWhen={!p.showPPATermsSection}>
+    <SectionWrapper title="PPA Terms & Pricing" hasErrors={hasErrors} headerExtras={<SectionToggleChip flagKey="showPPATermsSection" label="PPA Terms" />} collapseWhen={!p.showPPATermsSection}>
       <FormField label="PPA Term" fieldId="ppaTerm" error={e?.ppaTerm}>
         <NumberInput value={p.ppaTerm} onValueChange={field('ppaTerm')} unit="yrs" />
       </FormField>

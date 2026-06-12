@@ -120,7 +120,9 @@ export function ProjectProvider({ children }) {
   // Ref mirror of dirty so the once-registered beforeunload handler reads the
   // current value without re-subscribing on every state change.
   const dirtyRef = useRef(false);
-  dirtyRef.current = state.dirty;
+  useEffect(() => {
+    dirtyRef.current = state.dirty;
+  }, [state.dirty]);
 
   useEffect(() => {
     dispatch({ type: 'SET_SAVED_PROJECTS', projects: loadAllProjects() });

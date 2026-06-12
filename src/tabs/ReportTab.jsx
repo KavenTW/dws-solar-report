@@ -7,7 +7,6 @@ import ReportSectionLayout from '../report/ReportSectionLayout';
 import ReportSectionGeneration from '../report/ReportSectionGeneration';
 import ReportSectionSavings from '../report/ReportSectionSavings';
 import ReportSectionChart from '../report/ReportSectionChart';
-import ReportSectionSiteInfo from '../report/ReportSectionSiteInfo';
 import ReportSectionMarketContext from '../report/ReportSectionMarketContext';
 import ReportSectionNextSteps from '../report/ReportSectionNextSteps';
 import '../report/report.css';

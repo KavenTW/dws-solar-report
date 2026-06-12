@@ -10,7 +10,6 @@ export default function ReportSectionOverview({ p, calc }) {
   const carportDC  = p.carportSizeDCkW || 0;
   const rooftopAC  = p.rooftopSizeACkW || 0;
   const carportAC  = p.carportSizeACkW || 0;
-  const totalACkW  = rooftopAC + carportAC || p.systemSizeACkW || 0;
   const rooftopUsed  = p.rooftopAreaUsedSqFt || 0;
   const rooftopTotal = p.rooftopTotalSqFt    || 0;
   const carportUsed  = p.carportAreaUsedSqFt  || 0;

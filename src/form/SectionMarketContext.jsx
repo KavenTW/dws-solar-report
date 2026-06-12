@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 
 function DynamicTable({ rows, columns, onChange }) {
@@ -58,16 +59,6 @@ export default function SectionMarketContext() {
   const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
   const set = (k, v) => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} from report` : `Add ${label} to report`}
-    >{label}</span>
-  );
-
   const monetizationCols = [
     { key: 'mechanism', label: 'Mechanism',  multiline: false },
     { key: 'behaviour', label: 'Behaviour',  multiline: true },
@@ -80,7 +71,7 @@ export default function SectionMarketContext() {
   return (
     <SectionWrapper
       title="State Overview"
-      headerExtras={chip('showMarketContextSection', 'State Overview')}
+      headerExtras={<SectionToggleChip flagKey="showMarketContextSection" label="State Overview" />}
       collapseWhen={!p.showMarketContextSection}
     >
       <FormField label="Page Title" fieldId="marketContextTitle" className="full-width">

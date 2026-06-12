@@ -1,4 +1,4 @@
-import { useState, useId, useEffect } from 'react';
+import { useState, useId } from 'react';
 import { useSectionCollapse } from '../context/SectionCollapseContext';
 
 /**
@@ -21,28 +21,21 @@ export default function SectionWrapper({ title, children, defaultOpen = true, ha
     }
   });
 
-  // Respond to Expand All / Collapse All
+  // Respond to Expand All / Collapse All. Uses the "adjust state during
+  // render" pattern (react.dev) instead of a setState-in-effect, which would
+  // trigger a cascading second render.
   const { override, tick } = useSectionCollapse();
-  useEffect(() => {
-    if (override === 'open' && !collapseWhen) {
-      setLocalOpen(true);
-      try { localStorage.setItem(storageKey, JSON.stringify(true)); } catch {}
-    } else if (override === 'closed') {
-      setLocalOpen(false);
-      try { localStorage.setItem(storageKey, JSON.stringify(false)); } catch {}
+  const [appliedTick, setAppliedTick] = useState(tick);
+  if (tick !== appliedTick) {
+    setAppliedTick(tick);
+    if (override === 'open' || override === 'closed') {
+      setLocalOpen(override === 'open' && !collapseWhen);
     }
-  }, [tick]); // eslint-disable-line react-hooks/exhaustive-deps
+  }
 
-  // Auto-collapse when the report section is excluded
-  useEffect(() => {
-    if (collapseWhen) {
-      setLocalOpen(false);
-      try { localStorage.setItem(storageKey, JSON.stringify(false)); } catch {}
-    }
-  }, [collapseWhen, storageKey]);
-
-  // Derive open: always show when the section has validation errors
-  const open = localOpen || hasErrors;
+  // Derive open: excluded-from-report sections render collapsed (and reopen to
+  // their previous state when re-included); validation errors force open.
+  const open = !collapseWhen && (localOpen || hasErrors);
 
   const toggle = () => {
     // If forced open by errors, a click collapses back to the persisted state (false)
