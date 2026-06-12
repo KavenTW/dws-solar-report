@@ -1,6 +1,7 @@
 const STORAGE_KEY = 'gcsr_projects';
+const DRAFT_KEY = 'gcsr_draft';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 5;
+export const CURRENT_VERSION = 7;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -101,6 +102,29 @@ function migrateProject(entry) {
       version: 6,
     };
   }
+  // v6 → v7: AC rooftop/carport split, monthly-table toggle, feasibility cost fields.
+  if (entry.version < 7) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        rooftopSizeACkW: d.rooftopSizeACkW ?? d.systemSizeACkW ?? 0,
+        carportSizeACkW: d.carportSizeACkW ?? 0,
+        // Projects saved before the toggle existed always showed the table — preserve that.
+        showMonthlyTable: d.showMonthlyTable ?? true,
+        feasElectricalMin:      d.feasElectricalMin      ?? 5000,
+        feasElectricalMax:      d.feasElectricalMax      ?? 10000,
+        feasStructuralMin:      d.feasStructuralMin      ?? 5000,
+        feasStructuralMax:      d.feasStructuralMax      ?? 15000,
+        feasGeotechnicalMin:    d.feasGeotechnicalMin    ?? 10000,
+        feasGeotechnicalMax:    d.feasGeotechnicalMax    ?? 15000,
+        feasInterconnectionMin: d.feasInterconnectionMin ?? 5000,
+        feasInterconnectionMax: d.feasInterconnectionMax ?? 5000,
+      },
+      version: 7,
+    };
+  }
   return entry;
 }
 
@@ -118,7 +142,36 @@ function saveAll(projects) {
   if (json.length > SIZE_WARN_BYTES) {
     console.warn(`localStorage projects approaching limit: ${(json.length / 1024 / 1024).toFixed(1)} MB`);
   }
+  // Deliberately NOT caught: QuotaExceededError must propagate so explicit
+  // saves can surface the failure in the UI instead of silently losing data.
   localStorage.setItem(STORAGE_KEY, json);
+}
+
+// ── Working-draft persistence (best-effort crash/close protection) ──────────
+export function saveDraft(project) {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify({ version: CURRENT_VERSION, data: project }));
+  } catch {
+    // Draft autosave is best-effort: a quota failure here must never interrupt typing.
+  }
+}
+
+export function loadDraft() {
+  try {
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return null;
+    return migrateProject(JSON.parse(raw)).data;
+  } catch {
+    return null;
+  }
+}
+
+export function clearDraft() {
+  try {
+    localStorage.removeItem(DRAFT_KEY);
+  } catch {
+    // removeItem can only fail in exotic privacy modes; nothing to do.
+  }
 }
 
 export function saveProject(data, name) {
