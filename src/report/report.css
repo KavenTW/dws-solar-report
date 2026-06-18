@@ -317,14 +317,14 @@
   .cover-letterhead { padding: 10px 0.65in; border-bottom: 3px solid var(--accent); }
   .cover { padding: 30px 0.65in 36px; }
 
-  /* ── Page layout ── */
-  .container { max-width: 100%; padding: 16px 0 24px; }
-  .section { margin-bottom: 20px; break-inside: avoid; }
+  /* ── Page layout (tightened to fit the proposal in 4 pages) ── */
+  .container { max-width: 100%; padding: 8px 0 14px; }
+  .section { margin-bottom: 13px; break-inside: avoid; }
   .section--page-break { break-before: page; }
   /* No page break — keep this section on the same page as the previous */
   .section--no-break { break-before: avoid; margin-top: 0; }
   /* Prevent orphaned section titles */
-  .section-title { break-after: avoid; page-break-after: avoid; }
+  .section-title { margin-bottom: 10px; break-after: avoid; page-break-after: avoid; }
 
   /* Next Steps — standard sizing, callouts stay with table */
   .section--next-steps .note-box,
@@ -334,9 +334,10 @@
   .card {
     box-shadow: none;
     border: 1px solid #dde8f5;
-    padding: 16px;
+    padding: 12px 14px;
     break-inside: avoid;
   }
+  .card-title { margin-bottom: 10px; }
   .kpi-card {
     box-shadow: none;
     border: 1px solid #dde8f5;
@@ -350,7 +351,7 @@
 
   /* ── Two-col: stack on print for readability ── */
   .two-col { display: block; }
-  .two-col > .card { margin-bottom: 14px; break-inside: avoid; }
+  .two-col > .card { margin-bottom: 10px; break-inside: avoid; }
 
   /* ── Tables ── */
   .fin-table { font-size: 11px; }
@@ -371,11 +372,12 @@
   .scenario-label-high { background: #FBA31B !important; color: #fff !important; }
 
   /* ── Layout photo ── */
-  .layout-photo { max-height: 280px; }
+  .layout-photo { max-height: 230px; }
 
-  /* ── Chart ── */
+  /* ── Charts (shorter in print to reclaim vertical space) ── */
   canvas { max-width: 100% !important; }
-  #cashflowChart { height: 200px !important; }
+  #cashflowChart { height: 180px !important; }
+  .production-chart-wrap { height: 150px !important; }
 
   /* ── Misc ── */
   .note-box,
