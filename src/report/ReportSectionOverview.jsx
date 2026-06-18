@@ -21,7 +21,7 @@ export default function ReportSectionOverview({ p, calc }) {
       <div className="kpi-grid">
         {p.showSystemSection && (
           <div className="kpi-card">
-            <div className="kpi-label">System Size</div>
+            <div className="kpi-label">Maximum Potential System Size</div>
             <div className="kpi-value" style={{ fontSize: '1.5rem' }}>{calc.totalDCkW.toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>kW DC</span></div>
             <div className="kpi-unit">
               <div style={{ marginTop: '2px' }}>
@@ -35,7 +35,7 @@ export default function ReportSectionOverview({ p, calc }) {
           <div className="kpi-card">
             <div className="kpi-label">YR-1 Generation</div>
             <div className="kpi-value">{Math.round(calc.annualMwh).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>MWh</span></div>
-            <div className="kpi-unit">{calc.totalDCkW > 0 ? Math.round(calc.annualMwh / (calc.totalDCkW / 1000)).toLocaleString() : '—'} Wh/Wdc</div>
+            <div className="kpi-unit">{calc.totalDCkW > 0 ? Math.round(calc.annualMwh / (calc.totalDCkW / 1000)).toLocaleString() : '—'} MWh/MWdc</div>
           </div>
         )}
         {p.showEmissionsSection && (
