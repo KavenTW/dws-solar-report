@@ -1,5 +1,4 @@
 export default function ReportCover({ p }) {
-  const cityShort = p.city.split(',')[0].trim();
   return (
     <>
       <div className="cover-letterhead">

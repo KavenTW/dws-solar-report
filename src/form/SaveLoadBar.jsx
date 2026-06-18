@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useProject } from '../context/ProjectContext';
-import { exportProjectJSON } from '../utils/storage';
+import { exportProjectJSON, saveProject } from '../utils/storage';
 import { DEFAULT_PROJECT } from '../constants/defaults';
 import { validateProject } from '../constants/validation';
 
@@ -25,8 +25,16 @@ export default function SaveLoadBar() {
 
   function handleSave() {
     const n = name.trim() || 'Untitled Project';
-    dispatch({ type: 'SAVE_PROJECT', name: n });
-    showStatus(`"${n}" saved.`);
+    try {
+      const entry = saveProject(project, n);
+      dispatch({ type: 'SAVE_PROJECT_SUCCESS', entry });
+      showStatus(`"${n}" saved.`);
+    } catch {
+      showStatus(
+        'Save failed: browser storage is full. Delete a saved project or remove the layout image, then retry.',
+        'error'
+      );
+    }
   }
 
   function handleLoad(entry) {

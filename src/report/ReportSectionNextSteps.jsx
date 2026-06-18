@@ -1,14 +1,15 @@
 const TECHNICAL_ITEMS = [
-  { category: 'Electrical',             notes: 'Confirm on-site electrical infrastructure and limitations' },
   { category: 'Structural',             notes: 'Confirm structural capacity availability and limitations' },
   { category: 'Roof',                   notes: 'Evaluate roof conditions including age, type, and condition' },
   { category: 'Geotechnical',           notes: 'Perform any relevant geotechnical assessments, particularly for carport structures', carportOnly: true },
+  { category: 'Electrical',             notes: 'Confirm on-site electrical infrastructure and limitations' },
   { category: 'Site Plan Constraints',  notes: 'Evaluate any limitations imposed by applicable site/civil/zoning plans' },
-  { category: 'System Design',          notes: 'Develop comprehensive final system design given site specifications' },
-  { category: 'Utility Interconnection',notes: 'Coordinate with qualified electrical engineer to develop single-line diagrams required for utility interconnection. Prepare, submit, and manage utility interconnection.' },
+  { category: 'System Design',          notes: 'Develop comprehensive final system design given local requirements' },
+  { category: 'Utility Interconnection',notes: 'Coordinate with locally licensed electrical engineer to develop single-line diagrams required for utility interconnection. Prepare, submit, and manage utility interconnection.' },
 ];
 
 function fmt(min, max) {
+  if (min == null && max == null) return '';
   const f = v => '$' + v.toLocaleString();
   return min === max ? f(min) : `${f(min)} – ${f(max)}`;
 }
@@ -17,9 +18,10 @@ export default function ReportSectionNextSteps({ p }) {
   const hasCarport = (p.carportSizeDCkW || 0) > 0 || (p.carportAreaUsedSqFt || 0) > 0;
 
   const feasItems = [
-    { label: 'Electrical Feasibility',                  min: p.feasElectricalMin,      max: p.feasElectricalMax,      note: 'Cost relates to number of points of interconnection' },
+    { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
     { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
+    { label: 'Electrical Feasibility',                   min: p.feasElectricalMin,      max: p.feasElectricalMax,      note: 'Cost relates to number of points of interconnection' },
     { label: 'Utility Interconnection Documentation',    min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
@@ -28,7 +30,7 @@ export default function ReportSectionNextSteps({ p }) {
 
   return (
     <div className="section section--next-steps">
-      <div className="section-title">Further Technical Analysis Required</div>
+      <div className="section-title">Further Detailed Analysis Required</div>
       <div className="card">
         <table className="fin-table" style={{ width: '100%' }}>
           <thead>
@@ -72,14 +74,17 @@ export default function ReportSectionNextSteps({ p }) {
             </tr>
           </thead>
           <tbody>
-            {feasItems.map(({ label, min, max, note }) => (
-              <tr key={label}>
-                <td><strong>{label}</strong></td>
-                <td>{fmt(min, max)}</td>
-                <td>~4 weeks</td>
-                <td style={{ fontSize: '11px', color: 'var(--muted)' }}>{note}</td>
-              </tr>
-            ))}
+            {feasItems.map(({ label, min, max, note }) => {
+              const hasCost = !(min == null && max == null);
+              return (
+                <tr key={label}>
+                  <td><strong>{label}</strong></td>
+                  <td>{fmt(min, max)}</td>
+                  <td>{hasCost ? '~4 weeks' : ''}</td>
+                  <td style={{ fontSize: '11px', color: 'var(--muted)' }}>{note}</td>
+                </tr>
+              );
+            })}
             <tr className="total-row">
               <td><strong>Total</strong></td>
               <td><strong>{fmt(totalMin, totalMax)}</strong></td>
@@ -90,11 +95,22 @@ export default function ReportSectionNextSteps({ p }) {
         </table>
 
         <div className="footnote" style={{ marginTop: '10px' }}>
-          * All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
+          Note: All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
         </div>
 
-        <div className="note-box" style={{ marginTop: '10px' }}>
-          <strong>Stage-Gating:</strong> To manage project risk and capital expenditure, feasibility workstreams can be sequenced rather than run simultaneously. Recommended order: <strong>Electrical → Structural → Geotechnical → Interconnection</strong>. Each stage-gate allows the project to be paused or redirected before committing to subsequent costs, should any fatal constraints be identified.
+        <div className="stage-gate-box" style={{ marginTop: '14px' }}>
+          <div className="stage-gate-title">A flexible, stage-gated approach</div>
+          <p className="stage-gate-intro">
+            Building on our completed pre-feasibility, the remaining studies can be sequenced rather than run at once — each gate lets the project proceed, pause, or redirect before further cost is committed.
+          </p>
+          <div className="stage-gate-steps">
+            <span className="stage-gate-step">Structural</span>
+            <span className="stage-gate-arrow">→</span>
+            {hasCarport && <><span className="stage-gate-step">Geotechnical</span><span className="stage-gate-arrow">→</span></>}
+            <span className="stage-gate-step">Electrical</span>
+            <span className="stage-gate-arrow">→</span>
+            <span className="stage-gate-step">Interconnection</span>
+          </div>
         </div>
       </div>
     </div>

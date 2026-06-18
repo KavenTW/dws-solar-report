@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 
 const STATES_PROVINCES = [
@@ -95,18 +96,8 @@ export default function SectionIdentity() {
   const f = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
   const hasErrors = !!(e?.companyName || e?.address || e?.city || e?.clientName || e?.tenantName);
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="Identity" hasErrors={hasErrors} headerExtras={chip('showCoverSection', 'Cover')} collapseWhen={!p.showCoverSection}>
+    <SectionWrapper title="Identity" hasErrors={hasErrors} headerExtras={<SectionToggleChip flagKey="showCoverSection" label="Cover" />} collapseWhen={!p.showCoverSection}>
       <FormField label="Company Name (Prepared By)" fieldId="companyName" error={e?.companyName}>
         <input type="text" value={p.companyName} onChange={f('companyName')} />
       </FormField>

@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
 import PercentInput from './PercentInput';
@@ -14,18 +15,8 @@ export default function SectionWAIRE() {
 
   const hasErrors = !!(e?.year1WAIREPointValue || e?.waireInstallPtsPerMW ||
                        e?.waireGenMwhPerPt || e?.waireDisclaimer);
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="WAIRE (CA/SCAQMD — Rule 2305)" hasErrors={hasErrors} headerExtras={chip('showWAIRESection', 'WAIRE')} collapseWhen={!p.showWAIRESection}>
+    <SectionWrapper title="WAIRE (CA/SCAQMD — Rule 2305)" hasErrors={hasErrors} headerExtras={<SectionToggleChip flagKey="showWAIRESection" label="WAIRE" />} collapseWhen={!p.showWAIRESection}>
       <FormField label="Year-1 WAIRE Point Value" fieldId="year1WAIREPointValue" error={e?.year1WAIREPointValue}>
         <NumberInput value={p.year1WAIREPointValue} onValueChange={field('year1WAIREPointValue')} unit="$/pt" />
       </FormField>

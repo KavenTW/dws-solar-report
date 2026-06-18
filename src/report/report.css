@@ -238,6 +238,14 @@
 /* ── HIGHLIGHT NOTE ── */
 .note-box { background: #fffbeb; border: 1px solid #fde68a; border-left: 4px solid var(--accent-2); border-radius: 6px; padding: 10px 14px; font-size: 12px; color: #78350f; margin-top: 14px; line-height: 1.5; }
 
+/* ── STAGE-GATE CALLOUT (inviting, brand-blue — distinct from amber disclaimer) ── */
+.stage-gate-box { background: var(--primary-light); border: 1px solid #c3d9f0; border-left: 4px solid var(--primary); border-radius: 8px; padding: 14px 18px; line-height: 1.5; }
+.stage-gate-title { font-size: 14px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; }
+.stage-gate-intro { font-size: 12px; color: var(--primary-dark); margin: 0 0 12px; opacity: 0.9; }
+.stage-gate-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.stage-gate-step { display: inline-block; background: var(--white); border: 1px solid #c3d9f0; color: var(--primary-dark); font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
+.stage-gate-arrow { color: var(--primary); font-weight: 700; }
+
 /* ── DONUT ── */
 .donut-wrap { display: flex; align-items: center; gap: 24px; }
 .donut-canvas-wrap { flex-shrink: 0; width: 140px; height: 140px; }
@@ -318,8 +326,9 @@
   /* Prevent orphaned section titles */
   .section-title { break-after: avoid; page-break-after: avoid; }
 
-  /* Next Steps — standard sizing, note-box stays with table */
-  .section--next-steps .note-box { break-before: avoid; }
+  /* Next Steps — standard sizing, callouts stay with table */
+  .section--next-steps .note-box,
+  .section--next-steps .stage-gate-box { break-before: avoid; break-inside: avoid; }
 
   /* ── Cards ── */
   .card {

@@ -15,18 +15,21 @@ export function computeCalc(p) {
   if (!p.annualMwhHelioScope || p.annualMwhHelioScope <= 0)
     throw new Error('Annual generation (MWh) must be greater than 0.');
 
+  // totalDCkW of 0 is legal: the report renders without sizing figures.
   const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
 
-  // annualSiteLoadMwh is optional — omit for generation-only reports
+  // annualSiteLoadMwh is optional — when absent, consumption/offset outputs are
+  // null (meaning "not provided"), never arithmetic on zero.
+  const hasSiteLoad = (p.annualSiteLoadMwh || 0) > 0;
 
   const annualMwh  = p.annualMwhHelioScope;
   const annualKwh  = annualMwh * 1000;
   const monthlyMwh = p.monthlyPct.map(pct => pct / 100 * annualMwh);
   const pct        = p.monthlyPct;
   const roofUtil   = p.rooftopTotalSqFt > 0 ? p.rooftopAreaUsedSqFt / p.rooftopTotalSqFt : 0;
-  const gridImport  = Math.max(0, p.annualSiteLoadMwh - annualMwh);
-  const solarOffset = annualMwh / p.annualSiteLoadMwh;
-  const energyIntensity = p.rooftopTotalSqFt > 0
+  const gridImport  = hasSiteLoad ? Math.max(0, p.annualSiteLoadMwh - annualMwh) : null;
+  const solarOffset = hasSiteLoad ? annualMwh / p.annualSiteLoadMwh : null;
+  const energyIntensity = (hasSiteLoad && p.rooftopTotalSqFt > 0)
     ? (p.annualSiteLoadMwh * 1000) / p.rooftopTotalSqFt
     : 0;
 
@@ -34,8 +37,10 @@ export function computeCalc(p) {
   const year1UtilityRate = p.year1AvoidedChargesUSD / annualKwh;
   const ppaRate          = year1UtilityRate * (1 - p.ppaDiscountRate);
   const yr1ElecSavings   = p.year1AvoidedChargesUSD * p.ppaDiscountRate;
-  const yr1TotalUtilBillNoSolar   = p.annualSiteLoadMwh * 1000 * year1UtilityRate;
-  const yr1TotalUtilBillWithSolar = (p.annualSiteLoadMwh - annualMwh) * 1000 * year1UtilityRate + annualKwh * ppaRate;
+  const yr1TotalUtilBillNoSolar   = hasSiteLoad ? p.annualSiteLoadMwh * 1000 * year1UtilityRate : null;
+  const yr1TotalUtilBillWithSolar = hasSiteLoad
+    ? (p.annualSiteLoadMwh - annualMwh) * 1000 * year1UtilityRate + annualKwh * ppaRate
+    : null;
 
   const ppaRECPrice   = p.recEnabled   ? p.year1RECValue       * (1 - p.ppaDiscountRate) : 0;
   const ppaWAIREPrice = p.waireEnabled ? p.year1WAIREPointValue * (1 - p.ppaDiscountRate) : 0;
@@ -48,7 +53,8 @@ export function computeCalc(p) {
 
   if (p.waireEnabled) {
     const WAIRE_INSTALL_PTS_PER_MW = p.waireInstallPtsPerMW;
-    const WAIRE_GEN_PTS_PER_MWH   = 1 / p.waireGenMwhPerPt;
+    // Guard the divisor: a zero/blank MWh-per-point input must yield 0 points, not Infinity.
+    const WAIRE_GEN_PTS_PER_MWH   = p.waireGenMwhPerPt > 0 ? 1 / p.waireGenMwhPerPt : 0;
     const systemMW                 = totalDCkW / 1000;
     waireInstallPoints      = roundup(systemMW * WAIRE_INSTALL_PTS_PER_MW, 1);
     waireYear1GenPoints     = roundup(p.annualMwhHelioScope * WAIRE_GEN_PTS_PER_MWH, 1);
@@ -97,15 +103,15 @@ export function computeCalc(p) {
   const yr1RECSavings = p.recEnabled ? annualMwh * (p.year1RECValue - ppaRECPrice) : 0;
   const yr1SubTotal   = yr1ElecSavings + yr1RECSavings + waireYear1SavingsUSD;
 
-  const yr1BillReduction      = yr1TotalUtilBillNoSolar - yr1TotalUtilBillWithSolar;
-  const yr1BillReductionPerMwh = yr1BillReduction / annualMwh;
+  const yr1BillReduction       = hasSiteLoad ? yr1TotalUtilBillNoSolar - yr1TotalUtilBillWithSolar : null;
+  const yr1BillReductionPerMwh = hasSiteLoad ? yr1BillReduction / annualMwh : null;
 
   const waireYear1PpaMwhRate = p.waireEnabled ? waireYear1TotalPoints * ppaWAIREPrice / annualMwh : 0;
   const waireYear1MktMwhRate = p.waireEnabled ? waireYear1MktValueUSD / annualMwh : 0;
 
   return {
     months, annualMwh, annualKwh, monthlyMwh, pct, totalDCkW, roofUtil,
-    gridImport, solarOffset, energyIntensity,
+    hasSiteLoad, gridImport, solarOffset, energyIntensity,
     year1UtilityRate, ppaRate, yr1ElecSavings, yr1TotalUtilBillNoSolar, yr1TotalUtilBillWithSolar,
     yr1BillReduction, yr1BillReductionPerMwh,
     ppaRECPrice, ppaWAIREPrice,

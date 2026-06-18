@@ -15,13 +15,16 @@ export default function ReportSectionSavings({ p, calc }) {
         <div className="card-title">Electricity Savings ({p.currency})</div>
         <table className="fin-table">
           <tbody>
-            <tr className="sub-header"><td>Annual Utility Bill Impact</td><td>Amount</td></tr>
-            <tr><td>Without Solar</td><td>{FMT.usd(calc.yr1TotalUtilBillNoSolar)}</td></tr>
-            <tr><td>With Solar PPA</td><td>{FMT.usd(calc.yr1TotalUtilBillWithSolar)}</td></tr>
-            <tr className="total-row"><td><strong>Utility Bill Reduction</strong></td><td><strong>{FMT.usd(calc.yr1BillReduction)}</strong></td></tr>
-            <tr><td colSpan={2} className="table-footnote" style={{ paddingTop: '4px' }}>${Math.round(calc.yr1BillReductionPerMwh)}/MWh</td></tr>
-
-            <tr className="spacer"><td colSpan={2} /></tr>
+            {calc.hasSiteLoad && (
+              <>
+                <tr className="sub-header"><td>Annual Utility Bill Impact</td><td>Amount</td></tr>
+                <tr><td>Without Solar</td><td>{FMT.usd(calc.yr1TotalUtilBillNoSolar)}</td></tr>
+                <tr><td>With Solar PPA</td><td>{FMT.usd(calc.yr1TotalUtilBillWithSolar)}</td></tr>
+                <tr className="total-row"><td><strong>Utility Bill Reduction</strong></td><td><strong>{FMT.usd(calc.yr1BillReduction)}</strong></td></tr>
+                <tr><td colSpan={2} className="table-footnote" style={{ paddingTop: '4px' }}>${Math.round(calc.yr1BillReductionPerMwh)}/MWh</td></tr>
+                <tr className="spacer"><td colSpan={2} /></tr>
+              </>
+            )}
             <tr className="sub-header"><td>Year-1 Rate Comparison</td><td>Rate</td></tr>
             <tr><td>Utility Rate (Year 1)</td><td>${Math.round(calc.year1UtilityRate * 1000)}/MWh</td></tr>
             <tr><td>PPA Electricity Rate (Year 1)</td><td>${Math.round(calc.ppaRate * 1000)}/MWh</td></tr>

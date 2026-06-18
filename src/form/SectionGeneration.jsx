@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
 import MonthlyPctGrid from './MonthlyPctGrid';
@@ -12,36 +13,12 @@ export default function SectionGeneration() {
   const field = k => v => dispatch({ type: 'UPDATE_FIELD', key: k, value: v });
 
   const hasErrors = !!(e?.annualMwhHelioScope || e?.monthlyPct);
-  const toggleField = key => () => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] });
-
-  const chipKeyDown = fn => e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fn(); } };
 
   const headerExtras = (
     <>
-      <span
-        role="button"
-        tabIndex={0}
-        className={`report-section-toggle ${p.showLayoutSection ? 'included' : 'excluded'}`}
-        onClick={toggleField('showLayoutSection')}
-        onKeyDown={chipKeyDown(toggleField('showLayoutSection'))}
-        title={p.showLayoutSection ? 'Remove Layout page from report' : 'Add Layout page to report'}
-      >Layout</span>
-      <span
-        role="button"
-        tabIndex={0}
-        className={`report-section-toggle ${p.showGenerationSection ? 'included' : 'excluded'}`}
-        onClick={toggleField('showGenerationSection')}
-        onKeyDown={chipKeyDown(toggleField('showGenerationSection'))}
-        title={p.showGenerationSection ? 'Remove Generation page from report' : 'Add Generation page to report'}
-      >Generation</span>
-      <span
-        role="button"
-        tabIndex={0}
-        className={`report-section-toggle ${p.showMonthlyTable ? 'included' : 'excluded'}`}
-        onClick={toggleField('showMonthlyTable')}
-        onKeyDown={chipKeyDown(toggleField('showMonthlyTable'))}
-        title={p.showMonthlyTable ? 'Hide monthly table' : 'Show monthly table'}
-      >Monthly Table</span>
+      <SectionToggleChip flagKey="showLayoutSection" label="Layout" />
+      <SectionToggleChip flagKey="showGenerationSection" label="Generation" />
+      <SectionToggleChip flagKey="showMonthlyTable" label="Monthly Table" />
     </>
   );
 

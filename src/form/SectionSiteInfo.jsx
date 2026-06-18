@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 
 export default function SectionSiteInfo() {
@@ -7,16 +8,7 @@ export default function SectionSiteInfo() {
   const p = state.project;
   const txt = k => e => dispatch({ type: 'UPDATE_FIELD', key: k, value: e.target.value });
 
-  const headerExtras = (
-    <span
-      role="button"
-      tabIndex={0}
-      className={`report-section-toggle ${p.showSiteInfoSection ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key: 'showSiteInfoSection', value: !p.showSiteInfoSection })}
-      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key: 'showSiteInfoSection', value: !p.showSiteInfoSection }); } }}
-      title={p.showSiteInfoSection ? 'Remove Site Info page from report' : 'Add Site Info page to report'}
-    >Site Info</span>
-  );
+  const headerExtras = <SectionToggleChip flagKey="showSiteInfoSection" label="Site Info" />;
 
   return (
     <SectionWrapper title="Site Information" defaultOpen={false} headerExtras={headerExtras} collapseWhen={!p.showSiteInfoSection}>

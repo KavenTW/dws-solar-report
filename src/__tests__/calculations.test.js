@@ -70,8 +70,36 @@ describe('computeCalc', () => {
     expect(() => computeCalc({ ...BASE, annualMwhHelioScope: 0 })).toThrow();
   });
 
-  it('throws when total DC kW is zero', () => {
-    expect(() => computeCalc({ ...BASE, rooftopSizeDCkW: 0, carportSizeDCkW: 0 })).toThrow();
+  it('allows zero total DC kW and reports it as 0 (sizing-less report)', () => {
+    const c = computeCalc({ ...BASE, rooftopSizeDCkW: 0, carportSizeDCkW: 0 });
+    expect(c.totalDCkW).toBe(0);
+    expect(Number.isFinite(c.annualKwh)).toBe(true);
+  });
+
+  it('returns null consumption outputs when annualSiteLoadMwh is absent — never NaN/Infinity', () => {
+    const c = computeCalc({ ...BASE, annualSiteLoadMwh: 0 });
+    expect(c.hasSiteLoad).toBe(false);
+    expect(c.solarOffset).toBeNull();
+    expect(c.gridImport).toBeNull();
+    expect(c.yr1TotalUtilBillNoSolar).toBeNull();
+    expect(c.yr1TotalUtilBillWithSolar).toBeNull();
+    expect(c.yr1BillReduction).toBeNull();
+    expect(c.yr1BillReductionPerMwh).toBeNull();
+    // PPA savings are independent of site load and must remain finite
+    expect(Number.isFinite(c.yr1ElecSavings)).toBe(true);
+  });
+
+  it('yields finite WAIRE outputs when waireGenMwhPerPt is zero (no 1/0)', () => {
+    const c = computeCalc({
+      ...BASE,
+      waireEnabled: true,
+      waireInstallPtsPerMW: 200,
+      waireGenMwhPerPt: 0,
+      year1WAIREPointValue: 316,
+    });
+    expect(Number.isFinite(c.waireYear1GenPoints)).toBe(true);
+    expect(c.waireYear1GenPoints).toBe(0);
+    expect(Number.isFinite(c.waire15YrTotalPoints)).toBe(true);
   });
 
   it('returns cumSavings array matching ppaTerm length for each scenario', () => {

@@ -38,6 +38,10 @@ export function validateProject(p) {
       errs.ppaDiscountRate = 'Must be between 0% and 100%';
     if (!p.year1AvoidedChargesUSD || p.year1AvoidedChargesUSD <= 0)
       errs.year1AvoidedChargesUSD = 'Must be > 0';
+    if (!Array.isArray(p.utilityEscalationRates) ||
+        p.referenceScenarioIndex < 0 ||
+        p.referenceScenarioIndex >= p.utilityEscalationRates.length)
+      errs.referenceScenarioIndex = 'Reference scenario must point at one of the escalation rates';
   }
 
   // Degradation — only required when Degradation section is included
@@ -62,8 +66,8 @@ export function validateProject(p) {
 
   // WAIRE — only required when both waireEnabled AND WAIRE section is included
   if (p.waireEnabled && p.showWAIRESection !== false) {
-    if (!p.waireInstallPtsPerMW) errs.waireInstallPtsPerMW = 'Required when WAIRE is enabled';
-    if (!p.waireGenMwhPerPt)     errs.waireGenMwhPerPt     = 'Required when WAIRE is enabled';
+    if (!(p.waireInstallPtsPerMW > 0)) errs.waireInstallPtsPerMW = 'Must be > 0 when WAIRE is enabled';
+    if (!(p.waireGenMwhPerPt > 0))     errs.waireGenMwhPerPt     = 'Must be > 0 when WAIRE is enabled';
     if (p.year1WAIREPointValue == null || p.year1WAIREPointValue === '')
       errs.year1WAIREPointValue = 'Required when WAIRE is enabled';
     if (!p.waireDisclaimer) errs.waireDisclaimer = 'Required when WAIRE is enabled';

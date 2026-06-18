@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
 
@@ -30,18 +31,8 @@ export default function SectionEmissions() {
 
   const hasErrors = !!(e?.gridEmissionsIntensity || e?.gridEmissionsSource ||
                        e?.gridEmissionsRegion || e?.equivHomesLabel || e?.gridEmissionsDisclaimer);
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors} headerExtras={chip('showEmissionsSection', 'Emissions')} collapseWhen={!p.showEmissionsSection}>
+    <SectionWrapper title="Grid Emissions" hasErrors={hasErrors} headerExtras={<SectionToggleChip flagKey="showEmissionsSection" label="Emissions" />} collapseWhen={!p.showEmissionsSection}>
       <FormField label="eGRID Preset" className="full-width">
         <select onChange={applyPreset} defaultValue="">
           <option value="" disabled>— Select state to auto-fill —</option>

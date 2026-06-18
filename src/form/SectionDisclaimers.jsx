@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 
 export default function SectionDisclaimers() {
@@ -9,18 +10,8 @@ export default function SectionDisclaimers() {
   const txt = k => ev => dispatch({ type: 'UPDATE_FIELD', key: k, value: ev.target.value });
 
   const hasErrors = !!(e?.gridEmissionsDisclaimer || (p.waireEnabled && e?.waireDisclaimer));
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="Disclaimers & Notes" defaultOpen={false} hasErrors={hasErrors} headerExtras={<>{chip('showNextStepsSection', 'Next Steps')} {chip('showDisclaimerSection', 'Disclaimer')}</>} collapseWhen={!p.showDisclaimerSection && !p.showNextStepsSection}>
+    <SectionWrapper title="Disclaimers & Notes" defaultOpen={false} hasErrors={hasErrors} headerExtras={<><SectionToggleChip flagKey="showNextStepsSection" label="Next Steps" /> <SectionToggleChip flagKey="showDisclaimerSection" label="Disclaimer" /></>} collapseWhen={!p.showDisclaimerSection && !p.showNextStepsSection}>
       <FormField label="Additional Notes (one per line)" className="full-width">
         <textarea value={p.additionalNotes} onChange={txt('additionalNotes')} rows={3} />
       </FormField>

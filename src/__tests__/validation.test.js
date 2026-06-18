@@ -20,6 +20,8 @@ const VALID = {
   degradationRate: 0.005,
   gridEmissionsIntensity: 700,
   monthlyPct: [6, 6, 9, 9, 10, 11, 11, 10, 9, 7, 6, 6],
+  utilityEscalationRates: [0.02, 0.04, 0.06],
+  referenceScenarioIndex: 1,
   waireEnabled: false,
   recEnabled: false,
 };

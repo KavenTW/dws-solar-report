@@ -1,5 +1,6 @@
 import { useProject } from '../context/ProjectContext';
 import SectionWrapper from './SectionWrapper';
+import SectionToggleChip from './SectionToggleChip';
 import FormField from './FormField';
 import NumberInput from './NumberInput';
 
@@ -13,18 +14,8 @@ export default function SectionSystem() {
   const totalDCkW = (p.rooftopSizeDCkW || 0) + (p.carportSizeDCkW || 0);
   const totalACkW = (p.rooftopSizeACkW || 0) + (p.carportSizeACkW || 0);
 
-  const chip = (key, label) => (
-    <span
-      role="button" tabIndex={0}
-      className={`report-section-toggle ${p[key] ? 'included' : 'excluded'}`}
-      onClick={() => dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] })}
-      onKeyDown={ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); dispatch({ type: 'UPDATE_FIELD', key, value: !p[key] }); } }}
-      title={p[key] ? `Remove ${label} page from report` : `Add ${label} page to report`}
-    >{label}</span>
-  );
-
   return (
-    <SectionWrapper title="System Specifications" hasErrors={hasErrors} headerExtras={chip('showSystemSection', 'System')} collapseWhen={!p.showSystemSection}>
+    <SectionWrapper title="System Specifications" hasErrors={hasErrors} headerExtras={<SectionToggleChip flagKey="showSystemSection" label="System" />} collapseWhen={!p.showSystemSection}>
       <FormField label="Rooftop DC" fieldId="rooftopSizeDCkW" error={e?.rooftopSizeDCkW}>
         <NumberInput value={p.rooftopSizeDCkW} onValueChange={field('rooftopSizeDCkW')} unit="kW" />
       </FormField>
