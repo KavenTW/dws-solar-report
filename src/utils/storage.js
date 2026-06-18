@@ -111,8 +111,6 @@ function migrateProject(entry) {
         ...d,
         rooftopSizeACkW: d.rooftopSizeACkW ?? d.systemSizeACkW ?? 0,
         carportSizeACkW: d.carportSizeACkW ?? 0,
-        // Projects saved before the toggle existed always showed the table — preserve that.
-        showMonthlyTable: d.showMonthlyTable ?? true,
         feasElectricalMin:      d.feasElectricalMin      ?? 5000,
         feasElectricalMax:      d.feasElectricalMax      ?? 10000,
         feasStructuralMin:      d.feasStructuralMin      ?? 5000,

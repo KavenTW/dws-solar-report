@@ -18,7 +18,6 @@ export default function SectionGeneration() {
     <>
       <SectionToggleChip flagKey="showLayoutSection" label="Layout" />
       <SectionToggleChip flagKey="showGenerationSection" label="Generation" />
-      <SectionToggleChip flagKey="showMonthlyTable" label="Monthly Table" />
     </>
   );
 

@@ -1,60 +1,13 @@
 import MonthlyProductionChart from './MonthlyProductionChart';
 
-function barColor(v, max) {
-  if (v >= max * 0.90) return '#FFCE02';
-  if (v >= max * 0.70) return '#FBA31B';
-  if (v >= max * 0.55) return '#005FAB';
-  if (v >= max * 0.35) return '#0B468D';
-  return '#112877';
-}
-
 export default function ReportSectionGeneration({ p, calc }) {
-  const maxMwh = Math.max(...calc.monthlyMwh);
   const lbsMwhStr = `${p.gridEmissionsIntensity} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
 
   return (
-    <div className="section two-col">
+    <div className="section">
       <div className="section-title">Annual Generation &amp; Emissions</div>
 
-      {p.showGenerationSection && p.showMonthlyTable !== false && (
-        <div className="card">
-          <div className="card-title">Monthly Generation Breakdown</div>
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th>Month</th>
-                <th className="num">MWh</th>
-                <th className="num">% of Annual</th>
-                <th>Output</th>
-              </tr>
-            </thead>
-            <tbody>
-              {calc.monthlyMwh.map((v, i) => (
-                <tr key={i}>
-                  <td>{calc.months[i]}</td>
-                  <td className="num">{Math.round(v).toLocaleString()}</td>
-                  <td className="num">{Math.round(calc.pct[i])}%</td>
-                  <td>
-                    <div className="bar-cell">
-                      <div className="mini-bar-wrap">
-                        <div className="mini-bar" style={{ width: `${(v / maxMwh * 100).toFixed(1)}%`, background: barColor(v, maxMwh) }} />
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-              <tr>
-                <td>Year</td>
-                <td className="num">{Math.round(calc.annualMwh).toLocaleString()}</td>
-                <td className="num">100%</td>
-                <td />
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', gridColumn: (!p.showMonthlyTable || p.showMonthlyTable === false) ? '1 / -1' : undefined }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {p.showGenerationSection && (
           <div className="card">
             <div className="card-title">Monthly Production Distribution</div>

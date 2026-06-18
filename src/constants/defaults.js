@@ -54,7 +54,6 @@ export const DEFAULT_PROJECT = {
   showRoofSection:          true,
   showLayoutSection:        true,
   showGenerationSection:    true,
-  showMonthlyTable:         false,
   showEmissionsSection:     true,
   showPPATermsSection:      true,
   showRECsSection:          true,
