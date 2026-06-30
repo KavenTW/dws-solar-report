@@ -16,12 +16,13 @@ function fmt(min, max) {
 
 export default function ReportSectionNextSteps({ p }) {
   const hasCarport = (p.carportSizeDCkW || 0) > 0 || (p.carportAreaUsedSqFt || 0) > 0;
+  const points = Math.max(1, Math.round(p.pointsOfInterconnection || 1));
 
   const feasItems = [
     { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
     { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
-    { label: 'Electrical Feasibility',                   min: p.feasElectricalMin,      max: p.feasElectricalMax,      note: 'Cost relates to number of points of interconnection' },
+    { label: 'Electrical Feasibility',                   min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
     { label: 'Utility Interconnection Documentation',    min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 

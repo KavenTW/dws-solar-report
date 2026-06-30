@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'gcsr_projects';
 const DRAFT_KEY = 'gcsr_draft';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 7;
+export const CURRENT_VERSION = 8;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -121,6 +121,18 @@ function migrateProject(entry) {
         feasInterconnectionMax: d.feasInterconnectionMax ?? 5000,
       },
       version: 7,
+    };
+  }
+  // v7 → v8: electrical feasibility now scales by points of interconnection.
+  if (entry.version < 8) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        pointsOfInterconnection: d.pointsOfInterconnection ?? 1,
+      },
+      version: 8,
     };
   }
   return entry;

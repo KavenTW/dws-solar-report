@@ -16,10 +16,14 @@ export default function SectionFeasibility() {
         Geotechnical row shows only when a carport is specified.
       </p>
 
-      <FormField label="Electrical — Min ($)">
+      <FormField label="Points of Interconnection">
+        <NumberInput value={p.pointsOfInterconnection} onValueChange={field('pointsOfInterconnection')} unit="pts" />
+      </FormField>
+      <div />
+      <FormField label="Electrical — per point Min ($)">
         <NumberInput value={p.feasElectricalMin} onValueChange={field('feasElectricalMin')} unit="USD" />
       </FormField>
-      <FormField label="Electrical — Max ($)">
+      <FormField label="Electrical — per point Max ($)">
         <NumberInput value={p.feasElectricalMax} onValueChange={field('feasElectricalMax')} unit="USD" />
       </FormField>
 

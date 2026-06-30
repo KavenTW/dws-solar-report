@@ -67,7 +67,8 @@ export const DEFAULT_PROJECT = {
   additionalNotes: 'Actual design would have to take into consideration other site plan requirements and constraints such as trees and parking lighting',
 
   // Feasibility cost estimates (indicative, from licensed engineering firms)
-  feasElectricalMin:       5000,
+  pointsOfInterconnection: 1,   // electrical feasibility scales by this count
+  feasElectricalMin:       5000,   // per point of interconnection
   feasElectricalMax:       10000,
   feasStructuralMin:       5000,
   feasStructuralMax:       15000,
