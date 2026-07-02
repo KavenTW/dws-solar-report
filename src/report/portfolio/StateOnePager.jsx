@@ -33,7 +33,13 @@ export default function StateOnePager({ abbr, state, projects }) {
       </div>
 
       <div className="card">
-        {block('Project Summary', state.projectSummary)}
+        <div className="state-text-cols">
+          {block('Project Summary', state.projectSummary)}
+          {block('Market Position', state.marketPosition)}
+          {block('Utility Billing and Avoided Value', state.utilityBilling)}
+          {block('State-Led REC Program', state.recProgram)}
+          {block('Development Considerations', state.devConsiderations)}
+        </div>
 
         <div className="state-block">
           <div className="state-block-title">
@@ -71,11 +77,6 @@ export default function StateOnePager({ abbr, state, projects }) {
           </table>
           <div className="footnote" style={{ marginTop: '6px' }}>{SCORECARD.footnote}</div>
         </div>
-
-        {block('Market Position', state.marketPosition)}
-        {block('Utility Billing and Avoided Value', state.utilityBilling)}
-        {block('State-Led REC Program', state.recProgram)}
-        {block('Development Considerations', state.devConsiderations)}
 
         <div className="state-block">
           <div className="state-block-title">Projects in {state.name}</div>
