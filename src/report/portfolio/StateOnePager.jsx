@@ -92,18 +92,18 @@ export default function StateOnePager({ abbr, state, projects }) {
                 <th className="num">kW DC</th>
                 <th className="num">Yr-1 MWh</th>
                 <th className="num">Footprint ft²</th>
-                <th className="num">Points of Interconnection</th>
+                <th className="num">Lifetime CO₂e Avoided (t)</th>
               </tr>
             </thead>
             <tbody>
-              {projects.map(({ entry, p, calc, err }) => (
+              {projects.map(({ entry, p, calc }) => (
                 <tr key={entry.id}>
                   <td>{p.projectName || entry.name}</td>
                   <td>{(p.city || '').split(',')[0]}</td>
                   <td className="num">{calc ? Math.round(calc.totalDCkW).toLocaleString() : '—'}</td>
                   <td className="num">{calc ? Math.round(calc.annualMwh).toLocaleString() : '—'}</td>
                   <td className="num">{((p.rooftopAreaUsedSqFt || 0) + (p.carportAreaUsedSqFt || 0)).toLocaleString()}</td>
-                  <td className="num">{err ? 'error' : Math.max(1, Math.round(p.pointsOfInterconnection || 1))}</td>
+                  <td className="num">{calc ? (Math.round(calc.lifetimeCO2e / 100) * 100).toLocaleString() : '—'}</td>
                 </tr>
               ))}
             </tbody>
