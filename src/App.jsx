@@ -1,6 +1,7 @@
 import { useProject } from './context/ProjectContext';
 import InputsTab from './tabs/InputsTab';
 import ReportTab from './tabs/ReportTab';
+import PortfolioTab from './tabs/PortfolioTab';
 import './App.css';
 
 export default function App() {
@@ -23,8 +24,16 @@ export default function App() {
         >
           Report Preview
         </button>
+        <button
+          className={`tab-btn ${activeTab === 'portfolio' ? 'active' : ''}`}
+          onClick={() => dispatch({ type: 'SET_TAB', tab: 'portfolio' })}
+        >
+          Portfolio
+        </button>
       </div>
-      {activeTab === 'inputs' ? <InputsTab /> : <ReportTab />}
+      {activeTab === 'inputs' && <InputsTab />}
+      {activeTab === 'report' && <ReportTab />}
+      {activeTab === 'portfolio' && <PortfolioTab />}
     </div>
   );
 }

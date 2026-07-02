@@ -1,15 +1,7 @@
 import { useProject } from '../context/ProjectContext';
 import { useCalc } from '../hooks/useCalc';
 import ErrorBoundary from '../ErrorBoundary';
-import ReportCover from '../report/ReportCover';
-import ReportSectionOverview from '../report/ReportSectionOverview';
-import ReportSectionLayout from '../report/ReportSectionLayout';
-import ReportSectionGeneration from '../report/ReportSectionGeneration';
-import ReportSectionSavings from '../report/ReportSectionSavings';
-import ReportSectionChart from '../report/ReportSectionChart';
-import ReportSectionMarketContext from '../report/ReportSectionMarketContext';
-import ReportSectionNextSteps from '../report/ReportSectionNextSteps';
-import ReportDisclaimer from '../report/ReportDisclaimer';
+import ReportDocument from '../report/ReportDocument';
 import '../report/report.css';
 
 export default function ReportTab() {
@@ -70,17 +62,7 @@ export default function ReportTab() {
       </div>
 
       <ErrorBoundary fallback={reportFallback}>
-        {p.showCoverSection && <ReportCover p={p} />}
-        <div className="container">
-          {(p.showSystemSection || p.showRoofSection) && <ReportSectionOverview p={p} calc={calc} />}
-          {p.showLayoutSection && <ReportSectionLayout p={p} calc={calc} />}
-          {(p.showGenerationSection || p.showEmissionsSection) && <ReportSectionGeneration p={p} calc={calc} />}
-          {(p.showPPATermsSection || p.showRECsSection || p.showWAIRESection) && <ReportSectionSavings p={p} calc={calc} />}
-          {p.showPPATermsSection && <ReportSectionChart p={p} calc={calc} />}
-          {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
-          {p.showNextStepsSection && <ReportSectionNextSteps p={p} />}
-          {p.showDisclaimerSection && <ReportDisclaimer p={p} />}
-        </div>
+        <ReportDocument p={p} calc={calc} />
       </ErrorBoundary>
     </>
   );

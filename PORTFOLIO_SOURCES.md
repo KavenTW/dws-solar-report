@@ -1,0 +1,39 @@
+# Portfolio Report — Source Register
+
+Sources are intentionally omitted from the client-facing portfolio document.
+This register preserves them for audit. State one-pager sources are as listed
+in "DWS State 1 Pagers – Revised 2026.07.02" (internal draft).
+
+## State one-pagers (primary sources, per the draft)
+
+| State | Primary sources |
+|---|---|
+| California | CPUC Net Metering and Net Billing · CPUC Prevailing Wage Guidance · City of Palo Alto NEM · LADWP Commercial Solar · South Coast AQMD WAIRE · NREL Solar Resource Maps |
+| Nevada | NV Energy Net Metering · NV Energy NMR-B Tariff · NV Energy Interconnection Handbook · Nevada PEC Trading Program · NREL Solar Resource Maps |
+| Illinois | Illinois Net Metering Statute · ComEd 2026 Ratebook · Illinois Shines 2026-27 Guidebook · Illinois Shines Program Documents · NREL Solar Resource Maps |
+| Florida | FPL Net Metering FAQ · FPL Net Metering Tariff · FPL Interconnection Agreements · Florida Public Utility Definition · NREL Solar Resource Maps |
+| North Carolina | Duke Renewable Generation · NC Distributed Resources Access Act · NC-RETS · NREL Solar Resource Maps |
+| Texas | PUCT Distributed Renewable Generation Rule · PUCT Distributed Generation Rules · ERCOT REC Program · Oncor Distributed Generation · NREL Solar Resource Maps |
+
+Scorecard ratings, weights, and weighted scores: internal GCS relative
+assessment as stated in the draft (directional screening, not underwriting).
+
+## Asset report data sources
+
+- **System sizing, generation, monthly production distribution**: HelioScope
+  simulation and PVsyst monthly distribution, per the DWS EU Fund Technical
+  Data Request workbook ("Inputs for Claude.xlsx", June 2026). Yr-1 generation
+  computed as kW DC × specific production (kWh/kWDC/yr) per mounting type.
+- **Roof / parking areas**: occupied area per HelioScope; total area per
+  Google Earth measurement (same workbook).
+- **Points of interconnection**: estimated counts per the same workbook.
+- **Grid emissions factors** (lbs CO₂e/MWh, total output emission rates by
+  eGRID subregion): U.S. EPA eGRID summary tables — CAMX 430 (CA), FRCC 785
+  (FL), RFCW 916 (IL), AZNM 706 (NV), SRVC 596 (NC), ERCT 737 (TX).
+- **Equivalent homes**: U.S. EIA average annual household electricity
+  consumption (~10.6 MWh/yr).
+- **Lifetime CO₂e**: year-by-year sum over the stated term with 0.5%/yr module
+  degradation applied.
+- **Feasibility cost estimates**: indicative quotes from independent
+  third-party licensed engineering firms; electrical scales per point of
+  interconnection.

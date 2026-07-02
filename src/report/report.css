@@ -299,6 +299,52 @@
 .market-context-subsection { margin-bottom: 24px; }
 .market-context-subsection-title { font-size: 14px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.4px; }
 
+/* ── PORTFOLIO DOCUMENT ── */
+.portfolio-doc .scroll-header { display: none; } /* one doc, no per-report sticky headers */
+.portfolio-para { font-size: 13px; line-height: 1.6; color: var(--text); margin: 0 0 12px; }
+.portfolio-para:last-child { margin-bottom: 0; }
+.portfolio-title-hero { padding: 80px 48px 90px; }
+.portfolio-title-hero h1 { font-size: 2.8rem; }
+
+/* State one-pager */
+.state-pager-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+.state-pager-subtitle { font-size: 13px; color: var(--muted); }
+.state-pager-utility { font-size: 12px; color: var(--muted); margin-top: 2px; font-style: italic; }
+.state-score-badge { text-align: center; background: var(--primary-light); border: 1px solid #c3d9f0; border-radius: 8px; padding: 8px 18px; flex-shrink: 0; }
+.state-score-value { font-size: 1.3rem; font-weight: 700; color: var(--primary-dark); }
+.state-score-label { font-size: 10px; font-weight: 700; letter-spacing: 1px; color: var(--primary); }
+.state-block { margin-bottom: 16px; }
+.state-block:last-child { margin-bottom: 0; }
+.state-block-title { font-size: 12px; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.state-scorecard-legend { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: 11px; margin-left: 10px; }
+.state-scorecard td.num, .state-scorecard th { text-align: center; }
+.state-scorecard td:first-child, .state-scorecard th:first-child { text-align: left; width: auto; }
+.state-scorecard .state-col-active { background: rgba(0, 95, 171, 0.10); font-weight: 700; }
+.state-scorecard th.state-col-active { background: var(--primary); }
+
+/* TOC */
+.toc-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.toc-table td { padding: 6px 4px; }
+.toc-row-top td { font-weight: 600; color: var(--primary-dark); }
+.toc-row-sub td { font-weight: 400; color: var(--text); }
+.toc-label { white-space: nowrap; }
+.toc-dots { width: 100%; border-bottom: 1px dotted #b9c8da; transform: translateY(-4px); }
+.toc-page { width: 48px; text-align: right; }
+.toc-page-input { border: none; background: transparent; width: 44px; text-align: right; font: inherit; color: inherit; padding: 0; }
+.toc-page-input:focus { outline: 1px solid var(--primary); border-radius: 3px; }
+
+/* Portfolio editor panel (screen only) */
+.portfolio-editor { background: var(--white); border-bottom: 1px solid var(--border); padding: 18px 24px; max-height: 60vh; overflow-y: auto; }
+.portfolio-editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; max-width: 1200px; margin: 0 auto; }
+@media (max-width: 900px) { .portfolio-editor-grid { grid-template-columns: 1fr; } }
+.portfolio-editor-heading { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--primary-dark); margin: 14px 0 8px; }
+.portfolio-editor-heading:first-child { margin-top: 0; }
+.portfolio-editor-field { display: block; margin-bottom: 10px; }
+.portfolio-editor-field span { display: block; font-size: 11px; font-weight: 600; color: var(--muted); margin-bottom: 3px; }
+.portfolio-editor-field input, .portfolio-editor-field textarea { width: 100%; font-size: 13px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 5px; font-family: inherit; }
+.portfolio-editor-projects label { display: block; font-size: 13px; margin-bottom: 4px; }
+.portfolio-editor-projects input { margin-right: 8px; }
+
 /* ── PRINT ── */
 @media print {
   @page { size: letter; margin: 0.6in 0.65in; }
@@ -329,6 +375,16 @@
   /* Next Steps — standard sizing, callouts stay with table */
   .section--next-steps .note-box,
   .section--next-steps .stage-gate-box { break-before: avoid; break-inside: avoid; }
+
+  /* ── Portfolio document pagination ── */
+  .portfolio-editor { display: none !important; }
+  .portfolio-page { break-before: page; page-break-before: always; }
+  .portfolio-report { break-before: page; page-break-before: always; }
+  .portfolio-title-hero { padding: 70px 0.65in 80px; }
+  .state-scorecard { font-size: 10px; }
+  .state-scorecard th, .state-scorecard td { padding: 4px 6px; }
+  .toc-page-input { border: none; }
+  .state-pager-header { break-after: avoid; }
 
   /* ── Cards ── */
   .card {
