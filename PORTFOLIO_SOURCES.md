@@ -18,6 +18,15 @@ in "DWS State 1 Pagers – Revised 2026.07.02" (internal draft).
 Scorecard ratings, weights, and weighted scores: internal GCS relative
 assessment as stated in the draft (directional screening, not underwriting).
 
+**Colour-band mapping (client view).** The document renders the scorecard as
+colour bands rather than numbers: green = strongest relative position
+(score 3), soft amber = moderate (score 2), neutral grey = weakest relative
+position (score 1). The underlying quantified matrix — per-category scores
+(1–3), category weights (/10), and weighted totals (CA 2.2, NV 2.2, IL 2.1,
+FL 1.8, NC 1.8, TX 1.6) — is retained in `src/constants/portfolioDefaults.js`
+(`SCORECARD`) and is available on request. The state header badges (LEADING /
+POLICY-LED / SELECTIVE / OPPORTUNISTIC) correspond to those weighted totals.
+
 ## Asset report data sources
 
 - **System sizing, generation, monthly production distribution**: HelioScope

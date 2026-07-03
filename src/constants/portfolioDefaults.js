@@ -7,9 +7,11 @@
 export const STATE_ORDER = ['CA', 'NV', 'IL', 'FL', 'NC', 'TX'];
 
 // Shared scorecard — identical table on every state page (column order matches STATE_ORDER).
+// The client view renders COLOUR BANDS only (3 → strong, 2 → moderate, 1 → weak);
+// the numeric scores, category weights, and weighted totals below are retained
+// as the auditable basis for those colours and are not printed in the document.
 export const SCORECARD = {
   stateNames: ['California', 'Nevada', 'Illinois', 'Florida', 'North Carolina', 'Texas'],
-  legend: '3 = strongest relative position   |   2 = moderate   |   1 = weakest',
   rows: [
     { category: 'Utility Billing Structure',    scores: [2, 3, 2, 3, 3, 2], weight: 7 },
     { category: 'State-Led REC Program',        scores: [1, 2, 3, 1, 2, 1], weight: 8 },
@@ -18,7 +20,7 @@ export const SCORECARD = {
     { category: 'Other Considerations',         scores: [2, 3, 2, 1, 1, 2], weight: 6 },
   ],
   weighted: ['2.2', '2.2', '2.1', '1.8', '1.8', '1.6'],
-  footnote: 'Relative ratings for these six states; assumes large C&I behind-the-meter rooftop/carport projects generally up to 1 MWac. Other Considerations includes system-size limits, third-party ownership, interconnection and program compliance.',
+  footnote: 'Relative colour bands for these six states; assumes large C&I behind-the-meter rooftop/carport projects generally up to 1 MWac. Other Considerations includes system-size limits, third-party ownership, interconnection and program compliance.',
 };
 
 const SCREENING_NOTE = 'Screening note: Current as of July 2, 2026. State-level ratings are directional; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
@@ -58,7 +60,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'California',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'PG&E, SCE and SDG&E; municipal utilities assessed separately',
-      score: '2.2 / 3',
       badge: 'LEADING',
       projectSummary: 'California remains one of the strongest economic markets in the group because high solar-avoidable energy charges and strong solar resource can support meaningful onsite savings. The central constraint is the CPUC Net Billing Tariff: exported energy receives time-varying, avoided-cost-based credits, making load matching and interval tariff modelling essential. Municipal utilities such as Palo Alto and LADWP operate separate programs and should not be screened using the CPUC framework.',
       marketPosition: 'The market combines the highest electricity-rate score in the portfolio with strong irradiance and a mature commercial solar ecosystem. The opportunity is strongest at properties with sustained daytime demand. Standalone solar becomes less attractive where a material share of output would be exported, particularly when the customer load falls before higher-priced evening periods.',
@@ -72,7 +73,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Nevada',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'NV Energy',
-      score: '2.2 / 3',
       badge: 'LEADING',
       projectSummary: 'Nevada is a leading market in this portfolio because it combines excellent solar resource with a comparatively favourable utility billing structure and a concentrated utility framework. For large C&I projects, the principal limitations are the 1 MW net-metering cap and relatively low solar-avoidable electricity rates. Projects should be sized to onsite load and screened carefully for the value of demand-charge reduction.',
       marketPosition: 'Nevada has one of the strongest solar resources in the United States and a relatively straightforward market structure dominated by NV Energy. The state is most attractive for high-load commercial facilities that can absorb production onsite. Lower prevailing rates than California mean the policy and resource advantages do not automatically produce high returns.',
@@ -86,7 +86,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Illinois',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'ComEd',
-      score: '2.1 / 3',
       badge: 'POLICY-LED',
       projectSummary: 'Illinois is the strongest policy-driven market in the group. The Illinois Shines Large Distributed Generation category can provide a long-term, state-administered REC revenue stream that materially improves project economics. That benefit is offset by weaker solar resource and supply-only net-metering treatment for large C&I exports, making daytime self-consumption and REC program eligibility the central underwriting variables.',
       marketPosition: 'Illinois has moderate commercial electricity prices and the weakest solar resource score in the portfolio. The market remains attractive because Illinois Shines can provide contracted REC revenue that is not available in the other states. The best projects combine available REC capacity, a clean interconnection path and a customer load profile that minimizes exports.',
@@ -100,7 +99,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Florida',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Florida Power & Light',
-      score: '1.8 / 3',
       badge: 'SELECTIVE',
       projectSummary: 'Florida offers a favourable net-metering structure and a workable system-size limit for large commercial projects, but the contemplated landlord-to-tenant business model faces a material regulatory constraint. A direct per-kWh sale of solar electricity by a private landlord can create public-utility risk. Projects should be structured so that the tenant remains the utility customer and does not purchase electricity from the landlord, subject to Florida regulatory counsel.',
       marketPosition: 'Florida has moderate solar resource and commercial electricity prices relative to the six-state group. Full monthly kWh netting can support projects with variable load, but demand and minimum-bill components remain. The state is therefore a selective market: the tariff can be attractive, while ownership and contracting structure may determine whether a project is executable.',
@@ -114,7 +112,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'North Carolina',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Duke Energy Carolinas / Duke Energy Progress',
-      score: '1.8 / 3',
       badge: 'SELECTIVE',
       projectSummary: "North Carolina combines a strong current net-metering score and a recognized REC compliance market with low solar-avoidable electricity rates and a significant contracting restriction. A landlord generally should not sell electricity to a tenant under a per-kWh PPA. A compliant equipment lease can be used, but it must follow the statutory leasing framework and cannot base payments on the system's electric output.",
       marketPosition: 'The state has a substantial solar sector, but utility-scale development does not translate directly into strong C&I rooftop economics. Solar resource is moderate and large-commercial avoided rates are comparatively low. The market is most viable where the property has strong daytime consumption, a clean Duke interconnection path and a commercial structure that complies with the Distributed Resources Access Act.',
@@ -128,7 +125,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Texas',
       subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Oncor delivery territory with a competitive Retail Electric Provider',
-      score: '1.6 / 3',
       badge: 'OPPORTUNISTIC',
       projectSummary: "Texas has strong solar resource and a flexible competitive retail market, but it lacks a uniform statewide net-metering tariff and has the lowest solar-avoidable electricity-rate score in the group. Project economics depend primarily on onsite self-consumption and the export product offered by the tenant's Retail Electric Provider. The market is therefore opportunistic rather than broadly program-driven.",
       marketPosition: 'The resource is strong, particularly in North and West Texas, and third-party onsite arrangements are generally more commercially workable than in Florida or North Carolina. However, low energy prices and competitive supply contracts can limit avoided-cost value. The opportunity is strongest at facilities with high daytime load, limited exports and a long-term tenant commitment.',

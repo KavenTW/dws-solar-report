@@ -1,5 +1,14 @@
 import { SCORECARD, STATE_ORDER } from '../../constants/portfolioDefaults';
 
+// Client view shows colour bands, not numbers. The quantified matrix behind
+// the mapping (scores 1–3 and category weights) is retained in SCORECARD and
+// documented in PORTFOLIO_SOURCES.md for audit.
+const SCORE_BANDS = {
+  3: { className: 'score-strong', label: 'Strongest relative position' },
+  2: { className: 'score-moderate', label: 'Moderate' },
+  1: { className: 'score-weak', label: 'Weakest relative position' },
+};
+
 /**
  * State market one-pager: content from the portfolio state (editable), the
  * shared six-state scorecard with the current state's column highlighted, and
@@ -27,8 +36,7 @@ export default function StateOnePager({ abbr, state, projects }) {
           <div className="state-pager-utility">Representative utility: {state.repUtility}</div>
         </div>
         <div className="state-score-badge">
-          <div className="state-score-value">{state.score}</div>
-          <div className="state-score-label">{state.badge}</div>
+          <div className="state-score-word">{state.badge}</div>
         </div>
       </div>
 
@@ -42,9 +50,14 @@ export default function StateOnePager({ abbr, state, projects }) {
         </div>
 
         <div className="state-block">
-          <div className="state-block-title">
-            BTM Rooftop &amp; Carport Solar Scorecard
-            <span className="state-scorecard-legend">{SCORECARD.legend}</span>
+          <div className="state-block-title">BTM Rooftop &amp; Carport Solar Scorecard</div>
+          <div className="score-legend">
+            {[3, 2, 1].map(s => (
+              <span key={s} className="score-legend-item">
+                <span className={`score-legend-swatch ${SCORE_BANDS[s].className}`} />
+                {SCORE_BANDS[s].label}
+              </span>
+            ))}
           </div>
           <table className="market-table state-scorecard">
             <thead>
@@ -53,7 +66,6 @@ export default function StateOnePager({ abbr, state, projects }) {
                 {SCORECARD.stateNames.map((n, i) => (
                   <th key={n} className={i === colIdx ? 'state-col-active' : undefined}>{n}</th>
                 ))}
-                <th>Weight/10</th>
               </tr>
             </thead>
             <tbody>
@@ -61,18 +73,15 @@ export default function StateOnePager({ abbr, state, projects }) {
                 <tr key={row.category}>
                   <td>{row.category}</td>
                   {row.scores.map((s, i) => (
-                    <td key={i} className={`num ${i === colIdx ? 'state-col-active' : ''}`}>{s}</td>
+                    <td
+                      key={i}
+                      className={`score-cell ${SCORE_BANDS[s].className} ${i === colIdx ? 'state-col-active' : ''}`}
+                      title={SCORE_BANDS[s].label}
+                      aria-label={`${SCORECARD.stateNames[i]}: ${SCORE_BANDS[s].label}`}
+                    />
                   ))}
-                  <td className="num">{row.weight}</td>
                 </tr>
               ))}
-              <tr className="total-row">
-                <td><strong>Weighted Score /3</strong></td>
-                {SCORECARD.weighted.map((s, i) => (
-                  <td key={i} className={`num ${i === colIdx ? 'state-col-active' : ''}`}><strong>{s}</strong></td>
-                ))}
-                <td />
-              </tr>
             </tbody>
           </table>
           <div className="footnote" style={{ marginTop: '6px' }}>{SCORECARD.footnote}</div>

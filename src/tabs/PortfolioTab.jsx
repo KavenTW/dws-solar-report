@@ -142,7 +142,6 @@ export default function PortfolioTab() {
                 </select>
               </div>
               {line('Representative utility', pf.states[editorState].repUtility, v => setStateField(editorState, 'repUtility', v))}
-              {line('Score', pf.states[editorState].score, v => setStateField(editorState, 'score', v))}
               {line('Badge', pf.states[editorState].badge, v => setStateField(editorState, 'badge', v))}
               {STATE_EDIT_FIELDS.map(([key, label]) =>
                 <span key={key}>{txt(label, pf.states[editorState][key], v => setStateField(editorState, key, v), 4)}</span>
