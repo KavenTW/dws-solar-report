@@ -6,8 +6,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
   const ok = projects.filter(x => x.calc);
   const totalDC = ok.reduce((s, x) => s + (x.calc.totalDCkW || 0), 0);
   const totalMwh = ok.reduce((s, x) => s + (x.calc.annualMwh || 0), 0);
-  const totalFootprint = ok.reduce(
-    (s, x) => s + (x.p.rooftopAreaUsedSqFt || 0) + (x.p.carportAreaUsedSqFt || 0), 0);
+  const totalLifetimeCO2e = ok.reduce((s, x) => s + (x.calc.lifetimeCO2e || 0), 0);
   const stateCount = new Set(ok.map(x => x.p.province)).size;
 
   return (
@@ -30,9 +29,9 @@ export default function PortfolioExecSummary({ pf, projects }) {
           <div className="kpi-unit">all assets combined</div>
         </div>
         <div className="kpi-card">
-          <div className="kpi-label">Solar Footprint</div>
-          <div className="kpi-value">{Math.round(totalFootprint).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>ft²</span></div>
-          <div className="kpi-unit">occupied roof and parking area</div>
+          <div className="kpi-label">Est. Lifetime Carbon Abatement</div>
+          <div className="kpi-value">{(Math.round(totalLifetimeCO2e / 100) * 100).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>t CO₂e</span></div>
+          <div className="kpi-unit">all assets combined, over term</div>
         </div>
       </div>
       <div className="card">
