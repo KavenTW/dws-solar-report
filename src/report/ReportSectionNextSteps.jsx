@@ -45,7 +45,7 @@ export default function ReportSectionNextSteps({ p, embedded = false }) {
       {embedded && additionalNotes}
       {!embedded && <div className="card-title">Indicative Feasibility Cost Estimates</div>}
 
-      <table className="fin-table" style={{ width: '100%' }}>
+      <table className="fin-table feas-table" style={{ width: '100%' }}>
         <thead>
           <tr className="sub-header">
             <th style={{ width: '35%' }}>Scope</th>

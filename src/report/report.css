@@ -354,6 +354,11 @@
    columns and wraps long headers instead of widening the table. */
 .portfolio-page .market-table { table-layout: fixed; width: 100%; }
 .portfolio-page .market-table th, .portfolio-page .market-table td { overflow-wrap: break-word; }
+
+/* Feasibility cost table (standalone + embedded asset reports): same
+   guarantee — column hints on the th cells set the widths, long notes wrap. */
+.feas-table { table-layout: fixed; width: 100%; }
+.feas-table th, .feas-table td { overflow-wrap: break-word; }
 .state-scorecard th:first-child, .state-scorecard td:first-child { width: 28%; }
 
 /* TOC */
