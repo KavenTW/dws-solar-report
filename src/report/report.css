@@ -445,6 +445,8 @@
   .state-score-badge { padding: 5px 12px; }
   .state-score-word { font-size: 11px; }
 
+  .capacity-chart-wrap { height: 160px !important; }
+
   /* Compact asset header band */
   .asset-band { padding: 10px 16px; margin-bottom: 16px; break-after: avoid; }
   .asset-band-name { font-size: 14px; }

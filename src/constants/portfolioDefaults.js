@@ -53,6 +53,54 @@ export const PORTFOLIO_DEFAULTS = {
     'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. All studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
   ].join('\n\n'),
 
+  // ── Proposed asset prioritisation (rendered in the Executive Summary;
+  //     directional proposal for discussion — fully editable) ──
+  tiers: [
+    {
+      name: 'Tier 1 — Advance',
+      assets: 'Eastland Center; Courtyard at the Commons; Tropical Center II; The Shops at Oak Brook Place',
+      rationale: 'Strongest state market bands (California and Nevada leading; Illinois policy-led), largest system scale, and conventional structures. Recommended to proceed directly to stage-one structural feasibility.',
+    },
+    {
+      name: 'Tier 2 — Advance subject to confirmations',
+      assets: 'DC Station Retail; London Square; Citria at Fruitville Commons; Candour House; Post & Paddock; Lakeside B',
+      rationale: 'Attractive scale with site-specific items to resolve first: structural capacity above parking structures, glare-study requirements, roof type, and metering or contracting structure.',
+    },
+    {
+      name: 'Tier 3 — Hold / opportunistic',
+      assets: '100 Hamilton; Tuscany on Fig; 1201 Avenue S; Lakeside A',
+      rationale: 'Limited system scale, municipal-utility frameworks assessed separately from the state programs (Palo Alto, LADWP), or the weakest market band relative to system size.',
+    },
+  ],
+
+  // ── Methodology & basis of estimates (renders after the TOC) ──
+  methodology: [
+    'System sizing reflects the maximum buildable rooftop and carport layouts identified for each asset using solar design software, subject to the site conditions visible from aerial imagery and available drawings.',
+    'Year-one generation is calculated as DC capacity multiplied by the modelled specific production for each mounting type; monthly distribution follows detailed simulation for each site. Roof and parking areas occupied are measured from the proposed layouts; total available areas are measured from aerial imagery.',
+    'Avoided-emissions estimates apply published regional grid output emission factors for each asset’s grid subregion to modelled generation, summed over a 25-year term with 0.5% annual module degradation. Household equivalents reflect average U.S. residential electricity consumption.',
+    'Indicative feasibility costs are based on quotations obtained from independent, licensed engineering firms for comparable scopes, scaled where noted by site characteristics such as the number of points of interconnection. All figures are preliminary desktop estimates prepared for screening purposes.',
+  ].join('\n\n'),
+
+  // ── Glossary (one entry per line: "Term — definition") ──
+  glossary: [
+    'Behind-the-Meter (BTM) — A solar system connected on the customer’s side of the utility meter, serving on-site load before exporting to the grid.',
+    'kW DC / kW AC — Direct-current module capacity versus alternating-current inverter capacity of a system.',
+    'Specific production (MWh/MWdc) — Expected annual energy yield per megawatt of DC capacity, reflecting local solar resource and system design.',
+    'Point of interconnection — The location where a solar system connects to the utility or customer electrical infrastructure; a key driver of electrical feasibility cost.',
+    'Net metering / Net Billing Tariff (NBT) — Utility frameworks that determine how exported solar energy is credited.',
+    'Renewable Energy Certificate (REC) — A tradeable certificate representing the environmental attributes of one MWh of renewable generation.',
+    'WAIRE — The South Coast AQMD Warehouse Actions and Investments to Reduce Emissions program, under which qualifying on-site solar earns compliance points.',
+    'Geotechnical assessment — Subsurface investigation confirming foundation conditions, required for carport structures.',
+    'CO₂e — Carbon-dioxide equivalent, the standard unit for greenhouse-gas accounting.',
+  ].join('\n'),
+
+  // ── Proposed immediate actions (bullet list at the end of Next Steps) ──
+  nextActions: [
+    'DWS to confirm the priority assets to advance to stage-one structural feasibility.',
+    'GCS to obtain firm structural-feasibility quotations and confirmed timelines for the selected assets.',
+    'Remaining gates (geotechnical for carport sites, electrical, and interconnection documentation) to proceed per the sequence above as each stage clears.',
+  ].join('\n'),
+
   // ── Document-level disclaimer (renders once, at the very end) ──
   disclaimer: [
     'This document presents preliminary estimates based on desktop analysis, simulation outputs, and publicly available data for the assets identified herein. All figures are projections subject to change following site survey, structural engineering review, utility interconnection study, and final equipment selection.',

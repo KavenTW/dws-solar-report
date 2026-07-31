@@ -8,8 +8,9 @@ import { computeCalc } from '../utils/calculations';
 import ErrorBoundary from '../ErrorBoundary';
 import ReportDocument from '../report/ReportDocument';
 import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
-import PortfolioExecSummary from '../report/portfolio/PortfolioExecSummary';
+import PortfolioExecSummary, { PortfolioPrioritisation } from '../report/portfolio/PortfolioExecSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
+import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
 import PortfolioDisclaimer from '../report/portfolio/PortfolioDisclaimer';
@@ -53,7 +54,11 @@ export default function PortfolioTab() {
   const activeStates = STATE_ORDER.filter(abbr => byState[abbr].length > 0);
 
   const tocEntries = useMemo(() => {
-    const rows = [{ slug: 'exec-summary', label: 'Executive Summary', level: 0 }];
+    const rows = [
+      { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
+      { slug: 'prioritisation', label: 'Proposed Asset Prioritisation', level: 0 },
+      { slug: 'methodology', label: 'Methodology & Glossary', level: 0 },
+    ];
     for (const abbr of activeStates) {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
       for (const { entry, p } of byState[abbr]) {
@@ -114,8 +119,22 @@ export default function PortfolioTab() {
               <div className="portfolio-editor-heading">Executive Summary</div>
               {txt('Narrative (blank line = new paragraph)', pf.execSummary, v => set('execSummary', v), 8)}
 
+              <div className="portfolio-editor-heading">Prioritisation Tiers</div>
+              {pf.tiers.map((tier, i) => (
+                <div key={i} style={{ marginBottom: '8px' }}>
+                  {line(`Tier ${i + 1} name`, tier.name, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, name: v } : t)))}
+                  {line(`Tier ${i + 1} assets (separate with ;)`, tier.assets, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, assets: v } : t)))}
+                  {txt(`Tier ${i + 1} rationale`, tier.rationale, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, rationale: v } : t)), 2)}
+                </div>
+              ))}
+
+              <div className="portfolio-editor-heading">Methodology &amp; Glossary</div>
+              {txt('Methodology (blank line = new paragraph)', pf.methodology, v => set('methodology', v), 6)}
+              {txt('Glossary (one per line: Term — definition)', pf.glossary, v => set('glossary', v), 6)}
+
               <div className="portfolio-editor-heading">Next Steps</div>
               {txt('Narrative (blank line = new paragraph)', pf.nextSteps, v => set('nextSteps', v), 8)}
+              {txt('Proposed immediate actions (one per line)', pf.nextActions, v => set('nextActions', v), 3)}
 
               <div className="portfolio-editor-heading">Closing Disclaimer</div>
               {txt('Document-level disclaimer (blank line = new paragraph)', pf.disclaimer, v => set('disclaimer', v), 6)}
@@ -178,7 +197,9 @@ export default function PortfolioTab() {
           <PortfolioTitlePage pf={pf} />
           <div className="container">
             <PortfolioExecSummary pf={pf} projects={projects} />
+            <PortfolioPrioritisation pf={pf} />
             <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
+            <PortfolioMethodology pf={pf} />
           </div>
           {activeStates.map(abbr => (
             <div key={abbr}>

@@ -31,6 +31,17 @@ The "Overall Market Position" row maps from the weighted totals: ≥ 2.0 →
 strongest band (CA, NV, IL), 1.7–1.9 → moderate (FL, NC), < 1.7 → weakest
 (TX) — mirroring the header badges.
 
+**Proposed Asset Prioritisation.** The tier assignments are a directional GCS
+proposal combining: state scorecard band, system scale (kW DC), and the
+site-specific considerations recorded in the DWS Technical Data Request
+workbook (structural/parking-structure items, glare-study triggers,
+multi-family metering, municipal-utility service territories). Editable in
+the document; to be confirmed with DWS.
+
+**Per-asset Site-Specific Considerations.** Drafted from the "technical notes
+unique to the project" column of the same workbook (June 2026); airport
+distances and constraints as stated there.
+
 ## Asset report data sources
 
 - **System sizing, generation, monthly production distribution**: HelioScope

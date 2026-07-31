@@ -27,7 +27,9 @@ export default function ReportDocument({ p, calc, embedded = false }) {
           <div className="asset-band">
             <div>
               <div className="asset-band-name">{p.projectName || p.address}</div>
-              <div className="asset-band-sub">{[p.address, p.city].filter(Boolean).join(', ')}</div>
+              <div className="asset-band-sub">
+                {[p.siteBuildingType, [p.address, p.city].filter(Boolean).join(', ')].filter(Boolean).join(' · ')}
+              </div>
             </div>
             <div className="asset-band-type">{p.reportType}</div>
           </div>

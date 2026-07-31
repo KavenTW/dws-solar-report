@@ -31,7 +31,7 @@ export default function ReportSectionNextSteps({ p, embedded = false }) {
 
   const additionalNotes = p.additionalNotes && (
     <div style={{ marginTop: embedded ? '0' : '24px', marginBottom: embedded ? '16px' : '0' }}>
-      <div className="card-title" style={{ marginBottom: '10px' }}>Additional Notes</div>
+      <div className="card-title" style={{ marginBottom: '10px' }}>{embedded ? 'Site-Specific Considerations' : 'Additional Notes'}</div>
       <ul style={{ paddingLeft: '20px', margin: 0 }}>
         {p.additionalNotes.split('\n').filter(Boolean).map((line, i) => (
           <li key={i} style={{ marginBottom: '6px' }}>{line}</li>

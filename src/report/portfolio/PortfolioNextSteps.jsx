@@ -44,6 +44,17 @@ export default function PortfolioNextSteps({ pf }) {
             <span className="stage-gate-step">Interconnection</span>
           </div>
         </div>
+
+        {pf.nextActions && (
+          <div className="state-block" style={{ marginTop: '16px' }}>
+            <div className="state-block-title">Proposed Immediate Actions</div>
+            <ul style={{ paddingLeft: '20px', margin: 0 }}>
+              {pf.nextActions.split('\n').filter(Boolean).map((line, i) => (
+                <li key={i} className="portfolio-para" style={{ marginBottom: '4px' }}>{line}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
