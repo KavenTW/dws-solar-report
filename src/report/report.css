@@ -394,6 +394,14 @@
   body { background: white; font-size: 12px; line-height: 1.5; }
   p, li { orphans: 2; widows: 2; }
 
+  /* The app shell is a flex column. Chrome's print engine sizes flex items
+     to their content's intrinsic width (min-width:auto) — screen-rendered
+     chart canvases then widen the whole document past the paper edge and
+     every page prints clipped on the right. Print as plain block flow and
+     clamp canvas intrinsic widths. */
+  .app-shell { display: block !important; }
+  canvas { width: 100% !important; max-width: 100% !important; }
+
   /* ── Hide screen-only chrome ── */
   .scroll-header,
   .report-toolbar,
@@ -515,7 +523,6 @@
   .layout-photo { max-height: 230px; }
 
   /* ── Charts (shorter in print to reclaim vertical space) ── */
-  canvas { max-width: 100% !important; }
   #cashflowChart { height: 180px !important; }
   .production-chart-wrap { height: 150px !important; }
 
