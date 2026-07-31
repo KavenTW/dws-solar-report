@@ -50,5 +50,15 @@ export function usePortfolio() {
         : [...prev.excludedProjects, name],
     }));
 
-  return { pf, set, setStateField, setTocPage, toggleProject };
+  // Replace all text content with the latest seeds; keeps report selections
+  // and TOC page numbers. Used after seed copy improves upstream — saved text
+  // otherwise wins over new seeds by design.
+  const resetContent = () =>
+    setPf(prev => ({
+      ...PORTFOLIO_DEFAULTS,
+      excludedProjects: prev.excludedProjects,
+      tocPages: prev.tocPages,
+    }));
+
+  return { pf, set, setStateField, setTocPage, toggleProject, resetContent };
 }

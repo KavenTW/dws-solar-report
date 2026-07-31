@@ -1,11 +1,34 @@
+import { TECHNICAL_ITEMS } from '../../constants/technicalItems';
+
 export default function PortfolioNextSteps({ pf }) {
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page portfolio-page--flow">
       <div className="section-title">Next Steps</div>
       <div className="card">
         {pf.nextSteps.split('\n').filter(Boolean).map((para, i) => (
           <p key={i} className="portfolio-para">{para}</p>
         ))}
+
+        <div className="state-block" style={{ marginTop: '16px' }}>
+          <div className="state-block-title">Scope of Further Detailed Analysis</div>
+          <table className="fin-table" style={{ width: '100%' }}>
+            <thead>
+              <tr className="sub-header">
+                <th style={{ width: '28%' }}>Category</th>
+                <th>Item / Notes</th>
+              </tr>
+            </thead>
+            <tbody>
+              {TECHNICAL_ITEMS.map(({ category, notes }) => (
+                <tr key={category}>
+                  <td><strong>{category}</strong></td>
+                  <td>{notes}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         <div className="stage-gate-box" style={{ marginTop: '14px' }}>
           <div className="stage-gate-title">A flexible, stage-gated approach</div>
           <p className="stage-gate-intro">

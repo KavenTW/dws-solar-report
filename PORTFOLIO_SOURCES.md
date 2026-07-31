@@ -27,6 +27,10 @@ FL 1.8, NC 1.8, TX 1.6) — is retained in `src/constants/portfolioDefaults.js`
 (`SCORECARD`) and is available on request. The state header badges (LEADING /
 POLICY-LED / SELECTIVE / OPPORTUNISTIC) correspond to those weighted totals.
 
+The "Overall Market Position" row maps from the weighted totals: ≥ 2.0 →
+strongest band (CA, NV, IL), 1.7–1.9 → moderate (FL, NC), < 1.7 → weakest
+(TX) — mirroring the header badges.
+
 ## Asset report data sources
 
 - **System sizing, generation, monthly production distribution**: HelioScope

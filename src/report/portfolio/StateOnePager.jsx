@@ -82,6 +82,17 @@ export default function StateOnePager({ abbr, state, projects }) {
                   ))}
                 </tr>
               ))}
+              <tr className="overall-row">
+                <td><strong>Overall Market Position</strong></td>
+                {SCORECARD.overall.map((s, i) => (
+                  <td
+                    key={i}
+                    className={`score-cell ${SCORE_BANDS[s].className} ${i === colIdx ? 'state-col-active' : ''}`}
+                    title={SCORE_BANDS[s].label}
+                    aria-label={`${SCORECARD.stateNames[i]} overall: ${SCORE_BANDS[s].label}`}
+                  />
+                ))}
+              </tr>
             </tbody>
           </table>
           <div className="footnote" style={{ marginTop: '6px' }}>{SCORECARD.footnote}</div>

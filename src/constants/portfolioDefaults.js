@@ -20,10 +20,15 @@ export const SCORECARD = {
     { category: 'Other Considerations',         scores: [2, 3, 2, 1, 1, 2], weight: 6 },
   ],
   weighted: ['2.2', '2.2', '2.1', '1.8', '1.8', '1.6'],
+  // Overall band per state, derived from the weighted totals above
+  // (≥2.0 → strong; 1.7–1.9 → moderate; <1.7 → weak). Mirrors the header
+  // badges: LEADING / POLICY-LED → strong, SELECTIVE → moderate,
+  // OPPORTUNISTIC → weak.
+  overall: [3, 3, 3, 2, 2, 1],
   footnote: 'Relative colour bands for these six states; assumes large C&I behind-the-meter rooftop/carport projects generally up to 1 MWac. Other Considerations includes system-size limits, third-party ownership, interconnection and program compliance.',
 };
 
-const SCREENING_NOTE = 'Screening note: Current as of July 2, 2026. State-level ratings are directional; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
+const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level ratings are directional; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
 
 export const PORTFOLIO_DEFAULTS = {
   // ── Title page ──
@@ -48,6 +53,13 @@ export const PORTFOLIO_DEFAULTS = {
     'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. All studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
   ].join('\n\n'),
 
+  // ── Document-level disclaimer (renders once, at the very end) ──
+  disclaimer: [
+    'This document presents preliminary estimates based on desktop analysis, simulation outputs, and publicly available data for the assets identified herein. All figures are projections subject to change following site survey, structural engineering review, utility interconnection study, and final equipment selection.',
+    'Grid emissions factors are drawn from published regional grid data; avoided-emissions figures assume full displacement of grid electricity by solar generation and include module degradation over the stated term. State-level market commentary is directional screening, not underwriting or legal advice. Utility tariffs, program rules and REC values must be confirmed for each asset at the time of contracting.',
+    'This document does not constitute a binding contract, engineering certification, or financial, tax or legal advice.',
+  ].join('\n\n'),
+
   // ── Inclusion control: saved projects excluded from the compiled document ──
   excludedProjects: ['Courtyard at the Commons Solar'],
 
@@ -58,37 +70,37 @@ export const PORTFOLIO_DEFAULTS = {
   states: {
     CA: {
       name: 'California',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'PG&E, SCE and SDG&E; municipal utilities assessed separately',
       badge: 'LEADING',
       projectSummary: 'California remains one of the strongest economic markets in the group because high solar-avoidable energy charges and strong solar resource can support meaningful onsite savings. The central constraint is the CPUC Net Billing Tariff: exported energy receives time-varying, avoided-cost-based credits, making load matching and interval tariff modelling essential. Municipal utilities such as Palo Alto and LADWP operate separate programs and should not be screened using the CPUC framework.',
       marketPosition: 'The market combines the highest electricity-rate score in the portfolio with strong irradiance and a mature commercial solar ecosystem. The opportunity is strongest at properties with sustained daytime demand. Standalone solar becomes less attractive where a material share of output would be exported, particularly when the customer load falls before higher-priced evening periods.',
       utilityBilling: "For the three investor-owned utilities, onsite generation first serves onsite load under the Net Billing Tariff. Excess production is credited using hourly Energy Export Credits rather than the customer's retail import rate. Large commercial bills also contain demand, fixed and non-bypassable components that solar does not uniformly eliminate. The underwriting model should therefore apply the actual tariff to interval load and production data rather than use a blended retail rate.",
-      recProgram: 'California does not provide a standardized state-administered REC purchase contract for ordinary C&I rooftop and carport projects. Any REC value should be treated as project-specific merchant or bilateral revenue, not a core portfolio assumption.',
+      recProgram: 'California does not provide a standardised state-administered REC purchase contract for ordinary C&I rooftop and carport projects. Any REC value should be treated as project-specific merchant or bilateral revenue, not a core portfolio assumption.',
       devConsiderations: 'Qualifying NEM/NBT projects are subject to AB 2143 prevailing-wage and payroll-reporting requirements. Interconnection is utility-specific under Rule 21, and municipal utilities have separate eligibility and compensation rules. For warehouses in the South Coast AQMD area, qualifying onsite solar may also contribute WAIRE compliance points; this is a site-specific operating benefit rather than a statewide solar tariff.',
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
     },
     NV: {
       name: 'Nevada',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'NV Energy',
       badge: 'LEADING',
       projectSummary: 'Nevada is a leading market in this portfolio because it combines excellent solar resource with a comparatively favourable utility billing structure and a concentrated utility framework. For large C&I projects, the principal limitations are the 1 MW net-metering cap and relatively low solar-avoidable electricity rates. Projects should be sized to onsite load and screened carefully for the value of demand-charge reduction.',
       marketPosition: 'Nevada has one of the strongest solar resources in the United States and a relatively straightforward market structure dominated by NV Energy. The state is most attractive for high-load commercial facilities that can absorb production onsite. Lower prevailing rates than California mean the policy and resource advantages do not automatically produce high returns.',
       utilityBilling: "NV Energy's NMR-B tariff applies to non-small systems above 25 kW and below 1,000 kW. Excess generation is recorded as kWh credits and carried forward to future billing periods; under time-of-use service, credits generally remain in the period in which they were produced. The structure is favourable relative to the other states, but it does not eliminate basic service, demand or other non-volumetric charges. A system must be intended primarily to offset the customer's electricity requirements.",
-      recProgram: "Nevada operates a recognized Portfolio Energy Credit market for renewable portfolio compliance, and NV Energy's current interconnection handbook states that credits issued for a customer solar system belong to the system owner. The market does not provide an Illinois-style fixed-price state purchase contract, so REC revenue should be treated as market-exposed.",
+      recProgram: "Nevada operates a recognised Portfolio Energy Credit market for renewable portfolio compliance, and NV Energy's current interconnection handbook states that credits issued for a customer solar system belong to the system owner. The market does not provide an Illinois-style fixed-price state purchase contract, so REC revenue should be treated as market-exposed.",
       devConsiderations: 'The 1 MW project cap is the main portfolio constraint and can prevent full use of large roofs or carports. Interconnection may still require distribution upgrades, and the commercial agreement must align the landlord, tenant and utility customer of record. Within those limits, the single-utility framework and established net-metering process make Nevada comparatively straightforward to diligence and execute.',
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
     },
     IL: {
       name: 'Illinois',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'ComEd',
       badge: 'POLICY-LED',
       projectSummary: 'Illinois is the strongest policy-driven market in the group. The Illinois Shines Large Distributed Generation category can provide a long-term, state-administered REC revenue stream that materially improves project economics. That benefit is offset by weaker solar resource and supply-only net-metering treatment for large C&I exports, making daytime self-consumption and REC program eligibility the central underwriting variables.',
-      marketPosition: 'Illinois has moderate commercial electricity prices and the weakest solar resource score in the portfolio. The market remains attractive because Illinois Shines can provide contracted REC revenue that is not available in the other states. The best projects combine available REC capacity, a clean interconnection path and a customer load profile that minimizes exports.',
+      marketPosition: 'Illinois has moderate commercial electricity prices and the weakest solar resource score in the portfolio. The market remains attractive because Illinois Shines can provide contracted REC revenue that is not available in the other states. The best projects combine available REC capacity, a clean interconnection path and a customer load profile that minimises exports.',
       utilityBilling: "In ComEd territory, large commercial and industrial customers are generally competitively declared supply customers and receive supply-only net-metering credits for excess generation. Onsite production can still reduce imported energy and certain delivery charges, but exported energy does not offset the full retail bill. The customer's retail supplier agreement should be reviewed for netted volumes, export-credit treatment and any interaction with hedged supply products.",
       recProgram: 'Illinois Shines is a state-administered program. Large DG covers behind-the-meter projects above 10 kW AC and up to 2 MW AC. For 2026 approvals, Large DG uses a 15-year REC delivery contract, with 15% of the calculated REC payment made at energization and the remainder paid ratably over six years. REC pricing, category capacity and application timing must be confirmed for each program year.',
       devConsiderations: 'Projects require an Illinois Shines Approved Vendor and must satisfy program documentation, metering and verification requirements. Most commercial DG projects are subject to prevailing-wage compliance. Distribution hosting capacity and interconnection upgrades can constrain projects, while program-category capacity and application queues can affect timing even where the roof and load are otherwise attractive.',
@@ -97,7 +109,7 @@ export const PORTFOLIO_DEFAULTS = {
     },
     FL: {
       name: 'Florida',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Florida Power & Light',
       badge: 'SELECTIVE',
       projectSummary: 'Florida offers a favourable net-metering structure and a workable system-size limit for large commercial projects, but the contemplated landlord-to-tenant business model faces a material regulatory constraint. A direct per-kWh sale of solar electricity by a private landlord can create public-utility risk. Projects should be structured so that the tenant remains the utility customer and does not purchase electricity from the landlord, subject to Florida regulatory counsel.',
@@ -110,20 +122,20 @@ export const PORTFOLIO_DEFAULTS = {
     },
     NC: {
       name: 'North Carolina',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Duke Energy Carolinas / Duke Energy Progress',
       badge: 'SELECTIVE',
-      projectSummary: "North Carolina combines a strong current net-metering score and a recognized REC compliance market with low solar-avoidable electricity rates and a significant contracting restriction. A landlord generally should not sell electricity to a tenant under a per-kWh PPA. A compliant equipment lease can be used, but it must follow the statutory leasing framework and cannot base payments on the system's electric output.",
+      projectSummary: "North Carolina combines a strong current net-metering score and a recognised REC compliance market with low solar-avoidable electricity rates and a significant contracting restriction. A landlord generally should not sell electricity to a tenant under a per-kWh PPA. A compliant equipment lease can be used, but it must follow the statutory leasing framework and cannot base payments on the system's electric output.",
       marketPosition: 'The state has a substantial solar sector, but utility-scale development does not translate directly into strong C&I rooftop economics. Solar resource is moderate and large-commercial avoided rates are comparatively low. The market is most viable where the property has strong daytime consumption, a clean Duke interconnection path and a commercial structure that complies with the Distributed Resources Access Act.',
       utilityBilling: "Duke Energy currently offers net metering for non-residential renewable generation up to 1,000 kW. For a third-party leased system, the statutory size limit is the lesser of 1,000 kW or 100% of the customer's contract demand, and the system must be intended to offset no more than the tenant's own consumption. Long-term modelling should also account for tariff-transition risk: state law permits certain customers to retain the rate in effect at interconnection only through January 1, 2027.",
-      recProgram: 'NC-RETS issues and tracks RECs used by utilities for state portfolio-standard compliance. This is a recognized compliance market, but it does not provide a standardized long-term fixed-price purchase contract comparable to Illinois Shines. REC ownership and transfer should be stated expressly in the equipment lease and project documents.',
+      recProgram: 'NC-RETS issues and tracks RECs used by utilities for state portfolio-standard compliance. This is a recognised compliance market, but it does not provide a standardised long-term fixed-price purchase contract comparable to Illinois Shines. REC ownership and transfer should be stated expressly in the equipment lease and project documents.',
       devConsiderations: 'A compliant structure is an equipment lease to the tenant, who remains the utility customer and owns the electrical output. The lessor must obtain an NCUC certificate, register each facility, serve one lessee at one premises and comply with required lease terms. A lease outside that framework, or an agreement with payments based on electric output, can cause the lessor to be treated as a public utility and violate the incumbent utility’s service rights.',
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
     },
     TX: {
       name: 'Texas',
-      subtitle: 'BTM Rooftop & Carport Solar Market One-Pager',
+      subtitle: 'Behind-the-Meter Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Oncor delivery territory with a competitive Retail Electric Provider',
       badge: 'OPPORTUNISTIC',
       projectSummary: "Texas has strong solar resource and a flexible competitive retail market, but it lacks a uniform statewide net-metering tariff and has the lowest solar-avoidable electricity-rate score in the group. Project economics depend primarily on onsite self-consumption and the export product offered by the tenant's Retail Electric Provider. The market is therefore opportunistic rather than broadly program-driven.",

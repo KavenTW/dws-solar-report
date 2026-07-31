@@ -12,6 +12,7 @@ import PortfolioExecSummary from '../report/portfolio/PortfolioExecSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
+import PortfolioDisclaimer from '../report/portfolio/PortfolioDisclaimer';
 import '../report/report.css';
 import '../styles/form.css';
 
@@ -26,7 +27,7 @@ const STATE_EDIT_FIELDS = [
 
 export default function PortfolioTab() {
   const { dispatch } = useProject();
-  const { pf, set, setStateField, setTocPage, toggleProject } = usePortfolio();
+  const { pf, set, setStateField, setTocPage, toggleProject, resetContent } = usePortfolio();
   const [editorOpen, setEditorOpen] = useState(false);
   const [editorState, setEditorState] = useState('CA');
 
@@ -116,6 +117,9 @@ export default function PortfolioTab() {
               <div className="portfolio-editor-heading">Next Steps</div>
               {txt('Narrative (blank line = new paragraph)', pf.nextSteps, v => set('nextSteps', v), 8)}
 
+              <div className="portfolio-editor-heading">Closing Disclaimer</div>
+              {txt('Document-level disclaimer (blank line = new paragraph)', pf.disclaimer, v => set('disclaimer', v), 6)}
+
               <div className="portfolio-editor-heading">Included Reports</div>
               <div className="portfolio-editor-projects">
                 {saved.map(e => (
@@ -130,6 +134,18 @@ export default function PortfolioTab() {
                 ))}
                 {saved.length === 0 && <p className="footnote">No saved projects found — save projects from the Inputs tab first.</p>}
               </div>
+
+              <div className="portfolio-editor-heading">Maintenance</div>
+              <button
+                className="report-btn report-btn--outline"
+                onClick={() => {
+                  if (window.confirm('Replace ALL portfolio text (title page, executive summary, state pages, next steps, disclaimer) with the latest defaults? Your report selections and TOC page numbers are kept. This cannot be undone.')) {
+                    resetContent();
+                  }
+                }}
+              >
+                Reset text to latest defaults
+              </button>
             </div>
 
             <div className="portfolio-editor-col">
@@ -172,7 +188,7 @@ export default function PortfolioTab() {
               {byState[abbr].map(({ entry, p, calc, err }) => (
                 <div key={entry.id} className="portfolio-report">
                   {calc ? (
-                    <ReportDocument p={p} calc={calc} />
+                    <ReportDocument p={p} calc={calc} embedded />
                   ) : (
                     <div className="container">
                       <div className="report-error" role="alert">
@@ -188,6 +204,7 @@ export default function PortfolioTab() {
           ))}
           <div className="container">
             <PortfolioNextSteps pf={pf} />
+            <PortfolioDisclaimer pf={pf} />
           </div>
         </div>
       </ErrorBoundary>
