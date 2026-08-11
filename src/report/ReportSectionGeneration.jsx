@@ -1,11 +1,11 @@
 import MonthlyProductionChart from './MonthlyProductionChart';
 
-export default function ReportSectionGeneration({ p, calc }) {
+export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
   const lbsMwhStr = `${p.gridEmissionsIntensity} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
 
   return (
     <div className="section">
-      <div className="section-title">Annual Generation &amp; Emissions</div>
+      <div className="section-title">Annual Generation &amp; Emissions{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
         {p.showGenerationSection && (
@@ -13,6 +13,7 @@ export default function ReportSectionGeneration({ p, calc }) {
             <div className="card-title">Monthly Production Distribution</div>
             <div style={{ marginBottom: '10px', fontSize: '13px', color: 'var(--muted)' }}>
               Annual Total: <strong style={{ color: 'var(--primary-dark)' }}>{Math.round(calc.annualMwh).toLocaleString()} MWh</strong>
+              &nbsp;&bull;&nbsp; HelioScope / PVsyst simulation basis
             </div>
             <div className="production-chart-wrap" style={{ height: '200px' }}>
               <MonthlyProductionChart monthlyMwh={calc.monthlyMwh} />

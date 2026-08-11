@@ -39,8 +39,14 @@ multi-family metering, municipal-utility service territories). Editable in
 the document; to be confirmed with DWS.
 
 **Per-asset Site-Specific Considerations.** Drafted from the "technical notes
-unique to the project" column of the same workbook (June 2026); airport
-distances and constraints as stated there.
+unique to the project" column of "DWS EU Ops Data Request" (August 2026
+revision); airport distances and constraints as stated there.
+
+**Pending data revision (not yet applied).** The August 2026 ops workbook also
+revises rooftop system sizes and specific production for most assets
+(rooftop layouts changed to landscape orientation, 10° tilt, 1.2 ft row
+spacing, except Citria). The report currently reflects the June 2026 sizing;
+adopting the revised dataset requires regenerating the 14 project records.
 
 ## Asset report data sources
 

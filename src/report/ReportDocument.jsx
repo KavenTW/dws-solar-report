@@ -19,6 +19,9 @@ import ReportDisclaimer from './ReportDisclaimer';
  *    document level instead of repeating per asset).
  */
 export default function ReportDocument({ p, calc, embedded = false }) {
+  // In the compiled portfolio, repeat the asset name on each major section so
+  // continuation pages remain identifiable.
+  const suffix = embedded ? (p.projectName || p.address) : undefined;
   return (
     <>
       {!embedded && p.showCoverSection && <ReportCover p={p} />}
@@ -34,13 +37,13 @@ export default function ReportDocument({ p, calc, embedded = false }) {
             <div className="asset-band-type">{p.reportType}</div>
           </div>
         )}
-        {(p.showSystemSection || p.showRoofSection) && <ReportSectionOverview p={p} calc={calc} />}
+        {(p.showSystemSection || p.showRoofSection) && <ReportSectionOverview p={p} calc={calc} titleSuffix={suffix} />}
         {p.showLayoutSection && <ReportSectionLayout p={p} calc={calc} />}
-        {(p.showGenerationSection || p.showEmissionsSection) && <ReportSectionGeneration p={p} calc={calc} />}
+        {(p.showGenerationSection || p.showEmissionsSection) && <ReportSectionGeneration p={p} calc={calc} titleSuffix={suffix} />}
         {(p.showPPATermsSection || p.showRECsSection || p.showWAIRESection) && <ReportSectionSavings p={p} calc={calc} />}
         {p.showPPATermsSection && <ReportSectionChart p={p} calc={calc} />}
         {p.showMarketContextSection && <ReportSectionMarketContext p={p} />}
-        {p.showNextStepsSection && <ReportSectionNextSteps p={p} embedded={embedded} />}
+        {p.showNextStepsSection && <ReportSectionNextSteps p={p} embedded={embedded} titleSuffix={suffix} />}
         {!embedded && p.showDisclaimerSection && <ReportDisclaimer p={p} />}
       </div>
     </>

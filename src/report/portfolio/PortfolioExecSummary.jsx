@@ -33,7 +33,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
       <div className="section-title">Executive Summary</div>
       <div className="kpi-grid" style={{ marginBottom: '16px' }}>
         <div className="kpi-card">
-          <div className="kpi-label">Assets Reviewed</div>
+          <div className="kpi-label">Sites Reviewed</div>
           <div className="kpi-value">{ok.length}</div>
           <div className="kpi-unit">across {stateCount} states</div>
         </div>
@@ -50,7 +50,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
         <div className="kpi-card">
           <div className="kpi-label">Est. Lifetime Carbon Abatement</div>
           <div className="kpi-value">{(Math.round(totalLifetimeCO2e / 100) * 100).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>t CO₂e</span></div>
-          <div className="kpi-unit">all assets combined, over term</div>
+          <div className="kpi-unit">all sites combined, over term**</div>
         </div>
       </div>
 
@@ -66,7 +66,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
           <p key={i} className="portfolio-para">{para}</p>
         ))}
         <div className="footnote" style={{ marginTop: '8px' }}>
-          ** Equivalent homes based on average U.S. residential electricity consumption (~10.6 MWh/yr).
+          ** Calculation bases and sources are set out in Methodology &amp; Basis of Estimates.
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { makeFmt } from '../utils/formatters';
 
-export default function ReportSectionOverview({ p, calc }) {
+export default function ReportSectionOverview({ p, calc, titleSuffix }) {
   const FMT = makeFmt(p.currency);
   const refScenario = calc.scenarios[p.referenceScenarioIndex];
   const cum15 = refScenario ? refScenario.cumSavings[p.ppaTerm - 1] : 0;
@@ -11,13 +11,11 @@ export default function ReportSectionOverview({ p, calc }) {
   const rooftopAC  = p.rooftopSizeACkW || 0;
   const carportAC  = p.carportSizeACkW || 0;
   const rooftopUsed  = p.rooftopAreaUsedSqFt || 0;
-  const rooftopTotal = p.rooftopTotalSqFt    || 0;
-  const carportUsed  = p.carportAreaUsedSqFt  || 0;
-  const carportTotal = p.carportTotalSqFt     || 0;
+  const carportUsed  = p.carportAreaUsedSqFt || 0;
 
   return (
     <div className="section">
-      <div className="section-title">System Overview</div>
+      <div className="section-title">System Overview{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
       <div className="kpi-grid">
         {p.showSystemSection && (
           <div className="kpi-card">
@@ -51,8 +49,8 @@ export default function ReportSectionOverview({ p, calc }) {
             <div className="kpi-value">{(rooftopUsed + carportUsed).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>ft²</span></div>
             <div className="kpi-unit">
               <div style={{ marginTop: '2px' }}>
-                {rooftopUsed > 0 && <div>{rooftopUsed.toLocaleString()} ft² rooftop{rooftopTotal > 0 && <span> (~{Math.round(rooftopUsed / rooftopTotal * 100)}% used)</span>}</div>}
-                {carportUsed > 0 && <div>{carportUsed.toLocaleString()} ft² carport{carportTotal > 0 && <span> (~{Math.round(carportUsed / carportTotal * 100)}% used)</span>}</div>}
+                {rooftopUsed > 0 && <div>{rooftopUsed.toLocaleString()} ft² rooftop</div>}
+                {carportUsed > 0 && <div>{carportUsed.toLocaleString()} ft² carport</div>}
               </div>
             </div>
           </div>

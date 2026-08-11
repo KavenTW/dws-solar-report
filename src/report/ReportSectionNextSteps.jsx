@@ -14,7 +14,7 @@ function fmt(min, max) {
  * and the indicative cost table. The generic categories, stage-gating, and
  * disclaimer render once at document level instead of repeating per asset.
  */
-export default function ReportSectionNextSteps({ p, embedded = false }) {
+export default function ReportSectionNextSteps({ p, embedded = false, titleSuffix }) {
   const hasCarport = (p.carportSizeDCkW || 0) > 0 || (p.carportAreaUsedSqFt || 0) > 0;
   const points = Math.max(1, Math.round(p.pointsOfInterconnection || 1));
 
@@ -23,7 +23,7 @@ export default function ReportSectionNextSteps({ p, embedded = false }) {
     { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
     { label: 'Electrical Feasibility',                   min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
-    { label: 'Utility Interconnection Documentation',    min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
+    { label: 'Preparation of Interconnection Documentation', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
   const totalMin = feasItems.reduce((s, i) => s + (i.min || 0), 0);
@@ -70,13 +70,22 @@ export default function ReportSectionNextSteps({ p, embedded = false }) {
             <td><strong>Total</strong></td>
             <td><strong>{fmt(totalMin, totalMax)}</strong></td>
             <td><strong>~4 weeks</strong></td>
-            <td style={{ fontSize: '11px' }}>All workstreams run concurrently</td>
+            <td style={{ fontSize: '11px' }}>All workstreams run concurrently, per site</td>
           </tr>
         </tbody>
       </table>
 
-      <div className="footnote" style={{ marginTop: '10px' }}>
-        Note: All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
+      {embedded ? (
+        <div className="footnote" style={{ marginTop: '10px' }}>
+          Note: Indicative quotes from independent licensed engineering firms; calculation bases and cost drivers are set out in Methodology &amp; Basis of Estimates.
+        </div>
+      ) : (
+        <div className="footnote" style={{ marginTop: '10px' }}>
+          Note: All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
+        </div>
+      )}
+      <div className="footnote" style={{ marginTop: '4px' }}>
+        Following submission, utility interconnection review timelines are utility-specific and typically require approximately 3–6 months.
       </div>
 
       {!embedded && (
@@ -101,7 +110,7 @@ export default function ReportSectionNextSteps({ p, embedded = false }) {
   if (embedded) {
     return (
       <div className="section section--next-steps">
-        <div className="section-title">Indicative Feasibility Cost Estimates</div>
+        <div className="section-title">Indicative Feasibility Cost Estimates{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
         {costCard}
       </div>
     );
