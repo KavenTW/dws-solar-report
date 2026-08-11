@@ -203,6 +203,39 @@ export function saveProject(data, name) {
   return entry;
 }
 
+/**
+ * Apply a bundled dataset to saved projects. Existing projects (matched by
+ * name) receive ONLY the fields listed in patchFields — layout images and any
+ * other user edits are preserved. Projects not yet saved are created in full.
+ * Returns counts; caller decides how to refresh the UI.
+ */
+export function applyDatasetUpdate(dataset, patchFields) {
+  const projects = loadAllProjects();
+  let updated = 0, created = 0;
+  for (const item of dataset) {
+    const existing = projects.find(p => p.name === item.name);
+    if (existing) {
+      for (const key of patchFields) {
+        if (item.data[key] !== undefined) existing.data[key] = item.data[key];
+      }
+      existing.savedAt = new Date().toISOString();
+      existing.version = CURRENT_VERSION;
+      updated++;
+    } else {
+      projects.push({
+        id: crypto.randomUUID(),
+        name: item.name,
+        savedAt: new Date().toISOString(),
+        version: CURRENT_VERSION,
+        data: { ...item.data },
+      });
+      created++;
+    }
+  }
+  saveAll(projects);
+  return { updated, created };
+}
+
 export function deleteProject(name) {
   const projects = loadAllProjects().filter(p => p.name !== name);
   saveAll(projects);

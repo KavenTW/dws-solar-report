@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useProject } from '../context/ProjectContext';
 import { usePortfolio } from '../hooks/usePortfolio';
-import { loadAllProjects } from '../utils/storage';
+import { loadAllProjects, applyDatasetUpdate } from '../utils/storage';
+import { DWS_DATASET, DWS_DATASET_LABEL, DWS_PATCH_FIELDS } from '../constants/dwsDataset';
 import { DEFAULT_PROJECT } from '../constants/defaults';
 import { STATE_ORDER } from '../constants/portfolioDefaults';
 import { computeCalc } from '../utils/calculations';
@@ -155,6 +156,19 @@ export default function PortfolioTab() {
               </div>
 
               <div className="portfolio-editor-heading">Maintenance</div>
+              <button
+                className="report-btn report-btn--primary"
+                style={{ marginBottom: '8px', display: 'block' }}
+                onClick={() => {
+                  if (window.confirm(`Load / update the DWS portfolio data (${DWS_DATASET_LABEL})?\n\nExisting saved projects get updated sizing, production, and site notes only — layout images and your other edits are preserved. Missing projects are created.`)) {
+                    const { updated, created } = applyDatasetUpdate(DWS_DATASET, DWS_PATCH_FIELDS);
+                    window.alert(`Done: ${updated} project${updated !== 1 ? 's' : ''} updated, ${created} created. Reloading.`);
+                    window.location.reload();
+                  }
+                }}
+              >
+                Load / update DWS data — {DWS_DATASET_LABEL}
+              </button>
               <button
                 className="report-btn report-btn--outline"
                 onClick={() => {
