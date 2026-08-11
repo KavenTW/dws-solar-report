@@ -42,11 +42,13 @@ the document; to be confirmed with DWS.
 unique to the project" column of "DWS EU Ops Data Request" (August 2026
 revision); airport distances and constraints as stated there.
 
-**Pending data revision (not yet applied).** The August 2026 ops workbook also
-revises rooftop system sizes and specific production for most assets
-(rooftop layouts changed to landscape orientation, 10° tilt, 1.2 ft row
-spacing, except Citria). The report currently reflects the June 2026 sizing;
-adopting the revised dataset requires regenerating the 14 project records.
+**Applied data revision (August 2026).** System sizing, AC capacities,
+specific production, and Year-1 generation reflect the "DWS EU Ops Data
+Request" August 2026 revision (rooftop layouts changed to landscape
+orientation, 10° tilt, 1.2 ft row spacing, except Citria at Fruitville).
+Portfolio totals under this revision: 31,399 kW DC; 51,169 MWh Year-1.
+Monthly production distributions remain per the June 2026 PVsyst
+simulation — the August workbook's monthly rows are pending ops input.
 
 ## Asset report data sources
 
