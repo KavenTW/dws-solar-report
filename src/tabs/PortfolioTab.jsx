@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
 import { useProject } from '../context/ProjectContext';
 import { usePortfolio } from '../hooks/usePortfolio';
-import { loadAllProjects, applyDatasetUpdate } from '../utils/storage';
-import { DWS_DATASET, DWS_DATASET_LABEL, DWS_PATCH_FIELDS } from '../constants/dwsDataset';
+import { loadAllProjects, applyDatasetUpdate, attachBundledLayouts } from '../utils/storage';
+import { DWS_DATASET, DWS_DATASET_LABEL, DWS_PATCH_FIELDS, DWS_LAYOUT_IMAGES } from '../constants/dwsDataset';
+import { compressImage } from '../utils/imageCompress';
 import { DEFAULT_PROJECT } from '../constants/defaults';
 import { STATE_ORDER } from '../constants/portfolioDefaults';
 import { computeCalc } from '../utils/calculations';
@@ -159,10 +160,11 @@ export default function PortfolioTab() {
               <button
                 className="report-btn report-btn--primary"
                 style={{ marginBottom: '8px', display: 'block' }}
-                onClick={() => {
-                  if (window.confirm(`Load / update the DWS portfolio data (${DWS_DATASET_LABEL})?\n\nExisting saved projects get updated sizing, production, and site notes only — layout images and your other edits are preserved. Missing projects are created.`)) {
+                onClick={async () => {
+                  if (window.confirm(`Load / update the DWS portfolio data (${DWS_DATASET_LABEL})?\n\nExisting saved projects get updated sizing, production, site notes, and any missing layout images — images you uploaded yourself and other edits are preserved. Missing projects are created.`)) {
                     const { updated, created } = applyDatasetUpdate(DWS_DATASET, DWS_PATCH_FIELDS);
-                    window.alert(`Done: ${updated} project${updated !== 1 ? 's' : ''} updated, ${created} created. Reloading.`);
+                    const attached = await attachBundledLayouts(DWS_LAYOUT_IMAGES, compressImage);
+                    window.alert(`Done: ${updated} project${updated !== 1 ? 's' : ''} updated, ${created} created, ${attached} layout image${attached !== 1 ? 's' : ''} attached. Reloading.`);
                     window.location.reload();
                   }
                 }}

@@ -3218,3 +3218,23 @@ export const DWS_DATASET = [
   }
  }
 ];
+
+// Bundled HelioScope layout images (public/layouts/). Attached by the data
+// updater only where a project has no image yet — a manually uploaded or
+// replaced image is never overwritten.
+export const DWS_LAYOUT_IMAGES = {
+  'Eastland Center': '/layouts/eastland.png',
+  'Courtyard at the Commons': '/layouts/courtyard.png',
+  'DC Station Retail': '/layouts/dc-station.png',
+  '100 Hamilton': '/layouts/100-hamilton.png',
+  'Tuscany on Fig': '/layouts/tuscany.png',
+  'London Square': '/layouts/london-square.png',
+  'Citria at Fruitville Commons': '/layouts/citria.png',
+  'The Shops at Oak Brook Place': '/layouts/oak-brook.png',
+  'Tropical Center II': '/layouts/tropical-center-ii.png',
+  'Candour House': '/layouts/candour-house.png',
+  '1201 Avenue S': '/layouts/1201-avenue-s.png',
+  'Lakeside A': '/layouts/lakeside-a.png',
+  'Lakeside B': '/layouts/lakeside-b.png',
+  'Post & Paddock': '/layouts/post-paddock.png',
+};

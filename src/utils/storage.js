@@ -236,6 +236,34 @@ export function applyDatasetUpdate(dataset, patchFields) {
   return { updated, created };
 }
 
+/**
+ * Attach bundled layout images to saved projects that don't have one yet.
+ * Fetches each image from the app's static assets and compresses it in the
+ * browser before storing (so all 14 fit the localStorage quota). Projects
+ * with an existing image are never touched. Returns the attach count.
+ */
+export async function attachBundledLayouts(imageMap, compress) {
+  const projects = loadAllProjects();
+  let attached = 0;
+  for (const p of projects) {
+    const src = imageMap[p.name];
+    if (!src || p.data.layoutImageDataUrl) continue;
+    try {
+      const res = await fetch(src);
+      if (!res.ok) continue;
+      const blob = await res.blob();
+      // Print renders at ~7 in wide, so 1100 px ≈ 157 DPI — full quality on
+      // paper while keeping all 14 images within the localStorage quota.
+      p.data.layoutImageDataUrl = await compress(blob, { maxDimension: 1100, quality: 0.6 });
+      attached++;
+    } catch {
+      // Skip this image; the report simply keeps omitting the layout section.
+    }
+  }
+  if (attached > 0) saveAll(projects);
+  return attached;
+}
+
 export function deleteProject(name) {
   const projects = loadAllProjects().filter(p => p.name !== name);
   saveAll(projects);
