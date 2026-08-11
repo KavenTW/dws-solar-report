@@ -39,6 +39,7 @@ export default function SaveLoadBar() {
 
   function handleLoad(entry) {
     dispatch({ type: 'LOAD_PROJECT', data: entry.data });
+    setName(entry.name); // pre-fill so Save updates this project, not "Untitled"
     setShowModal(false);
     showStatus(`"${entry.name}" loaded.`);
   }
