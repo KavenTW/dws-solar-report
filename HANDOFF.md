@@ -64,6 +64,16 @@ Wording clarifications — she flagged these but I can't tell which sentence:
 Everything else from her 4 Aug markup (51 comments, all extracted) is already
 in the live document.
 
+## Recent additions
+
+- **Portfolio Asset Summary** page (after Prioritisation, before the TOC):
+  all 14 assets on one page — rooftop/carport kW DC split, Yr-1 MWh, roof and
+  parking utilisation, points of interconnection, tier. Every figure is
+  computed from the same `calc` as the asset reports; the Tier column is
+  looked up from the editable prioritisation tiers by asset name. Hard-coded
+  footnote (like the other portfolio page footnotes), so **no text reset is
+  needed** to see it. Measures 601px of the 941px printable height.
+
 ## Open technical items (small, optional)
 
 - Remaining `AUDIT.md` opportunities, none blocking: inline styles → token

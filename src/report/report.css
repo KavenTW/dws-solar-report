@@ -355,6 +355,29 @@
 .portfolio-page .market-table { table-layout: fixed; width: 100%; }
 .portfolio-page .market-table th, .portfolio-page .market-table td { overflow-wrap: break-word; }
 
+/* Portfolio Asset Summary: one scannable row per asset, grouped by state.
+   Numeric columns right-align on tabular figures so capacities compare down
+   the column; the first-cell 30% width rule of .market-table is overridden by
+   the explicit th widths under table-layout: fixed. */
+.asset-summary td.num, .asset-summary th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.asset-summary td:first-child { width: auto; }
+.asset-summary tbody tr.asset-summary-state td {
+  background: var(--surface-alt, #f2f6fb);
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-size: 11px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.asset-summary tbody tr.asset-summary-total td {
+  border-top: 2px solid #c3d9f0;
+  border-bottom: none;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
 .feas-table { table-layout: fixed; width: 100%; }
@@ -453,6 +476,7 @@
   .portfolio-page .market-table { font-size: 9.5px; }
   .portfolio-page .market-table th { font-size: 9px; letter-spacing: 0; padding: 3px 6px; }
   .portfolio-page .market-table td { font-size: 9.5px; padding: 3px 6px; }
+  .asset-summary tbody tr.asset-summary-state td { font-size: 9px; padding-top: 4px; padding-bottom: 4px; }
   .portfolio-page .footnote { font-size: 8.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
   .state-score-badge { padding: 5px 12px; }

@@ -11,6 +11,7 @@ import ErrorBoundary from '../ErrorBoundary';
 import ReportDocument from '../report/ReportDocument';
 import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
 import PortfolioExecSummary, { PortfolioPrioritisation } from '../report/portfolio/PortfolioExecSummary';
+import PortfolioAssetSummary from '../report/portfolio/PortfolioAssetSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
 import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
@@ -59,6 +60,7 @@ export default function PortfolioTab() {
     const rows = [
       { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
       { slug: 'prioritisation', label: 'Proposed Asset Prioritisation', level: 0 },
+      { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
       { slug: 'methodology', label: 'Methodology & Glossary', level: 0 },
     ];
     for (const abbr of activeStates) {
@@ -214,6 +216,7 @@ export default function PortfolioTab() {
           <div className="container">
             <PortfolioExecSummary pf={pf} projects={projects} />
             <PortfolioPrioritisation pf={pf} />
+            <PortfolioAssetSummary pf={pf} projects={projects} />
             <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
             <PortfolioMethodology pf={pf} />
           </div>
