@@ -110,6 +110,32 @@ export default function PortfolioTab() {
         <div className="portfolio-editor no-print">
           <div className="portfolio-editor-grid">
             <div className="portfolio-editor-col">
+              <div className="portfolio-editor-heading">Maintenance</div>
+              <button
+                className="report-btn report-btn--primary"
+                style={{ marginBottom: '8px', display: 'block' }}
+                onClick={async () => {
+                  if (window.confirm(`Load / update the DWS portfolio data (${DWS_DATASET_LABEL})?\n\nExisting saved projects get updated sizing, production, site notes, and any missing layout images — images you uploaded yourself and other edits are preserved. Missing projects are created.`)) {
+                    const { updated, created } = applyDatasetUpdate(DWS_DATASET, DWS_PATCH_FIELDS);
+                    const attached = await attachBundledLayouts(DWS_LAYOUT_IMAGES, compressImage);
+                    window.alert(`Done: ${updated} project${updated !== 1 ? 's' : ''} updated, ${created} created, ${attached} layout image${attached !== 1 ? 's' : ''} attached. Reloading.`);
+                    window.location.reload();
+                  }
+                }}
+              >
+                Load / update DWS data — {DWS_DATASET_LABEL}
+              </button>
+              <button
+                className="report-btn report-btn--outline"
+                onClick={() => {
+                  if (window.confirm('Replace ALL portfolio text (title page, executive summary, state pages, next steps, disclaimer) with the latest defaults? Your report selections and TOC page numbers are kept. This cannot be undone.')) {
+                    resetContent();
+                  }
+                }}
+              >
+                Reset text to latest defaults
+              </button>
+
               <div className="portfolio-editor-heading">Title Page</div>
               {line('Title', pf.title, v => set('title', v))}
               {line('Subtitle', pf.subtitle, v => set('subtitle', v))}
@@ -155,32 +181,6 @@ export default function PortfolioTab() {
                 ))}
                 {saved.length === 0 && <p className="footnote">No saved projects found — save projects from the Inputs tab first.</p>}
               </div>
-
-              <div className="portfolio-editor-heading">Maintenance</div>
-              <button
-                className="report-btn report-btn--primary"
-                style={{ marginBottom: '8px', display: 'block' }}
-                onClick={async () => {
-                  if (window.confirm(`Load / update the DWS portfolio data (${DWS_DATASET_LABEL})?\n\nExisting saved projects get updated sizing, production, site notes, and any missing layout images — images you uploaded yourself and other edits are preserved. Missing projects are created.`)) {
-                    const { updated, created } = applyDatasetUpdate(DWS_DATASET, DWS_PATCH_FIELDS);
-                    const attached = await attachBundledLayouts(DWS_LAYOUT_IMAGES, compressImage);
-                    window.alert(`Done: ${updated} project${updated !== 1 ? 's' : ''} updated, ${created} created, ${attached} layout image${attached !== 1 ? 's' : ''} attached. Reloading.`);
-                    window.location.reload();
-                  }
-                }}
-              >
-                Load / update DWS data — {DWS_DATASET_LABEL}
-              </button>
-              <button
-                className="report-btn report-btn--outline"
-                onClick={() => {
-                  if (window.confirm('Replace ALL portfolio text (title page, executive summary, state pages, next steps, disclaimer) with the latest defaults? Your report selections and TOC page numbers are kept. This cannot be undone.')) {
-                    resetContent();
-                  }
-                }}
-              >
-                Reset text to latest defaults
-              </button>
             </div>
 
             <div className="portfolio-editor-col">

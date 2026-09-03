@@ -1,7 +1,8 @@
 # HANDOFF — 2026-09-03
 
 Point-in-time state. Read **CLAUDE.md** first for how the repo works.
-Last commit at handoff: `2355fdb`. Working tree clean, `main` pushed, CI green.
+Last commit at handoff: `aa100a4` (+ MAINTENANCE block moved to the top of
+the portfolio editor). Working tree clean, `main` pushed, CI green.
 
 ## Status in one line
 
@@ -15,8 +16,8 @@ The deploy carries the data and images; the user's browser needs one click to
 pick them up.
 
 1. Hard-refresh https://dws-solar-report.vercel.app (**Ctrl+Shift+R**)
-2. **Portfolio → Edit Portfolio Content → scroll the left column to
-   MAINTENANCE → "Load / update DWS data — August 2026 ops revision"**
+2. **Portfolio → Edit Portfolio Content → MAINTENANCE is now the first block
+   in the left column → "Load / update DWS data — August 2026 ops revision"**
    → applies sizing, production, site notes, report type, and all 14 layout
    images. Expect an alert like "14 updated, 0 created, 14 layout images
    attached".
@@ -65,9 +66,6 @@ in the live document.
 
 ## Open technical items (small, optional)
 
-- **Move the MAINTENANCE block to the top of the portfolio editor.** The left
-  column has grown long and the user could not find the reset button. Offered,
-  not yet done. ~2 minutes.
 - Remaining `AUDIT.md` opportunities, none blocking: inline styles → token
   classes (O1), print-layout primitives instead of per-section pixel tuning
   (N5), Ctrl+S save (O2), `NumberInput` cannot represent "empty" (O3),
