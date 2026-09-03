@@ -59,8 +59,8 @@ change to report structure belongs here, not duplicated.
 
 Compiled document order (PortfolioTab): Title → Exec Summary →
 Prioritisation → Asset Summary → TOC → Methodology & Glossary → then per
-state in scorecard order (**CA, NV, IL, FL, NC, TX**) a state one-pager followed by each asset's
-report → Next Steps → closing Disclaimer.
+state in scorecard order (**CA, NV, IL, FL, NC, TX**) a state one-pager
+followed by each asset's report → Next Steps → closing Disclaimer.
 
 Key directories:
 
