@@ -1,5 +1,10 @@
 import { TECHNICAL_ITEMS } from '../constants/technicalItems';
 
+// "Issued for Further Consideration" bullets — apply to every asset.
+const FURTHER_CONSIDERATION = [
+  'Detailed analysis of on-site electrical load is required to inform final system sizing.',
+];
+
 function fmt(min, max) {
   if (min == null && max == null) return '';
   const f = v => '$' + v.toLocaleString();
@@ -20,9 +25,9 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
 
   const feasItems = [
     { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
-    { label: 'Structural Feasibility',                   min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
+    { label: 'Structural Feasibility (3rd Party)',       min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
-    { label: 'Electrical Feasibility',                   min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
+    { label: 'Electrical Feasibility (3rd Party)',       min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
     { label: 'Preparation of Interconnection Documentation', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
@@ -37,6 +42,23 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
           <li key={i} style={{ marginBottom: '6px' }}>{line}</li>
         ))}
       </ul>
+    </div>
+  );
+
+  // Renders immediately before the feasibility cost estimates in both the
+  // standalone and the compiled report. Site-specific points belong in
+  // Site-Specific Considerations (p.additionalNotes), not here — these apply
+  // to every asset.
+  const considerationSection = (
+    <div className="section">
+      <div className="section-title">Issued for Further Consideration{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
+      <div className="card">
+        <ul style={{ paddingLeft: '20px', margin: 0 }}>
+          {FURTHER_CONSIDERATION.map((line, i) => (
+            <li key={i} style={{ marginBottom: '6px' }}>{line}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 
@@ -77,11 +99,11 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
 
       {embedded ? (
         <div className="footnote" style={{ marginTop: '10px' }}>
-          Note: Indicative quotes from independent licensed engineering firms; calculation bases and cost drivers are set out in Methodology &amp; Basis of Estimates.
+          Note: Feasibility costs are provided as requested by DWS. Indicative quotes from independent licensed engineering firms; calculation bases and cost drivers are set out in Methodology &amp; Basis of Estimates.
         </div>
       ) : (
         <div className="footnote" style={{ marginTop: '10px' }}>
-          Note: All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
+          Note: Feasibility costs are provided as requested by DWS. All feasibility studies must be completed by locally licensed and certified engineering firms. Quotes are indicative, sourced from independent third-party firms based on system sizing above. Final quotations depend on actual on-site conditions. Cost drivers: points of interconnection (electrical), number of roof structures (structural){hasCarport ? ', presence of carport structures (geotechnical)' : ''}.
         </div>
       )}
       <div className="footnote" style={{ marginTop: '4px' }}>
@@ -109,10 +131,13 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
 
   if (embedded) {
     return (
-      <div className="section section--next-steps">
-        <div className="section-title">Indicative Feasibility Cost Estimates{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
-        {costCard}
-      </div>
+      <>
+        {considerationSection}
+        <div className="section section--next-steps">
+          <div className="section-title">Indicative Feasibility Cost Estimates{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
+          {costCard}
+        </div>
+      </>
     );
   }
 
@@ -138,6 +163,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
         </table>
         {additionalNotes}
       </div>
+      {considerationSection}
       {costCard}
     </div>
   );
