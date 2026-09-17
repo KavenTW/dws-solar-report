@@ -64,8 +64,13 @@ specific production, and Year-1 generation reflect the "DWS EU Ops Data
 Request" August 2026 revision (rooftop layouts changed to landscape
 orientation, 10° tilt, 1.2 ft row spacing, except Citria at Fruitville).
 Portfolio totals under this revision: 31,399 kW DC; 51,169 MWh Year-1.
-Monthly production distributions remain per the June 2026 PVsyst
-simulation — the August workbook's monthly rows are pending ops input.
+Monthly production distributions are the June 2026 PVsyst seasonal profile
+(twelve percentages summing to 100%) applied to the August annual totals —
+the August workbook's monthly rows were left blank for ops input. GCS has
+accepted the June profile as the basis. Note the August revision changed
+rooftop orientation and tilt, which shifts the seasonal curve slightly, so
+the profile is indicative rather than an exact match to the current geometry;
+the methodology page describes the monthly figures on that basis.
 
 ## Asset report data sources
 
