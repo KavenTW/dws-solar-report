@@ -17,6 +17,7 @@ import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
 import PortfolioDisclaimer from '../report/portfolio/PortfolioDisclaimer';
+import PortfolioAppendixIndex from '../report/portfolio/PortfolioAppendixIndex';
 import '../report/report.css';
 import '../styles/form.css';
 
@@ -56,6 +57,14 @@ export default function PortfolioTab() {
 
   const activeStates = STATE_ORDER.filter(abbr => byState[abbr].length > 0);
 
+  // Individual asset reports live in the appendices — one lettered appendix per
+  // state, in the same order the one-pagers appear.
+  const appendixOf = useMemo(() => {
+    const map = {};
+    activeStates.forEach((abbr, i) => { map[abbr] = String.fromCharCode(65 + i); });
+    return map;
+  }, [activeStates]);
+
   const tocEntries = useMemo(() => {
     const rows = [
       { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
@@ -65,13 +74,21 @@ export default function PortfolioTab() {
     ];
     for (const abbr of activeStates) {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
+    }
+    rows.push({ slug: 'next-steps', label: 'Next Steps', level: 0 });
+    rows.push({ slug: 'appendices', label: 'Appendices', level: 0 });
+    for (const abbr of activeStates) {
+      rows.push({
+        slug: `appendix-${abbr}`,
+        label: `Appendix ${appendixOf[abbr]} — ${pf.states[abbr].name}`,
+        level: 0,
+      });
       for (const { entry, p } of byState[abbr]) {
         rows.push({ slug: `project-${entry.id}`, label: p.projectName || entry.name, level: 1 });
       }
     }
-    rows.push({ slug: 'next-steps', label: 'Next Steps', level: 0 });
     return rows;
-  }, [activeStates, byState, pf.states]);
+  }, [activeStates, byState, pf.states, appendixOf]);
 
   const handlePrint = () => {
     const prev = document.title;
@@ -221,9 +238,42 @@ export default function PortfolioTab() {
             <PortfolioMethodology pf={pf} />
           </div>
           {activeStates.map(abbr => (
-            <div key={abbr}>
+            <div key={abbr} className="container">
+              <StateOnePager
+                abbr={abbr}
+                state={pf.states[abbr]}
+                projects={byState[abbr]}
+                tiers={pf.tiers}
+                appendixLetter={appendixOf[abbr]}
+              />
+            </div>
+          ))}
+          <div className="container">
+            <PortfolioNextSteps pf={pf} />
+            <PortfolioDisclaimer pf={pf} />
+          </div>
+
+          <div className="container">
+            <PortfolioAppendixIndex
+              states={activeStates.map(abbr => ({
+                abbr,
+                letter: appendixOf[abbr],
+                name: pf.states[abbr].name,
+                assets: byState[abbr].map(({ entry, p }) => p.projectName || entry.name),
+              }))}
+            />
+          </div>
+
+          {activeStates.map(abbr => (
+            <div key={`appendix-${abbr}`}>
               <div className="container">
-                <StateOnePager abbr={abbr} state={pf.states[abbr]} projects={byState[abbr]} tiers={pf.tiers} />
+                <div className="section portfolio-page appendix-divider">
+                  <div className="appendix-eyebrow">Appendix {appendixOf[abbr]}</div>
+                  <div className="section-title">{pf.states[abbr].name} — Asset Reports</div>
+                  <p className="portfolio-para">
+                    Individual opportunity assessments for the {byState[abbr].length} {pf.states[abbr].name} asset{byState[abbr].length !== 1 ? 's' : ''} summarised in the {pf.states[abbr].name} market one-pager.
+                  </p>
+                </div>
               </div>
               {byState[abbr].map(({ entry, p, calc, err }) => (
                 <div key={entry.id} className="portfolio-report">
@@ -242,10 +292,6 @@ export default function PortfolioTab() {
               ))}
             </div>
           ))}
-          <div className="container">
-            <PortfolioNextSteps pf={pf} />
-            <PortfolioDisclaimer pf={pf} />
-          </div>
         </div>
       </ErrorBoundary>
     </>

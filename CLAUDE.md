@@ -58,9 +58,11 @@ once at document level), and appends the asset name to section titles. Any
 change to report structure belongs here, not duplicated.
 
 Compiled document order (PortfolioTab): Title → Exec Summary →
-Prioritisation → Asset Summary → TOC → Methodology & Glossary → then per
-state in scorecard order (**CA, NV, IL, FL, NC, TX**) a state one-pager
-followed by each asset's report → Next Steps → closing Disclaimer.
+Prioritisation → Asset Summary → TOC → Methodology & Glossary → the six
+state one-pagers in scorecard order (**CA, NV, IL, FL, NC, TX**) → Next
+Steps → closing Disclaimer → Appendices: an index page, then Appendix A-F,
+one per state, each opening with a divider and followed by that state's
+individual asset reports.
 
 Key directories:
 

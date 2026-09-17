@@ -387,6 +387,14 @@
 .prio-tier { font-weight: 700; color: var(--primary-dark); }
 .prio-note { color: var(--muted); line-height: 1.35; }
 
+/* Appendices: lettered divider per state, ahead of that state's asset reports. */
+.appendix-eyebrow {
+  font-size: 12px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--primary); margin-bottom: 4px;
+}
+.appendix-divider .section-title { margin-bottom: 10px; }
+.appendix-pointer { margin-bottom: 0; margin-top: 8px; font-style: italic; color: var(--muted); }
+
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
 .feas-table { table-layout: fixed; width: 100%; }
@@ -465,6 +473,8 @@
   .portfolio-report { break-before: page; page-break-before: always; }
   .portfolio-title-hero { padding: 70px 0.65in 80px; }
   .toc-page-input { border: none; }
+  .toc-table { font-size: 10px; }
+  .toc-table td { padding: 2px 4px; }
   .state-pager-header { break-after: avoid; margin-bottom: 8px; }
 
   /* State one-pager — dense enough to hold a single page. The narrative
@@ -492,6 +502,8 @@
   .prio-note { font-size: 8px; line-height: 1.24; }
   .state-block .asset-summary th, .state-block .asset-summary td { padding: 2px 5px; }
   .state-block { margin-bottom: 7px; }
+  .appendix-eyebrow { font-size: 9px; letter-spacing: 1.1px; margin-bottom: 2px; }
+  .appendix-pointer { margin-top: 4px; font-size: 9px; line-height: 1.3; }
   .portfolio-page .footnote { font-size: 8.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
   .state-score-badge { padding: 5px 12px; }

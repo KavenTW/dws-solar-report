@@ -15,7 +15,7 @@ const SCORE_BANDS = {
  * shared six-state scorecard with the current state's column highlighted, and
  * a computed "Projects in this state" summary table.
  */
-export default function StateOnePager({ abbr, state, projects, tiers }) {
+export default function StateOnePager({ abbr, state, projects, tiers, appendixLetter }) {
   const colIdx = STATE_ORDER.indexOf(abbr);
   const ok = projects.filter(x => x.calc);
   const totalDC = ok.reduce((s, x) => s + (x.calc.totalDCkW || 0), 0);
@@ -117,6 +117,11 @@ export default function StateOnePager({ abbr, state, projects, tiers }) {
             showGroupLabels={false}
             showTotals={ok.length > 1}
           />
+          {appendixLetter && (
+            <p className="portfolio-para appendix-pointer">
+              Further detail on each asset is provided in <strong>Appendix {appendixLetter}</strong>.
+            </p>
+          )}
         </div>
 
         <div className="footnote" style={{ marginTop: '10px' }}>{state.screeningNote}</div>
