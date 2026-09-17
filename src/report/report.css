@@ -378,6 +378,15 @@
   color: var(--primary-dark);
 }
 
+/* State one-pager narrative: short bullets rather than paragraphs. */
+.state-bullets { margin: 0; padding-left: 16px; }
+.state-bullets li { margin-bottom: 3px; line-height: 1.45; }
+.state-bullets li:last-child { margin-bottom: 0; }
+
+/* Prioritisation cell: tier label over a short supporting line. */
+.prio-tier { font-weight: 700; color: var(--primary-dark); }
+.prio-note { color: var(--muted); line-height: 1.35; }
+
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
 .feas-table { table-layout: fixed; width: 100%; }
@@ -477,6 +486,12 @@
   .portfolio-page .market-table th { font-size: 9px; letter-spacing: 0; padding: 3px 6px; }
   .portfolio-page .market-table td { font-size: 9.5px; padding: 3px 6px; }
   .asset-summary tbody tr.asset-summary-state td { font-size: 9px; padding-top: 4px; padding-bottom: 4px; }
+  .state-bullets { padding-left: 12px; }
+  .state-bullets li { margin-bottom: 0.5px; line-height: 1.28; }
+  .prio-tier { line-height: 1.2; }
+  .prio-note { font-size: 8px; line-height: 1.24; }
+  .state-block .asset-summary th, .state-block .asset-summary td { padding: 2px 5px; }
+  .state-block { margin-bottom: 7px; }
   .portfolio-page .footnote { font-size: 8.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
   .state-score-badge { padding: 5px 12px; }

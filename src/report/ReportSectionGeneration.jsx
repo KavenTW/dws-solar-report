@@ -1,7 +1,7 @@
 import MonthlyProductionChart from './MonthlyProductionChart';
 
 export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
-  const lbsMwhStr = `${p.gridEmissionsIntensity} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
+  const lbsMwhStr = `${Math.round(p.gridEmissionsIntensity).toLocaleString()} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
 
   return (
     <div className="section">
@@ -43,7 +43,7 @@ export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
               * CO₂e avoidance estimates are based on the applicable regional grid emissions factor from {p.gridEmissionsSource || 'U.S. EPA eGRID / applicable grid authority'}. Figures assume full displacement of grid electricity by solar generation and include module degradation over the {p.ppaTerm}-year term. Actual avoided emissions may vary with changes to grid fuel mix, system output, and site consumption patterns.
             </div>
             <div className="footnote" style={{ marginTop: '6px' }}>
-              ** Equivalent homes calculation based on U.S. EIA average annual household electricity consumption (~10.6 MWh/yr).
+              ** Equivalent homes calculation based on U.S. EIA average annual household electricity consumption (10,632 kWh/yr).
             </div>
           </div>
         )}

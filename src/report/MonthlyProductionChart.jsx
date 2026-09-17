@@ -45,7 +45,7 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
           legend: { display: false },
           tooltip: {
             callbacks: {
-              label: ctx => ` ${ctx.parsed.y.toLocaleString()} MWh (${Math.round(ctx.parsed.y / total * 100)}%)`,
+              label: ctx => ` ${Math.round(ctx.parsed.y).toLocaleString()} MWh (${Math.round(ctx.parsed.y / total * 100)}%)`,
             },
           },
           datalabels: {
@@ -69,7 +69,7 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
             ticks: {
               font: { size: 11 },
               color: '#6b7280',
-              callback: v => `${v} MWh`,
+              callback: v => `${Math.round(v).toLocaleString()} MWh`,
             },
             beginAtZero: true,
           },

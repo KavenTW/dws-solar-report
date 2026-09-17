@@ -1,6 +1,6 @@
 export default function ReportSectionLayout({ p, calc }) {
   const cityShort = p.city.split(',')[0].trim();
-  const caption = `Simulated using HelioScope (NREL / NASA POWER) — ${p.address}, ${cityShort} — ${calc.totalDCkW.toLocaleString()} kW DC`;
+  const caption = `Simulated using HelioScope (NREL / NASA POWER) — ${p.address}, ${cityShort} — ${Math.round(calc.totalDCkW).toLocaleString()} kW DC`;
   const hasLocationData = p.siteLatLong || p.siteClimateZone || p.sitePSH || p.siteGHI || p.siteAvgTemp;
 
   // No image: the placeholder (and, if the card would be empty, the whole

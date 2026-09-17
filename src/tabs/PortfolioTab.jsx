@@ -223,7 +223,7 @@ export default function PortfolioTab() {
           {activeStates.map(abbr => (
             <div key={abbr}>
               <div className="container">
-                <StateOnePager abbr={abbr} state={pf.states[abbr]} projects={byState[abbr]} />
+                <StateOnePager abbr={abbr} state={pf.states[abbr]} projects={byState[abbr]} tiers={pf.tiers} />
               </div>
               {byState[abbr].map(({ entry, p, calc, err }) => (
                 <div key={entry.id} className="portfolio-report">

@@ -6,12 +6,13 @@ export default function ReportSectionOverview({ p, calc, titleSuffix }) {
   const cum15 = refScenario ? refScenario.cumSavings[p.ppaTerm - 1] : 0;
   const refRatePct = refScenario ? Math.round(refScenario.rate * 100) : '?';
 
-  const rooftopDC  = p.rooftopSizeDCkW || 0;
-  const carportDC  = p.carportSizeDCkW || 0;
-  const rooftopAC  = p.rooftopSizeACkW || 0;
-  const carportAC  = p.carportSizeACkW || 0;
-  const rooftopUsed  = p.rooftopAreaUsedSqFt || 0;
-  const carportUsed  = p.carportAreaUsedSqFt || 0;
+  // Displayed quantities are rounded — the document carries no decimals.
+  const rooftopDC  = Math.round(p.rooftopSizeDCkW || 0);
+  const carportDC  = Math.round(p.carportSizeDCkW || 0);
+  const rooftopAC  = Math.round(p.rooftopSizeACkW || 0);
+  const carportAC  = Math.round(p.carportSizeACkW || 0);
+  const rooftopUsed  = Math.round(p.rooftopAreaUsedSqFt || 0);
+  const carportUsed  = Math.round(p.carportAreaUsedSqFt || 0);
 
   return (
     <div className="section">
@@ -20,7 +21,7 @@ export default function ReportSectionOverview({ p, calc, titleSuffix }) {
         {p.showSystemSection && (
           <div className="kpi-card">
             <div className="kpi-label">Maximum Potential System Size</div>
-            <div className="kpi-value" style={{ fontSize: '1.5rem' }}>{calc.totalDCkW.toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>kW DC</span></div>
+            <div className="kpi-value" style={{ fontSize: '1.5rem' }}>{Math.round(calc.totalDCkW).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>kW DC</span></div>
             <div className="kpi-unit">
               <div style={{ marginTop: '2px' }}>
                 {rooftopDC > 0 && <div><strong>Rooftop:</strong> {rooftopDC.toLocaleString()} DC{rooftopAC > 0 && ` / ${rooftopAC.toLocaleString()} AC`} kW</div>}
