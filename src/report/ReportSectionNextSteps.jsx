@@ -1,6 +1,6 @@
 import { TECHNICAL_ITEMS } from '../constants/technicalItems';
 
-// "Issued for Further Consideration" bullets — apply to every asset.
+// "Issues for Further Consideration" bullets — apply to every asset.
 const FURTHER_CONSIDERATION = [
   'Detailed analysis of on-site electrical load is required to inform final system sizing.',
 ];
@@ -26,9 +26,9 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
   const feasItems = [
     { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
     { label: 'Structural Feasibility (3rd Party)',       min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
-    ...(hasCarport ? [{ label: 'Geotechnical Feasibility', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax,    note: 'For carport solar' }] : []),
+    ...(hasCarport ? [{ label: 'Geotechnical Feasibility (3rd Party)', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax, note: 'For carport solar' }] : []),
     { label: 'Electrical Feasibility (3rd Party)',       min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
-    { label: 'Preparation of Interconnection Documentation', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
+    { label: 'Preparation of Interconnection Documentation (3rd Party)', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
   const totalMin = feasItems.reduce((s, i) => s + (i.min || 0), 0);
@@ -51,7 +51,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
   // to every asset.
   const considerationSection = (
     <div className="section">
-      <div className="section-title">Issued for Further Consideration{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
+      <div className="section-title">Issues for Further Consideration{titleSuffix ? ` — ${titleSuffix}` : ''}</div>
       <div className="card">
         <ul style={{ paddingLeft: '20px', margin: 0 }}>
           {FURTHER_CONSIDERATION.map((line, i) => (
