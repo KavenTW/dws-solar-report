@@ -59,8 +59,8 @@ change to report structure belongs here, not duplicated.
 
 Compiled document order (PortfolioTab): Title -> TOC -> Scope of
 Engagement -> Exec Summary -> Proposed Asset Prioritization -> Portfolio Asset
-Summary -> Methodology & Glossary -> Key Considerations -> the six state
-one-pagers in fixed order (**CA, NV, IL, FL, NC, TX**) -> Next Steps ->
+Summary -> Methodology & Glossary -> Net Metering & System Sizing -> Key
+Considerations -> the six state one-pagers in fixed order (**CA, NV, IL, FL, NC, TX**) -> Next Steps ->
 closing Disclaimer -> Appendices: an index page, then Appendix A-F, one per
 state, each followed by that state's individual asset reports.
 
@@ -80,7 +80,7 @@ Key directories:
   `@media print` block); `src/report/portfolio/` — the front/back matter
 - `public/layouts/` — the 14 HelioScope PNGs bundled with the deploy
 - `PORTFOLIO_SOURCES.md` — **audit register**: every source, data vintage, and
-  the colour-band↔score mapping. Sources are deliberately kept OUT of the
+  the prioritization basis. Sources are deliberately kept OUT of the
   client document and live here instead.
 - `AUDIT.md` — engineering audit + re-audit findings
 
@@ -92,7 +92,7 @@ autosave), `gcsr_portfolio` (portfolio document text), `gcsr_section_*`
 
 **Migration discipline (non-negotiable):** every new `DEFAULT_PROJECT` field
 ships with a migration block in `storage.js` **and** a `CURRENT_VERSION` bump
-in the same commit. Currently **version 8**. This was a critical audit finding
+in the same commit. Currently **version 9**. This was a critical audit finding
 — version drift silently substituted defaults for saved client data.
 
 `computeCalc` (`utils/calculations.js`) must be **total**: optional inputs

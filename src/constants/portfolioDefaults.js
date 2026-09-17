@@ -94,6 +94,14 @@ export const PORTFOLIO_DEFAULTS = {
     },
   ],
 
+  // ── Net metering & system sizing — PLACEHOLDER, to be expanded by GCS.
+  //     Renders immediately after Methodology. ──
+  sizingBasis: [
+    'The system capacities presented in this document are maximum buildable capacities: the largest rooftop and carport arrays that the available roof and parking areas can physically accommodate. This reflects the scope of this engagement, which was to quantify maximum solar deployment potential across the portfolio. Analysis of on-site electrical load was not within that scope and has not been performed.',
+    'In practice, system size is usually constrained by consumption rather than by area. Net metering and equivalent billing frameworks in most of the states reviewed require a system to be sized at or below the host customer’s own electricity requirements, and several impose explicit capacity caps in addition. Where those rules apply, a system cannot be built to the capacity stated here unless the on-site load supports it.',
+    'The capacities in this document should therefore be read as an upper bound for portfolio planning, not as recommended system sizes. Confirmation of on-site electrical load is required for any asset advanced to feasibility, and the system size for that asset must be re-established against the confirmed load and the applicable utility framework before it is taken forward.',
+  ].join('\n'),
+
   // ── Key considerations — document-level, high level. The per-asset
   //     "Issues for Further Consideration" sections carry the site specifics. ──
   keyConsiderationsIntro: 'The following apply across the portfolio and should be read alongside the issues identified for each individual asset.',

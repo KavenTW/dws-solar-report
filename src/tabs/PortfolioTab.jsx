@@ -15,6 +15,7 @@ import PortfolioAssetSummary from '../report/portfolio/PortfolioAssetSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
 import PortfolioScope from '../report/portfolio/PortfolioScope';
 import PortfolioKeyConsiderations from '../report/portfolio/PortfolioKeyConsiderations';
+import PortfolioSizingBasis from '../report/portfolio/PortfolioSizingBasis';
 import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
@@ -74,6 +75,7 @@ export default function PortfolioTab() {
       { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
       { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
       { slug: 'methodology', label: 'Methodology & Glossary', level: 0 },
+      { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 0 },
       { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
     ];
     for (const abbr of activeStates) {
@@ -173,6 +175,9 @@ export default function PortfolioTab() {
               {txt('Information requirements intro', pf.scopeInfoIntro, v => set('scopeInfoIntro', v), 2)}
               {txt('Information requirements (one per line)', pf.scopeInfoItems, v => set('scopeInfoItems', v), 4)}
 
+              <div className="portfolio-editor-heading">Net Metering &amp; System Sizing</div>
+              {txt('Narrative (blank line = new paragraph)', pf.sizingBasis, v => set('sizingBasis', v), 8)}
+
               <div className="portfolio-editor-heading">Key Considerations</div>
               {txt('Intro paragraph', pf.keyConsiderationsIntro, v => set('keyConsiderationsIntro', v), 3)}
               {txt('Considerations (one per line; "Heading | detail")', pf.keyConsiderations, v => set('keyConsiderations', v), 8)}
@@ -251,6 +256,7 @@ export default function PortfolioTab() {
             <PortfolioPrioritisation pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
             <PortfolioMethodology pf={pf} />
+            <PortfolioSizingBasis pf={pf} />
             <PortfolioKeyConsiderations pf={pf} />
           </div>
           {activeStates.map(abbr => (

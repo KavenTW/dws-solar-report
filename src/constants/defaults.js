@@ -17,6 +17,11 @@ export const DEFAULT_PROJECT = {
   carportSizeACkW: 0,
   systemSizeACkW:  0,  // legacy, kept for migration
 
+  // Roof vintage — blank means not confirmed; the report says so explicitly
+  // rather than staying silent, since replacement timing gates the works.
+  roofInstallYear:     '',
+  roofReplacementYear: '',
+
   // Roof areas — rooftop and carport tracked separately
   rooftopAreaUsedSqFt: 0,
   rooftopTotalSqFt:    0,

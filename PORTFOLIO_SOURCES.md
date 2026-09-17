@@ -43,6 +43,18 @@ weighting is not defined. Confirmation of DWS investment objectives, hold
 periods and return requirements is also outstanding — recorded in the
 document under Key Considerations.
 
+**Roof vintage.** Roof installation/last-replacement year and scheduled
+replacement year are from the 'Prioritization' sheet of EU Portfolio
+2026.09.08 (columns G and H). Known for five assets only: Tuscany on Fig
+(2006/2025), Tropical Center II (2019/2030), 1201 Avenue S (2014/2027),
+Lakeside A, Lakeside B and Post & Paddock (2014/2033), plus 100 Hamilton
+(replacement 2027, install year not stated). Tropical Center II's install
+year is taken from the workbook comment recording a 20-year manufacturer
+warranty in effect from 2019; the roof-age column states '6 years'. London
+Square's roof age is recorded as '3-4 Years' rather than a year and has been
+left blank pending confirmation. Every asset report prints both rows, showing
+'To be confirmed' where the year is not known.
+
 **Per-asset Site-Specific Considerations.** Drafted from the "technical notes
 unique to the project" column of "DWS EU Ops Data Request" (August 2026
 revision); airport distances and constraints as stated there.

@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'gcsr_projects';
 const DRAFT_KEY = 'gcsr_draft';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 8;
+export const CURRENT_VERSION = 9;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -133,6 +133,20 @@ function migrateProject(entry) {
         pointsOfInterconnection: d.pointsOfInterconnection ?? 1,
       },
       version: 8,
+    };
+  }
+  // v8 → v9: roof vintage. Blank is meaningful — the report states that
+  // confirmation is required rather than omitting the row.
+  if (entry.version < 9) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        roofInstallYear: d.roofInstallYear ?? '',
+        roofReplacementYear: d.roofReplacementYear ?? '',
+      },
+      version: 9,
     };
   }
   return entry;

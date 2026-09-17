@@ -23,6 +23,26 @@ export default function SectionRoof() {
       <FormField label="Total Carport Area" fieldId="carportTotalSqFt" error={e?.carportTotalSqFt}>
         <NumberInput value={p.carportTotalSqFt} onValueChange={field('carportTotalSqFt')} unit="ft²" />
       </FormField>
+      {/* Left blank on purpose where unknown — the report prints
+          "To be confirmed" rather than omitting the row. */}
+      <FormField label="Roof Installed / Last Replaced" fieldId="roofInstallYear">
+        <input
+          type="text"
+          id="roofInstallYear"
+          value={p.roofInstallYear}
+          onChange={ev => field('roofInstallYear')(ev.target.value)}
+          placeholder="e.g. 2014 — blank prints “To be confirmed”"
+        />
+      </FormField>
+      <FormField label="Scheduled Roof Replacement" fieldId="roofReplacementYear">
+        <input
+          type="text"
+          id="roofReplacementYear"
+          value={p.roofReplacementYear}
+          onChange={ev => field('roofReplacementYear')(ev.target.value)}
+          placeholder="e.g. 2033 — blank prints “To be confirmed”"
+        />
+      </FormField>
     </SectionWrapper>
   );
 }

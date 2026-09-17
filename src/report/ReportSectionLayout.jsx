@@ -30,8 +30,23 @@ export default function ReportSectionLayout({ p, calc }) {
           </div>
         )}
 
+        {/* Roof vintage always renders, blank or not: replacement timing gates
+            when an array can be built, so silence would read as "no constraint". */}
+        <table className="fin-table" style={{ marginTop: '16px' }}>
+          <tbody>
+            <tr>
+              <td>Roof Installed / Last Replaced</td>
+              <td>{p.roofInstallYear || <span className="muted-note">To be confirmed</span>}</td>
+            </tr>
+            <tr>
+              <td>Scheduled Roof Replacement</td>
+              <td>{p.roofReplacementYear || <span className="muted-note">To be confirmed</span>}</td>
+            </tr>
+          </tbody>
+        </table>
+
         {hasLocationData && (
-          <table className="fin-table" style={{ marginTop: '16px' }}>
+          <table className="fin-table" style={{ marginTop: '10px' }}>
             <tbody>
               {(p.address || p.city) && <tr><td>Address</td><td>{[p.address, p.city].filter(Boolean).join(', ')}</td></tr>}
               {p.siteLatLong     && <tr><td>Lat / Long</td><td>{p.siteLatLong.split(',').map(v => { const n = parseFloat(v); return isNaN(n) ? v.trim() : n.toFixed(5); }).join(', ')}</td></tr>}
