@@ -15,28 +15,33 @@ in "DWS State 1 Pagers – Revised 2026.07.02" (internal draft).
 | North Carolina | Duke Renewable Generation · NC Distributed Resources Access Act · NC-RETS · NREL Solar Resource Maps |
 | Texas | PUCT Distributed Renewable Generation Rule · PUCT Distributed Generation Rules · ERCOT REC Program · Oncor Distributed Generation · NREL Solar Resource Maps |
 
-Scorecard ratings, weights, and weighted scores: internal GCS relative
-assessment as stated in the draft (directional screening, not underwriting).
+**Six-state scorecard — REMOVED from the document.** The scorecard (category
+scores 1-3, weights /10, weighted totals CA 2.2, NV 2.2, IL 2.1, FL 1.8,
+NC 1.8, TX 1.6), its colour bands, the Overall Market Position row and the
+state header badges (LEADING / POLICY-LED / SELECTIVE / OPPORTUNISTIC) were
+removed at the client's direction. The state page ORDER it produced is
+retained: CA, NV, IL, FL, NC, TX. The source list above still supports the
+state one-pager narrative, which remains in the document.
 
-**Colour-band mapping (client view).** The document renders the scorecard as
-colour bands rather than numbers: green = strongest relative position
-(score 3), soft amber = moderate (score 2), neutral grey = weakest relative
-position (score 1). The underlying quantified matrix — per-category scores
-(1–3), category weights (/10), and weighted totals (CA 2.2, NV 2.2, IL 2.1,
-FL 1.8, NC 1.8, TX 1.6) — is retained in `src/constants/portfolioDefaults.js`
-(`SCORECARD`) and is available on request. The state header badges (LEADING /
-POLICY-LED / SELECTIVE / OPPORTUNISTIC) correspond to those weighted totals.
+**Proposed Asset Prioritization — BASIS NOT YET RECORDED.**
 
-The "Overall Market Position" row maps from the weighted totals: ≥ 2.0 →
-strongest band (CA, NV, IL), 1.7–1.9 → moderate (FL, NC), < 1.7 → weakest
-(TX) — mirroring the header badges.
+> **OPEN ITEM — needs GCS sign-off before the document is issued.** The three
+> prioritization groups are the document's central recommendation, and this
+> register currently records no basis for them. The membership seeded in
+> `portfolioDefaults.js` is a DRAFT assigned for review, and the per-asset
+> lines in `PRIORITIZATION_NOTES` are placeholder wording. Until the factors
+> and their relative weighting are recorded here, the document makes a
+> prioritization claim with nothing auditable behind it — the same gap raised
+> in review of the previous scorecard-based ranking.
 
-**Proposed Asset Prioritisation.** The tier assignments are a directional GCS
-proposal combining: state scorecard band, system scale (kW DC), and the
-site-specific considerations recorded in the DWS Technical Data Request
-workbook (structural/parking-structure items, glare-study triggers,
-multi-family metering, municipal-utility service territories). Editable in
-the document; to be confirmed with DWS.
+The factors carried in the draft grouping are: roof age and scheduled
+replacement timing; system scale (kW DC) and roof/parking utilization;
+structural and site constraints (existing rooftop systems, vegetation over
+parking areas, distributed roof planes); points of interconnection; and
+jurisdictional constraints on sizing or monetization. Their relative
+weighting is not defined. Confirmation of DWS investment objectives, hold
+periods and return requirements is also outstanding — recorded in the
+document under Key Considerations.
 
 **Per-asset Site-Specific Considerations.** Drafted from the "technical notes
 unique to the project" column of "DWS EU Ops Data Request" (August 2026

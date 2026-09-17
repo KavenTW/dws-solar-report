@@ -395,6 +395,14 @@
 .appendix-divider .section-title { margin-bottom: 10px; }
 .appendix-pointer { margin-bottom: 0; margin-top: 8px; font-style: italic; color: var(--muted); }
 
+/* Scope of engagement + key considerations. */
+.scope-list { margin: 8px 0 0; padding-left: 18px; }
+.scope-list li { margin-bottom: 6px; line-height: 1.5; }
+.scope-list li:last-child { margin-bottom: 0; }
+.consideration-block { margin-top: 12px; }
+.consideration-block:first-of-type { margin-top: 8px; }
+.consideration-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 3px; }
+
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
 .feas-table { table-layout: fixed; width: 100%; }
@@ -504,6 +512,9 @@
   .state-block { margin-bottom: 7px; }
   .appendix-eyebrow { font-size: 9px; letter-spacing: 1.1px; margin-bottom: 2px; }
   .appendix-pointer { margin-top: 4px; font-size: 9px; line-height: 1.3; }
+  .scope-list li { margin-bottom: 3px; line-height: 1.38; }
+  .consideration-block { margin-top: 7px; }
+  .consideration-title { margin-bottom: 1px; }
   .portfolio-page .footnote { font-size: 8.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
   .state-score-badge { padding: 5px 12px; }

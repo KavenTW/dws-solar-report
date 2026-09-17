@@ -57,17 +57,17 @@ suppresses the generic analysis table / stage-gate / disclaimer (they render
 once at document level), and appends the asset name to section titles. Any
 change to report structure belongs here, not duplicated.
 
-Compiled document order (PortfolioTab): Title → Exec Summary →
-Prioritisation → Asset Summary → TOC → Methodology & Glossary → the six
-state one-pagers in scorecard order (**CA, NV, IL, FL, NC, TX**) → Next
-Steps → closing Disclaimer → Appendices: an index page, then Appendix A-F,
-one per state, each opening with a divider and followed by that state's
-individual asset reports.
+Compiled document order (PortfolioTab): Title -> TOC -> Scope of
+Engagement -> Exec Summary -> Proposed Asset Prioritization -> Portfolio Asset
+Summary -> Methodology & Glossary -> Key Considerations -> the six state
+one-pagers in fixed order (**CA, NV, IL, FL, NC, TX**) -> Next Steps ->
+closing Disclaimer -> Appendices: an index page, then Appendix A-F, one per
+state, each followed by that state's individual asset reports.
 
 Key directories:
 
 - `src/constants/` — `defaults.js` (DEFAULT_PROJECT: every project field),
-  `portfolioDefaults.js` (all portfolio document copy + scorecard),
+  `portfolioDefaults.js` (all portfolio document copy + prioritization groups),
   `dwsDataset.js` (**generated** — the 14-asset dataset + layout image map),
   `technicalItems.js`, `validation.js`
 - `src/context/ProjectContext.jsx` — single reducer; `dirty` flag, debounced
@@ -147,7 +147,9 @@ reviewer (Karen Wharton, GCS):
   type line: *Preliminary Solar Development Opportunity Assessment*).
 - **Don't prescribe commercial structures.** Frame as opportunities and
   constraints ("Alternative structures can be considered but add complexity…").
-- **UK spelling** in portfolio copy (recognised, standardised, minimises).
+- **Canadian spelling** in portfolio copy: -ize/-ization (prioritization,
+  utilization, recognized, standardized) with -our/-re retained (colour,
+  centre), and "program" not "programme".
 - **No sources printed in the document** — they live in `PORTFOLIO_SOURCES.md`.
   Exception: the methodology page names EPA eGRID and EIA explicitly, at the
   reviewer's request.

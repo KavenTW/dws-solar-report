@@ -1,31 +1,14 @@
 import { Fragment } from 'react';
-import { PRIORITISATION_NOTES } from '../../constants/portfolioDefaults';
-
-/** "Tier 1 — Advance" → "Tier 1"; falls back to the full name. */
-const tierShortName = name => (name || '').split('—')[0].trim() || name;
-
-/** Asset names are typed by hand in the tier fields — match forgivingly. */
-const normalise = s => (s || '').toLowerCase().replace(/\s+/g, ' ').replace(/ solar$/, '').trim();
+import { PRIORITIZATION_NOTES } from '../../constants/portfolioDefaults';
+import { normalize, buildGroupLookup } from './assetGroups';
 
 const pct = (used, total) => (total > 0 ? `${Math.round((used / total) * 100)}%` : '—');
 const num = v => Math.round(v || 0).toLocaleString();
 const numOrDash = v => (v > 0 ? num(v) : '—');
 
-/** Map of normalised asset name → short tier label, from the editable tiers. */
-function buildTierLookup(tiers) {
-  const map = new Map();
-  for (const tier of tiers || []) {
-    for (const assetName of (tier.assets || '').split(';')) {
-      const key = normalise(assetName);
-      if (key) map.set(key, tierShortName(tier.name));
-    }
-  }
-  return map;
-}
-
 /**
- * One row per asset: capacity split, generation, area utilisation and the
- * prioritisation call. Shared by the portfolio-wide Asset Summary page and by
+ * One row per asset: capacity split, generation, area utilization and the
+ * prioritization call. Shared by the portfolio-wide Asset Summary page and by
  * each state one-pager, so the two can never disagree.
  *
  * `groups` is [{ key, label, assets }] — the label renders as a band row and
@@ -33,7 +16,7 @@ function buildTierLookup(tiers) {
  * `totals` adds the area-weighted footer row.
  */
 export default function AssetSummaryTable({ groups, tiers, showGroupLabels = true, showTotals = true }) {
-  const tierOf = buildTierLookup(tiers);
+  const tierOf = buildGroupLookup(tiers);
   const all = groups.flatMap(g => g.assets);
   const sum = fn => all.reduce((s, x) => s + (fn(x) || 0), 0);
 
@@ -57,8 +40,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
           <th className="num" style={{ width: '9%' }}>Carport kW DC</th>
           <th className="num" style={{ width: '9%' }}>Total kW DC</th>
           <th className="num" style={{ width: '9%' }}>Yr-1 MWh</th>
-          <th className="num" style={{ width: '10%' }}>Roof Utilisation</th>
-          <th className="num" style={{ width: '10%' }}>Parking Utilisation</th>
+          <th className="num" style={{ width: '10%' }}>Roof Utilization</th>
+          <th className="num" style={{ width: '10%' }}>Parking Utilization</th>
           <th style={{ width: '24%' }}>Prioritisation</th>
         </tr>
       </thead>
@@ -72,8 +55,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
             )}
             {group.assets.map(({ entry, p, calc }) => {
               const name = p.projectName || entry.name;
-              const tier = tierOf.get(normalise(name));
-              const note = PRIORITISATION_NOTES[name];
+              const tier = tierOf.get(normalize(name));
+              const note = PRIORITIZATION_NOTES[name];
               return (
                 <tr key={entry.id}>
                   <td>{name}</td>
@@ -84,9 +67,9 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
                   <td className="num">{pct(p.rooftopAreaUsedSqFt, p.rooftopTotalSqFt)}</td>
                   <td className="num">{pct(p.carportAreaUsedSqFt, p.carportTotalSqFt)}</td>
                   <td>
-                    {tier && <div className="prio-tier">{tier}</div>}
+                    {tier && !showGroupLabels && <div className="prio-tier">{tier}</div>}
                     {note && <div className="prio-note">{note}</div>}
-                    {!tier && !note && '—'}
+                    {!note && (showGroupLabels || !tier) && '—'}
                   </td>
                 </tr>
               );

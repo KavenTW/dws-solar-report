@@ -1,22 +1,11 @@
-import { SCORECARD, STATE_ORDER } from '../../constants/portfolioDefaults';
 import AssetSummaryTable from './AssetSummaryTable';
 
-// Client view shows colour bands, not numbers. The quantified matrix behind
-// the mapping (scores 1–3 and category weights) is retained in SCORECARD and
-// documented in PORTFOLIO_SOURCES.md for audit.
-const SCORE_BANDS = {
-  3: { className: 'score-strong', label: 'Strongest relative position' },
-  2: { className: 'score-moderate', label: 'Moderate' },
-  1: { className: 'score-weak', label: 'Weakest relative position' },
-};
-
 /**
- * State market one-pager: content from the portfolio state (editable), the
- * shared six-state scorecard with the current state's column highlighted, and
- * a computed "Projects in this state" summary table.
+ * State market one-pager: editable narrative bullets for the state, followed
+ * by the asset summary table for the assets located there and a pointer to
+ * that state's appendix.
  */
 export default function StateOnePager({ abbr, state, projects, tiers, appendixLetter }) {
-  const colIdx = STATE_ORDER.indexOf(abbr);
   const ok = projects.filter(x => x.calc);
   const totalDC = ok.reduce((s, x) => s + (x.calc.totalDCkW || 0), 0);
   const totalMwh = ok.reduce((s, x) => s + (x.calc.annualMwh || 0), 0);
@@ -42,9 +31,6 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
           <div className="state-pager-subtitle">{state.subtitle}</div>
           <div className="state-pager-utility">Representative utility: {state.repUtility}</div>
         </div>
-        <div className="state-score-badge">
-          <div className="state-score-word">{state.badge}</div>
-        </div>
       </div>
 
       <div className="card">
@@ -54,55 +40,6 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
           {block('Utility Billing and Avoided Value', state.utilityBilling)}
           {block('State-Led REC Program', state.recProgram)}
           {block('Development Considerations', state.devConsiderations)}
-        </div>
-
-        <div className="state-block">
-          <div className="state-block-title">BTM Rooftop &amp; Carport Solar Scorecard</div>
-          <div className="score-legend">
-            {[3, 2, 1].map(s => (
-              <span key={s} className="score-legend-item">
-                <span className={`score-legend-swatch ${SCORE_BANDS[s].className}`} />
-                {SCORE_BANDS[s].label}
-              </span>
-            ))}
-          </div>
-          <table className="market-table state-scorecard">
-            <thead>
-              <tr>
-                <th>Scorecard Category</th>
-                {SCORECARD.stateNames.map((n, i) => (
-                  <th key={n} className={i === colIdx ? 'state-col-active' : undefined}>{n}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {SCORECARD.rows.map(row => (
-                <tr key={row.category}>
-                  <td>{row.category}</td>
-                  {row.scores.map((s, i) => (
-                    <td
-                      key={i}
-                      className={`score-cell ${SCORE_BANDS[s].className} ${i === colIdx ? 'state-col-active' : ''}`}
-                      title={SCORE_BANDS[s].label}
-                      aria-label={`${SCORECARD.stateNames[i]}: ${SCORE_BANDS[s].label}`}
-                    />
-                  ))}
-                </tr>
-              ))}
-              <tr className="overall-row">
-                <td><strong>Overall Market Position</strong></td>
-                {SCORECARD.overall.map((s, i) => (
-                  <td
-                    key={i}
-                    className={`score-cell ${SCORE_BANDS[s].className} ${i === colIdx ? 'state-col-active' : ''}`}
-                    title={SCORE_BANDS[s].label}
-                    aria-label={`${SCORECARD.stateNames[i]} overall: ${SCORE_BANDS[s].label}`}
-                  />
-                ))}
-              </tr>
-            </tbody>
-          </table>
-          <div className="footnote" style={{ marginTop: '6px' }}>{SCORECARD.footnote}</div>
         </div>
 
         <div className="state-block">

@@ -1,4 +1,4 @@
-import { STATE_ORDER } from '../../constants/portfolioDefaults';
+import { groupAssets } from './assetGroups';
 import AssetSummaryTable from './AssetSummaryTable';
 
 /**
@@ -9,9 +9,7 @@ import AssetSummaryTable from './AssetSummaryTable';
  */
 export default function PortfolioAssetSummary({ pf, projects }) {
   const ok = projects.filter(x => x.calc);
-  const groups = STATE_ORDER
-    .map(abbr => ({ key: abbr, label: pf.states[abbr].name, assets: ok.filter(x => x.p.province === abbr) }))
-    .filter(g => g.assets.length > 0);
+  const groups = groupAssets(ok, pf.tiers);
 
   return (
     <div className="section portfolio-page">
@@ -19,7 +17,7 @@ export default function PortfolioAssetSummary({ pf, projects }) {
       <div className="card">
         <AssetSummaryTable groups={groups} tiers={pf.tiers} />
         <div className="footnote" style={{ marginTop: '8px' }}>
-          Rooftop and carport capacities are the maximum buildable layouts identified at pre-feasibility and are subject to the site load and structural analysis described in Next Steps. Utilisation is the area occupied by the proposed layout as a share of the total measured area; portfolio utilisation is area-weighted. Prioritisation reflects the directional proposal set out on the preceding page. Calculation bases are set out in Methodology &amp; Basis of Estimates.
+          Rooftop and carport capacities are the maximum buildable layouts identified at pre-feasibility and are subject to the site load and structural analysis described in Next Steps. Utilization is the area occupied by the proposed layout as a share of the total measured area; portfolio utilization is area-weighted. Grouping follows the proposed prioritization on the preceding page. Calculation bases are set out in Methodology &amp; Basis of Estimates.
         </div>
       </div>
     </div>

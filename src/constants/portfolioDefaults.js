@@ -6,34 +6,16 @@
 
 export const STATE_ORDER = ['CA', 'NV', 'IL', 'FL', 'NC', 'TX'];
 
-// Shared scorecard — identical table on every state page (column order matches STATE_ORDER).
-// The client view renders COLOUR BANDS only (3 → strong, 2 → moderate, 1 → weak);
-// the numeric scores, category weights, and weighted totals below are retained
-// as the auditable basis for those colours and are not printed in the document.
-export const SCORECARD = {
-  stateNames: ['California', 'Nevada', 'Illinois', 'Florida', 'North Carolina', 'Texas'],
-  rows: [
-    { category: 'Utility Billing Structure',    scores: [2, 3, 2, 3, 3, 2], weight: 7 },
-    { category: 'State-Led REC Program',        scores: [1, 2, 3, 1, 2, 1], weight: 8 },
-    { category: 'Prevailing Electricity Rates', scores: [3, 1, 2, 2, 1, 1], weight: 10 },
-    { category: 'Solar Resource',               scores: [3, 3, 1, 2, 2, 3], weight: 5 },
-    { category: 'Other Considerations',         scores: [2, 3, 2, 1, 1, 2], weight: 6 },
-  ],
-  weighted: ['2.2', '2.2', '2.1', '1.8', '1.8', '1.6'],
-  // Overall band per state, derived from the weighted totals above
-  // (≥2.0 → strong; 1.7–1.9 → moderate; <1.7 → weak). Mirrors the header
-  // badges: LEADING / POLICY-LED → strong, SELECTIVE → moderate,
-  // OPPORTUNISTIC → weak.
-  overall: [3, 3, 3, 2, 2, 1],
-  footnote: 'Relative colour bands for these six states; assumes large C&I behind-the-meter rooftop/carport projects generally up to 1 MWac. Other Considerations includes system-size limits, third-party ownership, interconnection and program compliance.',
-};
+// State pages appear in this order throughout the document. The six-state
+// scorecard that previously set this order has been removed; the order itself
+// is retained.
 
 // ── DRAFT — TO BE REWRITTEN BY GCS ──────────────────────────────────────────
-// One short prioritisation line per asset, shown beside the tier in the asset
+// One short prioritization line per asset, shown beside the group in the asset
 // summary table (portfolio page and every state one-pager). Keyed by project
-// name; an asset with no entry simply shows its tier. Placeholder wording
-// pending the internal prioritisation review — edit here, not in the browser.
-export const PRIORITISATION_NOTES = {
+// name; an asset with no entry simply shows its group. Placeholder wording
+// pending the internal prioritization review — edit here, not in the browser.
+export const PRIORITIZATION_NOTES = {
   'Eastland Center':              'Largest combined rooftop and carport scope; no roof-replacement constraint.',
   'Courtyard at the Commons':     'Carport potential subject to clearing trees over the parking area.',
   'DC Station Retail':            'Limited roof area constrains system size.',
@@ -41,10 +23,10 @@ export const PRIORITISATION_NOTES = {
   'Tuscany on Fig':               'Redevelopment pending; assessment scoped to the new plans.',
   'London Square':                'Carport carries most of the site; subject to clearing trees.',
   'Citria at Fruitville Commons': 'Carport-led; array largely east/west facing.',
-  'The Shops at Oak Brook Place': 'Large roof; the state REC programme is the principal driver.',
+  'The Shops at Oak Brook Place': 'Large roof; the state REC program is the principal driver.',
   'Tropical Center II':           'Largest site; align with roof replacement scheduled 2030.',
   'Candour House':                'Distributed small roof areas; multiple points of interconnection.',
-  '1201 Avenue S':                'Highest roof utilisation; align with roof replacement scheduled 2027.',
+  '1201 Avenue S':                'Highest roof utilization; align with roof replacement scheduled 2027.',
   'Lakeside A':                   'Scope together with Lakeside B; roof replacement scheduled 2033.',
   'Lakeside B':                   'Scope together with Lakeside A; roof replacement scheduled 2033.',
   'Post & Paddock':               'Largest Texas roof; roof replacement scheduled 2033.',
@@ -61,10 +43,26 @@ export const PORTFOLIO_DEFAULTS = {
   preparedBy: 'Great Circle Solar Management Corp.',
   reportDate: '',
 
+  // ── Scope of engagement — Scope 1B of the executed advisory agreement.
+  //     Reproduced for the client's reference; edit only against the agreement. ──
+  scopeIntro: 'This document has been prepared under Scope 1B of the executed advisory agreement between DWS and Great Circle Solar Management Corp. ("GCS"). For the prioritized sites identified through Scope 1, GCS was engaged to provide further detailed analysis quantifying the maximum solar deployment potential across those sites.',
+  scopeItems: [
+    'Solar Capacity Assessment | Rooftop: where applicable, an estimate of the maximum rooftop solar capacity that could be accommodated based on building footprint and available rooftop area — an illustrative layout, estimated system capacity, and estimated annual production based on site solar resource assumptions.',
+    'Solar Capacity Assessment | Carport: where applicable, a high-level estimate of the generation capacity that could be deployed through solar canopies based on parking lot footprint — an illustrative layout, estimated capacity supported by the parking area, and estimated annual production.',
+    'Site Constraint Identification: for each site, the key technical, commercial and data-related constraints that must be addressed before projects can advance to full development feasibility — roof age and replacement timing, structural capacity, electrical infrastructure, tenant electricity consumption data requirements, metering, constraints on sizing or monetization arising from jurisdictional electricity market rules, and other jurisdictional or operational considerations.',
+    'Portfolio Solar Deployment Potential: a portfolio-level summary across the evaluated sites — total estimated rooftop and parking canopy capacity, estimated annual generation potential, and further refinement of site prioritization for near-term opportunities and next steps.',
+  ].join('\n'),
+  scopeInfoIntro: 'To complete this analysis, GCS requested the following information for each site:',
+  scopeInfoItems: [
+    'Roof information: most recent roof replacement year and any planned replacements.',
+    'Roof layout: where applicable, roof layout drawings and total roof area.',
+    'Parking area layout: where applicable, parking lot layout drawings and total area.',
+  ].join('\n'),
+
   // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
   execSummary: [
     'Great Circle Solar Management Corp. ("GCS") has completed a preliminary desktop assessment of rooftop and carport solar deployment opportunities across assets in the DWS portfolio, located in six U.S. states.',
-    'This document presents the results of that assessment. For each state, a market one-pager summarises the utility billing framework, REC program availability, and key development considerations, followed by an individual opportunity assessment for each asset in that state. States appear in order of relative market attractiveness per the scorecard included on each state page.',
+    'Assets are grouped below into three prioritization groups reflecting deployment potential and site readiness. A market one-pager for each state summarizes the utility billing framework, REC program availability and key development considerations, and the individual opportunity assessment for every asset is provided in the appendices.',
     'System sizing and generation estimates are derived from solar production simulation; roof and parking areas from aerial measurement; and avoided-emissions estimates from published regional grid-emissions factors. All figures are preliminary desktop estimates and are subject to the further detailed analysis described in each asset assessment and in the Next Steps section at the end of this document.',
   ].join('\n\n'),
 
@@ -75,25 +73,35 @@ export const PORTFOLIO_DEFAULTS = {
     'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. All studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
   ].join('\n\n'),
 
-  // ── Proposed asset prioritisation (rendered in the Executive Summary;
-  //     directional proposal for discussion — fully editable) ──
+  // ── Proposed asset prioritization (its own page; drives the Executive
+  //     Summary, the capacity chart and the Portfolio Asset Summary grouping).
+  //     DRAFT membership — assigned by GCS for review, fully editable. ──
   tiers: [
     {
-      name: 'Tier 1 — Advance',
-      assets: 'Eastland Center; Courtyard at the Commons; Tropical Center II; The Shops at Oak Brook Place',
-      rationale: 'Strongest state market bands (California and Nevada leading; Illinois policy-led), largest system scale, and conventional structures. Recommended to proceed directly to stage-one structural feasibility.',
+      name: 'Prioritization Group 1',
+      assets: 'Eastland Center; The Shops at Oak Brook Place; Courtyard at the Commons; DC Station Retail; Tuscany on Fig',
+      rationale: 'Highest-priority projects to advance first.',
     },
     {
-      name: 'Tier 2 — Advance subject to confirmations',
-      assets: 'DC Station Retail; London Square; Citria at Fruitville Commons; Candour House; Post & Paddock; Lakeside B',
-      rationale: 'Attractive scale with site-specific items to resolve first: structural capacity above parking structures, glare-study requirements, roof type, and metering or contracting structure.',
+      name: 'Prioritization Group 2',
+      assets: '1201 Avenue S; 100 Hamilton; Citria at Fruitville Commons; London Square; Candour House',
+      rationale: 'Promising projects, but with notable constraints or more uncertainty.',
     },
     {
-      name: 'Tier 3 — Hold / opportunistic',
-      assets: '100 Hamilton; Tuscany on Fig; 1201 Avenue S; Lakeside A',
-      rationale: 'Limited system scale, municipal-utility frameworks assessed separately from the state programs (Palo Alto, LADWP), or the weakest market band relative to system size.',
+      name: 'Prioritization Group 3',
+      assets: 'Tropical Center II; Post & Paddock; Lakeside B; Lakeside A',
+      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity, or questionable economics.',
     },
   ],
+
+  // ── Key considerations — document-level, high level. The per-asset
+  //     "Issues for Further Consideration" sections carry the site specifics. ──
+  keyConsiderationsIntro: 'The following apply across the portfolio and should be read alongside the issues identified for each individual asset.',
+  keyConsiderations: [
+    'On-site load analysis | System sizing in this document reflects the maximum buildable area, not the load available to absorb it. Detailed analysis of on-site electrical load is required at each site to inform final system sizing, and a review of metering infrastructure is required to confirm which meters to proceed with before electrical feasibility is commissioned.',
+    'Roof age and replacement timing | Several assets have roof replacements already scheduled. Where a replacement falls within the early years of a system\'s operating life, the solar installation should be coordinated with those works rather than advanced ahead of them, to avoid removing and reinstalling an array.',
+    'Objective and return alignment | The prioritization proposed in this document reflects deployment potential and site readiness. Confirmation of DWS investment objectives, hold periods and return requirements is required before the priority groups can be treated as an investment recommendation.',
+  ].join('\n'),
 
   // ── Methodology & basis of estimates (renders after the TOC) ──
   methodology: [
@@ -143,11 +151,10 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'California',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'PG&E, SCE and SDG&E; municipal utilities assessed separately',
-      badge: 'LEADING',
       projectSummary: [
         'High avoidable energy charges and strong solar resource.',
         'Exports are credited at avoided cost, so load matching is central.',
-        'Palo Alto and LADWP run separate programmes.',
+        'Palo Alto and LADWP run separate programs.',
       ].join('\n'),
       marketPosition: [
         'Highest electricity-rate score in the portfolio; mature solar market.',
@@ -161,7 +168,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Model the actual tariff against interval load.',
       ].join('\n'),
       recProgram: [
-        'Voluntary REC market; no standardised state contract.',
+        'Voluntary REC market; no standardized state contract.',
         'RECs may be sold bilaterally or passed to the tenant.',
       ].join('\n'),
       devConsiderations: [
@@ -177,7 +184,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Nevada',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'NV Energy',
-      badge: 'LEADING',
       projectSummary: [
         'Excellent solar resource and a favourable billing structure.',
         'A single-utility framework simplifies diligence.',
@@ -211,7 +217,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Illinois',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'ComEd',
-      badge: 'POLICY-LED',
       projectSummary: [
         'The strongest policy-driven market in the group.',
         'Illinois Shines can provide contracted REC revenue.',
@@ -231,14 +236,14 @@ export const PORTFOLIO_DEFAULTS = {
       recProgram: [
         'Large DG covers 10 kW AC to 2 MW AC behind the meter.',
         '2026 approvals use a 15-year REC contract.',
-        '15% is paid at energisation, the balance over six years.',
-        'Pricing, capacity and timing are confirmed each programme year.',
+        '15% is paid at energization, the balance over six years.',
+        'Pricing, capacity and timing are confirmed each program year.',
       ].join('\n'),
       devConsiderations: [
         'An Illinois Shines Approved Vendor is required.',
         'Documentation, metering and verification requirements apply.',
         'Prevailing-wage compliance applies to most projects.',
-        'Hosting capacity and programme queues affect timing.',
+        'Hosting capacity and program queues affect timing.',
       ].join('\n'),
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
@@ -247,7 +252,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Florida',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Florida Power & Light',
-      badge: 'SELECTIVE',
       projectSummary: [
         'Favourable netting and a workable system-size limit.',
         'The landlord-to-tenant model faces a regulatory constraint.',
@@ -283,9 +287,8 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'North Carolina',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Duke Energy Carolinas / Duke Energy Progress',
-      badge: 'SELECTIVE',
       projectSummary: [
-        'Strong net-metering position and a recognised REC market.',
+        'Strong net-metering position and a recognized REC market.',
         'Low solar-avoidable electricity rates.',
         'A per-kWh PPA to a tenant is generally not available.',
         'A compliant lease cannot price on electrical output.',
@@ -303,7 +306,7 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       recProgram: [
         'NC-RETS tracks RECs for portfolio-standard compliance.',
-        'No standardised long-term fixed-price contract.',
+        'No standardized long-term fixed-price contract.',
         'REC ownership and transfer should be stated expressly.',
       ].join('\n'),
       devConsiderations: [
@@ -319,7 +322,6 @@ export const PORTFOLIO_DEFAULTS = {
       name: 'Texas',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Oncor delivery territory with a competitive Retail Electric Provider',
-      badge: 'OPPORTUNISTIC',
       projectSummary: [
         'Strong resource and a flexible competitive retail market.',
         'No uniform statewide net-metering tariff.',
@@ -339,9 +341,9 @@ export const PORTFOLIO_DEFAULTS = {
         'Export credit may be capped or unavailable.',
       ].join('\n'),
       recProgram: [
-        'ERCOT administers a statewide REC trading programme.',
+        'ERCOT administers a statewide REC trading program.',
         'Credits may be sold bilaterally or passed to the tenant.',
-        'No state-administered fixed-price purchase programme.',
+        'No state-administered fixed-price purchase program.',
       ].join('\n'),
       devConsiderations: [
         'Owner, tenant, customer of record, provider and utility must align.',

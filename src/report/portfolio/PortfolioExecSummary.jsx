@@ -1,4 +1,4 @@
-import { STATE_ORDER } from '../../constants/portfolioDefaults';
+import { groupAssets } from './assetGroups';
 import PortfolioCapacityChart from './PortfolioCapacityChart';
 
 const AVG_HOME_KWH_YR = 10632; // U.S. EIA average annual household consumption
@@ -16,17 +16,16 @@ export default function PortfolioExecSummary({ pf, projects }) {
   const stateCount = new Set(ok.map(x => x.p.province)).size;
   const equivHomes = Math.round((totalMwh * 1000) / AVG_HOME_KWH_YR);
 
-  const chartStates = STATE_ORDER
-    .map(abbr => {
-      const inState = ok.filter(x => x.p.province === abbr);
-      return {
-        abbr,
-        name: abbr,
-        rooftopDC: inState.reduce((s, x) => s + (x.p.rooftopSizeDCkW || 0), 0),
-        carportDC: inState.reduce((s, x) => s + (x.p.carportSizeDCkW || 0), 0),
-      };
-    })
-    .filter(s => s.rooftopDC + s.carportDC > 0);
+  // Capacity is shown by prioritization group, matching how the document
+  // presents the portfolio everywhere else.
+  const chartStates = groupAssets(ok, pf.tiers)
+    .map(g => ({
+      abbr: g.key,
+      name: g.shortLabel,
+      rooftopDC: g.assets.reduce((s, x) => s + (x.p.rooftopSizeDCkW || 0), 0),
+      carportDC: g.assets.reduce((s, x) => s + (x.p.carportSizeDCkW || 0), 0),
+    }))
+    .filter(g => g.rooftopDC + g.carportDC > 0);
 
   return (
     <div className="section portfolio-page">
@@ -55,7 +54,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
       </div>
 
       <div className="card" style={{ marginBottom: '16px' }}>
-        <div className="card-title">Maximum Potential Capacity by State (kW DC)</div>
+        <div className="card-title">Maximum Potential Capacity by Prioritization Group (kW DC)</div>
         <div className="capacity-chart-wrap" style={{ height: '190px' }}>
           <PortfolioCapacityChart states={chartStates} />
         </div>
@@ -77,12 +76,12 @@ export default function PortfolioExecSummary({ pf, projects }) {
 export function PortfolioPrioritisation({ pf }) {
   return (
     <div className="section portfolio-page">
-      <div className="section-title">Proposed Asset Prioritisation</div>
+      <div className="section-title">Proposed Asset Prioritization</div>
       <div className="card">
         <table className="market-table">
           <thead>
             <tr>
-              <th style={{ width: '20%' }}>Tier</th>
+              <th style={{ width: '24%' }}>Group</th>
               <th style={{ width: '36%' }}>Assets</th>
               <th>Rationale</th>
             </tr>
@@ -98,7 +97,7 @@ export function PortfolioPrioritisation({ pf }) {
           </tbody>
         </table>
         <div className="footnote" style={{ marginTop: '6px' }}>
-          Directional proposal reflecting state market banding, system scale, and known site considerations; to be confirmed with DWS before stage-one studies are commissioned.
+          Directional proposal reflecting deployment potential and site readiness; to be confirmed with DWS before stage-one studies are commissioned.
         </div>
       </div>
     </div>

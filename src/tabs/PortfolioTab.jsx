@@ -13,6 +13,8 @@ import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
 import PortfolioExecSummary, { PortfolioPrioritisation } from '../report/portfolio/PortfolioExecSummary';
 import PortfolioAssetSummary from '../report/portfolio/PortfolioAssetSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
+import PortfolioScope from '../report/portfolio/PortfolioScope';
+import PortfolioKeyConsiderations from '../report/portfolio/PortfolioKeyConsiderations';
 import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
@@ -67,10 +69,12 @@ export default function PortfolioTab() {
 
   const tocEntries = useMemo(() => {
     const rows = [
+      { slug: 'scope', label: 'Scope of Engagement', level: 0 },
       { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
-      { slug: 'prioritisation', label: 'Proposed Asset Prioritisation', level: 0 },
+      { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
       { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
       { slug: 'methodology', label: 'Methodology & Glossary', level: 0 },
+      { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
     ];
     for (const abbr of activeStates) {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
@@ -163,15 +167,25 @@ export default function PortfolioTab() {
               {line('Prepared by', pf.preparedBy, v => set('preparedBy', v))}
               {line('Date', pf.reportDate, v => set('reportDate', v))}
 
+              <div className="portfolio-editor-heading">Scope of Engagement</div>
+              {txt('Intro paragraph', pf.scopeIntro, v => set('scopeIntro', v), 4)}
+              {txt('Scope items (one per line; "Heading | detail")', pf.scopeItems, v => set('scopeItems', v), 8)}
+              {txt('Information requirements intro', pf.scopeInfoIntro, v => set('scopeInfoIntro', v), 2)}
+              {txt('Information requirements (one per line)', pf.scopeInfoItems, v => set('scopeInfoItems', v), 4)}
+
+              <div className="portfolio-editor-heading">Key Considerations</div>
+              {txt('Intro paragraph', pf.keyConsiderationsIntro, v => set('keyConsiderationsIntro', v), 3)}
+              {txt('Considerations (one per line; "Heading | detail")', pf.keyConsiderations, v => set('keyConsiderations', v), 8)}
+
               <div className="portfolio-editor-heading">Executive Summary</div>
               {txt('Narrative (blank line = new paragraph)', pf.execSummary, v => set('execSummary', v), 8)}
 
-              <div className="portfolio-editor-heading">Prioritisation Tiers</div>
+              <div className="portfolio-editor-heading">Prioritization Groups</div>
               {pf.tiers.map((tier, i) => (
                 <div key={i} style={{ marginBottom: '8px' }}>
-                  {line(`Tier ${i + 1} name`, tier.name, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, name: v } : t)))}
-                  {line(`Tier ${i + 1} assets (separate with ;)`, tier.assets, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, assets: v } : t)))}
-                  {txt(`Tier ${i + 1} rationale`, tier.rationale, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, rationale: v } : t)), 2)}
+                  {line(`Group ${i + 1} name`, tier.name, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, name: v } : t)))}
+                  {line(`Group ${i + 1} assets (separate with ;)`, tier.assets, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, assets: v } : t)))}
+                  {txt(`Group ${i + 1} description`, tier.rationale, v => set('tiers', pf.tiers.map((t, j) => j === i ? { ...t, rationale: v } : t)), 2)}
                 </div>
               ))}
 
@@ -231,11 +245,13 @@ export default function PortfolioTab() {
         <div className="portfolio-doc">
           <PortfolioTitlePage pf={pf} />
           <div className="container">
+            <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
+            <PortfolioScope pf={pf} />
             <PortfolioExecSummary pf={pf} projects={projects} />
             <PortfolioPrioritisation pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
-            <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
             <PortfolioMethodology pf={pf} />
+            <PortfolioKeyConsiderations pf={pf} />
           </div>
           {activeStates.map(abbr => (
             <div key={abbr} className="container">
