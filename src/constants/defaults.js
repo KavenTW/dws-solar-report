@@ -131,7 +131,7 @@ export const DEFAULT_PROJECT = {
 
   // Market Context
   marketContextTitle:              'California State Overview',
-  marketContextDescription:        'California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.',
+  marketContextDescription:        'California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.',
   marketContextMonetizationHeader: 'Monetization Opportunities',
   marketContextMonetizationIntro:  'The Net Billing Tariff (NBT) is California\'s standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.',
   marketContextMonetizationRows: [
@@ -141,9 +141,9 @@ export const DEFAULT_PROJECT = {
     { mechanism: 'Evening Exports',       behaviour: 'Export values are often materially higher, improving the economics of battery-backed systems.' },
   ],
   marketContextImplicationHeader: 'Strategic Implication',
-  marketContextImplicationIntro:  'Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.',
+  marketContextImplicationIntro:  'Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.',
   marketContextImplicationRows: [
-    { priority: 'Maximise on-site self-consumption', rationale: 'Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation.' },
+    { priority: 'Maximize on-site self-consumption', rationale: 'Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation.' },
     { priority: 'Right-size to tenant load',          rationale: 'Sizing capacity to tenant load profiles avoids over-export at depressed midday rates.' },
     { priority: 'Integrated energy store',            rationale: 'Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours.' },
   ],

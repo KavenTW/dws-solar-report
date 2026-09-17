@@ -74,7 +74,7 @@ export default function PortfolioTab() {
       { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
       { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
       { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
-      { slug: 'methodology', label: 'Methodology & Glossary', level: 0 },
+      { slug: 'methodology', label: 'Methodology & Basis of Estimates', level: 0 },
       { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 0 },
       { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
     ];
@@ -293,7 +293,7 @@ export default function PortfolioTab() {
                   <div className="appendix-eyebrow">Appendix {appendixOf[abbr]}</div>
                   <div className="section-title">{pf.states[abbr].name} — Asset Reports</div>
                   <p className="portfolio-para">
-                    Individual opportunity assessments for the {byState[abbr].length} {pf.states[abbr].name} asset{byState[abbr].length !== 1 ? 's' : ''} summarised in the {pf.states[abbr].name} market one-pager.
+                    Individual opportunity assessments for the {byState[abbr].length} {pf.states[abbr].name} asset{byState[abbr].length !== 1 ? 's' : ''} summarized in the {pf.states[abbr].name} market one-pager.
                   </p>
                 </div>
               </div>

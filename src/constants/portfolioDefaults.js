@@ -32,7 +32,7 @@ export const PRIORITIZATION_NOTES = {
   'Post & Paddock':               'Largest Texas roof; roof replacement scheduled 2033.',
 };
 
-const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level ratings are directional; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
+const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level commentary is directional screening; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
 
 export const PORTFOLIO_DEFAULTS = {
   // ── Title page ──
@@ -121,6 +121,7 @@ export const PORTFOLIO_DEFAULTS = {
 
   // ── Glossary (one entry per line: "Term — definition") ──
   glossary: [
+    'Prioritization group — The grouping applied to each asset in this document, reflecting relative deployment potential and site readiness; set out in Proposed Asset Prioritization.',
     'Behind-the-Meter (BTM) — A solar system connected on the customer’s side of the utility meter, serving on-site load before exporting to the grid.',
     'kW DC / kW AC — Direct-current module capacity versus alternating-current inverter capacity of a system.',
     'Specific production (MWh/MWdc) — Expected annual energy yield per megawatt of DC capacity, reflecting local solar resource and system design.',
@@ -148,7 +149,7 @@ export const PORTFOLIO_DEFAULTS = {
   ].join('\n\n'),
 
   // ── Inclusion control: saved projects excluded from the compiled document ──
-  excludedProjects: ['Courtyard at the Commons Solar'],
+  excludedProjects: [],
 
   // ── TOC page numbers (slug → user-entered number, filled after a test print) ──
   tocPages: {},
@@ -209,7 +210,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Service and demand charges remain.',
       ].join('\n'),
       recProgram: [
-        'Recognised Portfolio Energy Credit market.',
+        'Recognized Portfolio Energy Credit market.',
         'Credits belong to the system owner.',
         'No fixed-price state purchase contract.',
       ].join('\n'),

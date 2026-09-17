@@ -218,7 +218,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -240,10 +240,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -448,7 +448,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -470,10 +470,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -678,7 +678,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -700,10 +700,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -908,7 +908,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -930,10 +930,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -1138,7 +1138,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -1160,10 +1160,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -1368,7 +1368,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -1390,10 +1390,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -1598,7 +1598,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -1620,10 +1620,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -1828,7 +1828,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -1850,10 +1850,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -2058,7 +2058,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -2080,10 +2080,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -2242,7 +2242,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "The existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nConstruction feasibility to be assessed in view of the building height.\nAdjacent buildings may cast shading on the proposed carport areas, to be reflected in final layouts.\nBuilding orientation poses challenges to optimising array azimuth and layout.",
+   "additionalNotes": "The existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nConstruction feasibility to be assessed in view of the building height.\nAdjacent buildings may cast shading on the proposed carport areas, to be reflected in final layouts.\nBuilding orientation poses challenges to optimizing array azimuth and layout.",
    "pointsOfInterconnection": 4,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -2288,7 +2288,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -2310,10 +2310,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -2518,7 +2518,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -2540,10 +2540,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -2748,7 +2748,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -2770,10 +2770,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -2978,7 +2978,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -3000,10 +3000,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
@@ -3208,7 +3208,7 @@ export const DWS_DATASET = [
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
    "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonisation policy, and widespread commercial and industrial load centres suitable for rooftop and carport deployment.",
+   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
    "marketContextMonetizationHeader": "Monetization Opportunities",
    "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
    "marketContextMonetizationRows": [
@@ -3230,10 +3230,10 @@ export const DWS_DATASET = [
     }
    ],
    "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximised when generation is consumed on-site or shifted to higher-value evening hours.",
+   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
    "marketContextImplicationRows": [
     {
-     "priority": "Maximise on-site self-consumption",
+     "priority": "Maximize on-site self-consumption",
      "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
     },
     {
