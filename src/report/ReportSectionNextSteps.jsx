@@ -27,7 +27,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
     { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
     { label: 'Structural Feasibility (3rd Party)',       min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility (3rd Party)', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax, note: 'For carport solar' }] : []),
-    { label: 'Electrical Feasibility (3rd Party)',       min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point` },
+    { label: 'Electrical Feasibility (3rd Party)',       min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point. Review of metering infrastructure and on-site load analysis is required to confirm which meters to proceed with, prior to commissioning electrical feasibility.` },
     { label: 'Preparation of Interconnection Documentation (3rd Party)', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
 
