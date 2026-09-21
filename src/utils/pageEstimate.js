@@ -34,26 +34,38 @@ function printRulesText() {
   return out.join('\n');
 }
 
-/** Whole sections packed into fixed-height pages — never split. */
+/**
+ * Whole sections packed into fixed-height pages — never split.
+ *
+ * `getBoundingClientRect` excludes margins, but sections sit 13–16px apart and
+ * that gap decides the page break on a nearly-full page: the largest asset
+ * report measures 917px of content across its first three sections — under the
+ * page — and 946px once the gaps are counted, which is why it prints on three
+ * pages rather than two. A margin is dropped at a page break, so it only counts
+ * between two sections that land on the same page.
+ */
 function packSections(el) {
   const sections = [...el.children].flatMap(child =>
     child.classList && child.classList.contains('container') ? [...child.children] : [child]);
 
   let pages = 1;
   let used = 0;
+  let gap = 0; // trailing margin of the section above
   for (const section of sections) {
     const h = section.getBoundingClientRect().height;
     if (h <= 1) continue;
+    const cost = used === 0 ? h : gap + h;
     if (h > PAGE_HEIGHT) {
       // Taller than a page: it will split regardless of break-inside.
       pages += Math.ceil(h / PAGE_HEIGHT) - 1;
       used = h % PAGE_HEIGHT;
-    } else if (used + h > PAGE_HEIGHT) {
+    } else if (used + cost > PAGE_HEIGHT) {
       pages += 1;
       used = h;
     } else {
-      used += h;
+      used += cost;
     }
+    gap = parseFloat(getComputedStyle(section).marginBottom) || 0;
   }
   return pages;
 }

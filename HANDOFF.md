@@ -24,7 +24,17 @@ prioritization basis, and Karen's review of the rebuilt document.
    *Included Reports* (see "Known traps").
 4. Test print, spot-check a few page numbers, print final.
 
-The document is **64 pages**. Title-page date is seeded as 22 September 2026.
+The document is **51 pages** as currently issued. Title-page date is seeded as
+22 September 2026.
+
+**The Illustrative Solar Array Layout section has never printed.** It is
+screen-only whenever the asset carries no layout image, and no issued version
+has carried one — so the 14 HelioScope layouts bundled in `public/layouts/`,
+and the roof-vintage table inside that section, appear in no PDF to date. Roof
+years still reach the reader through Site-Specific Considerations, so nothing
+is lost, but the layouts are absent by accident rather than by decision.
+Loading them takes one click and runs the document to **64 pages** (every asset
+report goes from two pages to three). Open question for the user.
 
 ## Document structure
 
