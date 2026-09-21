@@ -60,7 +60,7 @@ export const PORTFOLIO_DEFAULTS = {
 
   // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
   execSummary: [
-    'Great Circle Solar Management Corp. ("GCS") has completed a preliminary desktop assessment of rooftop and carport solar deployment opportunities across assets in the DWS portfolio, located in six U.S. states.',
+    'Great Circle Solar Management Corp. ("GCS") was engaged under Scope 1B of the executed advisory agreement to quantify the maximum solar deployment potential across the prioritized sites in the DWS portfolio, and has completed that preliminary desktop assessment.',
     'Assets are grouped below into three prioritization groups reflecting deployment potential and site readiness. A market one-pager for each state summarizes the utility billing framework, REC program availability and key development considerations, and the individual opportunity assessment for every asset is provided in the appendices.',
     'System sizing and generation estimates are derived from solar production simulation; roof and parking areas from aerial measurement; and avoided-emissions estimates from published regional grid-emissions factors. All figures are preliminary desktop estimates and are subject to the further detailed analysis described in each asset assessment and in the Next Steps section at the end of this document.',
   ].join('\n\n'),

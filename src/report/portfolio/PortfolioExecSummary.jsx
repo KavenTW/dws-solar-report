@@ -1,3 +1,4 @@
+import { STATE_ORDER } from '../../constants/portfolioDefaults';
 import { groupAssets } from './assetGroups';
 import PortfolioCapacityChart from './PortfolioCapacityChart';
 
@@ -17,6 +18,14 @@ export default function PortfolioExecSummary({ pf, projects }) {
   const totalLifetimeCO2e = ok.reduce((s, x) => s + (x.calc.lifetimeCO2e || 0), 0);
   const stateCount = new Set(ok.map(x => x.p.province)).size;
   const equivHomes = Math.round((totalMwh * 1000) / AVG_HOME_KWH_YR);
+
+  // "California (5), Nevada (1), …" in the document's state order.
+  const stateBreakdown = STATE_ORDER
+    .map(abbr => ({ name: pf.states[abbr]?.name, n: ok.filter(x => x.p.province === abbr).length }))
+    .filter(s => s.n > 0 && s.name)
+    .map(s => `${s.name} (${s.n})`)
+    .join(', ')
+    .replace(/, ([^,]*)$/, ' and $1');
 
   // Capacity is shown by prioritization group, matching how the document
   // presents the portfolio everywhere else.
@@ -57,7 +66,8 @@ export default function PortfolioExecSummary({ pf, projects }) {
 
       <div className="card" style={{ marginBottom: '16px' }}>
         <div className="card-title">Maximum Potential Capacity by Prioritization Group (kW DC)</div>
-        <div className="capacity-chart-wrap" style={{ height: '190px' }}>
+        {/* Height follows the bar count: horizontal bars need room per row. */}
+        <div className="capacity-chart-wrap" style={{ height: `${Math.max(120, chartStates.length * 46 + 34)}px` }}>
           <PortfolioCapacityChart states={chartStates} />
         </div>
         <div className="chart-legend">
@@ -67,6 +77,11 @@ export default function PortfolioExecSummary({ pf, projects }) {
       </div>
 
       <div className="card">
+        {/* Computed from the included assets rather than seeded, so the site
+            count and the state breakdown can never drift from the data. */}
+        <p className="portfolio-para" style={{ marginTop: 0 }}>
+          <strong>{ok.length} site{ok.length !== 1 ? 's' : ''}</strong> were provided for assessment, located across {stateCount} state{stateCount !== 1 ? 's' : ''}: {stateBreakdown}. Each site was assessed for its maximum rooftop and carport solar deployment potential, together with the site constraints that would need to be addressed before a project could advance; no site was excluded from the assessment.
+        </p>
         {pf.execSummary.split('\n').filter(Boolean).map((para, i) => (
           <p key={i} className="portfolio-para">{para}</p>
         ))}
