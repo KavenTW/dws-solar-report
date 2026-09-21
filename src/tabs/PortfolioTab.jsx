@@ -159,11 +159,18 @@ export default function PortfolioTab() {
                   const result = estimateTocPages({ 'sizing-basis': 'methodology' });
                   if (!result) { window.alert('Could not measure the document. Close the editor so the report is on screen, then try again.'); return; }
                   let filled = 0;
-                  for (const { slug } of tocEntries) {
-                    const page = result.pages[slug];
+                  const missed = [];
+                  for (const { slug, label } of tocEntries) {
+                    // Asset rows fall back to the printed asset name when the
+                    // saved project's id does not resolve.
+                    const page = result.pages[slug] ?? result.pagesByName[label];
                     if (page != null) { setTocPage(slug, String(page)); filled++; }
+                    else missed.push(label);
                   }
-                  window.alert(`Filled ${filled} of ${tocEntries.length} entries. Document is approximately ${result.totalPages} pages.\n\nVerify against a test print before issuing.`);
+                  window.alert(
+                    `Filled ${filled} of ${tocEntries.length} entries. Document is approximately ${result.totalPages} pages.`
+                    + (missed.length ? `\n\nNot matched: ${missed.join(', ')}` : '')
+                    + '\n\nVerify against a test print before issuing.');
                 }}
               >
                 Estimate TOC page numbers

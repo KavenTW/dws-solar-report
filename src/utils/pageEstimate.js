@@ -59,8 +59,9 @@ function packSections(el) {
 }
 
 /**
- * Returns { pages: { slug: pageNumber }, totalPages }, or null when the
- * document is not on screen. Applies the print layout, measures, and restores.
+ * Returns { pages: { slug: pageNumber }, pagesByName: { assetName: pageNumber },
+ * totalPages }, or null when the document is not on screen. Applies the print
+ * layout, measures, and restores.
  */
 export function estimateTocPages(extraSlugMap = {}) {
   const doc = document.querySelector('.portfolio-doc');
@@ -78,10 +79,16 @@ export function estimateTocPages(extraSlugMap = {}) {
 
     const blocks = doc.querySelectorAll('.portfolio-title-page, .portfolio-page, .portfolio-report');
     const pages = {};
+    // Asset reports are keyed in the contents by the saved project's internal
+    // id. Record the printed asset name as well, so a report whose id does not
+    // line up still resolves — the name is what the reader sees either way.
+    const pagesByName = {};
     let page = 1;
 
     for (const block of blocks) {
       if (block.id) pages[block.id] = page;
+      const assetName = block.querySelector('.asset-band-name')?.textContent?.trim();
+      if (assetName) pagesByName[assetName] = page;
 
       let span;
       if (block.classList.contains('portfolio-title-page')) {
@@ -99,7 +106,7 @@ export function estimateTocPages(extraSlugMap = {}) {
       if (pages[hostSlug] != null) pages[slug] = pages[hostSlug];
     }
 
-    return { pages, totalPages: page - 1 };
+    return { pages, pagesByName, totalPages: page - 1 };
   } finally {
     style.remove();
   }
