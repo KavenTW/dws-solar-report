@@ -35,14 +35,31 @@ state one-pager narrative, which remains in the document.
 > prioritization claim with nothing auditable behind it — the same gap raised
 > in review of the previous scorecard-based ranking.
 
-The factors carried in the draft grouping are: roof age and scheduled
-replacement timing; system scale (kW DC) and roof/parking utilization;
-structural and site constraints (existing rooftop systems, vegetation over
-parking areas, distributed roof planes); points of interconnection; and
-jurisdictional constraints on sizing or monetization. Their relative
-weighting is not defined. Confirmation of DWS investment objectives, hold
-periods and return requirements is also outstanding — recorded in the
-document under Key Considerations.
+**System size is not a prioritization factor.** A large buildable capacity does
+not make a site a priority, and a small one does not disqualify it; capacity is
+reported as an output of the assessment, not an input to the grouping. Stated
+explicitly because an earlier draft of this register listed system scale as a
+factor, which was wrong.
+
+The factors that do carry the grouping are:
+
+- **Building use and likely on-site load** — what the building is, and whether
+  it plausibly consumes enough on site to absorb generation. A distribution
+  centre or refrigerated warehouse suggests large, continuous load; a
+  multi-tenanted strip mall without a common-area account does not.
+- **Market conditions** — prevailing electricity rates and state program
+  availability as a tailwind or headwind. Nevada's low rates are a headwind
+  against an otherwise strong site; the Illinois REC program is a tailwind.
+- **Roof age and scheduled replacement timing** — when work can practicably
+  happen, and whether an array must be co-ordinated with planned roof works.
+- **Structural and site constraints** — existing rooftop systems, vegetation
+  over parking areas, distributed roof planes, glare exposure.
+- **Points of interconnection** — a cost driver for the electrical study.
+- **Jurisdictional constraints** on contracting structure or monetization.
+
+Their relative weighting is not defined. Confirmation of DWS investment
+objectives, hold periods and return requirements is also outstanding —
+recorded in the document under Key Considerations.
 
 **Roof vintage.** Roof installation/last-replacement year and scheduled
 replacement year are from the 'Prioritization' sheet of EU Portfolio
