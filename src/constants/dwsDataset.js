@@ -18,6 +18,7 @@ export const DWS_PATCH_FIELDS = [
   "carportAreaUsedSqFt",
   "carportTotalSqFt",
   "pointsOfInterconnection",
+  "glareStudyRequired",
   "roofInstallYear",
   "roofReplacementYear",
   "annualMwhHelioScope",
@@ -254,7 +255,8 @@ export const DWS_DATASET = [
      "priority": "Integrated energy store",
      "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
     }
-   ]
+   ],
+   "glareStudyRequired": false
   }
  },
  {
@@ -484,7 +486,8 @@ export const DWS_DATASET = [
      "priority": "Integrated energy store",
      "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
     }
-   ]
+   ],
+   "glareStudyRequired": false
   }
  },
  {
@@ -632,7 +635,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Carport capacity is proposed above an existing parking structure; structural capacity to be confirmed.\nConstruction feasibility to be assessed in view of the increased working height of the parking structure and rooftops.",
+   "additionalNotes": "Carport capacity is proposed above an existing parking structure; structural capacity to be confirmed.\nConstruction feasibility to be assessed in view of the increased working height of the parking structure and rooftops.\nUnderground utility locates and trenching will be required to route carport circuits.",
    "pointsOfInterconnection": 1,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -714,7 +717,8 @@ export const DWS_DATASET = [
      "priority": "Integrated energy store",
      "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
     }
-   ]
+   ],
+   "glareStudyRequired": false
   }
  },
  {
@@ -862,7 +866,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Rooftop mechanical and architectural obstructions materially constrain the available layout; proposed capacity reflects the remaining usable area.\nThe property is served by the City of Palo Alto municipal utility, whose solar programs differ from the CPUC framework described on the state page.",
+   "additionalNotes": "Under the City of Palo Alto municipal utility, solar systems would interconnect under NEM 2. This program compensates exported solar energy at a rate higher than the average rates of the CPUC Avoided Cost Calculator, and is therefore more attractive.\nConditioned office space; may not be a heavy power user.\nRooftop mechanical and architectural obstructions materially constrain the available layout; proposed capacity reflects the remaining usable area.\nThe property is served by the City of Palo Alto municipal utility, whose solar programs differ from the CPUC framework described on the state page.",
    "pointsOfInterconnection": 1,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -944,7 +948,8 @@ export const DWS_DATASET = [
      "priority": "Integrated energy store",
      "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
     }
-   ]
+   ],
+   "glareStudyRequired": false
   }
  },
  {
@@ -965,7 +970,7 @@ export const DWS_DATASET = [
    "carportSizeACkW": 0,
    "systemSizeACkW": 0,
    "roofInstallYear": "2006",
-   "roofReplacementYear": "2025",
+   "roofReplacementYear": "Entire building to be demolished and rebuilt shortly.",
    "rooftopAreaUsedSqFt": 3400,
    "rooftopTotalSqFt": 40000,
    "carportAreaUsedSqFt": 0,
@@ -1092,7 +1097,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Significant rooftop obstructions constrain the available layout; proposed capacity reflects the remaining usable area.\nThe existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nThe property is served by LADWP, whose solar programs differ from the CPUC framework described on the state page.",
+   "additionalNotes": "GCS is of the understanding that the existing structure is scheduled for demolition shortly. In lieu of detailed future plans, analysis has been conducted on the existing building.\nIf the LADWP Feed-in Tariff program is pursued, on-site loads will not be a consideration — power would be sold directly to the utility at a known rate.\nThe LADWP Feed-in Tariff program is generally attractive, providing fixed incentives and off-take structures for both rooftop and carport solar. Once plans are made for the redevelopment of this property, full feasibility of solar under the Feed-in Tariff program should be considered.\nSignificant rooftop obstructions constrain the available layout; proposed capacity reflects the remaining usable area.\nThe existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nThe property is served by LADWP, whose solar programs differ from the CPUC framework described on the state page.",
    "pointsOfInterconnection": 1,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -1174,7 +1179,8 @@ export const DWS_DATASET = [
      "priority": "Integrated energy store",
      "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
     }
-   ]
+   ],
+   "glareStudyRequired": false
   }
  },
  {
@@ -1367,44 +1373,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  },
  {
@@ -1552,7 +1531,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Rooftop areas are sloped shingle roofing; flush-mount racking carries higher temperature losses than flat-roof tilted systems, and attachment methodology and roof condition are to be confirmed.\nThe existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.",
+   "additionalNotes": "Rooftop areas are sloped shingle roofing; flush-mount racking carries higher temperature losses than flat-roof tilted systems, and attachment methodology and roof condition are to be confirmed.\nThe existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nUnderground utility locates and trenching will be required to route carport circuits.",
    "pointsOfInterconnection": 2,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -1597,44 +1576,15 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": false
   }
  },
  {
@@ -1827,44 +1777,15 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": false
   }
  },
  {
@@ -2057,44 +1978,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  },
  {
@@ -2242,7 +2136,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "The existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nConstruction feasibility to be assessed in view of the building height.\nAdjacent buildings may cast shading on the proposed carport areas, to be reflected in final layouts.\nBuilding orientation poses challenges to optimizing array azimuth and layout.",
+   "additionalNotes": "The existing tenant metering arrangement is to be confirmed; individually metered residential units may affect how a building-level system is integrated and credited.\nConstruction feasibility to be assessed in view of the building height.\nAdjacent buildings may cast shading on the proposed carport areas, to be reflected in final layouts.\nBuilding orientation poses challenges to optimizing array azimuth and layout.\nUnderground utility locates and trenching will be required to route carport circuits.",
    "pointsOfInterconnection": 4,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
@@ -2287,44 +2181,15 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": false
   }
  },
  {
@@ -2517,44 +2382,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  },
  {
@@ -2747,44 +2585,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  },
  {
@@ -2977,44 +2788,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  },
  {
@@ -3207,44 +2991,17 @@ export const DWS_DATASET = [
    "siteUtility": "",
    "siteSolarProgram": "",
    "layoutImageDataUrl": null,
-   "marketContextTitle": "California State Overview",
-   "marketContextDescription": "California remains one of the largest and most mature distributed solar markets in North America, driven by high retail electricity prices, strong decarbonization policy, and widespread commercial and industrial load centers suitable for rooftop and carport deployment.",
-   "marketContextMonetizationHeader": "Monetization Opportunities",
-   "marketContextMonetizationIntro": "The Net Billing Tariff (NBT) is California's standard compensation framework for commercial solar exports. Under NBT, project economics are driven by the balance between on-site consumption and the value of exported energy.",
-   "marketContextMonetizationRows": [
-    {
-     "mechanism": "On-Site Consumption",
-     "behaviour": "Solar generation first offsets instantaneous on-site consumption at the full avoided retail electricity rate."
-    },
-    {
-     "mechanism": "Excess Exports",
-     "behaviour": "Generation exported to the grid receives a published hourly export credit."
-    },
-    {
-     "mechanism": "Midday Export Pricing",
-     "behaviour": "Generally lower than retail energy rates, particularly during high solar production hours."
-    },
-    {
-     "mechanism": "Evening Exports",
-     "behaviour": "Export values are often materially higher, improving the economics of battery-backed systems."
-    }
-   ],
-   "marketContextImplicationHeader": "Strategic Implication",
-   "marketContextImplicationIntro": "Under the NBT framework, system economics are maximized when generation is consumed on-site or shifted to higher-value evening hours.",
-   "marketContextImplicationRows": [
-    {
-     "priority": "Maximize on-site self-consumption",
-     "rationale": "Each MWh consumed on-site offsets the full retail rate — the highest-value use of generation."
-    },
-    {
-     "priority": "Right-size to tenant load",
-     "rationale": "Sizing capacity to tenant load profiles avoids over-export at depressed midday rates."
-    },
-    {
-     "priority": "Integrated energy store",
-     "rationale": "Battery energy storage systems (BESS) can shift excess generation from midday into higher-value evening export hours."
-    }
-   ]
+   "marketContextTitle": "",
+   "marketContextDescription": "",
+   "marketContextMonetizationHeader": "",
+   "marketContextMonetizationIntro": "",
+   "marketContextMonetizationRows": [],
+   "marketContextImplicationHeader": "",
+   "marketContextImplicationIntro": "",
+   "marketContextImplicationRows": [],
+   "glareStudyRequired": true,
+   "feasGlareMin": 2500,
+   "feasGlareMax": 5000
   }
  }
 ];

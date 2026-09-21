@@ -40,8 +40,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
           <th className="num" style={{ width: '9%' }}>Carport kW DC</th>
           <th className="num" style={{ width: '9%' }}>Total kW DC</th>
           <th className="num" style={{ width: '9%' }}>Yr-1 MWh</th>
-          <th className="num" style={{ width: '10%' }}>Roof Utilization</th>
-          <th className="num" style={{ width: '10%' }}>Parking Utilization</th>
+          <th className="num" style={{ width: '10%' }}>Est. Roof Utilization</th>
+          <th className="num" style={{ width: '10%' }}>Est. Parking Utilization</th>
           <th style={{ width: '24%' }}>Prioritization</th>
         </tr>
       </thead>

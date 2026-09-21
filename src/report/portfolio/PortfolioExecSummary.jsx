@@ -58,6 +58,10 @@ export default function PortfolioExecSummary({ pf, projects }) {
         <div className="capacity-chart-wrap" style={{ height: '190px' }}>
           <PortfolioCapacityChart states={chartStates} />
         </div>
+        <div className="chart-legend">
+          <span className="chart-legend-item"><span className="chart-legend-swatch chart-legend-swatch--rooftop" />Rooftop</span>
+          <span className="chart-legend-item"><span className="chart-legend-swatch chart-legend-swatch--carport" />Carport</span>
+        </div>
       </div>
 
       <div className="card">

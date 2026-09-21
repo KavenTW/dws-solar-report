@@ -29,9 +29,9 @@ export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
                 {p.gridEmissionsRegion && <tr><td>Jurisdiction</td><td>{p.gridEmissionsRegion}</td></tr>}
                 <tr><td>Avg Grid Emissions Factor ({new Date().getFullYear()})*</td><td>{lbsMwhStr}</td></tr>
                 <tr><td>Annual Generation</td><td>{Math.round(calc.annualMwh).toLocaleString()} MWh</td></tr>
-                <tr><td>Annual Avoided CO₂e</td><td><strong>{Math.round(calc.annualCO2e)} tonnes</strong></td></tr>
+                <tr><td>Annual Avoided CO₂e</td><td><strong>{Math.round(calc.annualCO2e).toLocaleString()} tonnes</strong></td></tr>
                 <tr><td>{p.ppaTerm}-Year Avoided CO₂e</td><td><strong>{(Math.round(calc.lifetimeCO2e / 100) * 100).toLocaleString()} tonnes</strong></td></tr>
-                <tr><td>Equiv. {p.equivHomesLabel} Homes / Year**</td><td>~{calc.equivHomes} homes</td></tr>
+                <tr><td>Equiv. {p.equivHomesLabel} Homes / Year**</td><td>~{Math.round(calc.equivHomes).toLocaleString()} homes</td></tr>
               </tbody>
             </table>
             {p.gridEmissionsSource && (

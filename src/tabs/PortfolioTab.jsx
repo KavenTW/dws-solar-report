@@ -75,7 +75,7 @@ export default function PortfolioTab() {
       { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
       { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
       { slug: 'methodology', label: 'Methodology & Basis of Estimates', level: 0 },
-      { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 0 },
+      { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 1 },
       { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
     ];
     for (const abbr of activeStates) {
@@ -255,8 +255,9 @@ export default function PortfolioTab() {
             <PortfolioExecSummary pf={pf} projects={projects} />
             <PortfolioPrioritisation pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
-            <PortfolioMethodology pf={pf} />
-            <PortfolioSizingBasis pf={pf} />
+            <PortfolioMethodology pf={pf}>
+              <PortfolioSizingBasis pf={pf} />
+            </PortfolioMethodology>
             <PortfolioKeyConsiderations pf={pf} />
           </div>
           {activeStates.map(abbr => (

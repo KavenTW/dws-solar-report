@@ -4,8 +4,10 @@ import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip, 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
 /**
- * Stacked capacity-by-state bar (kW DC): rooftop vs carport. Data comes from
- * the included projects so the chart always agrees with the KPI strip.
+ * Stacked capacity bar (kW DC): rooftop vs carport, by prioritization group.
+ * Data comes from the included projects so the chart always agrees with the KPI
+ * strip. The legend is HTML (see PortfolioExecSummary) because a canvas legend
+ * is part of the bitmap and gets clipped when print scales the canvas.
  */
 export default function PortfolioCapacityChart({ states }) {
   const canvasRef = useRef(null);
@@ -28,7 +30,7 @@ export default function PortfolioCapacityChart({ states }) {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } },
+          legend: { display: false }, // rendered as HTML alongside the chart
           tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y.toLocaleString()} kW DC` } },
           datalabels: { display: false },
         },

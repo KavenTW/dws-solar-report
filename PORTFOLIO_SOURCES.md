@@ -55,6 +55,16 @@ Square's roof age is recorded as '3-4 Years' rather than a year and has been
 left blank pending confirmation. Every asset report prints both rows, showing
 'To be confirmed' where the year is not known.
 
+**Glare study.** Priced at $2,500–$5,000, ~4 weeks, noted "If required", and
+included in the site total. Applied to the six assets whose site notes flag a
+glare hazard: London Square, Tropical Center II, 1201 Avenue S, Lakeside A,
+Lakeside B and Post & Paddock.
+
+**Per-asset market context.** The per-project market-context fields are
+populated for California assets only. They previously carried California text
+on all fourteen assets; the section does not render in this document, and the
+non-California copies have been cleared.
+
 **Per-asset Site-Specific Considerations.** Drafted from the "technical notes
 unique to the project" column of "DWS EU Ops Data Request" (August 2026
 revision); airport distances and constraints as stated there.

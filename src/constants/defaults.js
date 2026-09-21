@@ -79,6 +79,10 @@ export const DEFAULT_PROJECT = {
   feasStructuralMax:       15000,
   feasGeotechnicalMin:     10000,
   feasGeotechnicalMax:     15000,
+  // Glare study — only priced where the site notes flag a glare hazard.
+  glareStudyRequired:      false,
+  feasGlareMin:            2500,
+  feasGlareMax:            5000,
   feasInterconnectionMin:  5000,
   feasInterconnectionMax:  5000,
 

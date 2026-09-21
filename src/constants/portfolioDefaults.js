@@ -10,26 +10,25 @@ export const STATE_ORDER = ['CA', 'NV', 'IL', 'FL', 'NC', 'TX'];
 // scorecard that previously set this order has been removed; the order itself
 // is retained.
 
-// ── DRAFT — TO BE REWRITTEN BY GCS ──────────────────────────────────────────
+// ── PLACEHOLDER — GCS to supply the final wording ───────────────────────────
 // One short prioritization line per asset, shown beside the group in the asset
 // summary table (portfolio page and every state one-pager). Keyed by project
-// name; an asset with no entry simply shows its group. Placeholder wording
-// pending the internal prioritization review — edit here, not in the browser.
+// name; an asset with no entry simply shows its group.
 export const PRIORITIZATION_NOTES = {
-  'Eastland Center':              'Largest combined rooftop and carport scope; no roof-replacement constraint.',
-  'Courtyard at the Commons':     'Carport potential subject to clearing trees over the parking area.',
-  'DC Station Retail':            'Limited roof area constrains system size.',
-  '100 Hamilton':                 'Single-tenant building; roof replacement scheduled 2027.',
-  'Tuscany on Fig':               'Redevelopment pending; assessment scoped to the new plans.',
-  'London Square':                'Carport carries most of the site; subject to clearing trees.',
-  'Citria at Fruitville Commons': 'Carport-led; array largely east/west facing.',
-  'The Shops at Oak Brook Place': 'Large roof; the state REC program is the principal driver.',
-  'Tropical Center II':           'Largest site; align with roof replacement scheduled 2030.',
-  'Candour House':                'Distributed small roof areas; multiple points of interconnection.',
-  '1201 Avenue S':                'Highest roof utilization; align with roof replacement scheduled 2027.',
-  'Lakeside A':                   'Scope together with Lakeside B; roof replacement scheduled 2033.',
-  'Lakeside B':                   'Scope together with Lakeside A; roof replacement scheduled 2033.',
-  'Post & Paddock':               'Largest Texas roof; roof replacement scheduled 2033.',
+  'Eastland Center':                'PLACEHOLDER',
+  'Courtyard at the Commons':       'PLACEHOLDER',
+  'DC Station Retail':              'PLACEHOLDER',
+  '100 Hamilton':                   'PLACEHOLDER',
+  'Tuscany on Fig':                 'PLACEHOLDER',
+  'London Square':                  'PLACEHOLDER',
+  'Citria at Fruitville Commons':   'PLACEHOLDER',
+  'The Shops at Oak Brook Place':   'PLACEHOLDER',
+  'Tropical Center II':             'PLACEHOLDER',
+  'Candour House':                  'PLACEHOLDER',
+  '1201 Avenue S':                  'PLACEHOLDER',
+  'Lakeside A':                     'PLACEHOLDER',
+  'Lakeside B':                     'PLACEHOLDER',
+  'Post & Paddock':                 'PLACEHOLDER',
 };
 
 const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level commentary is directional screening; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
@@ -41,7 +40,7 @@ export const PORTFOLIO_DEFAULTS = {
   reportMeta: 'Preliminary Solar Development Opportunity Assessment',
   preparedFor: 'DWS Asset Management',
   preparedBy: 'Great Circle Solar Management Corp.',
-  reportDate: '',
+  reportDate: 'September 22, 2026',
 
   // ── Scope of engagement — Scope 1B of the executed advisory agreement.
   //     Reproduced for the client's reference; edit only against the agreement. ──
@@ -49,8 +48,8 @@ export const PORTFOLIO_DEFAULTS = {
   scopeItems: [
     'Solar Capacity Assessment | Rooftop: where applicable, an estimate of the maximum rooftop solar capacity that could be accommodated based on building footprint and available rooftop area — an illustrative layout, estimated system capacity, and estimated annual production based on site solar resource assumptions.',
     'Solar Capacity Assessment | Carport: where applicable, a high-level estimate of the generation capacity that could be deployed through solar canopies based on parking lot footprint — an illustrative layout, estimated capacity supported by the parking area, and estimated annual production.',
-    'Site Constraint Identification: for each site, the key technical, commercial and data-related constraints that must be addressed before projects can advance to full development feasibility — roof age and replacement timing, structural capacity, electrical infrastructure, tenant electricity consumption data requirements, metering, constraints on sizing or monetization arising from jurisdictional electricity market rules, and other jurisdictional or operational considerations.',
-    'Portfolio Solar Deployment Potential: a portfolio-level summary across the evaluated sites — total estimated rooftop and parking canopy capacity, estimated annual generation potential, and further refinement of site prioritization for near-term opportunities and next steps.',
+    'Site Constraint Identification | For each site, the key technical, commercial and data-related constraints that must be addressed before projects can advance to full development feasibility — roof age and replacement timing, structural capacity, electrical infrastructure, tenant electricity consumption data requirements, metering, constraints on sizing or monetization arising from jurisdictional electricity market rules, and other jurisdictional or operational considerations.',
+    'Portfolio Solar Deployment Potential | A portfolio-level summary across the evaluated sites — total estimated rooftop and parking canopy capacity, estimated annual generation potential, and further refinement of site prioritization for near-term opportunities and next steps.',
   ].join('\n'),
   scopeInfoIntro: 'To complete this analysis, GCS requested the following information for each site:',
   scopeInfoItems: [
@@ -69,7 +68,7 @@ export const PORTFOLIO_DEFAULTS = {
   // ── Next steps (narrative; stage-gate chips render beneath it) ──
   nextSteps: [
     'GCS pre-feasibility for all assets in this document is complete and is reflected in the individual reports.',
-    'For assets selected to advance, the recommended path is a stage-gated sequence of third-party studies: structural feasibility, geotechnical feasibility (carport sites), electrical feasibility (including site load analysis), and preparation of interconnection documentation. Each workstream is estimated at approximately four weeks per site and can run concurrently where preferred; sequencing them instead allows a project to proceed, pause, or redirect before further cost is committed.',
+    'For assets selected to advance, the recommended path is a stage-gated sequence of GCS-conducted pre-feasibility and third-party studies: site load analysis and system sizing, structural feasibility, geotechnical feasibility (carport sites), electrical feasibility, and preparation of interconnection documentation. Each workstream is estimated at approximately four weeks per site and can run concurrently where preferred; sequencing them instead allows a project to proceed, pause, or redirect before further cost is committed.',
     'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. All studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
   ].join('\n\n'),
 
@@ -94,8 +93,8 @@ export const PORTFOLIO_DEFAULTS = {
     },
   ],
 
-  // ── Net metering & system sizing — PLACEHOLDER, to be expanded by GCS.
-  //     Renders immediately after Methodology. ──
+  // ── Net metering & system sizing — renders after the methodology narrative
+  //     and before the glossary. ──
   sizingBasis: [
     'The system capacities presented in this document are maximum buildable capacities: the largest rooftop and carport arrays that the available roof and parking areas can physically accommodate. This reflects the scope of this engagement, which was to quantify maximum solar deployment potential across the portfolio. Analysis of on-site electrical load was not within that scope and has not been performed.',
     'In practice, system size is usually constrained by consumption rather than by area. Net metering and equivalent billing frameworks in most of the states reviewed require a system to be sized at or below the host customer’s own electricity requirements, and several impose explicit capacity caps in addition. Where those rules apply, a system cannot be built to the capacity stated here unless the on-site load supports it.',
@@ -116,7 +115,7 @@ export const PORTFOLIO_DEFAULTS = {
     'System sizing reflects the maximum buildable rooftop and carport layouts identified for each asset using solar design software, subject to the site conditions visible from aerial imagery and available drawings. Actual buildable capacity may be further constrained by site electrical loads and consumption profiles, which are assessed in the next stage of analysis.',
     'Year-one generation is calculated as DC capacity multiplied by the modelled specific production for each array. The monthly figures apply the modelled seasonal profile for each site to that annual total, and are therefore indicative of distribution across the year rather than independent monthly estimates. Roof and parking areas occupied are measured from the proposed layouts; total available areas are measured from aerial imagery.',
     'Avoided-emissions estimates apply regional grid output emission factors published by the U.S. Environmental Protection Agency (eGRID) for each asset’s grid subregion to modelled generation, summed over a 25-year term with 0.5% annual module degradation. Household equivalents reflect average U.S. residential electricity consumption as published by the U.S. Energy Information Administration.',
-    'Indicative feasibility costs are based on quotations obtained from independent, licensed engineering firms for comparable scopes, scaled where noted by site characteristics such as the number of points of interconnection. The number of points of interconnection is estimated from the existing electrical service arrangement identified during pre-feasibility and is confirmed during the electrical study. All figures are preliminary desktop estimates prepared for screening purposes.',
+    'Indicative feasibility costs are based on quotations obtained from independent, licensed engineering firms for comparable scopes, scaled where noted by site characteristics such as the number of points of interconnection. The number of points of interconnection is estimated from the existing electrical service arrangement identified during pre-feasibility and is confirmed through system sizing and electrical assessments. All figures are preliminary desktop estimates prepared for screening purposes.',
   ].join('\n\n'),
 
   // ── Glossary (one entry per line: "Term — definition") ──
@@ -166,15 +165,15 @@ export const PORTFOLIO_DEFAULTS = {
         'Palo Alto and LADWP run separate programs.',
       ].join('\n'),
       marketPosition: [
-        'Highest electricity-rate score in the portfolio; mature solar market.',
+        'High retail and solar-avoided charges for daytime heavy power consumers.',
         'Strongest where daytime demand is sustained.',
-        'Weaker where output would largely be exported.',
+        'Weaker weighted average avoided charges when solar output would largely be exported to the grid at approximately wholesale rates.',
       ].join('\n'),
       utilityBilling: [
         'On-site load is served first under the Net Billing Tariff.',
         'Exports are credited hourly, below the retail import rate.',
         'Demand and non-bypassable charges are not uniformly reduced.',
-        'Model the actual tariff against interval load.',
+        'Best practice requires modelling historic interval loads and simulated solar production against the solar tariff.',
       ].join('\n'),
       recProgram: [
         'Voluntary REC market; no standardized state contract.',
@@ -184,7 +183,7 @@ export const PORTFOLIO_DEFAULTS = {
         'AB 2143 prevailing-wage and reporting requirements apply.',
         'Interconnection is utility-specific under Rule 21.',
         'Municipal utilities have separate eligibility rules.',
-        'Warehouse solar may earn WAIRE points in the South Coast AQMD area.',
+        'Warehouse properties located in the South Coast AQM District over 100,000 SF may unlock additional monetization opportunities through the WAIRE program.',
       ].join('\n'),
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
@@ -196,7 +195,7 @@ export const PORTFOLIO_DEFAULTS = {
       projectSummary: [
         'Excellent solar resource and a favourable billing structure.',
         'A single-utility framework simplifies diligence.',
-        'The 1 MW cap and lower rates are the principal limits.',
+        '1 MW cap on exporting systems, and relatively low retail electricity rates.',
       ].join('\n'),
       marketPosition: [
         'Among the strongest solar resources in the United States.',
@@ -211,13 +210,10 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       recProgram: [
         'Recognized Portfolio Energy Credit market.',
-        'Credits belong to the system owner.',
         'No fixed-price state purchase contract.',
       ].join('\n'),
       devConsiderations: [
         'The 1 MW cap can prevent full use of large roofs.',
-        'Distribution upgrades may still be required.',
-        'Landlord, tenant and customer of record must align.',
       ].join('\n'),
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
@@ -227,7 +223,7 @@ export const PORTFOLIO_DEFAULTS = {
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'ComEd',
       projectSummary: [
-        'The strongest policy-driven market in the group.',
+        'Historically high solar penetration through state-led programs.',
         'Illinois Shines can provide contracted REC revenue.',
         'Weaker resource and supply-only export treatment offset this.',
       ].join('\n'),
@@ -240,7 +236,6 @@ export const PORTFOLIO_DEFAULTS = {
         'Large C&I customers are generally declared supply customers.',
         'Exports receive supply-only net-metering credit.',
         'On-site use still reduces energy and some delivery charges.',
-        'Review the retail supply agreement for export treatment.',
       ].join('\n'),
       recProgram: [
         'Large DG covers 10 kW AC to 2 MW AC behind the meter.',
@@ -249,10 +244,8 @@ export const PORTFOLIO_DEFAULTS = {
         'Pricing, capacity and timing are confirmed each program year.',
       ].join('\n'),
       devConsiderations: [
-        'An Illinois Shines Approved Vendor is required.',
-        'Documentation, metering and verification requirements apply.',
         'Prevailing-wage compliance applies to most projects.',
-        'Hosting capacity and program queues affect timing.',
+        'Hosting capacity and program queues affect timing. PJM is a historically constrained region.',
       ].join('\n'),
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,
@@ -262,10 +255,8 @@ export const PORTFOLIO_DEFAULTS = {
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Florida Power & Light',
       projectSummary: [
-        'Favourable netting and a workable system-size limit.',
-        'The landlord-to-tenant model faces a regulatory constraint.',
-        'A per-kWh sale by a landlord can create public-utility risk.',
-        'Structure so the tenant remains the utility customer.',
+        'Direct sale of electricity from landlord to tenant via a per-kWh PPA may classify the landlord as a public utility.',
+        'Legal review of investment structuring will be required prior to tenant commercial conversations.',
       ].join('\n'),
       marketPosition: [
         'Moderate resource and commercial prices.',
@@ -281,7 +272,6 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       recProgram: [
         'No material state REC procurement for new C&I projects.',
-        'REC revenue should not be assumed.',
       ].join('\n'),
       devConsiderations: [
         'Commercial structure is the central issue.',
@@ -299,11 +289,10 @@ export const PORTFOLIO_DEFAULTS = {
       projectSummary: [
         'Strong net-metering position and a recognized REC market.',
         'Low solar-avoidable electricity rates.',
-        'A per-kWh PPA to a tenant is generally not available.',
-        'A compliant lease cannot price on electrical output.',
+        'Direct sale of electricity from landlord to tenant via a per-kWh PPA may classify the landlord as a public utility.',
+        'State law provides for an equipment lease to the tenant as a compliant alternative, subject to certification and prescribed lease terms.',
       ].join('\n'),
       marketPosition: [
-        'A large state solar sector does not imply strong C&I rooftop economics.',
         'Moderate resource and low large-commercial avoided rates.',
         'Needs strong daytime load and a compliant structure.',
       ].join('\n'),
@@ -321,7 +310,7 @@ export const PORTFOLIO_DEFAULTS = {
       devConsiderations: [
         'An equipment lease to the tenant is the compliant structure.',
         'The lessor must hold an NCUC certificate and register each facility.',
-        'One lessee at one premises, with prescribed lease terms.',
+        'Legal review of investment structuring will be required prior to tenant commercial conversations.',
         'Alternative structures add complexity.',
       ].join('\n'),
       projectsIntro: '',
@@ -355,10 +344,9 @@ export const PORTFOLIO_DEFAULTS = {
         'No state-administered fixed-price purchase program.',
       ].join('\n'),
       devConsiderations: [
-        'Owner, tenant, customer of record, provider and utility must align.',
-        'The delivery utility’s interconnection process must be completed.',
-        'The retail provider must accept the export arrangement.',
-        'No standard tariff creates renewal and repricing risk.',
+        'Dependent on the delivery utility program.',
+        'No standard tariff or state-led programs create renewal and repricing risk.',
+        'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
       ].join('\n'),
       projectsIntro: '',
       screeningNote: SCREENING_NOTE,

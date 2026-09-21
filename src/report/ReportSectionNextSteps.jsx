@@ -27,6 +27,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
     { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
     { label: 'Structural Feasibility (3rd Party)',       min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility (3rd Party)', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax, note: 'For carport solar' }] : []),
+    ...(p.glareStudyRequired ? [{ label: 'Glare Study (3rd Party)', min: p.feasGlareMin, max: p.feasGlareMax, note: 'If required' }] : []),
     { label: 'Electrical Feasibility (3rd Party)',       min: p.feasElectricalMin * points, max: p.feasElectricalMax * points, note: `${points} point${points !== 1 ? 's' : ''} of interconnection × ${fmt(p.feasElectricalMin, p.feasElectricalMax)}/point. Review of metering infrastructure and on-site load analysis is required to confirm which meters to proceed with, prior to commissioning electrical feasibility.` },
     { label: 'Preparation of Interconnection Documentation (3rd Party)', min: p.feasInterconnectionMin, max: p.feasInterconnectionMax, note: '' },
   ];
@@ -34,11 +35,25 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
   const totalMin = feasItems.reduce((s, i) => s + (i.min || 0), 0);
   const totalMax = feasItems.reduce((s, i) => s + (i.max || 0), 0);
 
-  const additionalNotes = p.additionalNotes && (
+  // Roof vintage leads the site-specific list: it gates when works can happen,
+  // so an unknown year is stated rather than left silent.
+  // A replacement field holding prose rather than a year (e.g. a building due
+  // for demolition) replaces the roof-age line entirely — quoting a roof year
+  // for a building that is coming down would read as a contradiction.
+  const replacementIsProse = p.roofReplacementYear && !/^\s*\d{4}\s*$/.test(p.roofReplacementYear);
+  const roofNote = replacementIsProse
+    ? p.roofReplacementYear
+    : p.roofInstallYear
+      ? `Most recent roof replacement ${p.roofInstallYear}.`
+      : 'Most recent roof replacement year to be confirmed.';
+
+  const siteNotes = [roofNote, ...(p.additionalNotes || '').split('\n').filter(Boolean)];
+
+  const additionalNotes = (
     <div style={{ marginTop: embedded ? '0' : '24px', marginBottom: embedded ? '16px' : '0' }}>
       <div className="card-title" style={{ marginBottom: '10px' }}>{embedded ? 'Site-Specific Considerations' : 'Additional Notes'}</div>
       <ul style={{ paddingLeft: '20px', margin: 0 }}>
-        {p.additionalNotes.split('\n').filter(Boolean).map((line, i) => (
+        {siteNotes.map((line, i) => (
           <li key={i} style={{ marginBottom: '6px' }}>{line}</li>
         ))}
       </ul>
@@ -117,6 +132,8 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
             Building on our completed pre-feasibility, the remaining studies can be sequenced rather than run at once — each gate lets the project proceed, pause, or redirect before further cost is committed.
           </p>
           <div className="stage-gate-steps">
+            <span className="stage-gate-step">Electrical Load Analysis</span>
+            <span className="stage-gate-arrow">→</span>
             <span className="stage-gate-step">Structural</span>
             <span className="stage-gate-arrow">→</span>
             {hasCarport && <><span className="stage-gate-step">Geotechnical</span><span className="stage-gate-arrow">→</span></>}

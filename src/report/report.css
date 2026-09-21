@@ -403,6 +403,13 @@
 .consideration-block:first-of-type { margin-top: 8px; }
 .consideration-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 3px; }
 
+/* Chart legend in HTML — a canvas legend is lost when print scales the chart. */
+.chart-legend { display: flex; justify-content: center; gap: 22px; margin-top: 8px; font-size: 12px; color: var(--muted); }
+.chart-legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.chart-legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+.chart-legend-swatch--rooftop { background: #005FAB; }
+.chart-legend-swatch--carport { background: #FBA31B; }
+
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
 .feas-table { table-layout: fixed; width: 100%; }
@@ -515,6 +522,9 @@
   .scope-list li { margin-bottom: 3px; line-height: 1.38; }
   .consideration-block { margin-top: 7px; }
   .consideration-title { margin-bottom: 1px; }
+  .chart-legend { font-size: 9px; gap: 16px; margin-top: 5px; }
+  .chart-legend-swatch { width: 9px; height: 9px; }
+  .portfolio-page li, .portfolio-report li { font-size: 10px; }
   .portfolio-page .footnote { font-size: 8.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
   .state-score-badge { padding: 5px 12px; }

@@ -1,9 +1,10 @@
 /**
- * Methodology & basis of estimates, plus a short glossary — auditability
- * carried inside the document. Both blocks are editable portfolio text.
+ * Methodology & basis of estimates, then any sections passed as children, then
+ * a short glossary — auditability carried inside the document. Net Metering &
+ * System Sizing renders as a child so it sits ahead of the glossary.
  * Glossary format: one entry per line, "Term — definition".
  */
-export default function PortfolioMethodology({ pf }) {
+export default function PortfolioMethodology({ pf, children }) {
   const glossaryRows = pf.glossary
     .split('\n')
     .map(line => {
@@ -22,6 +23,8 @@ export default function PortfolioMethodology({ pf }) {
           <p key={i} className="portfolio-para">{para}</p>
         ))}
       </div>
+
+      {children}
 
       <div className="card">
         <div className="card-title">Glossary</div>

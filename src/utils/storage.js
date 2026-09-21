@@ -1,7 +1,7 @@
 const STORAGE_KEY = 'gcsr_projects';
 const DRAFT_KEY = 'gcsr_draft';
 const SIZE_WARN_BYTES = 4 * 1024 * 1024; // 4 MB
-export const CURRENT_VERSION = 9;
+export const CURRENT_VERSION = 10;
 
 /**
  * Applies any schema migrations needed to bring an older saved entry up to the
@@ -147,6 +147,20 @@ function migrateProject(entry) {
         roofReplacementYear: d.roofReplacementYear ?? '',
       },
       version: 9,
+    };
+  }
+  // v9 → v10: glare study priced as its own line where the site requires one.
+  if (entry.version < 10) {
+    const d = entry.data;
+    entry = {
+      ...entry,
+      data: {
+        ...d,
+        glareStudyRequired: d.glareStudyRequired ?? false,
+        feasGlareMin: d.feasGlareMin ?? 2500,
+        feasGlareMax: d.feasGlareMax ?? 5000,
+      },
+      version: 10,
     };
   }
   return entry;
