@@ -28,8 +28,9 @@ state one-pager narrative, which remains in the document.
 > **OPEN ITEM — needs GCS sign-off before the document is issued.** The three
 > prioritization groups are the document's central recommendation, and this
 > register currently records no basis for them. The membership seeded in
-> `portfolioDefaults.js` is a DRAFT assigned for review, and the per-asset
-> lines in `PRIORITIZATION_NOTES` are placeholder wording. Until the factors
+> `portfolioDefaults.js` is a DRAFT assigned for review. Per-asset
+> prioritization notes have been retired — the group rationale on the
+> Proposed Asset Prioritization page is now the only explanation. Until the factors
 > and their relative weighting are recorded here, the document makes a
 > prioritization claim with nothing auditable behind it — the same gap raised
 > in review of the previous scorecard-based ranking.

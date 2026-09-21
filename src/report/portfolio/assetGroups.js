@@ -46,5 +46,8 @@ export function groupAssets(assets, groups) {
   }
 
   if (unassigned.assets.length) out.push(unassigned);
+  // Largest first within each group, so the table reads as deliberate rather
+  // than in whatever order the projects happen to be saved.
+  for (const g of out) g.assets.sort((a, b) => (b.calc?.totalDCkW || 0) - (a.calc?.totalDCkW || 0));
   return out.filter(g => g.assets.length > 0);
 }

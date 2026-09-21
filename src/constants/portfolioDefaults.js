@@ -10,26 +10,6 @@ export const STATE_ORDER = ['CA', 'NV', 'IL', 'FL', 'NC', 'TX'];
 // scorecard that previously set this order has been removed; the order itself
 // is retained.
 
-// ── PLACEHOLDER — GCS to supply the final wording ───────────────────────────
-// One short prioritization line per asset, shown beside the group in the asset
-// summary table (portfolio page and every state one-pager). Keyed by project
-// name; an asset with no entry simply shows its group.
-export const PRIORITIZATION_NOTES = {
-  'Eastland Center':                'PLACEHOLDER',
-  'Courtyard at the Commons':       'PLACEHOLDER',
-  'DC Station Retail':              'PLACEHOLDER',
-  '100 Hamilton':                   'PLACEHOLDER',
-  'Tuscany on Fig':                 'PLACEHOLDER',
-  'London Square':                  'PLACEHOLDER',
-  'Citria at Fruitville Commons':   'PLACEHOLDER',
-  'The Shops at Oak Brook Place':   'PLACEHOLDER',
-  'Tropical Center II':             'PLACEHOLDER',
-  'Candour House':                  'PLACEHOLDER',
-  '1201 Avenue S':                  'PLACEHOLDER',
-  'Lakeside A':                     'PLACEHOLDER',
-  'Lakeside B':                     'PLACEHOLDER',
-  'Post & Paddock':                 'PLACEHOLDER',
-};
 
 const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level commentary is directional screening; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
 
@@ -89,7 +69,7 @@ export const PORTFOLIO_DEFAULTS = {
     {
       name: 'Prioritization Group 3',
       assets: 'Tropical Center II; Post & Paddock; Lakeside B; Lakeside A',
-      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity, or questionable economics.',
+      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, or where deployment is best aligned with scheduled roof replacement.',
     },
   ],
 
