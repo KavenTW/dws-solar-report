@@ -73,7 +73,10 @@ revision); airport distances and constraints as stated there.
 specific production, and Year-1 generation reflect the "DWS EU Ops Data
 Request" August 2026 revision (rooftop layouts changed to landscape
 orientation, 10° tilt, 1.2 ft row spacing, except Citria at Fruitville).
-Portfolio totals under this revision: 31,399 kW DC; 51,169 MWh Year-1.
+Portfolio totals under this revision: 31,401 kW DC; 51,169 MWh Year-1.
+Capacity columns total the rounded per-asset values so printed columns add up
+to their printed totals; this puts the headline at 31,401 rather than the
+31,399 that summing unrounded values and rounding once produced.
 Monthly production distributions are the June 2026 PVsyst seasonal profile
 (twelve percentages summing to 100%) applied to the August annual totals —
 the August workbook's monthly rows were left blank for ops input. GCS has

@@ -18,17 +18,23 @@ const numOrDash = v => (v > 0 ? num(v) : '—');
 export default function AssetSummaryTable({ groups, tiers, showGroupLabels = true, showTotals = true }) {
   const tierOf = buildGroupLookup(tiers);
   const all = groups.flatMap(g => g.assets);
-  const sum = fn => all.reduce((s, x) => s + (fn(x) || 0), 0);
+  // Capacity columns total the ROUNDED row values, so the printed column adds
+  // up to the printed total. Summing the raw values first and rounding once is
+  // marginally more accurate but leaves the column short by a kilowatt or two,
+  // which is what a reader checking the arithmetic actually sees.
+  const sum = fn => all.reduce((s, x) => s + Math.round(fn(x) || 0), 0);
+  // Areas stay unrounded: they feed a percentage, not a printed column.
+  const sumRaw = fn => all.reduce((s, x) => s + (fn(x) || 0), 0);
 
   const t = {
     rooftopDC: sum(x => x.p.rooftopSizeDCkW),
     carportDC: sum(x => x.p.carportSizeDCkW),
     totalDC:   sum(x => x.calc.totalDCkW),
     mwh:       sum(x => x.calc.annualMwh),
-    roofUsed:  sum(x => x.p.rooftopAreaUsedSqFt),
-    roofTotal: sum(x => x.p.rooftopTotalSqFt),
-    parkUsed:  sum(x => x.p.carportAreaUsedSqFt),
-    parkTotal: sum(x => x.p.carportTotalSqFt),
+    roofUsed:  sumRaw(x => x.p.rooftopAreaUsedSqFt),
+    roofTotal: sumRaw(x => x.p.rooftopTotalSqFt),
+    parkUsed:  sumRaw(x => x.p.carportAreaUsedSqFt),
+    parkTotal: sumRaw(x => x.p.carportTotalSqFt),
   };
 
   return (

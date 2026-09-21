@@ -10,8 +10,10 @@ const AVG_HOME_KWH_YR = 10632; // U.S. EIA average annual household consumption
  */
 export default function PortfolioExecSummary({ pf, projects }) {
   const ok = projects.filter(x => x.calc);
-  const totalDC = ok.reduce((s, x) => s + (x.calc.totalDCkW || 0), 0);
-  const totalMwh = ok.reduce((s, x) => s + (x.calc.annualMwh || 0), 0);
+  // Rounded per asset before summing, matching the Portfolio Asset Summary
+  // total row — the KPI strip and that table must state the same number.
+  const totalDC = ok.reduce((s, x) => s + Math.round(x.calc.totalDCkW || 0), 0);
+  const totalMwh = ok.reduce((s, x) => s + Math.round(x.calc.annualMwh || 0), 0);
   const totalLifetimeCO2e = ok.reduce((s, x) => s + (x.calc.lifetimeCO2e || 0), 0);
   const stateCount = new Set(ok.map(x => x.p.province)).size;
   const equivHomes = Math.round((totalMwh * 1000) / AVG_HOME_KWH_YR);

@@ -35,6 +35,8 @@ export default function PortfolioNextSteps({ pf }) {
             Building on completed pre-feasibility, the remaining studies can be sequenced per asset — each gate lets a project proceed, pause, or redirect before further cost is committed.
           </p>
           <div className="stage-gate-steps">
+            <span className="stage-gate-step">Electrical Load Analysis</span>
+            <span className="stage-gate-arrow">→</span>
             <span className="stage-gate-step">Structural</span>
             <span className="stage-gate-arrow">→</span>
             <span className="stage-gate-step">Geotechnical (carport sites)</span>

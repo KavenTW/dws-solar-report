@@ -7,8 +7,10 @@ import AssetSummaryTable from './AssetSummaryTable';
  */
 export default function StateOnePager({ abbr, state, projects, tiers, appendixLetter }) {
   const ok = projects.filter(x => x.calc);
-  const totalDC = ok.reduce((s, x) => s + (x.calc.totalDCkW || 0), 0);
-  const totalMwh = ok.reduce((s, x) => s + (x.calc.annualMwh || 0), 0);
+  // Rounded per asset before summing, so the intro sentence states the same
+  // figure as the total row of the table directly beneath it.
+  const totalDC = ok.reduce((s, x) => s + Math.round(x.calc.totalDCkW || 0), 0);
+  const totalMwh = ok.reduce((s, x) => s + Math.round(x.calc.annualMwh || 0), 0);
 
   // One-pager narrative is written as short bullets — one per line in the
   // editable field. Legacy paragraph text still renders, as a single bullet.
