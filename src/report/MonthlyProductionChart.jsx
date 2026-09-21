@@ -29,7 +29,10 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
 
     const values = monthlyMwh.map(v => Math.round(v));
     const total  = values.reduce((s, v) => s + v, 0);
-    const peak   = Math.max(...values);
+    // The first month at the maximum, not every month matching it: on a small
+    // site the rounded values tie (100 Hamilton peaks at 6 MWh in four months)
+    // and testing the value would label all of them.
+    const peakIndex = values.indexOf(Math.max(...values));
 
     chartRef.current = new Chart(canvasRef.current, {
       type: 'bar',
@@ -61,7 +64,7 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
             font: { size: 10, weight: '600' },
             color: CHART_INK,
             // the extreme only
-            display: ctx => ctx.dataset.data[ctx.dataIndex] === peak,
+            display: ctx => ctx.dataIndex === peakIndex,
             formatter: v => `${v.toLocaleString()} MWh`,
           },
         },

@@ -565,7 +565,10 @@
   .scenario-label-high { background: #FBA31B !important; color: #fff !important; }
 
   /* ── Layout photo ── */
-  .layout-photo { max-height: 230px; }
+  /* 500px is the largest that keeps an asset report to three pages: the
+     picture fills ~600 of the 660px column instead of 276, and the grey
+     letterbox object-fit leaves either side all but disappears. */
+  .layout-photo { max-height: 500px; background: transparent; }
 
   /* ── Charts (shorter in print to reclaim vertical space) ── */
   #cashflowChart { height: 180px !important; }
