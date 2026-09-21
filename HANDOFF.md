@@ -24,17 +24,23 @@ prioritization basis, and Karen's review of the rebuilt document.
    *Included Reports* (see "Known traps").
 4. Test print, spot-check a few page numbers, print final.
 
-The document is **51 pages** as currently issued. Title-page date is seeded as
-22 September 2026.
+The document is **64 pages**. Title-page date is seeded as 22 September 2026.
 
-**The Illustrative Solar Array Layout section has never printed.** It is
-screen-only whenever the asset carries no layout image, and no issued version
-has carried one — so the 14 HelioScope layouts bundled in `public/layouts/`,
-and the roof-vintage table inside that section, appear in no PDF to date. Roof
-years still reach the reader through Site-Specific Considerations, so nothing
-is lost, but the layouts are absent by accident rather than by decision.
-Loading them takes one click and runs the document to **64 pages** (every asset
-report goes from two pages to three). Open question for the user.
+The 14 HelioScope layouts are served from `/layouts` in the deploy and
+referenced by URL — nothing is copied into localStorage, so the store holds
+**0.06 MB** against the 2.87 MB the old copy-and-compress path used, and the
+images print at full 2400x2000 resolution instead of 1100px/q0.60. They need
+no loading step.
+
+`attachBundledLayouts` is gone. It keyed on the *saved project name*, so a
+dated save (for example "Eastland Center 2026.07.02") matched nothing and
+returned silently — which is why no issued PDF up to 21 September contained a
+single layout, and why the roof-vintage table that lives in that section never
+printed either. Six assets carry a tentative roof replacement year (100
+Hamilton 2027, 1201 Avenue S 2027, Tropical Center II 2030, Post & Paddock,
+Lakeside A and Lakeside B 2033); those now print in the site note and the
+table, so the Key Considerations claim about scheduled replacements and Group
+3's rationale are both supported by the document again.
 
 ## Document structure
 

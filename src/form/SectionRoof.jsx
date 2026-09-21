@@ -34,7 +34,7 @@ export default function SectionRoof() {
           placeholder="e.g. 2014 — blank prints “To be confirmed”"
         />
       </FormField>
-      <FormField label="Scheduled Roof Replacement" fieldId="roofReplacementYear">
+      <FormField label="Tentative Roof Replacement" fieldId="roofReplacementYear">
         <input
           type="text"
           id="roofReplacementYear"

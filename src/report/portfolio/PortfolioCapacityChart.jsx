@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
+import { CHART_INK, CHART_GRID, SERIES_ROOFTOP, SERIES_CARPORT } from '../chartTheme';
 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -24,8 +25,9 @@ export default function PortfolioCapacityChart({ states }) {
       data: {
         labels: states.map(s => s.name),
         datasets: [
-          { label: 'Rooftop', data: states.map(s => Math.round(s.rooftopDC)), backgroundColor: '#005FAB', borderRadius: 3, borderSkipped: false, barThickness: 22 },
-          { label: 'Carport', data: states.map(s => Math.round(s.carportDC)), backgroundColor: '#FBA31B', borderRadius: 3, borderSkipped: false, barThickness: 22 },
+          // 2px of surface between the stacked segments, rather than a border
+          { label: 'Rooftop', data: states.map(s => Math.round(s.rooftopDC)), backgroundColor: SERIES_ROOFTOP, borderRadius: 4, borderSkipped: false, barThickness: 22, borderColor: '#ffffff', borderWidth: { right: 2 } },
+          { label: 'Carport', data: states.map(s => Math.round(s.carportDC)), backgroundColor: SERIES_CARPORT, borderRadius: 4, borderSkipped: false, barThickness: 22 },
         ],
       },
       options: {
@@ -38,8 +40,15 @@ export default function PortfolioCapacityChart({ states }) {
           datalabels: { display: false },
         },
         scales: {
-          x: { stacked: true, grid: { color: '#e5e7eb' }, ticks: { font: { size: 10 }, color: '#6b7280', callback: v => v.toLocaleString() }, beginAtZero: true },
-          y: { stacked: true, grid: { display: false }, ticks: { font: { size: 10 }, color: '#6b7280' } },
+          x: {
+            stacked: true,
+            grid: { color: CHART_GRID, drawTicks: false },
+            border: { display: false },
+            title: { display: true, text: 'kW DC', font: { size: 10 }, color: CHART_INK },
+            ticks: { font: { size: 10 }, color: CHART_INK, maxTicksLimit: 6, callback: v => v.toLocaleString() },
+            beginAtZero: true,
+          },
+          y: { stacked: true, grid: { display: false }, border: { color: CHART_GRID }, ticks: { font: { size: 10 }, color: CHART_INK } },
         },
       },
     });

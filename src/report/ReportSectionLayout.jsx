@@ -1,11 +1,17 @@
+import { bundledLayoutFor } from '../utils/bundledLayouts';
+
 export default function ReportSectionLayout({ p, calc }) {
   const cityShort = p.city.split(',')[0].trim();
   const caption = `Simulated using HelioScope (NREL / NASA POWER) — ${p.address}, ${cityShort} — ${Math.round(calc.totalDCkW).toLocaleString()} kW DC`;
   const hasLocationData = p.siteLatLong || p.siteClimateZone || p.sitePSH || p.siteGHI || p.siteAvgTemp;
 
-  // No image: the placeholder (and, if the card would be empty, the whole
+  // An uploaded image wins; otherwise fall back to the layout bundled with the
+  // deploy, which is served by URL rather than stored per project.
+  const layoutSrc = p.layoutImageDataUrl || bundledLayoutFor(p.projectName, p.name);
+
+  // No image at all: the placeholder (and, if the card would be empty, the whole
   // section) is screen-only — internal upload instructions must never print.
-  const sectionClass = !p.layoutImageDataUrl && !hasLocationData
+  const sectionClass = !layoutSrc && !hasLocationData
     ? 'section section--no-break layout-empty'
     : 'section section--no-break';
 
@@ -13,9 +19,9 @@ export default function ReportSectionLayout({ p, calc }) {
     <div className={sectionClass}>
       <div className="section-title">Illustrative Solar Array Layout</div>
       <div className="card">
-        {p.layoutImageDataUrl ? (
+        {layoutSrc ? (
           <>
-            <img src={p.layoutImageDataUrl} alt={`HelioScope Array Layout — ${p.address}`} className="layout-photo" />
+            <img src={layoutSrc} alt={`HelioScope Array Layout — ${p.address}`} className="layout-photo" />
             <div className="photo-caption">{caption}</div>
           </>
         ) : (
@@ -39,7 +45,7 @@ export default function ReportSectionLayout({ p, calc }) {
               <td>{p.roofInstallYear || <span className="muted-note">To be confirmed</span>}</td>
             </tr>
             <tr>
-              <td>Scheduled Roof Replacement</td>
+              <td>Tentative Roof Replacement</td>
               <td>{p.roofReplacementYear || <span className="muted-note">To be confirmed</span>}</td>
             </tr>
           </tbody>

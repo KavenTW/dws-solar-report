@@ -1,20 +1,24 @@
 import { useEffect, useRef } from 'react';
 import { Chart, BarController, BarElement, CategoryScale, LinearScale, Tooltip } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { CHART_INK, CHART_GRID, SERIES_ROOFTOP } from './chartTheme';
 
 Chart.register(BarController, BarElement, CategoryScale, LinearScale, Tooltip, ChartDataLabels);
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-function barColor(value, max) {
-  const ratio = value / max;
-  if (ratio >= 0.90) return '#FFCE02';
-  if (ratio >= 0.70) return '#FBA31B';
-  if (ratio >= 0.55) return '#005FAB';
-  if (ratio >= 0.35) return '#0B468D';
-  return '#112877';
-}
-
+/**
+ * Monthly generation, one bar per month.
+ *
+ * One series, so one colour. The chart previously ramped each bar across five
+ * hues by its share of the maximum, which encoded bar height a second time in
+ * colour and put two bars reading the same percentage in different colours —
+ * March and August both printed 9%, one yellow and one orange. Height carries
+ * magnitude; colour carries nothing here, so it stays constant.
+ *
+ * Only the peak month is labelled. A value above all twelve bars is noise on
+ * paper, and the axis already carries the rest.
+ */
 export default function MonthlyProductionChart({ monthlyMwh }) {
   const canvasRef = useRef(null);
   const chartRef  = useRef(null);
@@ -23,29 +27,31 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
     if (!canvasRef.current) return;
     if (chartRef.current) chartRef.current.destroy();
 
-    const total = monthlyMwh.reduce((s, v) => s + v, 0);
-    const max   = Math.max(...monthlyMwh);
-    const colors = monthlyMwh.map(v => barColor(v, max));
+    const values = monthlyMwh.map(v => Math.round(v));
+    const total  = values.reduce((s, v) => s + v, 0);
+    const peak   = Math.max(...values);
 
     chartRef.current = new Chart(canvasRef.current, {
       type: 'bar',
       data: {
         labels: MONTHS,
         datasets: [{
-          data: monthlyMwh.map(v => Math.round(v)),
-          backgroundColor: colors,
+          data: values,
+          backgroundColor: SERIES_ROOFTOP,
           borderRadius: 4,
           borderSkipped: false,
+          categoryPercentage: 0.82, // ~2px of surface between adjacent bars
+          barPercentage: 0.9,
         }],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
-          legend: { display: false },
+          legend: { display: false }, // one series — the section title names it
           tooltip: {
             callbacks: {
-              label: ctx => ` ${Math.round(ctx.parsed.y).toLocaleString()} MWh (${Math.round(ctx.parsed.y / total * 100)}%)`,
+              label: ctx => ` ${ctx.parsed.y.toLocaleString()} MWh (${total ? Math.round(ctx.parsed.y / total * 100) : 0}%)`,
             },
           },
           datalabels: {
@@ -53,23 +59,29 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
             align: 'top',
             offset: 0,
             font: { size: 10, weight: '600' },
-            color: '#374151',
-            textAlign: 'center',
-            formatter: (value) => `${Math.round(value / total * 100)}%`,
+            color: CHART_INK,
+            // the extreme only
+            display: ctx => ctx.dataset.data[ctx.dataIndex] === peak,
+            formatter: v => `${v.toLocaleString()} MWh`,
           },
         },
         layout: { padding: { top: 20 } },
         scales: {
           x: {
             grid: { display: false },
-            ticks: { font: { size: 11 }, color: '#6b7280' },
+            border: { color: CHART_GRID },
+            ticks: { font: { size: 11 }, color: CHART_INK },
           },
           y: {
-            grid: { color: '#e5e7eb' },
+            grid: { color: CHART_GRID, drawTicks: false },
+            border: { display: false },
+            // unit named once on the axis, not repeated on every tick
+            title: { display: true, text: 'MWh', font: { size: 10 }, color: CHART_INK },
             ticks: {
               font: { size: 11 },
-              color: '#6b7280',
-              callback: v => `${Math.round(v).toLocaleString()} MWh`,
+              color: CHART_INK,
+              maxTicksLimit: 5,
+              callback: v => Math.round(v).toLocaleString(),
             },
             beginAtZero: true,
           },

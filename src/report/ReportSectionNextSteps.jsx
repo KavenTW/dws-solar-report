@@ -40,12 +40,19 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
   // A replacement field holding prose rather than a year (e.g. a building due
   // for demolition) replaces the roof-age line entirely — quoting a roof year
   // for a building that is coming down would read as a contradiction.
+  // A replacement year still to come is stated as tentative and appended, so a
+  // forward-dated roof is never lost behind the last replacement — it is what
+  // decides whether an array can be built now or should wait for the works.
   const replacementIsProse = p.roofReplacementYear && !/^\s*\d{4}\s*$/.test(p.roofReplacementYear);
+  const replacementYear = replacementIsProse ? null : (p.roofReplacementYear || '').trim();
+  const pastNote = p.roofInstallYear
+    ? `Most recent roof replacement ${p.roofInstallYear}`
+    : 'Most recent roof replacement year to be confirmed';
   const roofNote = replacementIsProse
     ? p.roofReplacementYear
-    : p.roofInstallYear
-      ? `Most recent roof replacement ${p.roofInstallYear}.`
-      : 'Most recent roof replacement year to be confirmed.';
+    : replacementYear
+      ? `${pastNote}; tentative roof replacement year ${replacementYear}.`
+      : `${pastNote}.`;
 
   const siteNotes = [roofNote, ...(p.additionalNotes || '').split('\n').filter(Boolean)];
 

@@ -388,7 +388,7 @@
 .chart-legend-item { display: inline-flex; align-items: center; gap: 6px; }
 .chart-legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
 .chart-legend-swatch--rooftop { background: #005FAB; }
-.chart-legend-swatch--carport { background: #FBA31B; }
+.chart-legend-swatch--carport { background: #CC7A00; }
 
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
