@@ -63,7 +63,10 @@ Summary -> Methodology & Basis of Estimates (with Net Metering & System Sizing,
 then Glossary, on the same page) -> Key Considerations -> the six state
 one-pagers in fixed order (**CA, NV, IL, FL, NC, TX**) -> Next Steps ->
 closing Disclaimer -> Appendices: an index page, then Appendix A-F, one per
-state, each followed by that state's individual asset reports.
+state, each followed by that state's individual asset reports. Assets are
+ordered prioritization group first, then largest capacity, within each state —
+the appendices, the contents and the state tables all read from that one sort,
+so page order never depends on localStorage ordering.
 
 Key directories:
 

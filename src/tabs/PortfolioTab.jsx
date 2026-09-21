@@ -8,6 +8,7 @@ import { DEFAULT_PROJECT } from '../constants/defaults';
 import { STATE_ORDER } from '../constants/portfolioDefaults';
 import { computeCalc } from '../utils/calculations';
 import { estimateTocPages } from '../utils/pageEstimate';
+import { normalize } from '../report/portfolio/assetGroups';
 import ErrorBoundary from '../ErrorBoundary';
 import ReportDocument from '../report/ReportDocument';
 import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
@@ -53,11 +54,24 @@ export default function PortfolioTab() {
       });
   }, [saved, pf.excludedProjects]);
 
+  // Within a state: prioritization group first, then largest capacity. Saved
+  // order is whatever sequence the projects happen to occupy in storage, which
+  // would make the appendices — and every page number — depend on browser state.
   const byState = useMemo(() => {
+    const groupIndex = new Map();
+    (pf.tiers || []).forEach((tier, i) =>
+      (tier.assets || '').split(';').map(a => a.trim()).filter(Boolean)
+        .forEach(a => groupIndex.set(normalize(a), i)));
+    const rank = x => groupIndex.get(normalize(x.p.projectName || x.entry.name)) ?? 99;
+
     const map = {};
-    for (const abbr of STATE_ORDER) map[abbr] = projects.filter(x => x.p.province === abbr);
+    for (const abbr of STATE_ORDER) {
+      map[abbr] = projects
+        .filter(x => x.p.province === abbr)
+        .sort((a, b) => rank(a) - rank(b) || (b.calc?.totalDCkW || 0) - (a.calc?.totalDCkW || 0));
+    }
     return map;
-  }, [projects]);
+  }, [projects, pf.tiers]);
 
   const activeStates = STATE_ORDER.filter(abbr => byState[abbr].length > 0);
 
