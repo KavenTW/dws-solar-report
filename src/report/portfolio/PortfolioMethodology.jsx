@@ -16,7 +16,7 @@ export default function PortfolioMethodology({ pf, children }) {
     .filter(r => r.term);
 
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="methodology">
       <div className="section-title">Methodology &amp; Basis of Estimates</div>
       <div className="card" style={{ marginBottom: '16px' }}>
         {pf.methodology.split('\n').filter(Boolean).map((para, i) => (

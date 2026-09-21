@@ -12,7 +12,7 @@ export default function PortfolioAssetSummary({ pf, projects }) {
   const groups = groupAssets(ok, pf.tiers);
 
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="asset-summary">
       <div className="section-title">Portfolio Asset Summary</div>
       <div className="card">
         <AssetSummaryTable groups={groups} tiers={pf.tiers} />

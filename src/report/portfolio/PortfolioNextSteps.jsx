@@ -2,7 +2,7 @@ import { TECHNICAL_ITEMS } from '../../constants/technicalItems';
 
 export default function PortfolioNextSteps({ pf }) {
   return (
-    <div className="section portfolio-page portfolio-page--flow">
+    <div className="section portfolio-page portfolio-page--flow" id="next-steps">
       <div className="section-title">Next Steps</div>
       <div className="card">
         {pf.nextSteps.split('\n').filter(Boolean).map((para, i) => (

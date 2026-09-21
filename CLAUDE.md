@@ -128,6 +128,11 @@ block of `report.css`:
   case-insensitive regex when checking rendered text.
 - **The screenshot tool times out here.** Verify via DOM measurement and text
   extraction instead.
+- **TOC page numbers** are estimated in-app by `utils/pageEstimate.js` — the
+  real @media print rules are read out of document.styleSheets, applied as
+  ordinary rules, and the document walked counting pages. Each page block
+  carries an id matching its TOC slug. Still an estimate; verify against a
+  test print.
 - **To check print page-fit:** inject the real `@media print` rules as screen
   rules (fetch `/src/report/report.css`, slice the print block), clamp
   `.container` to 690px, then measure element heights against 941px. This

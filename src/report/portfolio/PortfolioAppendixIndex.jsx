@@ -7,7 +7,7 @@ export default function PortfolioAppendixIndex({ states }) {
   const total = states.reduce((n, s) => n + s.assets.length, 0);
 
   return (
-    <div className="section portfolio-page appendix-divider">
+    <div className="section portfolio-page appendix-divider" id="appendices">
       <div className="appendix-eyebrow">Appendices</div>
       <div className="section-title">Individual Asset Reports</div>
       <div className="card">

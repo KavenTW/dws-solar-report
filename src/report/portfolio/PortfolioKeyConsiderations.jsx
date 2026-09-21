@@ -7,7 +7,7 @@ export default function PortfolioKeyConsiderations({ pf }) {
   const lines = (pf.keyConsiderations || '').split('\n').map(s => s.trim()).filter(Boolean);
 
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="key-considerations">
       <div className="section-title">Key Considerations</div>
       <div className="card">
         <p className="portfolio-para" style={{ marginTop: 0 }}>{pf.keyConsiderationsIntro}</p>

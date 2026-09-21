@@ -7,6 +7,7 @@ import { compressImage } from '../utils/imageCompress';
 import { DEFAULT_PROJECT } from '../constants/defaults';
 import { STATE_ORDER } from '../constants/portfolioDefaults';
 import { computeCalc } from '../utils/calculations';
+import { estimateTocPages } from '../utils/pageEstimate';
 import ErrorBoundary from '../ErrorBoundary';
 import ReportDocument from '../report/ReportDocument';
 import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
@@ -152,6 +153,23 @@ export default function PortfolioTab() {
               </button>
               <button
                 className="report-btn report-btn--outline"
+                style={{ marginBottom: '8px', display: 'block' }}
+                onClick={() => {
+                  if (!window.confirm('Estimate the table-of-contents page numbers from the current document and fill them in?\n\nThis measures the document against the printed page size. It is an estimate — check it against one test print before sending the document out. Any numbers you have already entered will be replaced.')) return;
+                  const result = estimateTocPages({ 'sizing-basis': 'methodology' });
+                  if (!result) { window.alert('Could not measure the document. Close the editor so the report is on screen, then try again.'); return; }
+                  let filled = 0;
+                  for (const { slug } of tocEntries) {
+                    const page = result.pages[slug];
+                    if (page != null) { setTocPage(slug, String(page)); filled++; }
+                  }
+                  window.alert(`Filled ${filled} of ${tocEntries.length} entries. Document is approximately ${result.totalPages} pages.\n\nVerify against a test print before issuing.`);
+                }}
+              >
+                Estimate TOC page numbers
+              </button>
+              <button
+                className="report-btn report-btn--outline"
                 onClick={() => {
                   if (window.confirm('Replace ALL portfolio text (title page, executive summary, state pages, next steps, disclaimer) with the latest defaults? Your report selections and TOC page numbers are kept. This cannot be undone.')) {
                     resetContent();
@@ -290,7 +308,7 @@ export default function PortfolioTab() {
           {activeStates.map(abbr => (
             <div key={`appendix-${abbr}`}>
               <div className="container">
-                <div className="section portfolio-page appendix-divider">
+                <div className="section portfolio-page appendix-divider" id={`appendix-${abbr}`}>
                   <div className="appendix-eyebrow">Appendix {appendixOf[abbr]}</div>
                   <div className="section-title">{pf.states[abbr].name} — Asset Reports</div>
                   <p className="portfolio-para">
@@ -299,7 +317,7 @@ export default function PortfolioTab() {
                 </div>
               </div>
               {byState[abbr].map(({ entry, p, calc, err }) => (
-                <div key={entry.id} className="portfolio-report">
+                <div key={entry.id} id={`project-${entry.id}`} className="portfolio-report">
                   {calc ? (
                     <ReportDocument p={p} calc={calc} embedded />
                   ) : (

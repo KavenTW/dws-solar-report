@@ -16,7 +16,7 @@ export default function PortfolioScope({ pf }) {
   };
 
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="scope">
       <div className="section-title">Scope of Engagement</div>
       <div className="card">
         <p className="portfolio-para" style={{ marginTop: 0 }}>{pf.scopeIntro}</p>

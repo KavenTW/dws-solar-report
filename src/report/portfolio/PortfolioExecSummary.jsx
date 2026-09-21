@@ -39,7 +39,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
     .filter(g => g.rooftopDC + g.carportDC > 0);
 
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="exec-summary">
       <div className="section-title">Executive Summary</div>
       <div className="kpi-grid" style={{ marginBottom: '16px' }}>
         <div className="kpi-card">
@@ -96,7 +96,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
 /** Own page: the tier table plus rationale — decision layer of the document. */
 export function PortfolioPrioritisation({ pf }) {
   return (
-    <div className="section portfolio-page">
+    <div className="section portfolio-page" id="prioritisation">
       <div className="section-title">Proposed Asset Prioritization</div>
       <div className="card">
         <table className="market-table">
