@@ -10,9 +10,6 @@ export const STATE_ORDER = ['CA', 'NV', 'IL', 'FL', 'NC', 'TX'];
 // scorecard that previously set this order has been removed; the order itself
 // is retained.
 
-
-const SCREENING_NOTE = 'Screening note: Current as at the date of this document. State-level commentary is directional screening; final underwriting requires the applicable utility tariff, interval load, interconnection review and project-specific legal documentation.';
-
 export const PORTFOLIO_DEFAULTS = {
   // ── Title page ──
   title: 'Portfolio Solar Deployment Potential',
@@ -109,15 +106,12 @@ export const PORTFOLIO_DEFAULTS = {
     'Renewable Energy Certificate (REC) — A tradeable certificate representing the environmental attributes of one MWh of renewable generation.',
     'WAIRE — The South Coast AQMD Warehouse Actions and Investments to Reduce Emissions program, under which qualifying on-site solar earns compliance points.',
     'Geotechnical assessment — Subsurface investigation confirming foundation conditions, required for carport structures.',
-    'ERCOT — Electric Reliability Council of Texas, the grid operator for most of Texas.',
     'CO₂e — Carbon-dioxide equivalent, the standard unit for greenhouse-gas accounting.',
   ].join('\n'),
 
   // ── Proposed immediate actions (bullet list at the end of Next Steps) ──
   nextActions: [
-    'DWS to confirm the priority assets to advance to stage-one structural feasibility.',
-    'GCS to obtain firm structural-feasibility quotations and confirmed timelines for the selected assets.',
-    'Remaining gates (geotechnical for carport sites, electrical, and interconnection documentation) to proceed per the sequence above as each stage clears.',
+    'DWS and GCS to discuss and agree upon assets to advance to feasibility based on project specifics and program objectives.',
   ].join('\n'),
 
   // ── Document-level disclaimer (renders once, at the very end) ──
@@ -166,7 +160,6 @@ export const PORTFOLIO_DEFAULTS = {
         'Warehouse properties located in the South Coast AQM District over 100,000 SF may unlock additional monetization opportunities through the WAIRE program.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
     NV: {
       name: 'Nevada',
@@ -196,7 +189,6 @@ export const PORTFOLIO_DEFAULTS = {
         'The 1 MW cap can prevent full use of large roofs.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
     IL: {
       name: 'Illinois',
@@ -228,7 +220,6 @@ export const PORTFOLIO_DEFAULTS = {
         'Hosting capacity and program queues affect timing. PJM is a historically constrained region.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
     FL: {
       name: 'Florida',
@@ -260,14 +251,13 @@ export const PORTFOLIO_DEFAULTS = {
         'Hurricane wind load and corrosion engineering where applicable.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
     NC: {
       name: 'North Carolina',
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Duke Energy Carolinas / Duke Energy Progress',
       projectSummary: [
-        'Strong net-metering position and a recognized REC market.',
+        'Strong net-metering position.',
         'Low solar-avoidable electricity rates.',
         'Direct sale of electricity from landlord to tenant via a per-kWh PPA may classify the landlord as a public utility.',
         'State law provides for an equipment lease to the tenant as a compliant alternative, subject to certification and prescribed lease terms.',
@@ -280,7 +270,6 @@ export const PORTFOLIO_DEFAULTS = {
         'Net metering is available up to 1,000 kW.',
         'Leased systems are capped at the customer’s contract demand.',
         'Systems must offset no more than the tenant’s own use.',
-        'Rate protection at interconnection runs to 1 January 2027.',
       ].join('\n'),
       recProgram: [
         'NC-RETS tracks RECs for portfolio-standard compliance.',
@@ -294,7 +283,6 @@ export const PORTFOLIO_DEFAULTS = {
         'Alternative structures add complexity.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
     TX: {
       name: 'Texas',
@@ -319,7 +307,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Export credit may be capped or unavailable.',
       ].join('\n'),
       recProgram: [
-        'ERCOT administers a statewide REC trading program.',
+        'The state administers a REC trading program.',
         'Credits may be sold bilaterally or passed to the tenant.',
         'No state-administered fixed-price purchase program.',
       ].join('\n'),
@@ -329,7 +317,6 @@ export const PORTFOLIO_DEFAULTS = {
         'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
       ].join('\n'),
       projectsIntro: '',
-      screeningNote: SCREENING_NOTE,
     },
   },
 };

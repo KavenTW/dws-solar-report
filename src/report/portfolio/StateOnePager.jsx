@@ -37,7 +37,7 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
 
       <div className="card">
         <div className="state-text-cols">
-          {block('Project Summary', state.projectSummary)}
+          {block('State Summary', state.projectSummary)}
           {block('Market Position', state.marketPosition)}
           {block('Utility Billing and Avoided Value', state.utilityBilling)}
           {block('State-Led REC Program', state.recProgram)}
@@ -62,8 +62,6 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
             </p>
           )}
         </div>
-
-        <div className="footnote" style={{ marginTop: '10px' }}>{state.screeningNote}</div>
       </div>
     </div>
   );

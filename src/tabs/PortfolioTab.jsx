@@ -27,7 +27,7 @@ import '../report/report.css';
 import '../styles/form.css';
 
 const STATE_EDIT_FIELDS = [
-  ['projectSummary', 'Project Summary'],
+  ['projectSummary', 'State Summary'],
   ['marketPosition', 'Market Position'],
   ['utilityBilling', 'Utility Billing and Avoided Value'],
   ['recProgram', 'State-Led REC Program'],
@@ -274,7 +274,6 @@ export default function PortfolioTab() {
               {STATE_EDIT_FIELDS.map(([key, label]) =>
                 <span key={key}>{txt(label, pf.states[editorState][key], v => setStateField(editorState, key, v), 4)}</span>
               )}
-              {txt('Screening note', pf.states[editorState].screeningNote, v => setStateField(editorState, 'screeningNote', v), 2)}
             </div>
           </div>
         </div>
