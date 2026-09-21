@@ -1,7 +1,8 @@
 /**
  * Table of contents. Browsers cannot compute print page numbers, so each row
- * carries a small editable field: do one test print, fill the numbers in, then
- * print final. Values persist in the portfolio state.
+ * carries a small editable field. Fill them with the "Estimate TOC page
+ * numbers" button in the editor, or by hand. Values persist in the portfolio
+ * state and are kept across a text reset.
  */
 export default function PortfolioTOC({ pf, entries, setTocPage }) {
   return (
@@ -28,9 +29,6 @@ export default function PortfolioTOC({ pf, entries, setTocPage }) {
             ))}
           </tbody>
         </table>
-        <div className="footnote no-print" style={{ marginTop: '10px' }}>
-          Page numbers are entered manually: run one test print, note the page each section lands on, fill these in, then print the final document.
-        </div>
       </div>
     </div>
   );
