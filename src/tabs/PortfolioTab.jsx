@@ -292,8 +292,9 @@ export default function PortfolioTab() {
             </PortfolioScope>
             <PortfolioExecSummary pf={pf} projects={projects} />
             <PortfolioDisclaimer pf={pf} />
-            <PortfolioAssetSummary pf={pf} projects={projects} />
-            <PortfolioPrioritisation pf={pf} />
+            <PortfolioAssetSummary pf={pf} projects={projects}>
+              <PortfolioPrioritisation pf={pf} />
+            </PortfolioAssetSummary>
             <PortfolioKeyConsiderations pf={pf} />
           </div>
           {activeStates.map(abbr => (

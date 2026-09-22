@@ -93,10 +93,14 @@ export default function PortfolioExecSummary({ pf, projects }) {
   );
 }
 
-/** Own page: the tier table plus rationale — decision layer of the document. */
+/**
+ * The group table plus rationale — the decision layer of the document. Renders
+ * beneath the Portfolio Asset Summary on the same page, which is where the
+ * group membership it refers to is shown.
+ */
 export function PortfolioPrioritisation({ pf }) {
   return (
-    <div className="section portfolio-page" id="prioritisation">
+    <div className="section" id="prioritisation">
       <div className="section-title">Proposed Asset Prioritization</div>
       <div className="card">
         <table className="market-table">
@@ -109,7 +113,7 @@ export function PortfolioPrioritisation({ pf }) {
           <tbody>
             {/* `tier.assets` still drives the grouping everywhere else; it is
                 simply not printed here. Membership is shown by the Portfolio
-                Asset Summary on the preceding page. */}
+                Asset Summary directly above. */}
             {pf.tiers.map((tier, i) => (
               <tr key={i}>
                 <td><strong>{tier.name}</strong></td>
