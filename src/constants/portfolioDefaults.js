@@ -28,12 +28,6 @@ export const PORTFOLIO_DEFAULTS = {
     'Site Constraint Identification | For each site, the key technical, commercial and data-related constraints that must be addressed before projects can advance to full development feasibility — roof age and replacement timing, structural capacity, electrical infrastructure, tenant electricity consumption data requirements, metering, constraints on sizing or monetization arising from jurisdictional electricity market rules, and other jurisdictional or operational considerations.',
     'Portfolio Solar Deployment Potential | A portfolio-level summary across the evaluated sites — total estimated rooftop and parking canopy capacity, estimated annual generation potential, and further refinement of site prioritization for near-term opportunities and next steps.',
   ].join('\n'),
-  scopeInfoIntro: 'To complete this analysis, GCS requested the following information for each site:',
-  scopeInfoItems: [
-    'Roof information: most recent roof replacement year and any planned replacements.',
-    'Roof layout: where applicable, roof layout drawings and total roof area.',
-    'Parking area layout: where applicable, parking lot layout drawings and total area.',
-  ].join('\n'),
 
   // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
   execSummary: [
@@ -159,6 +153,13 @@ export const PORTFOLIO_DEFAULTS = {
         'Municipal utilities have separate eligibility rules.',
         'Warehouse properties located in the South Coast AQM District over 100,000 SF may unlock additional monetization opportunities through the WAIRE program.',
       ].join('\n'),
+      groupingRationale: [
+        'Eastland Center | ',
+        'Courtyard at the Commons | ',
+        'DC Station Retail | ',
+        'Tuscany on Fig | ',
+        '100 Hamilton | ',
+      ].join('\n'),
       projectsIntro: '',
     },
     NV: {
@@ -187,6 +188,9 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       devConsiderations: [
         'The 1 MW cap can prevent full use of large roofs.',
+      ].join('\n'),
+      groupingRationale: [
+        'Tropical Center II | ',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -219,6 +223,9 @@ export const PORTFOLIO_DEFAULTS = {
         'Prevailing-wage compliance applies to most projects.',
         'Hosting capacity and program queues affect timing. PJM is a historically constrained region.',
       ].join('\n'),
+      groupingRationale: [
+        'The Shops at Oak Brook Place | ',
+      ].join('\n'),
       projectsIntro: '',
     },
     FL: {
@@ -249,6 +256,10 @@ export const PORTFOLIO_DEFAULTS = {
         'Tier 3 review, disconnect and protection equipment apply.',
         'Transformer upgrades may be required.',
         'Hurricane wind load and corrosion engineering where applicable.',
+      ].join('\n'),
+      groupingRationale: [
+        'Citria at Fruitville Commons | ',
+        'London Square | ',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -281,6 +292,9 @@ export const PORTFOLIO_DEFAULTS = {
         'The lessor must hold an NCUC certificate and register each facility.',
         'Legal review of investment structuring will be required prior to tenant commercial conversations.',
         'Alternative structures add complexity.',
+      ].join('\n'),
+      groupingRationale: [
+        'Candour House | ',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -315,6 +329,12 @@ export const PORTFOLIO_DEFAULTS = {
         'Dependent on the delivery utility program.',
         'No standard tariff or state-led programs create renewal and repricing risk.',
         'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
+      ].join('\n'),
+      groupingRationale: [
+        '1201 Avenue S | ',
+        'Post & Paddock | ',
+        'Lakeside B | ',
+        'Lakeside A | ',
       ].join('\n'),
       projectsIntro: '',
     },

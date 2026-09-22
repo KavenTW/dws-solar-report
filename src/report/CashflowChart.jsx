@@ -28,7 +28,7 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
       options: {
         responsive: true,
         plugins: {
-          legend: { labels: { color: CHART_AXIS_COLOR, font: { size: 12 } } },
+          legend: { labels: { color: CHART_AXIS_COLOR, font: { size: 13 } } },
           tooltip: {
             callbacks: {
               label: ctx => {
@@ -40,7 +40,7 @@ export default function CashflowChart({ scenarios, labels, ppaTerm }) {
         },
         scales: {
           y: {
-            title: { display: true, text: 'USD', color: CHART_AXIS_COLOR, font: { size: 12 } },
+            title: { display: true, text: 'USD', color: CHART_AXIS_COLOR, font: { size: 13 } },
             grid: { color: CHART_GRID_COLOR },
             ticks: {
               color: CHART_AXIS_COLOR,

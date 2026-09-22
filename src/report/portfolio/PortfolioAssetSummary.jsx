@@ -17,7 +17,7 @@ export default function PortfolioAssetSummary({ pf, projects }) {
       <div className="card">
         <AssetSummaryTable groups={groups} tiers={pf.tiers} />
         <div className="footnote" style={{ marginTop: '8px' }}>
-          Rooftop and carport capacities are the maximum buildable layouts identified at pre-feasibility and are subject to the site load and structural analysis described in Next Steps. Utilization is the area occupied by the proposed layout as a share of the total measured area; portfolio utilization is area-weighted. Grouping follows the proposed prioritization on the preceding page. Calculation bases are set out in Methodology &amp; Basis of Estimates.
+          Rooftop and carport capacities are the maximum buildable layouts identified at pre-feasibility and are subject to the site load and structural analysis described in Next Steps. Avoided emissions apply the applicable regional grid emissions factor and include module degradation over the term. Grouping follows the proposed prioritization set out on the following page. Calculation bases are set out in Methodology &amp; Basis of Estimates.
         </div>
       </div>
     </div>

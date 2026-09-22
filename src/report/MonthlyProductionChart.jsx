@@ -61,7 +61,7 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
             anchor: 'end',
             align: 'top',
             offset: 0,
-            font: { size: 10, weight: '600' },
+            font: { size: 11, weight: '600' },
             color: CHART_INK,
             // the extreme only
             display: ctx => ctx.dataIndex === peakIndex,
@@ -73,15 +73,15 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
           x: {
             grid: { display: false },
             border: { color: CHART_GRID },
-            ticks: { font: { size: 11 }, color: CHART_INK },
+            ticks: { font: { size: 12 }, color: CHART_INK },
           },
           y: {
             grid: { color: CHART_GRID, drawTicks: false },
             border: { display: false },
             // unit named once on the axis, not repeated on every tick
-            title: { display: true, text: 'MWh', font: { size: 10 }, color: CHART_INK },
+            title: { display: true, text: 'MWh', font: { size: 11 }, color: CHART_INK },
             ticks: {
-              font: { size: 11 },
+              font: { size: 12 },
               color: CHART_INK,
               maxTicksLimit: 5,
               callback: v => Math.round(v).toLocaleString(),

@@ -32,6 +32,7 @@ const STATE_EDIT_FIELDS = [
   ['recProgram', 'State-Led REC Program'],
   ['devConsiderations', 'Development Considerations'],
   ['projectsIntro', 'Projects intro — extra sentence(s) after the computed summary line'],
+  ['groupingRationale', 'Grouping rationale — one asset per line: Asset Name | why it sits in its group'],
 ];
 
 export default function PortfolioTab() {
@@ -85,12 +86,13 @@ export default function PortfolioTab() {
   const tocEntries = useMemo(() => {
     const rows = [
       { slug: 'scope', label: 'Scope of Engagement', level: 0 },
-      { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
-      { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
-      { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
-      { slug: 'methodology', label: 'Methodology & Basis of Estimates', level: 0 },
+      { slug: 'methodology', label: 'Methodology & Basis of Estimates', level: 1 },
       { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 1 },
+      { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
+      { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
+      { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
       { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
+      { slug: 'glossary', label: 'Glossary', level: 1 },
     ];
     for (const abbr of activeStates) {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
@@ -209,8 +211,6 @@ export default function PortfolioTab() {
               <div className="portfolio-editor-heading">Scope of Engagement</div>
               {txt('Intro paragraph', pf.scopeIntro, v => set('scopeIntro', v), 4)}
               {txt('Scope items (one per line; "Heading | detail")', pf.scopeItems, v => set('scopeItems', v), 8)}
-              {txt('Information requirements intro', pf.scopeInfoIntro, v => set('scopeInfoIntro', v), 2)}
-              {txt('Information requirements (one per line)', pf.scopeInfoItems, v => set('scopeInfoItems', v), 4)}
 
               <div className="portfolio-editor-heading">Net Metering &amp; System Sizing</div>
               {txt('Narrative (blank line = new paragraph)', pf.sizingBasis, v => set('sizingBasis', v), 8)}
@@ -287,13 +287,14 @@ export default function PortfolioTab() {
           <PortfolioTitlePage pf={pf} />
           <div className="container">
             <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
-            <PortfolioScope pf={pf} />
+            <PortfolioScope pf={pf}>
+              <PortfolioMethodology pf={pf}>
+                <PortfolioSizingBasis pf={pf} />
+              </PortfolioMethodology>
+            </PortfolioScope>
             <PortfolioExecSummary pf={pf} projects={projects} />
-            <PortfolioPrioritisation pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
-            <PortfolioMethodology pf={pf}>
-              <PortfolioSizingBasis pf={pf} />
-            </PortfolioMethodology>
+            <PortfolioPrioritisation pf={pf} />
             <PortfolioKeyConsiderations pf={pf} />
           </div>
           {activeStates.map(abbr => (

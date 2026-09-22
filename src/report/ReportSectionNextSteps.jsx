@@ -106,7 +106,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
                 <td><strong>{label}</strong></td>
                 <td>{fmt(min, max)}</td>
                 <td>{hasCost ? '~4 weeks' : ''}</td>
-                <td style={{ fontSize: '11px', color: 'var(--muted)' }}>{note}</td>
+                <td style={{ fontSize: '12px', color: 'var(--muted)' }}>{note}</td>
               </tr>
             );
           })}
@@ -114,7 +114,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
             <td><strong>Total</strong></td>
             <td><strong>{fmt(totalMin, totalMax)}</strong></td>
             <td><strong>~4 weeks</strong></td>
-            <td style={{ fontSize: '11px' }}>All workstreams run concurrently, per site</td>
+            <td style={{ fontSize: '12px' }}>All workstreams run concurrently, per site</td>
           </tr>
         </tbody>
       </table>

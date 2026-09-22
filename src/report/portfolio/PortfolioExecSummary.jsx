@@ -102,16 +102,17 @@ export function PortfolioPrioritisation({ pf }) {
         <table className="market-table">
           <thead>
             <tr>
-              <th style={{ width: '24%' }}>Group</th>
-              <th style={{ width: '36%' }}>Assets</th>
+              <th style={{ width: '26%' }}>Group</th>
               <th>Rationale</th>
             </tr>
           </thead>
           <tbody>
+            {/* `tier.assets` still drives the grouping everywhere else; it is
+                simply not printed here. Membership is shown by the Portfolio
+                Asset Summary on the preceding page. */}
             {pf.tiers.map((tier, i) => (
               <tr key={i}>
                 <td><strong>{tier.name}</strong></td>
-                <td>{tier.assets.split(';').map(a => a.trim()).filter(Boolean).join(' · ')}</td>
                 <td>{tier.rationale}</td>
               </tr>
             ))}

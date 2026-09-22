@@ -12,7 +12,7 @@ export default function PortfolioSizingBasis({ pf }) {
   const paras = (pf.sizingBasis || '').split('\n').filter(Boolean);
 
   return (
-    <div className="sizing-basis-block">
+    <div className="sizing-basis-block" id="sizing-basis">
       <div className="card" style={{ marginBottom: '6px' }}>
         <div className="card-title">Net Metering &amp; System Sizing</div>
         {paras.map((para, i) => (

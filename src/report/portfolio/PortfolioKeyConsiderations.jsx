@@ -6,6 +6,17 @@
 export default function PortfolioKeyConsiderations({ pf }) {
   const lines = (pf.keyConsiderations || '').split('\n').map(s => s.trim()).filter(Boolean);
 
+  // Glossary format: one entry per line, "Term — definition".
+  const glossaryRows = (pf.glossary || '')
+    .split('\n')
+    .map(line => {
+      const idx = line.indexOf(' — ');
+      return idx === -1
+        ? { term: line.trim(), def: '' }
+        : { term: line.slice(0, idx).trim(), def: line.slice(idx + 3).trim() };
+    })
+    .filter(r => r.term);
+
   return (
     <div className="section portfolio-page" id="key-considerations">
       <div className="section-title">Key Considerations</div>
@@ -21,6 +32,20 @@ export default function PortfolioKeyConsiderations({ pf }) {
             </div>
           );
         })}
+      </div>
+
+      <div className="card" id="glossary" style={{ marginTop: '12px' }}>
+        <div className="card-title">Glossary</div>
+        <table className="market-table">
+          <tbody>
+            {glossaryRows.map(({ term, def }) => (
+              <tr key={term}>
+                <td style={{ width: '30%' }}><strong>{term}</strong></td>
+                <td>{def}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   );

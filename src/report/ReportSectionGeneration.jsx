@@ -11,7 +11,7 @@ export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
         {p.showGenerationSection && (
           <div className="card">
             <div className="card-title">Monthly Production Distribution</div>
-            <div style={{ marginBottom: '10px', fontSize: '13px', color: 'var(--muted)' }}>
+            <div style={{ marginBottom: '10px', fontSize: '14px', color: 'var(--muted)' }}>
               Annual Total: <strong style={{ color: 'var(--primary-dark)' }}>{Math.round(calc.annualMwh).toLocaleString()} MWh</strong>
               &nbsp;&bull;&nbsp; HelioScope / PVsyst simulation basis
             </div>

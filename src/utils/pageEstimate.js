@@ -51,6 +51,11 @@ function packSections(el) {
   let pages = 1;
   let used = 0;
   let gap = 0; // trailing margin of the section above
+  // Ids carried by a section, or anything inside it, resolve to the page that
+  // section lands on — a contents entry for a sub-section (Methodology inside
+  // the Scope page, the Glossary inside Key Considerations) needs the page it
+  // actually prints on, not the page its host block starts on.
+  const ids = {};
   for (const section of sections) {
     const h = section.getBoundingClientRect().height;
     if (h <= 1) continue;
@@ -66,8 +71,12 @@ function packSections(el) {
       used += cost;
     }
     gap = parseFloat(getComputedStyle(section).marginBottom) || 0;
+
+    const offset = pages - 1;
+    if (section.id) ids[section.id] = offset;
+    for (const el2 of section.querySelectorAll('[id]')) ids[el2.id] = offset;
   }
-  return pages;
+  return { pages, ids };
 }
 
 /**
@@ -105,10 +114,15 @@ export function estimateTocPages(extraSlugMap = {}) {
       let span;
       if (block.classList.contains('portfolio-title-page')) {
         span = 1; // full-bleed cover, always exactly one page
-      } else if (block.classList.contains('portfolio-report')) {
-        span = packSections(block);
+      } else if (block.classList.contains('portfolio-report') || block.querySelectorAll(':scope > .section').length > 1) {
+        // Several whole sections packed into pages — asset reports, and any
+        // front-matter page carrying more than one section.
+        const packed = packSections(block);
+        span = packed.pages;
+        for (const [id, offset] of Object.entries(packed.ids)) pages[id] = page + offset;
       } else {
         span = Math.max(1, Math.ceil(block.getBoundingClientRect().height / PAGE_HEIGHT));
+        for (const el of block.querySelectorAll('[id]')) pages[el.id] ??= page;
       }
       page += span;
     }

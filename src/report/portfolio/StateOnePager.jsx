@@ -1,4 +1,5 @@
 import AssetSummaryTable from './AssetSummaryTable';
+import { normalize, buildGroupLookup } from './assetGroups';
 
 /**
  * State market one-pager: editable narrative bullets for the state, followed
@@ -14,6 +15,21 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
 
   // One-pager narrative is written as short bullets — one per line in the
   // editable field. Legacy paragraph text still renders, as a single bullet.
+  // Why each asset in this state sits in the group it does. Written one asset
+  // per line as "Asset Name | rationale"; an asset with no line still gets a
+  // row, so a missing explanation is visible rather than silently absent.
+  const rationaleOf = new Map(
+    (state.groupingRationale || '').split('\n').map(l => l.trim()).filter(Boolean).map(line => {
+      const [name, ...rest] = line.split('|');
+      return [normalize(name), rest.join('|').trim()];
+    })
+  );
+  const tierOf = buildGroupLookup(tiers);
+  const rationaleRows = ok.map(({ entry, p }) => {
+    const name = p.projectName || entry.name;
+    return { name, tier: tierOf.get(normalize(name)), text: rationaleOf.get(normalize(name)) || '' };
+  });
+
   const block = (title, text) => text && (
     <div className="state-block">
       <div className="state-block-title">{title}</div>
@@ -62,6 +78,30 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
             </p>
           )}
         </div>
+
+        {rationaleRows.length > 0 && (
+          <div className="state-block">
+            <div className="state-block-title">Grouping Rationale</div>
+            <table className="market-table">
+              <thead>
+                <tr>
+                  <th style={{ width: '28%' }}>Asset</th>
+                  <th style={{ width: '16%' }}>Group</th>
+                  <th>Rationale</th>
+                </tr>
+              </thead>
+              <tbody>
+                {rationaleRows.map(({ name, tier, text }) => (
+                  <tr key={name}>
+                    <td>{name}</td>
+                    <td>{tier || '—'}</td>
+                    <td className={text ? undefined : 'muted-note'}>{text || 'To be provided'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

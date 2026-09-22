@@ -1,14 +1,17 @@
 import { Fragment } from 'react';
 import { normalize, buildGroupLookup } from './assetGroups';
 
-const pct = (used, total) => (total > 0 ? `${Math.round((used / total) * 100)}%` : '—');
 const num = v => Math.round(v || 0).toLocaleString();
 const numOrDash = v => (v > 0 ? num(v) : '—');
+// The asset reports print lifetime CO₂e rounded to the nearest 100 tonnes.
+// Rounding the same way here keeps the summary tied to the appendix a reader
+// checks it against.
+const co2Lifetime = v => Math.round((v || 0) / 100) * 100;
 
 /**
- * One row per asset: capacity split, generation and area utilization. Shared by
- * the portfolio-wide Asset Summary page and by each state one-pager, so the two
- * can never disagree.
+ * One row per asset: capacity split, generation and avoided emissions. Shared
+ * by the portfolio-wide Asset Summary page and by each state one-pager, so the
+ * two can never disagree.
  *
  * Where the group renders as a band row across the table (showGroupLabels), the
  * prioritization column is dropped: repeating the group on every row under its
@@ -17,7 +20,7 @@ const numOrDash = v => (v > 0 ? num(v) : '—');
  *
  * `groups` is [{ key, label, assets }] — the label renders as a band row and
  * is omitted when there is only one group (the state pages).
- * `totals` adds the area-weighted footer row.
+ * `showTotals` adds the footer row.
  */
 export default function AssetSummaryTable({ groups, tiers, showGroupLabels = true, showTotals = true }) {
   const tierOf = buildGroupLookup(tiers);
@@ -29,19 +32,20 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
   // marginally more accurate but leaves the column short by a kilowatt or two,
   // which is what a reader checking the arithmetic actually sees.
   const sum = fn => all.reduce((s, x) => s + Math.round(fn(x) || 0), 0);
-  // Areas stay unrounded: they feed a percentage, not a printed column.
-  const sumRaw = fn => all.reduce((s, x) => s + (fn(x) || 0), 0);
 
   const t = {
     rooftopDC: sum(x => x.p.rooftopSizeDCkW),
     carportDC: sum(x => x.p.carportSizeDCkW),
     totalDC:   sum(x => x.calc.totalDCkW),
     mwh:       sum(x => x.calc.annualMwh),
-    roofUsed:  sumRaw(x => x.p.rooftopAreaUsedSqFt),
-    roofTotal: sumRaw(x => x.p.rooftopTotalSqFt),
-    parkUsed:  sumRaw(x => x.p.carportAreaUsedSqFt),
-    parkTotal: sumRaw(x => x.p.carportTotalSqFt),
+    annualCO2: sum(x => x.calc.annualCO2e),
+    lifeCO2:   all.reduce((s, x) => s + co2Lifetime(x.calc.lifetimeCO2e), 0),
   };
+
+  // Every asset in this portfolio runs a 25-year term; label it only when they
+  // agree, so a mixed set never claims a term it does not have.
+  const terms = [...new Set(all.map(x => x.p.ppaTerm).filter(Boolean))];
+  const lifeLabel = terms.length === 1 ? `Lifetime CO₂e (${terms[0]} yr, t)` : 'Lifetime CO₂e (t)';
 
   return (
     <table className="market-table asset-summary">
@@ -52,8 +56,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Carport kW DC</th>
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Total kW DC</th>
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Yr-1 MWh</th>
-          <th className="num" style={{ width: showGroupColumn ? '10%' : '12%' }}>Est. Roof Utilization</th>
-          <th className="num" style={{ width: showGroupColumn ? '10%' : '12%' }}>Est. Parking Utilization</th>
+          <th className="num" style={{ width: showGroupColumn ? '10%' : '12%' }}>Annual CO₂e (t)</th>
+          <th className="num" style={{ width: showGroupColumn ? '10%' : '12%' }}>{lifeLabel}</th>
           {showGroupColumn && <th style={{ width: '24%' }}>Prioritization</th>}
         </tr>
       </thead>
@@ -75,8 +79,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
                   <td className="num">{numOrDash(p.carportSizeDCkW)}</td>
                   <td className="num">{num(calc.totalDCkW)}</td>
                   <td className="num">{num(calc.annualMwh)}</td>
-                  <td className="num">{pct(p.rooftopAreaUsedSqFt, p.rooftopTotalSqFt)}</td>
-                  <td className="num">{pct(p.carportAreaUsedSqFt, p.carportTotalSqFt)}</td>
+                  <td className="num">{num(calc.annualCO2e)}</td>
+                  <td className="num">{co2Lifetime(calc.lifetimeCO2e).toLocaleString()}</td>
                   {showGroupColumn && <td>{tier ? <span className="prio-tier">{tier}</span> : '—'}</td>}
                 </tr>
               );
@@ -90,8 +94,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
             <td className="num">{num(t.carportDC)}</td>
             <td className="num">{num(t.totalDC)}</td>
             <td className="num">{num(t.mwh)}</td>
-            <td className="num">{pct(t.roofUsed, t.roofTotal)}</td>
-            <td className="num">{pct(t.parkUsed, t.parkTotal)}</td>
+            <td className="num">{num(t.annualCO2)}</td>
+            <td className="num">{t.lifeCO2.toLocaleString()}</td>
             {showGroupColumn && <td />}
           </tr>
         )}
