@@ -15,7 +15,8 @@ export default function PortfolioAssetSummary({ pf, projects }) {
     <div className="section portfolio-page" id="asset-summary">
       <div className="section-title">Portfolio Asset Summary</div>
       <div className="card">
-        <AssetSummaryTable groups={groups} tiers={pf.tiers} />
+        {/* State only here: the one-pagers are already a single state. */}
+        <AssetSummaryTable groups={groups} tiers={pf.tiers} showState />
         <div className="footnote" style={{ marginTop: '8px' }}>
           Rooftop and carport capacities are the maximum buildable layouts identified at pre-feasibility and are subject to the site load and structural analysis described in Next Steps. Avoided emissions apply the applicable regional grid emissions factor and include module degradation over the term. Grouping follows the proposed prioritization set out on the following page. Calculation bases are set out in Methodology &amp; Basis of Estimates.
         </div>

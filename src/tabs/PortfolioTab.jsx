@@ -21,7 +21,6 @@ import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
 import PortfolioDisclaimer from '../report/portfolio/PortfolioDisclaimer';
-import PortfolioAppendixIndex from '../report/portfolio/PortfolioAppendixIndex';
 import '../report/report.css';
 import '../styles/form.css';
 
@@ -98,7 +97,6 @@ export default function PortfolioTab() {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
     }
     rows.push({ slug: 'next-steps', label: 'Next Steps', level: 0 });
-    rows.push({ slug: 'appendices', label: 'Appendices', level: 0 });
     for (const abbr of activeStates) {
       rows.push({
         slug: `appendix-${abbr}`,
@@ -293,6 +291,7 @@ export default function PortfolioTab() {
               </PortfolioMethodology>
             </PortfolioScope>
             <PortfolioExecSummary pf={pf} projects={projects} />
+            <PortfolioDisclaimer pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
             <PortfolioPrioritisation pf={pf} />
             <PortfolioKeyConsiderations pf={pf} />
@@ -310,29 +309,17 @@ export default function PortfolioTab() {
           ))}
           <div className="container">
             <PortfolioNextSteps pf={pf} />
-            <PortfolioDisclaimer pf={pf} />
-          </div>
-
-          <div className="container">
-            <PortfolioAppendixIndex
-              states={activeStates.map(abbr => ({
-                abbr,
-                letter: appendixOf[abbr],
-                name: pf.states[abbr].name,
-                assets: byState[abbr].map(({ entry, p }) => p.projectName || entry.name),
-              }))}
-            />
           </div>
 
           {activeStates.map(abbr => (
             <div key={`appendix-${abbr}`}>
               <div className="container">
                 <div className="section portfolio-page appendix-divider" id={`appendix-${abbr}`}>
-                  <div className="appendix-eyebrow">Appendix {appendixOf[abbr]}</div>
-                  <div className="section-title">{pf.states[abbr].name} — Asset Reports</div>
-                  <p className="portfolio-para">
-                    Individual opportunity assessments for the {byState[abbr].length} {pf.states[abbr].name} asset{byState[abbr].length !== 1 ? 's' : ''} summarized in the {pf.states[abbr].name} market one-pager.
-                  </p>
+                  <div className="appendix-divider-inner">
+                    <div className="appendix-divider-letter">Appendix {appendixOf[abbr]}</div>
+                    <div className="appendix-divider-title">{pf.states[abbr].name}</div>
+                    <div className="appendix-divider-sub">Asset Reports</div>
+                  </div>
                 </div>
               </div>
               {byState[abbr].map(({ entry, p, calc, err }) => (

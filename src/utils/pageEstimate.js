@@ -79,6 +79,24 @@ function packSections(el) {
   return { pages, ids };
 }
 
+const BLOCK_SEL = '.portfolio-title-page, .portfolio-page, .portfolio-report';
+
+/**
+ * True when an element starts a printed page, or merely wraps things that do.
+ * The layout nests blocks inside `.container` wrappers, so a sibling that
+ * *contains* blocks is structure, not trailing content — absorbing one would
+ * swallow the rest of the document.
+ */
+const isBlock = el =>
+  !!(el.matches?.(BLOCK_SEL) || el.querySelector?.(BLOCK_SEL));
+
+/** How much of a block's last page its own content already occupies. */
+const blockTail = (block, span) => {
+  const h = block.getBoundingClientRect().height;
+  const rem = h - (span - 1) * PAGE_HEIGHT;
+  return rem > 0 ? rem : 0;
+};
+
 /**
  * Returns { pages: { slug: pageNumber }, pagesByName: { assetName: pageNumber },
  * totalPages }, or null when the document is not on screen. Applies the print
@@ -124,6 +142,18 @@ export function estimateTocPages(extraSlugMap = {}) {
         span = Math.max(1, Math.ceil(block.getBoundingClientRect().height / PAGE_HEIGHT));
         for (const el of block.querySelectorAll('[id]')) pages[el.id] ??= page;
       }
+
+      // Anything trailing this block that does not force its own break — the
+      // closing disclaimer — prints on the block's last page until it no
+      // longer fits. Unmeasured, it would silently cost a page.
+      let used = blockTail(block, span);
+      for (let sib = block.nextElementSibling; sib && !isBlock(sib); sib = sib.nextElementSibling) {
+        const h = sib.getBoundingClientRect().height;
+        if (h <= 1) continue;
+        const gap = parseFloat(getComputedStyle(block).marginBottom) || 0;
+        if (used + gap + h > PAGE_HEIGHT) { span += 1; used = h; } else { used += gap + h; }
+      }
+
       page += span;
     }
 

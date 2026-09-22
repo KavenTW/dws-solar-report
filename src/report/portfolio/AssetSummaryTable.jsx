@@ -22,10 +22,10 @@ const co2Lifetime = v => Math.round((v || 0) / 100) * 100;
  * is omitted when there is only one group (the state pages).
  * `showTotals` adds the footer row.
  */
-export default function AssetSummaryTable({ groups, tiers, showGroupLabels = true, showTotals = true }) {
+export default function AssetSummaryTable({ groups, tiers, showGroupLabels = true, showTotals = true, showState = false }) {
   const tierOf = buildGroupLookup(tiers);
   const showGroupColumn = !showGroupLabels;
-  const colCount = showGroupColumn ? 8 : 7;
+  const colCount = (showGroupColumn ? 8 : 7) + (showState ? 1 : 0);
   const all = groups.flatMap(g => g.assets);
   // Capacity columns total the ROUNDED row values, so the printed column adds
   // up to the printed total. Summing the raw values first and rounding once is
@@ -51,7 +51,8 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
     <table className="market-table asset-summary">
       <thead>
         <tr>
-          <th style={{ width: showGroupColumn ? '20%' : '28%' }}>Asset</th>
+          <th style={{ width: showGroupColumn ? '20%' : (showState ? '24%' : '28%') }}>Asset</th>
+          {showState && <th style={{ width: '8%' }}>State</th>}
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Rooftop kW DC</th>
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Carport kW DC</th>
           <th className="num" style={{ width: showGroupColumn ? '9%' : '12%' }}>Total kW DC</th>
@@ -75,6 +76,7 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
               return (
                 <tr key={entry.id}>
                   <td>{name}</td>
+                  {showState && <td>{p.province || '—'}</td>}
                   <td className="num">{numOrDash(p.rooftopSizeDCkW)}</td>
                   <td className="num">{numOrDash(p.carportSizeDCkW)}</td>
                   <td className="num">{num(calc.totalDCkW)}</td>
@@ -90,6 +92,7 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
         {showTotals && (
           <tr className="asset-summary-total">
             <td>Total — {all.length} asset{all.length !== 1 ? 's' : ''}</td>
+            {showState && <td />}
             <td className="num">{num(t.rooftopDC)}</td>
             <td className="num">{num(t.carportDC)}</td>
             <td className="num">{num(t.totalDC)}</td>
