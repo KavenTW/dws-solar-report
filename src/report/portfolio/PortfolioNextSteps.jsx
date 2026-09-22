@@ -9,6 +9,24 @@ export default function PortfolioNextSteps({ pf }) {
           <p key={i} className="portfolio-para">{para}</p>
         ))}
 
+        <div className="stage-gate-box" style={{ marginTop: '4px' }}>
+          <div className="stage-gate-title">A flexible, stage-gated approach</div>
+          <p className="stage-gate-intro">
+            Building on completed pre-feasibility, the remaining studies can be sequenced per asset — each gate lets a project proceed, pause, or redirect before further cost is committed.
+          </p>
+          <div className="stage-gate-steps">
+            <span className="stage-gate-step">Electrical Load Analysis</span>
+            <span className="stage-gate-arrow">→</span>
+            <span className="stage-gate-step">Structural</span>
+            <span className="stage-gate-arrow">→</span>
+            <span className="stage-gate-step">Geotechnical (carport sites)</span>
+            <span className="stage-gate-arrow">→</span>
+            <span className="stage-gate-step">Electrical</span>
+            <span className="stage-gate-arrow">→</span>
+            <span className="stage-gate-step">Interconnection</span>
+          </div>
+        </div>
+
         <div className="state-block" style={{ marginTop: '16px' }}>
           <div className="state-block-title">Scope of Further Detailed Analysis</div>
           <table className="fin-table" style={{ width: '100%' }}>
@@ -29,23 +47,6 @@ export default function PortfolioNextSteps({ pf }) {
           </table>
         </div>
 
-        <div className="stage-gate-box" style={{ marginTop: '14px' }}>
-          <div className="stage-gate-title">A flexible, stage-gated approach</div>
-          <p className="stage-gate-intro">
-            Building on completed pre-feasibility, the remaining studies can be sequenced per asset — each gate lets a project proceed, pause, or redirect before further cost is committed.
-          </p>
-          <div className="stage-gate-steps">
-            <span className="stage-gate-step">Electrical Load Analysis</span>
-            <span className="stage-gate-arrow">→</span>
-            <span className="stage-gate-step">Structural</span>
-            <span className="stage-gate-arrow">→</span>
-            <span className="stage-gate-step">Geotechnical (carport sites)</span>
-            <span className="stage-gate-arrow">→</span>
-            <span className="stage-gate-step">Electrical</span>
-            <span className="stage-gate-arrow">→</span>
-            <span className="stage-gate-step">Interconnection</span>
-          </div>
-        </div>
 
         {pf.nextActions && (
           <div className="state-block" style={{ marginTop: '16px' }}>

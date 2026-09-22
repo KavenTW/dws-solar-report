@@ -323,7 +323,7 @@
 
 /* State one-pager */
 .state-pager-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
-.state-pager-subtitle { font-size: 14px; color: var(--muted); }
+.state-pager-title { font-size: 1.45rem; }
 .state-pager-utility { font-size: 13px; color: var(--muted); margin-top: 2px; font-style: italic; }
 .state-block { margin-bottom: 16px; }
 .state-block:last-child { margin-bottom: 0; }
@@ -394,11 +394,6 @@
 .consideration-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 3px; }
 
 /* Chart legend in HTML — a canvas legend is lost when print scales the chart. */
-.chart-legend { display: flex; justify-content: center; gap: 22px; margin-top: 8px; font-size: 13px; color: var(--muted); }
-.chart-legend-item { display: inline-flex; align-items: center; gap: 6px; }
-.chart-legend-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
-.chart-legend-swatch--rooftop { background: #005FAB; }
-.chart-legend-swatch--carport { background: #CC7A00; }
 
 /* Feasibility cost table (standalone + embedded asset reports): same
    guarantee — column hints on the th cells set the widths, long notes wrap. */
@@ -489,7 +484,7 @@
   .state-block { margin-bottom: 8px; }
   .state-block-title { font-size: 10.5px; margin-bottom: 4px; }
   .state-pager-header .section-title { font-size: 1rem; margin-bottom: 0; }
-  .state-pager-subtitle { font-size: 11px; }
+  .state-pager-header .state-pager-title { font-size: 1.35rem; letter-spacing: 0.6px; }
   .state-pager-utility { font-size: 10.5px; }
   /* Explicit th/td rules — base .market-table th sets its own font-size,
      so a table-level override alone does not reach the header cells. */
@@ -520,13 +515,10 @@
   .scope-list li { margin-bottom: 3px; line-height: 1.38; }
   .consideration-block { margin-top: 7px; }
   .consideration-title { margin-bottom: 1px; }
-  .chart-legend { font-size: 10px; gap: 16px; margin-top: 5px; }
-  .chart-legend-swatch { width: 9px; height: 9px; }
   .portfolio-page li, .portfolio-report li { font-size: 11px; }
   .portfolio-page .footnote { font-size: 9.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }
 
-  .capacity-chart-wrap { height: 160px !important; }
 
   /* Compact asset header band */
   .asset-band { padding: 10px 16px; margin-bottom: 16px; break-after: avoid; }
@@ -595,7 +587,9 @@
 
   /* ── Charts (shorter in print to reclaim vertical space) ── */
   #cashflowChart { height: 180px !important; }
-  .production-chart-wrap { height: 150px !important; }
+  /* Left at the 200px the markup sets: Chart.js writes its own pixel height
+     onto the canvas, so shrinking the wrapper in print left the bars hanging
+     below the card outline. Costs no pages. */
 
   /* ── Misc ── */
   .note-box,

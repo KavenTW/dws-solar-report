@@ -45,8 +45,9 @@ export default function StateOnePager({ abbr, state, projects, tiers, appendixLe
     <div className="section portfolio-page" id={`state-${abbr}`}>
       <div className="state-pager-header">
         <div>
-          <div className="section-title" style={{ marginBottom: '2px' }}>{state.name}</div>
-          <div className="state-pager-subtitle">{state.subtitle}</div>
+          {/* The page title carries the state; the old "Rooftop & Carport Solar
+              Market One-Pager" subtitle said the same thing twice. */}
+          <div className="section-title state-pager-title" style={{ marginBottom: '2px' }}>{state.name} Market Overview and Site Summary</div>
           <div className="state-pager-utility">Representative utility: {state.repUtility}</div>
         </div>
       </div>

@@ -94,7 +94,7 @@ export default function PortfolioTab() {
       { slug: 'glossary', label: 'Glossary', level: 1 },
     ];
     for (const abbr of activeStates) {
-      rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market One-Pager`, level: 0 });
+      rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market Overview and Site Summary`, level: 0 });
     }
     rows.push({ slug: 'next-steps', label: 'Next Steps', level: 0 });
     for (const abbr of activeStates) {

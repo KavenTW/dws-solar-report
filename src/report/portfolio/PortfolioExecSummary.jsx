@@ -1,13 +1,12 @@
 import { STATE_ORDER } from '../../constants/portfolioDefaults';
-import { groupAssets } from './assetGroups';
-import PortfolioCapacityChart from './PortfolioCapacityChart';
+import PortfolioGeneration from './PortfolioGeneration';
 
 const AVG_HOME_KWH_YR = 10632; // U.S. EIA average annual household consumption
 
 /**
- * Executive summary: editable narrative + KPI strip, capacity chart, and the
- * proposed prioritisation table — figures computed live from the included
- * projects so headline numbers always match the body reports.
+ * Executive summary: editable narrative, KPI strip and portfolio-wide
+ * generation and emissions — figures computed live from the included projects
+ * so headline numbers always match the body reports.
  */
 export default function PortfolioExecSummary({ pf, projects }) {
   const ok = projects.filter(x => x.calc);
@@ -26,17 +25,6 @@ export default function PortfolioExecSummary({ pf, projects }) {
     .map(s => `${s.name} (${s.n})`)
     .join(', ')
     .replace(/, ([^,]*)$/, ' and $1');
-
-  // Capacity is shown by prioritization group, matching how the document
-  // presents the portfolio everywhere else.
-  const chartStates = groupAssets(ok, pf.tiers)
-    .map(g => ({
-      abbr: g.key,
-      name: g.shortLabel,
-      rooftopDC: g.assets.reduce((s, x) => s + (x.p.rooftopSizeDCkW || 0), 0),
-      carportDC: g.assets.reduce((s, x) => s + (x.p.carportSizeDCkW || 0), 0),
-    }))
-    .filter(g => g.rooftopDC + g.carportDC > 0);
 
   return (
     <div className="section portfolio-page" id="exec-summary">
@@ -64,17 +52,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
         </div>
       </div>
 
-      <div className="card" style={{ marginBottom: '16px' }}>
-        <div className="card-title">Maximum Potential Capacity by Prioritization Group (kW DC)</div>
-        {/* Height follows the bar count: horizontal bars need room per row. */}
-        <div className="capacity-chart-wrap" style={{ height: `${Math.max(120, chartStates.length * 46 + 34)}px` }}>
-          <PortfolioCapacityChart states={chartStates} />
-        </div>
-        <div className="chart-legend">
-          <span className="chart-legend-item"><span className="chart-legend-swatch chart-legend-swatch--rooftop" />Rooftop</span>
-          <span className="chart-legend-item"><span className="chart-legend-swatch chart-legend-swatch--carport" />Carport</span>
-        </div>
-      </div>
+      <PortfolioGeneration projects={projects} />
 
       <div className="card">
         {/* Computed from the included assets rather than seeded, so the site

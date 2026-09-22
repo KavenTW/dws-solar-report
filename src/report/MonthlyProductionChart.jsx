@@ -95,5 +95,7 @@ export default function MonthlyProductionChart({ monthlyMwh }) {
     return () => { if (chartRef.current) chartRef.current.destroy(); };
   }, [monthlyMwh]);
 
-  return <canvas ref={canvasRef} style={{ width: '100%', height: '200px' }} />;
+  // Fills its wrapper rather than asserting 200px: print shrinks the wrapper to
+  // 150px, and a fixed canvas height spilled the bars below the card outline.
+  return <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />;
 }
