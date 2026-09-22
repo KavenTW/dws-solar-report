@@ -502,9 +502,17 @@
   .prio-tier { line-height: 1.2; }
   .state-block .asset-summary th, .state-block .asset-summary td { padding: 2px 5px; }
   .state-block { margin-bottom: 7px; }
-  /* Centred on the printed sheet: the divider carries nothing else, so the
-     padding is what puts the title near the middle of the page. */
-  .appendix-divider-inner { padding: 300px 0; }
+  /* Centred on the printed sheet. Fixed padding put the block an inch high of
+     centre; giving the divider most of a page's height and centring inside it
+     lands the title on the middle of the paper. 900px keeps it clear of the
+     941px page, which matters because the section may not split. */
+  .appendix-divider {
+    min-height: 900px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .appendix-divider-inner { padding: 0; }
   .appendix-divider-letter { font-size: 17px; letter-spacing: 3.4px; margin-bottom: 14px; }
   .appendix-divider-title { font-size: 40px; }
   .appendix-divider-sub { font-size: 16px; letter-spacing: 2.6px; margin-top: 11px; }

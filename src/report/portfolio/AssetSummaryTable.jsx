@@ -43,9 +43,11 @@ export default function AssetSummaryTable({ groups, tiers, showGroupLabels = tru
   };
 
   // Every asset in this portfolio runs a 25-year term; label it only when they
-  // agree, so a mixed set never claims a term it does not have.
+  // agree, so a mixed set never claims a term it does not have. Kept short:
+  // "Lifetime CO₂e (25 yr, t)" wraps to three lines in this column and strands
+  // the closing "t)" on a line of its own.
   const terms = [...new Set(all.map(x => x.p.ppaTerm).filter(Boolean))];
-  const lifeLabel = terms.length === 1 ? `Lifetime CO₂e (${terms[0]} yr, t)` : 'Lifetime CO₂e (t)';
+  const lifeLabel = terms.length === 1 ? `${terms[0]}-Yr CO₂e (t)` : 'Lifetime CO₂e (t)';
 
   return (
     <table className="market-table asset-summary">
