@@ -156,9 +156,12 @@ reviewer (Karen Wharton, GCS):
   type line: *Preliminary Solar Development Opportunity Assessment*).
 - **Don't prescribe commercial structures.** Frame as opportunities and
   constraints ("Alternative structures can be considered but add complexity…").
-- **Canadian spelling** in portfolio copy: -ize/-ization (prioritization,
-  utilization, recognized, standardized) with -our/-re retained (colour,
-  centre), and "program" not "programme".
+- **U.S. spelling** in portfolio copy: -ize/-ization (prioritization,
+  utilization, recognized, standardized), -or not -our (favorable, color),
+  -er not -re (center, meter), and "program" not "programme". The document
+  used Canadian spelling until 22 September 2026; the client and every asset
+  are American, and the reviewer switched it. Proper nouns keep their own
+  spelling — **Candour House** is an asset name, not a misspelling.
 - **No sources printed in the document** — they live in `PORTFOLIO_SOURCES.md`.
   Exception: the methodology page names EPA eGRID and EIA explicitly, at the
   reviewer's request.

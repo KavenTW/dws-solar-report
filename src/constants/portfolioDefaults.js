@@ -128,9 +128,9 @@ export const PORTFOLIO_DEFAULTS = {
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'PG&E, SCE and SDG&E; municipal utilities assessed separately',
       projectSummary: [
+        'Mature solar market.',
         'High avoidable energy charges and strong solar resource.',
-        'Exports are credited at avoided cost, so load matching is central.',
-        'Palo Alto and LADWP run separate programs.',
+        'Majority of state serviced by three primary utilities which are regulated by the CPUC. Select municipalities are served by smaller utilities, of which some are represented in this portfolio.',
       ].join('\n'),
       marketPosition: [
         'High retail and solar-avoided charges for daytime heavy power consumers.',
@@ -138,10 +138,10 @@ export const PORTFOLIO_DEFAULTS = {
         'Weaker weighted average avoided charges when solar output would largely be exported to the grid at approximately wholesale rates.',
       ].join('\n'),
       utilityBilling: [
-        'On-site load is served first under the Net Billing Tariff.',
+        'Solar offsets retail rates when instantaneously offsetting on-site consumption.',
         'Exports are credited hourly, below the retail import rate.',
         'Demand and non-bypassable charges are not uniformly reduced.',
-        'Best practice requires modelling historic interval loads and simulated solar production against the solar tariff.',
+        'Best practice requires modeling historic interval loads and simulated solar production against the solar tariff.',
       ].join('\n'),
       recProgram: [
         'Voluntary REC market; no standardized state contract.',
@@ -149,8 +149,7 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       devConsiderations: [
         'AB 2143 prevailing-wage and reporting requirements apply.',
-        'Interconnection is utility-specific under Rule 21.',
-        'Municipal utilities have separate eligibility rules.',
+        'Interconnection processes are well established and standardized for the primary utilities.',
         'Warehouse properties located in the South Coast AQM District over 100,000 SF may unlock additional monetization opportunities through the WAIRE program.',
       ].join('\n'),
       groupingRationale: [
@@ -167,23 +166,21 @@ export const PORTFOLIO_DEFAULTS = {
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'NV Energy',
       projectSummary: [
-        'Excellent solar resource and a favourable billing structure.',
+        'Excellent solar resource and a favorable billing structure (net metering).',
         'A single-utility framework simplifies diligence.',
-        '1 MW cap on exporting systems, and relatively low retail electricity rates.',
+        '1 MW cap on exporting systems, and relatively low retail electricity rates. The cap will be a limiting factor on many systems.',
       ].join('\n'),
       marketPosition: [
         'Among the strongest solar resources in the United States.',
-        'Best suited to facilities that absorb output on site.',
-        'Lower rates temper the resource advantage.',
+        'Lower electricity avoided charges temper the resource advantage.',
       ].join('\n'),
       utilityBilling: [
         'NMR-B applies from 25 kW to 1,000 kW.',
         'Excess is carried forward as kWh credits.',
-        'Under time-of-use, credits stay in the period produced.',
-        'Service and demand charges remain.',
+        'Solar will not offset all bill charges — Service and demand charges remain.',
       ].join('\n'),
       recProgram: [
-        'Recognized Portfolio Energy Credit market.',
+        'Voluntary REC trading market.',
         'No fixed-price state purchase contract.',
       ].join('\n'),
       devConsiderations: [
@@ -201,20 +198,19 @@ export const PORTFOLIO_DEFAULTS = {
       projectSummary: [
         'Historically high solar penetration through state-led programs.',
         'Illinois Shines can provide contracted REC revenue.',
-        'Weaker resource and supply-only export treatment offset this.',
+        'Weaker resource and partial export credits offset this.',
       ].join('\n'),
       marketPosition: [
         'Moderate prices; weakest solar resource in the portfolio.',
         'Contracted REC revenue is unique to this state.',
-        'Requires REC capacity, interconnection and load to align.',
+        'Interconnection has historically been an issue in Illinois.',
       ].join('\n'),
       utilityBilling: [
-        'Large C&I customers are generally declared supply customers.',
-        'Exports receive supply-only net-metering credit.',
-        'On-site use still reduces energy and some delivery charges.',
+        'Export credit treatment favors high consumers of power in the daytime.',
+        'Avoided rates are currently moderate but Northern Illinois is in the PJM wholesale market region which has been experiencing increases in electricity pricing recently, which is anticipated to continue as demand surges.',
       ].join('\n'),
       recProgram: [
-        'Large DG covers 10 kW AC to 2 MW AC behind the meter.',
+        'State led REC program applies to behind the meter installations covering 10 kW AC to 2 MW AC.',
         '2026 approvals use a 15-year REC contract.',
         '15% is paid at energization, the balance over six years.',
         'Pricing, capacity and timing are confirmed each program year.',
@@ -233,29 +229,23 @@ export const PORTFOLIO_DEFAULTS = {
       subtitle: 'Rooftop & Carport Solar Market One-Pager',
       repUtility: 'Florida Power & Light',
       projectSummary: [
-        'Direct sale of electricity from landlord to tenant via a per-kWh PPA may classify the landlord as a public utility.',
-        'Legal review of investment structuring will be required prior to tenant commercial conversations.',
+        'Net metering is applicable for systems up to 2 MW AC.',
       ].join('\n'),
       marketPosition: [
         'Moderate resource and commercial prices.',
-        'Monthly netting suits variable load.',
-        'Demand and minimum-bill components remain.',
-        'Structure, not tariff, tends to decide executability.',
       ].join('\n'),
       utilityBilling: [
-        'Tier 3 covers 100 kW to 2 MW.',
+        'System size capped at 2 MW.',
         'Excess kWh carry forward for up to twelve months.',
         'Annual residual credits settle at the avoided-energy rate.',
-        'Minimum, base and demand charges still apply.',
+        'Solar will not offset all bill charges — Demand and minimum-bill components remain.',
       ].join('\n'),
       recProgram: [
         'No material state REC procurement for new C&I projects.',
       ].join('\n'),
       devConsiderations: [
-        'Commercial structure is the central issue.',
-        'Tier 3 review, disconnect and protection equipment apply.',
-        'Transformer upgrades may be required.',
-        'Hurricane wind load and corrosion engineering where applicable.',
+        'Extreme weather conditions in Florida will require additional engineering and insurance considerations.',
+        'Regulatory hurdles apply for structuring of power offtake agreement with tenant.',
       ].join('\n'),
       groupingRationale: [
         'Citria at Fruitville Commons | ',
@@ -270,28 +260,19 @@ export const PORTFOLIO_DEFAULTS = {
       projectSummary: [
         'Strong net-metering position.',
         'Low solar-avoidable electricity rates.',
-        'Direct sale of electricity from landlord to tenant via a per-kWh PPA may classify the landlord as a public utility.',
-        'State law provides for an equipment lease to the tenant as a compliant alternative, subject to certification and prescribed lease terms.',
       ].join('\n'),
       marketPosition: [
         'Moderate resource and low large-commercial avoided rates.',
-        'Needs strong daytime load and a compliant structure.',
       ].join('\n'),
       utilityBilling: [
         'Net metering is available up to 1,000 kW.',
-        'Leased systems are capped at the customer’s contract demand.',
-        'Systems must offset no more than the tenant’s own use.',
       ].join('\n'),
       recProgram: [
-        'NC-RETS tracks RECs for portfolio-standard compliance.',
         'No standardized long-term fixed-price contract.',
-        'REC ownership and transfer should be stated expressly.',
+        'Voluntary REC trading market.',
       ].join('\n'),
       devConsiderations: [
-        'An equipment lease to the tenant is the compliant structure.',
-        'The lessor must hold an NCUC certificate and register each facility.',
-        'Legal review of investment structuring will be required prior to tenant commercial conversations.',
-        'Alternative structures add complexity.',
+        'Regulatory hurdles apply for structuring of power offtake agreement with tenant.',
       ].join('\n'),
       groupingRationale: [
         'Candour House | ',
@@ -305,14 +286,12 @@ export const PORTFOLIO_DEFAULTS = {
       projectSummary: [
         'Strong resource and a flexible competitive retail market.',
         'No uniform statewide net-metering tariff.',
-        'Lowest avoidable electricity-rate score in the group.',
-        'Value rests on self-consumption and the retail export product.',
+        'Consumer electricity market dominated by retailers (over 100 retailers across the state)',
       ].join('\n'),
       marketPosition: [
         'Strong resource, particularly in North and West Texas.',
         'On-site arrangements are more workable than in Florida or North Carolina.',
         'Low energy prices limit avoided-cost value.',
-        'Best at high daytime load with a long-term tenant.',
       ].join('\n'),
       utilityBilling: [
         'The delivery utility handles interconnection and metering.',
@@ -321,13 +300,13 @@ export const PORTFOLIO_DEFAULTS = {
         'Export credit may be capped or unavailable.',
       ].join('\n'),
       recProgram: [
-        'The state administers a REC trading program.',
+        'The state administers a voluntary REC trading program.',
         'Credits may be sold bilaterally or passed to the tenant.',
         'No state-administered fixed-price purchase program.',
       ].join('\n'),
       devConsiderations: [
-        'Dependent on the delivery utility program.',
-        'No standard tariff or state-led programs create renewal and repricing risk.',
+        'Availability of net metering programs is dependent on the load customer’s utility and retailer of choice.',
+        'No standard tariff or state-led programs create uncertainty around future power prices.',
         'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
       ].join('\n'),
       groupingRationale: [
