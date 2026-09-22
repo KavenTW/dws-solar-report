@@ -404,7 +404,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Solar penetration on neighboring buildings is high; available utility hosting capacity to be confirmed through the utility interconnection review.\nCarport layouts to be coordinated with existing parking-lot pole lighting.\nA geotechnical assessment is recommended to confirm carport foundation feasibility.\nUnderground utility locates and trenching will be required to route carport circuits.",
+   "additionalNotes": "Solar penetration on neighboring buildings is high; available utility hosting capacity to be confirmed through the utility interconnection review.\nMature tree coverage across the parking areas presents substantial shading and materially constrains the carport layout; the proposed carport capacity is subject to tree retention and a shading assessment.\nCarport layouts to be coordinated with existing parking-lot pole lighting.\nA geotechnical assessment is recommended to confirm carport foundation feasibility.\nUnderground utility locates and trenching will be required to route carport circuits.",
    "pointsOfInterconnection": 2,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
