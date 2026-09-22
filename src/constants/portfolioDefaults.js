@@ -175,7 +175,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Lower electricity avoided charges temper the resource advantage.',
       ].join('\n'),
       utilityBilling: [
-        'NMR-B applies from 25 kW to 1,000 kW.',
+        'Full retail rate net metering applies from 25 kW to 1,000 kW.',
         'Excess is carried forward as kWh credits.',
         'Solar will not offset all bill charges — Service and demand charges remain.',
       ].join('\n'),
@@ -236,7 +236,7 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       utilityBilling: [
         'System size capped at 2 MW.',
-        'Excess kWh carry forward for up to twelve months.',
+        'Excess kWh carry forward and applied to reduce future bills for up to twelve months.',
         'Annual residual credits settle at the avoided-energy rate.',
         'Solar will not offset all bill charges — Demand and minimum-bill components remain.',
       ].join('\n'),
@@ -262,7 +262,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Low solar-avoidable electricity rates.',
       ].join('\n'),
       marketPosition: [
-        'Moderate resource and low large-commercial avoided rates.',
+        'Moderate solar resource and low large-commercial avoided electricity rates.',
       ].join('\n'),
       utilityBilling: [
         'Net metering is available up to 1,000 kW.',
