@@ -52,12 +52,12 @@ export const PORTFOLIO_DEFAULTS = {
   tiers: [
     {
       name: 'Prioritization Group 1',
-      assets: 'Eastland Center; The Shops at Oak Brook Place; DC Station Retail; Tuscany on Fig',
+      assets: 'Eastland Center; The Shops at Oak Brook Place; Courtyard at the Commons; DC Station Retail; Tuscany on Fig',
       rationale: 'Highest-priority projects to advance first.',
     },
     {
       name: 'Prioritization Group 2',
-      assets: 'Tropical Center II; 1201 Avenue S; Courtyard at the Commons; Candour House; 100 Hamilton',
+      assets: 'Tropical Center II; 1201 Avenue S; Candour House; 100 Hamilton',
       rationale: 'Promising projects, but with notable constraints or more uncertainty.',
     },
     {
@@ -157,9 +157,9 @@ export const PORTFOLIO_DEFAULTS = {
       ].join('\n'),
       groupingRationale: [
         'Eastland Center | Strong candidate, recommended to advance to feasibility in the first phase.',
+        'Courtyard at the Commons | Strong candidate; assessment of space constraints warranted.',
         'DC Station Retail | Strong candidate, recommended to advance to feasibility in the first phase.',
         'Tuscany on Fig | Strong candidate; solar should be considered as part of the planned redevelopment and new construction.',
-        'Courtyard at the Commons | Space constraints across both the roof and parking areas are expected to limit deployable capacity.',
         '100 Hamilton | Favorable municipal net-metering program, though fixed costs weigh heavily at this system scale.',
       ].join('\n'),
       projectsIntro: '',

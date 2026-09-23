@@ -35,9 +35,11 @@ state one-pager narrative, which remains in the document.
 >    overcomes.
 >
 > Base groups: **California 1, Illinois 1, Nevada 2, North Carolina 2,
-> Texas 2, Florida 3.** Five assets fall below their base: Courtyard at the
-> Commons and 100 Hamilton (California), and Post & Paddock, Lakeside A and
-> Lakeside B (Texas).
+> Texas 2, Florida 3.** Four assets fall below their base: 100 Hamilton
+> (California), and Post & Paddock, Lakeside A and Lakeside B (Texas).
+> Courtyard at the Commons sat below its base until 23 September 2026, when
+> GCS returned it to the California base of Group 1 — its space constraints
+> are a matter to assess, not a reason to defer the asset.
 >
 > Two California assets are **not on the CPUC framework** their state page
 > describes, and both municipal programs are more attractive than it — LADWP’s
