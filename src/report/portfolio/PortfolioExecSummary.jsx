@@ -100,8 +100,10 @@ export function PortfolioPrioritisation({ pf }) {
             ))}
           </tbody>
         </table>
+        {/* States the two-layer method, so a reader can reconstruct why any
+            given asset sits where it does from the state page alone. */}
         <div className="footnote" style={{ marginTop: '6px' }}>
-          Directional proposal reflecting deployment potential and site readiness; to be confirmed with DWS before stage-one studies are commissioned.
+          Each state is assigned a base group reflecting its market framework; individual assets fall below that base where site-specific factors warrant. Directional proposal reflecting deployment potential and site readiness; to be confirmed with DWS before stage-one studies are commissioned.
         </div>
       </div>
     </div>

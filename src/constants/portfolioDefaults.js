@@ -60,7 +60,7 @@ export const PORTFOLIO_DEFAULTS = {
     {
       name: 'Prioritization Group 3',
       assets: 'Post & Paddock; Lakeside B; Citria at Fruitville Commons; Lakeside A; London Square',
-      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, or where deployment is best aligned with scheduled roof replacement.',
+      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, where the state market framework defers deployment, or where deployment is best aligned with scheduled roof replacement.',
     },
   ],
 
@@ -153,11 +153,11 @@ export const PORTFOLIO_DEFAULTS = {
         'Warehouse properties located in the South Coast AQM District over 100,000 SF may unlock additional monetization opportunities through the WAIRE program.',
       ].join('\n'),
       groupingRationale: [
-        'Eastland Center | ',
-        'Courtyard at the Commons | ',
-        'DC Station Retail | ',
-        'Tuscany on Fig | ',
-        '100 Hamilton | ',
+        'Eastland Center | Strong candidate, recommended to advance to feasibility in the first phase.',
+        'DC Station Retail | Strong candidate, recommended to advance to feasibility in the first phase.',
+        'Tuscany on Fig | Strong candidate; solar should be considered as part of the planned redevelopment and new construction.',
+        'Courtyard at the Commons | Space constraints across both the roof and parking areas are expected to limit deployable capacity.',
+        '100 Hamilton | Favorable municipal net-metering program, though fixed costs weigh heavily at this system scale.',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -187,7 +187,7 @@ export const PORTFOLIO_DEFAULTS = {
         'The 1 MW cap can prevent full use of large roofs.',
       ].join('\n'),
       groupingRationale: [
-        'Tropical Center II | ',
+        'Tropical Center II | Any new system must serve load beyond that already met by the existing rooftop array, on a roof at mid-life.',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -220,7 +220,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Hosting capacity and program queues affect timing. PJM is a historically constrained region.',
       ].join('\n'),
       groupingRationale: [
-        'The Shops at Oak Brook Place | ',
+        'The Shops at Oak Brook Place | Strong candidate, recommended to advance to feasibility in the first phase.',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -248,8 +248,8 @@ export const PORTFOLIO_DEFAULTS = {
         'Regulatory hurdles apply for structuring of power offtake agreement with tenant.',
       ].join('\n'),
       groupingRationale: [
-        'Citria at Fruitville Commons | ',
-        'London Square | ',
+        'Citria at Fruitville Commons | Building form and sloped roof construction, combined with Florida’s jurisdictional constraints, are expected to make this property challenging to execute.',
+        'London Square | Jurisdictional constraints in Florida are expected to make this property challenging to execute.',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -275,7 +275,7 @@ export const PORTFOLIO_DEFAULTS = {
         'Regulatory hurdles apply for structuring of power offtake agreement with tenant.',
       ].join('\n'),
       groupingRationale: [
-        'Candour House | ',
+        'Candour House | Multifamily asset subject to North Carolina’s jurisdictional constraints, but a credible candidate once resolved.',
       ].join('\n'),
       projectsIntro: '',
     },
@@ -310,10 +310,10 @@ export const PORTFOLIO_DEFAULTS = {
         'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
       ].join('\n'),
       groupingRationale: [
-        '1201 Avenue S | ',
-        'Post & Paddock | ',
-        'Lakeside B | ',
-        'Lakeside A | ',
+        '1201 Avenue S | Deployment is gated by the delivery utility and the tenant’s retailer, but a credible candidate once those are confirmed.',
+        'Post & Paddock | Deployment is best aligned with the tentative 2033 roof replacement.',
+        'Lakeside B | Deployment is best aligned with the tentative 2033 roof replacement.',
+        'Lakeside A | Deployment is best aligned with the tentative 2033 roof replacement.',
       ].join('\n'),
       projectsIntro: '',
     },

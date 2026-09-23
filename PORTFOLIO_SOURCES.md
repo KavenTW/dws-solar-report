@@ -23,18 +23,32 @@ removed at the client's direction. The state page ORDER it produced is
 retained: CA, NV, IL, FL, NC, TX. The source list above still supports the
 state one-pager narrative, which remains in the document.
 
-**Proposed Asset Prioritization — BASIS NOT YET RECORDED.**
+**Proposed Asset Prioritization — basis recorded, membership finalized 23 September 2026.**
 
-> **OPEN ITEM — needs GCS sign-off before the document is issued.** The three
-> prioritization groups are the document's central recommendation, and this
-> register currently records no basis for them. The membership seeded in
-> `portfolioDefaults.js` is a DRAFT assigned for review. Per-asset
-> prioritization notes have been retired — the group rationale on the
-> Proposed Asset Prioritization page is now the only explanation. Until the factors
-> and their relative weighting are recorded here, the document makes a
-> prioritization claim with nothing auditable behind it — the same gap raised
-> in review of the previous scorecard-based ranking.
-
+> **Method, confirmed by GCS.** Prioritization runs in two layers:
+>
+> 1. Each state is assigned a **base group** from its market framework alone.
+> 2. Every asset in that state starts at the base group and **falls below it**
+>    only where site-specific factors warrant. An asset never rises above its
+>    state, because market-level constraints — export caps, restrictions on
+>    selling to a tenant, low avoided rates — are not things a good roof
+>    overcomes.
+>
+> Base groups: **California 1, Illinois 1, Nevada 2, North Carolina 2,
+> Texas 2, Florida 3.** Five assets fall below their base: Courtyard at the
+> Commons and 100 Hamilton (California), and Post & Paddock, Lakeside A and
+> Lakeside B (Texas).
+>
+> Two California assets are **not on the CPUC framework** their state page
+> describes, and both municipal programs are more attractive than it — LADWP’s
+> feed-in tariff for Tuscany on Fig, and Palo Alto’s NEM 2 for 100 Hamilton.
+> They are treated as sitting at the California base rather than above it,
+> which the two-layer rule cannot express; the per-asset rationale carries the
+> distinction instead.
+>
+> The method is stated in the document, in the footnote to Proposed Asset
+> Prioritization. The per-asset rationale lines on each state page were
+> written by GCS and are reproduced verbatim.
 **System size is not a prioritization factor.** A large buildable capacity does
 not make a site a priority, and a small one does not disqualify it; capacity is
 reported as an output of the assessment, not an input to the grouping. Stated
@@ -57,7 +71,7 @@ The factors that do carry the grouping are:
 - **Points of interconnection** — a cost driver for the electrical study.
 - **Jurisdictional constraints** on contracting structure or monetization.
 
-Their relative weighting is not defined. Confirmation of DWS investment
+These factors are what move an asset below its state base. Confirmation of DWS investment
 objectives, hold periods and return requirements is also outstanding —
 recorded in the document under Key Considerations.
 
