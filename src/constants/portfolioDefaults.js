@@ -40,8 +40,11 @@ export const PORTFOLIO_DEFAULTS = {
   nextSteps: [
     'GCS pre-feasibility for all assets in this document is complete and is reflected in the individual reports.',
     'For assets selected to advance, the recommended path is a stage-gated sequence of GCS-conducted pre-feasibility and third-party studies.',
-    'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. The actual full feasibility costs will be determined after the Load Analysis is complete and final number of points of interconnection are determined. All studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
   ].join('\n\n'),
+
+  // Rendered beneath the stage-gate diagram, at the reviewer’s direction —
+  // the study costs follow the sequence they price rather than preceding it.
+  nextStepsCosts: 'Indicative costs for each study are stated in the individual asset reports and depend on actual on-site conditions, the number of roof structures, and the number of points of interconnection. The actual full feasibility costs will be determined after the Load Analysis is complete and final number of points of interconnection are determined. All electrical, structural, and geotechnical studies must be completed by locally licensed and certified engineering firms; GCS can assist in coordinating appropriate firms upon engagement.',
 
   // ── Proposed asset prioritization (its own page; drives the Executive
   //     Summary, the capacity chart and the Portfolio Asset Summary grouping).
@@ -69,7 +72,7 @@ export const PORTFOLIO_DEFAULTS = {
   sizingBasis: [
     'The system capacities presented in this document are maximum buildable capacities: the largest rooftop and carport arrays that the available roof and parking areas can physically accommodate. This reflects the scope of this engagement, which was to quantify maximum solar deployment potential across the portfolio. Analysis of on-site electrical load was not within that scope and has not been performed.',
     'In practice, system size is usually constrained by consumption rather than by area. Net metering and equivalent billing frameworks in most of the states reviewed require a system to be sized at or below the host customer’s own electricity requirements. In some instances, state imposed solar system size caps are also imposed. The next phase of analysis will determine if any of these constraints apply.',
-    'The capacities in this document should therefore be read as an upper bound for portfolio planning, not as recommended system sizes. Confirmation of on-site electrical load is required for any asset advanced to feasibility, and the system size for that asset must be re-established against the confirmed load and the applicable utility framework before it is taken forward.',
+    'The capacities in this document should therefore be read as an upper bound for portfolio planning, and are not necessarily system sizes that would be developable based on current policies. In the next stage of analysis, the system sizes for each site will be further reviewed and possibly revised based on confirmed load at site and applicable utility frameworks.',
   ].join('\n'),
 
   // ── Key considerations — document-level, high level. The per-asset
@@ -105,7 +108,7 @@ export const PORTFOLIO_DEFAULTS = {
 
   // ── Proposed immediate actions (bullet list at the end of Next Steps) ──
   nextActions: [
-    'DWS and GCS to discuss and agree upon assets to advance to feasibility based on project specifics and program objectives.',
+    'DWS and GCS to discuss and agree upon assets to advance to full project feasibility based on project specifics and program objectives.',
   ].join('\n'),
 
   // ── Document-level disclaimer (renders once, at the very end) ──

@@ -27,6 +27,11 @@ export default function PortfolioNextSteps({ pf }) {
           </div>
         </div>
 
+        {/* Study costs sit below the sequence they price, not above it. */}
+        {pf.nextStepsCosts && (
+          <p className="portfolio-para" style={{ marginTop: '10px' }}>{pf.nextStepsCosts}</p>
+        )}
+
         <div className="state-block" style={{ marginTop: '16px' }}>
           <div className="state-block-title">Scope of Further Detailed Analysis</div>
           <table className="fin-table" style={{ width: '100%' }}>

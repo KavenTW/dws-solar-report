@@ -234,7 +234,8 @@ export default function PortfolioTab() {
               {txt('Glossary (one per line: Term — definition)', pf.glossary, v => set('glossary', v), 6)}
 
               <div className="portfolio-editor-heading">Next Steps</div>
-              {txt('Narrative (blank line = new paragraph)', pf.nextSteps, v => set('nextSteps', v), 8)}
+              {txt('Narrative above the stage-gate diagram (blank line = new paragraph)', pf.nextSteps, v => set('nextSteps', v), 6)}
+              {txt('Study-cost paragraph (renders below the stage-gate diagram)', pf.nextStepsCosts, v => set('nextStepsCosts', v), 4)}
               {txt('Proposed immediate actions (one per line)', pf.nextActions, v => set('nextActions', v), 3)}
 
               <div className="portfolio-editor-heading">Closing Disclaimer</div>
