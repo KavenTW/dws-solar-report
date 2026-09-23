@@ -49,17 +49,17 @@ export const PORTFOLIO_DEFAULTS = {
   tiers: [
     {
       name: 'Prioritization Group 1',
-      assets: 'Eastland Center; The Shops at Oak Brook Place; Courtyard at the Commons; DC Station Retail; Tuscany on Fig',
+      assets: 'Eastland Center; The Shops at Oak Brook Place; DC Station Retail; Tuscany on Fig',
       rationale: 'Highest-priority projects to advance first.',
     },
     {
       name: 'Prioritization Group 2',
-      assets: '1201 Avenue S; 100 Hamilton; Citria at Fruitville Commons; London Square; Candour House',
+      assets: 'Tropical Center II; 1201 Avenue S; Courtyard at the Commons; Candour House; 100 Hamilton',
       rationale: 'Promising projects, but with notable constraints or more uncertainty.',
     },
     {
       name: 'Prioritization Group 3',
-      assets: 'Tropical Center II; Post & Paddock; Lakeside B; Lakeside A',
+      assets: 'Post & Paddock; Lakeside B; Citria at Fruitville Commons; Lakeside A; London Square',
       rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, or where deployment is best aligned with scheduled roof replacement.',
     },
   ],
