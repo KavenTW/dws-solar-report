@@ -1,6 +1,8 @@
 /**
- * Net Metering & System Sizing — renders inside the Methodology page, after the
- * methodology narrative and before the glossary.
+ * Net Metering & System Sizing — renders on the Next Steps page, directly
+ * beneath the on-site load consideration. It sat on the Methodology page until
+ * 24 September 2026, when the reviewer tied it to the load analysis: the two
+ * are the same argument from opposite sides.
  *
  * Why it exists: the capacities in this document are maximum buildable, because
  * that is what Scope 1B asked for. Net metering in most of these states caps a
@@ -12,7 +14,7 @@ export default function PortfolioSizingBasis({ pf }) {
   const paras = (pf.sizingBasis || '').split('\n').filter(Boolean);
 
   return (
-    <div className="sizing-basis-block" id="sizing-basis">
+    <div className="sizing-basis-block" id="sizing-basis" style={{ marginTop: '12px' }}>
       <div className="card" style={{ marginBottom: '6px' }}>
         <div className="card-title">Net Metering &amp; System Sizing</div>
         {paras.map((para, i) => (

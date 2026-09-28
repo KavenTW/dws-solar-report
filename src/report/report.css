@@ -311,6 +311,12 @@
 .asset-band-name { font-size: 17px; font-weight: 700; }
 .asset-band-sub { font-size: 12px; opacity: 0.8; margin-top: 2px; }
 .asset-band-type { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; text-align: right; flex-shrink: 0; }
+.asset-band-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+.asset-band-group {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 999px; padding: 3px 10px; white-space: nowrap;
+}
 
 /* Closing document-level disclaimer */
 .portfolio-disclaimer { margin-top: 28px; }
@@ -525,6 +531,7 @@
   .asset-band-name { font-size: 15px; }
   .asset-band-sub { font-size: 11px; }
   .asset-band-type { font-size: 10px; }
+  .asset-band-group { font-size: 10px; padding: 2px 8px; }
 
   /* Portfolio fin-tables (Next Steps categories) match the other table density */
   .portfolio-page .fin-table { font-size: 10.5px; }

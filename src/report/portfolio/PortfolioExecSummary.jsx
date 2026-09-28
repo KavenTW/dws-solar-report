@@ -72,9 +72,10 @@ export default function PortfolioExecSummary({ pf, projects }) {
 }
 
 /**
- * The group table plus rationale — the decision layer of the document. Renders
- * beneath the Portfolio Asset Summary on the same page, which is where the
- * group membership it refers to is shown.
+ * The group table plus rationale — the decision layer of the document. It moved
+ * to the Methodology page on 24 September 2026, so it now precedes the
+ * Portfolio Asset Summary rather than sitting under it. Membership is therefore
+ * no longer on the same page, and the footnote says where to find it.
  */
 export function PortfolioPrioritisation({ pf }) {
   return (
@@ -89,9 +90,9 @@ export function PortfolioPrioritisation({ pf }) {
             </tr>
           </thead>
           <tbody>
-            {/* `tier.assets` still drives the grouping everywhere else; it is
-                simply not printed here. Membership is shown by the Portfolio
-                Asset Summary directly above. */}
+            {/* `tier.assets` drives the grouping everywhere else; it is not
+                printed here, so the footnote points at the two places that do
+                list membership. */}
             {pf.tiers.map((tier, i) => (
               <tr key={i}>
                 <td><strong>{tier.name}</strong></td>
@@ -103,7 +104,7 @@ export function PortfolioPrioritisation({ pf }) {
         {/* States the two-layer method, so a reader can reconstruct why any
             given asset sits where it does from the state page alone. */}
         <div className="footnote" style={{ marginTop: '6px' }}>
-          Each state is assigned a base group reflecting its market framework; individual assets fall below that base where site-specific factors warrant. Directional proposal reflecting deployment potential and site readiness; to be confirmed with DWS before stage-one studies are commissioned.
+          Each state is assigned a base group reflecting its market framework; individual assets may sit above or below that base where site-specific factors warrant. Group membership for each asset is set out in the Portfolio Asset Summary and on each state page. Directional proposal reflecting deployment potential and site readiness; to be confirmed with DWS before stage-one studies are commissioned.
         </div>
       </div>
     </div>

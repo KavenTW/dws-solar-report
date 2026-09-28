@@ -28,18 +28,22 @@ state one-pager narrative, which remains in the document.
 > **Method, confirmed by GCS.** Prioritization runs in two layers:
 >
 > 1. Each state is assigned a **base group** from its market framework alone.
-> 2. Every asset in that state starts at the base group and **falls below it**
->    only where site-specific factors warrant. An asset never rises above its
->    state, because market-level constraints — export caps, restrictions on
->    selling to a tenant, low avoided rates — are not things a good roof
->    overcomes.
+> 2. Every asset in that state starts at the base group and **moves off it**
+>    only where site-specific factors warrant. Movement is normally downward,
+>    because market-level constraints — export caps, restrictions on selling
+>    to a tenant, low avoided rates — are not things a good roof overcomes.
+>    The rule admitted no upward movement until 24 September 2026, when GCS
+>    placed 1201 Avenue S in Group 1 from a Texas base of 2; the footnote and
+>    this register now read "above or below".
 >
 > Base groups: **California 1, Illinois 1, Nevada 2, North Carolina 2,
-> Texas 2, Florida 3.** Four assets fall below their base: 100 Hamilton
-> (California), and Post & Paddock, Lakeside A and Lakeside B (Texas).
-> Courtyard at the Commons sat below its base until 23 September 2026, when
-> GCS returned it to the California base of Group 1 — its space constraints
-> are a matter to assess, not a reason to defer the asset.
+> Texas 2, Florida 3.** After the 24 September 2026 revision, one asset sits
+> off its base: **100 Hamilton** falls from the California base of 1 to Group
+> 2 on scale. **1201 Avenue S** rises from the Texas base of 2 to Group 1.
+> Post & Paddock, Lakeside A and Lakeside B returned to the Texas base of 2,
+> and Courtyard at the Commons to the California base of 1, on 23 September.
+> Group 3 is now the two Florida assets alone, which is the base group for
+> that state — so Group 3 and the Florida market framework are the same claim.
 >
 > Two California assets are **not on the CPUC framework** their state page
 > describes, and both municipal programs are more attractive than it — LADWP’s

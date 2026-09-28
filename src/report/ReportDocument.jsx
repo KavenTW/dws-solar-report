@@ -18,7 +18,7 @@ import ReportDisclaimer from './ReportDisclaimer';
  *    analysis categories, stage-gating, and disclaimer appear once at
  *    document level instead of repeating per asset).
  */
-export default function ReportDocument({ p, calc, embedded = false }) {
+export default function ReportDocument({ p, calc, embedded = false, groupLabel = null }) {
   // In the compiled portfolio, repeat the asset name on each major section so
   // continuation pages remain identifiable.
   const suffix = embedded ? (p.projectName || p.address) : undefined;
@@ -34,7 +34,12 @@ export default function ReportDocument({ p, calc, embedded = false }) {
                 {[p.siteBuildingType, [p.address, p.city].filter(Boolean).join(', ')].filter(Boolean).join(' · ')}
               </div>
             </div>
-            <div className="asset-band-type">{p.reportType}</div>
+            <div className="asset-band-right">
+              {/* Read from `tiers`, so an asset report can never state a group
+                  the Portfolio Asset Summary disagrees with. */}
+              {groupLabel && <div className="asset-band-group">{groupLabel}</div>}
+              <div className="asset-band-type">{p.reportType}</div>
+            </div>
           </div>
         )}
         {(p.showSystemSection || p.showRoofSection) && <ReportSectionOverview p={p} calc={calc} titleSuffix={suffix} />}

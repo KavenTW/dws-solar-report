@@ -1,8 +1,17 @@
 import { TECHNICAL_ITEMS } from '../../constants/technicalItems';
+import PortfolioKeyConsiderations from './PortfolioKeyConsiderations';
+import PortfolioSizingBasis from './PortfolioSizingBasis';
 
+/**
+ * Next Steps, and — since 24 September 2026 — Key Considerations and Net
+ * Metering & System Sizing beneath it. The wrapper is a `.portfolio-page`, not
+ * a `.section`, so the blocks inside keep their own break-inside guards and the
+ * whole thing may run to a second sheet.
+ */
 export default function PortfolioNextSteps({ pf }) {
   return (
-    <div className="section portfolio-page portfolio-page--flow" id="next-steps">
+    <div className="portfolio-page portfolio-page--flow" id="next-steps">
+      <div className="section">
       <div className="section-title">Next Steps</div>
       <div className="card">
         {pf.nextSteps.split('\n').filter(Boolean).map((para, i) => (
@@ -64,6 +73,10 @@ export default function PortfolioNextSteps({ pf }) {
           </div>
         )}
       </div>
+      </div>
+
+      {/* Both moved here on 24 September 2026 — see each component's header. */}
+      <PortfolioKeyConsiderations pf={pf} afterLoadAnalysis={<PortfolioSizingBasis pf={pf} />} />
     </div>
   );
 }

@@ -2,23 +2,23 @@
  * Key Considerations — document-level matters that apply across the portfolio.
  * Site-specific points belong in each asset's "Issues for Further
  * Consideration" section, not here. Lines are "Heading | detail".
+ *
+ * Renders as a block on the Next Steps page rather than a page of its own; the
+ * reviewer combined the two on 24 September 2026. The glossary that used to
+ * sit beneath it now opens the appendices.
+ *
+ * `afterLoadAnalysis` is dropped in directly beneath the on-site load
+ * consideration — Net Metering & System Sizing makes the same argument from
+ * the market side, so the two belong together. If no consideration mentions
+ * load, it renders at the end of the block rather than disappearing.
  */
-export default function PortfolioKeyConsiderations({ pf }) {
+export default function PortfolioKeyConsiderations({ pf, afterLoadAnalysis = null }) {
   const lines = (pf.keyConsiderations || '').split('\n').map(s => s.trim()).filter(Boolean);
-
-  // Glossary format: one entry per line, "Term — definition".
-  const glossaryRows = (pf.glossary || '')
-    .split('\n')
-    .map(line => {
-      const idx = line.indexOf(' — ');
-      return idx === -1
-        ? { term: line.trim(), def: '' }
-        : { term: line.slice(0, idx).trim(), def: line.slice(idx + 3).trim() };
-    })
-    .filter(r => r.term);
+  const loadIdx = lines.findIndex(l => /load/i.test(l.split('|')[0]));
+  const anchor = loadIdx === -1 ? lines.length - 1 : loadIdx;
 
   return (
-    <div className="section portfolio-page" id="key-considerations">
+    <div className="section" id="key-considerations">
       <div className="section-title">Key Considerations</div>
       <div className="card">
         <p className="portfolio-para" style={{ marginTop: 0 }}>{pf.keyConsiderationsIntro}</p>
@@ -26,26 +26,15 @@ export default function PortfolioKeyConsiderations({ pf }) {
           const [head, ...rest] = line.split('|');
           const detail = rest.join('|').trim();
           return (
-            <div key={i} className="consideration-block">
-              <div className="consideration-title">{head.trim()}</div>
-              {detail && <p className="portfolio-para" style={{ margin: 0 }}>{detail}</p>}
+            <div key={i}>
+              <div className="consideration-block">
+                <div className="consideration-title">{head.trim()}</div>
+                {detail && <p className="portfolio-para" style={{ margin: 0 }}>{detail}</p>}
+              </div>
+              {i === anchor && afterLoadAnalysis}
             </div>
           );
         })}
-      </div>
-
-      <div className="card" id="glossary" style={{ marginTop: '12px' }}>
-        <div className="card-title">Glossary</div>
-        <table className="market-table">
-          <tbody>
-            {glossaryRows.map(({ term, def }) => (
-              <tr key={term}>
-                <td style={{ width: '30%' }}><strong>{term}</strong></td>
-                <td>{def}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
       </div>
     </div>
   );

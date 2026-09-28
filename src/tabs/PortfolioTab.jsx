@@ -7,7 +7,7 @@ import { DEFAULT_PROJECT } from '../constants/defaults';
 import { STATE_ORDER } from '../constants/portfolioDefaults';
 import { computeCalc } from '../utils/calculations';
 import { estimateTocPages } from '../utils/pageEstimate';
-import { normalize } from '../report/portfolio/assetGroups';
+import { normalize, buildGroupLookup } from '../report/portfolio/assetGroups';
 import ErrorBoundary from '../ErrorBoundary';
 import ReportDocument from '../report/ReportDocument';
 import PortfolioTitlePage from '../report/portfolio/PortfolioTitlePage';
@@ -15,8 +15,8 @@ import PortfolioExecSummary, { PortfolioPrioritisation } from '../report/portfol
 import PortfolioAssetSummary from '../report/portfolio/PortfolioAssetSummary';
 import PortfolioTOC from '../report/portfolio/PortfolioTOC';
 import PortfolioScope from '../report/portfolio/PortfolioScope';
-import PortfolioKeyConsiderations from '../report/portfolio/PortfolioKeyConsiderations';
-import PortfolioSizingBasis from '../report/portfolio/PortfolioSizingBasis';
+import PortfolioNarrativeSummary from '../report/portfolio/PortfolioNarrativeSummary';
+import PortfolioGlossary from '../report/portfolio/PortfolioGlossary';
 import PortfolioMethodology from '../report/portfolio/PortfolioMethodology';
 import StateOnePager from '../report/portfolio/StateOnePager';
 import PortfolioNextSteps from '../report/portfolio/PortfolioNextSteps';
@@ -74,6 +74,10 @@ export default function PortfolioTab() {
 
   const activeStates = STATE_ORDER.filter(abbr => byState[abbr].length > 0);
 
+  // Each asset report states its own group, read from the same source as the
+  // summary table so the two cannot disagree.
+  const groupOf = useMemo(() => buildGroupLookup(pf.tiers), [pf.tiers]);
+
   // Individual asset reports live in the appendices — one lettered appendix per
   // state, in the same order the one-pagers appear.
   const appendixOf = useMemo(() => {
@@ -84,19 +88,20 @@ export default function PortfolioTab() {
 
   const tocEntries = useMemo(() => {
     const rows = [
+      { slug: 'exec-narrative', label: 'Executive Summary', level: 0 },
       { slug: 'scope', label: 'Scope of Engagement', level: 0 },
       { slug: 'methodology', label: 'Methodology & Basis of Estimates', level: 1 },
-      { slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 1 },
-      { slug: 'exec-summary', label: 'Executive Summary', level: 0 },
+      { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 1 },
+      { slug: 'exec-summary', label: 'Portfolio Generation & Emissions', level: 0 },
       { slug: 'asset-summary', label: 'Portfolio Asset Summary', level: 0 },
-      { slug: 'prioritisation', label: 'Proposed Asset Prioritization', level: 0 },
-      { slug: 'key-considerations', label: 'Key Considerations', level: 0 },
-      { slug: 'glossary', label: 'Glossary', level: 1 },
     ];
     for (const abbr of activeStates) {
       rows.push({ slug: `state-${abbr}`, label: `${pf.states[abbr].name} — Market Overview and Site Summary`, level: 0 });
     }
     rows.push({ slug: 'next-steps', label: 'Next Steps', level: 0 });
+    rows.push({ slug: 'key-considerations', label: 'Key Considerations', level: 1 });
+    rows.push({ slug: 'sizing-basis', label: 'Net Metering & System Sizing', level: 1 });
+    rows.push({ slug: 'glossary', label: 'Glossary', level: 0 });
     for (const abbr of activeStates) {
       rows.push({
         slug: `appendix-${abbr}`,
@@ -229,6 +234,9 @@ export default function PortfolioTab() {
                 </div>
               ))}
 
+              <div className="portfolio-editor-heading">Executive Summary (written page)</div>
+              {txt('Narrative (blank line = new paragraph)', pf.execNarrative, v => set('execNarrative', v), 8)}
+
               <div className="portfolio-editor-heading">Methodology &amp; Glossary</div>
               {txt('Methodology (blank line = new paragraph)', pf.methodology, v => set('methodology', v), 6)}
               {txt('Glossary (one per line: Term — definition)', pf.glossary, v => set('glossary', v), 6)}
@@ -286,17 +294,18 @@ export default function PortfolioTab() {
           <PortfolioTitlePage pf={pf} />
           <div className="container">
             <PortfolioTOC pf={pf} entries={tocEntries} setTocPage={setTocPage} />
+            <PortfolioNarrativeSummary pf={pf} />
             <PortfolioScope pf={pf}>
+              {/* Prioritization took the slot Net Metering & System Sizing left
+                  on 24 September 2026 — the reader meets the groups before any
+                  asset data rather than after it. */}
               <PortfolioMethodology pf={pf}>
-                <PortfolioSizingBasis pf={pf} />
+                <PortfolioPrioritisation pf={pf} />
               </PortfolioMethodology>
             </PortfolioScope>
             <PortfolioExecSummary pf={pf} projects={projects} />
             <PortfolioDisclaimer pf={pf} />
-            <PortfolioAssetSummary pf={pf} projects={projects}>
-              <PortfolioPrioritisation pf={pf} />
-            </PortfolioAssetSummary>
-            <PortfolioKeyConsiderations pf={pf} />
+            <PortfolioAssetSummary pf={pf} projects={projects} />
           </div>
           {activeStates.map(abbr => (
             <div key={abbr} className="container">
@@ -313,6 +322,13 @@ export default function PortfolioTab() {
             <PortfolioNextSteps pf={pf} />
           </div>
 
+          {/* Opens the appendices: the terms it defines are densest in the
+              asset reports that follow, and leading keeps the state appendices
+              lettered A–F. */}
+          <div className="container">
+            <PortfolioGlossary pf={pf} />
+          </div>
+
           {activeStates.map(abbr => (
             <div key={`appendix-${abbr}`}>
               <div className="container">
@@ -327,7 +343,7 @@ export default function PortfolioTab() {
               {byState[abbr].map(({ entry, p, calc, err }) => (
                 <div key={entry.id} id={`project-${entry.id}`} className="portfolio-report">
                   {calc ? (
-                    <ReportDocument p={p} calc={calc} embedded />
+                    <ReportDocument p={p} calc={calc} embedded groupLabel={groupOf.get(normalize(p.projectName || entry.name)) || null} />
                   ) : (
                     <div className="container">
                       <div className="report-error" role="alert">

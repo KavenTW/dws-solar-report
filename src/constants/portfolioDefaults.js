@@ -17,7 +17,7 @@ export const PORTFOLIO_DEFAULTS = {
   reportMeta: 'Preliminary Solar Development Opportunity Assessment',
   preparedFor: 'DWS Asset Management',
   preparedBy: 'Great Circle Solar Management Corp.',
-  reportDate: 'September 22, 2026',
+  reportDate: 'September 28, 2026',
 
   // ── Scope of engagement — Scope 1B of the executed advisory agreement.
   //     Reproduced for the client's reference; edit only against the agreement. ──
@@ -28,6 +28,12 @@ export const PORTFOLIO_DEFAULTS = {
     'Site Constraint Identification | For each site, GCS will identify the key technical, commercial and data-related considerations that must be addressed in the next stage of feasibility assessments — roof age and replacement timing, structural capacity, electrical infrastructure, tenant electricity consumption data requirements, metering, constraints on sizing or monetization arising from jurisdictional electricity market rules, and other jurisdictional or operational considerations.',
     'Portfolio Solar Deployment Potential | A portfolio-level summary across the evaluated sites — total estimated rooftop and parking canopy capacity, estimated annual generation potential, and further refinement of site prioritization for near-term opportunities and next steps.',
   ].join('\n'),
+
+  // ── Written executive summary — its own page, ahead of Scope of
+  //     Engagement. Placeholder until the reviewer supplies the text; the
+  //     page renders the copy greyed and italic while it still starts
+  //     with '[', so an unfilled draft is obvious on paper. ──
+  execNarrative: '[Executive summary to be provided.]',
 
   // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
   execSummary: [
@@ -52,17 +58,17 @@ export const PORTFOLIO_DEFAULTS = {
   tiers: [
     {
       name: 'Prioritization Group 1',
-      assets: 'Eastland Center; The Shops at Oak Brook Place; Courtyard at the Commons; DC Station Retail; Tuscany on Fig',
+      assets: 'Eastland Center; The Shops at Oak Brook Place; 1201 Avenue S; Courtyard at the Commons; DC Station Retail; Tuscany on Fig',
       rationale: 'Highest-priority projects to advance first.',
     },
     {
       name: 'Prioritization Group 2',
-      assets: 'Tropical Center II; 1201 Avenue S; Candour House; 100 Hamilton',
+      assets: 'Tropical Center II; Post & Paddock; Lakeside B; Lakeside A; Candour House; 100 Hamilton',
       rationale: 'Promising projects, but with notable constraints or more uncertainty.',
     },
     {
       name: 'Prioritization Group 3',
-      assets: 'Post & Paddock; Lakeside B; Citria at Fruitville Commons; Lakeside A; London Square',
+      assets: 'Citria at Fruitville Commons; London Square',
       rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, where the state market framework defers deployment, or where deployment is best aligned with scheduled roof replacement.',
     },
   ],
@@ -94,7 +100,6 @@ export const PORTFOLIO_DEFAULTS = {
 
   // ── Glossary (one entry per line: "Term — definition") ──
   glossary: [
-    'Prioritization group — The grouping applied to each asset in this document, reflecting relative deployment potential and site readiness; set out in Proposed Asset Prioritization.',
     'Behind-the-Meter (BTM) — A solar system connected on the customer’s side of the utility meter, serving on-site load before exporting to the grid.',
     'kW DC / kW AC — Direct-current module capacity versus alternating-current inverter capacity of a system.',
     'Specific production (MWh/MWdc) — Expected annual energy yield per megawatt of DC capacity, reflecting local solar resource and system design.',

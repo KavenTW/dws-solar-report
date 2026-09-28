@@ -1,5 +1,7 @@
 import MonthlyProductionChart from '../MonthlyProductionChart';
 
+const AVG_HOME_KWH_YR = 10632; // U.S. EIA average annual household consumption
+
 /**
  * Portfolio-wide generation and avoided emissions — the per-asset "Annual
  * Generation & Emissions" block summed across every included asset, ignoring
@@ -23,7 +25,9 @@ export default function PortfolioGeneration({ projects }) {
   const annualCO2e = ok.reduce((s, x) => s + Math.round(x.calc.annualCO2e || 0), 0);
   // The asset reports print lifetime CO₂e to the nearest 100 tonnes; match them.
   const lifetimeCO2e = ok.reduce((s, x) => s + Math.round((x.calc.lifetimeCO2e || 0) / 100) * 100, 0);
-  const equivHomes = ok.reduce((s, x) => s + Math.round(x.calc.equivHomes || 0), 0);
+  // Divide the portfolio total rather than summing per-asset rounded figures:
+  // summing drifted a home clear of the KPI strip on the same page.
+  const equivHomes = Math.round((annualMwh * 1000) / AVG_HOME_KWH_YR);
 
   // Label the term only when every asset shares one.
   const terms = [...new Set(ok.map(x => x.p.ppaTerm).filter(Boolean))];
