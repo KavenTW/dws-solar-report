@@ -399,6 +399,15 @@
 .consideration-block:first-of-type { margin-top: 8px; }
 .consideration-title { font-weight: 700; color: var(--primary-dark); margin-bottom: 3px; }
 
+/* Executive summary: sub-headings, bullets and the action table. */
+.exec-head { margin-top: 12px; }
+.exec-head:first-child { margin-top: 0; }
+.exec-list { margin: 4px 0 0; padding-left: 20px; }
+.exec-list li { font-size: 14px; line-height: 1.55; color: var(--text); margin-bottom: 4px; }
+.exec-sub { list-style-type: none; position: relative; padding-left: 14px; }
+.exec-sub::before { content: "\2013"; position: absolute; left: 0; color: var(--muted); }
+.exec-actions { margin-top: 6px; }
+
 /* Chart legend in HTML — a canvas legend is lost when print scales the chart. */
 
 /* Feasibility cost table (standalone + embedded asset reports): same
@@ -521,6 +530,9 @@
   .scope-list li { margin-bottom: 3px; line-height: 1.38; }
   .consideration-block { margin-top: 7px; }
   .consideration-title { margin-bottom: 1px; }
+  .exec-head { margin-top: 7px; }
+  .exec-list { margin-top: 2px; }
+  .exec-list li { font-size: 11.5px; line-height: 1.4; margin-bottom: 2px; }
   .portfolio-page li, .portfolio-report li { font-size: 11px; }
   .portfolio-page .footnote { font-size: 9.5px; margin-top: 5px; line-height: 1.35; }
   .portfolio-page .card { padding: 11px 13px; }

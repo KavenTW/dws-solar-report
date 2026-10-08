@@ -235,7 +235,8 @@ export default function PortfolioTab() {
               ))}
 
               <div className="portfolio-editor-heading">Executive Summary (written page)</div>
-              {txt('Narrative (blank line = new paragraph)', pf.execNarrative, v => set('execNarrative', v), 8)}
+              {txt('Narrative (## heading, - bullet, -- sub-bullet)', pf.execNarrative, v => set('execNarrative', v), 12)}
+              {txt('Action items (one per line: Action | Owner | Timing)', pf.execActions, v => set('execActions', v), 6)}
 
               <div className="portfolio-editor-heading">Methodology &amp; Glossary</div>
               {txt('Methodology (blank line = new paragraph)', pf.methodology, v => set('methodology', v), 6)}

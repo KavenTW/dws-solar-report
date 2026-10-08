@@ -33,7 +33,50 @@ export const PORTFOLIO_DEFAULTS = {
   //     Engagement. Placeholder until the reviewer supplies the text; the
   //     page renders the copy greyed and italic while it still starts
   //     with '[', so an unfilled draft is obvious on paper. ──
-  execNarrative: '[Executive summary to be provided.]',
+  // ── Written executive summary — its own page, ahead of Scope of
+  //     Engagement. Seeded 8 October 2026 from the reviewer’s own outline;
+  //     the wording is theirs. `## ` is a sub-heading, `- ` a bullet and
+  //     `-- ` a sub-bullet. ──
+  execNarrative: [
+    '## What we have done',
+    '- Engaged under Scope 1B to quantify the maximum solar deployment potential across the portfolio; the assessment is complete for all 14 assets.',
+    '- Assessed every asset for maximum buildable rooftop and carport capacity, using solar simulation and aerial measurement.',
+    '- Identified, for each asset, the technical, commercial and data constraints that must be cleared before it can advance.',
+    '- Produced a market overview for each of the six states, and an individual opportunity assessment for each asset.',
+    '## What the portfolio could support',
+    '- 31,401 kW DC of maximum buildable capacity — 22,678 kW rooftop and 8,723 kW carport.',
+    '- 51,169 MWh of estimated Year-1 generation; 15,696 tonnes CO₂e avoided annually and 369,700 tonnes over a 25-year term.',
+    '- These are upper-bound planning figures, not recommended system sizes — see Constraints below.',
+    '## How we have prioritized',
+    '- Each state is assigned a base group reflecting its market framework; individual assets move off that base where site-specific factors warrant.',
+    '- Group 1 — 6 assets, 10,726 kW: recommended to advance first.',
+    '- Group 2 — 6 assets, 17,822 kW: promising, each with one constraint to resolve.',
+    '- Group 3 — 2 assets, 2,853 kW: both in Florida, deferred by the state framework rather than by the site.',
+    '- Grouping is directional and reflects deployment potential and site readiness only. It is not an investment recommendation until DWS confirms its objectives.',
+    '## Constraints that will change these numbers',
+    '- On-site electrical load was outside this scope and has not been analyzed.',
+    '- In most of these states, net metering caps a system at the host customer’s own consumption — so the deliverable system is usually smaller than the buildable one.',
+    '- System sizes will be reviewed and revised at the next stage against confirmed load and the applicable utility framework.',
+    '## Next steps',
+    '- A stage-gated sequence per asset, so each gate is a decision point before further cost is committed:',
+    '-- Electrical load analysis — confirms the system size everything else is priced against.',
+    '-- Structural — confirms roof capacity and limitations.',
+    '-- Geotechnical — carport sites only, for foundation conditions.',
+    '-- Electrical — confirms on-site infrastructure and constraints.',
+    '-- Interconnection — single-line diagrams, submission and utility management.',
+    '- Load analysis comes first on every asset, because it determines the system size and therefore the cost of every study after it.',
+    '- All electrical, structural and geotechnical studies must be completed by locally licensed and certified engineering firms; GCS can coordinate on engagement.',
+  ].join('\n'),
+
+  // One row per line: Action | Owner | Timing.
+  execActions: [
+    'Confirm which assets advance to full project feasibility | DWS + GCS | Immediate',
+    'Confirm roof replacement schedules and capital plans | DWS | Before sequencing',
+    'Provide tenant electricity consumption and interval load data | DWS / tenants | Before load analysis',
+    'Commission electrical load analysis on selected assets | GCS | Stage 1',
+    'Engage locally licensed engineering firms for third-party studies | GCS to coordinate | Stage 2 onward',
+    'Confirm investment objectives, hold periods and return requirements | DWS | Before groups are treated as a recommendation',
+  ].join('\n'),
 
   // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
   execSummary: [
