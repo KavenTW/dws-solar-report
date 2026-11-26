@@ -61,7 +61,7 @@ export default function PortfolioGeneration({ projects }) {
           </tbody>
         </table>
         <div className="footnote" style={{ marginTop: '10px' }}>
-          Avoided emissions apply each asset&rsquo;s own regional grid emissions factor to its modelled generation and are summed across the portfolio; the factors and sources are stated in the individual asset reports. Figures assume full displacement of grid electricity by solar generation and include module degradation over the term.
+          Avoided emissions apply each asset&rsquo;s own regional grid emissions factor to its modeled generation and are summed across the portfolio; the factors and sources are stated in the individual asset reports. Figures assume full displacement of grid electricity by solar generation and include module degradation over the term.
         </div>
         <div className="footnote" style={{ marginTop: '6px' }}>
           * Equivalent homes calculation based on U.S. EIA average annual household electricity consumption (10,632 kWh/yr).

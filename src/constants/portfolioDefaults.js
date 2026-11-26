@@ -17,7 +17,7 @@ export const PORTFOLIO_DEFAULTS = {
   reportMeta: 'Preliminary Solar Development Opportunity Assessment',
   preparedFor: 'DWS Asset Management',
   preparedBy: 'Great Circle Solar Management Corp.',
-  reportDate: 'September 28, 2026',
+  reportDate: 'November 26, 2026',
 
   // ── Scope of engagement — Scope 1B of the executed advisory agreement.
   //     Reproduced for the client's reference; edit only against the agreement. ──
@@ -53,17 +53,18 @@ export const PORTFOLIO_DEFAULTS = {
     'Confirm investment objectives, hold periods and return requirements | DWS | Before groups are treated as a recommendation',
   ].join('\n'),
 
-  // ── Executive summary (narrative; the KPI strip beneath it is computed live) ──
+  // ── Portfolio Generation & Emissions page (narrative beneath the computed
+  //     KPI strip and charts). The engagement itself is introduced once, in
+  //     the written Executive Summary, so this copy does not restate it. ──
   execSummary: [
-    'Great Circle Solar Management Corp. ("GCS") was engaged under Scope 1B of the executed advisory agreement to quantify the maximum solar deployment potential across the prioritized sites in the DWS portfolio, and has completed that preliminary desktop assessment.',
-    'Assets are grouped below into three prioritization groups reflecting deployment potential and site readiness. A market one-pager for each state summarizes the utility billing framework, REC program availability and key development considerations, and summarizes the projects analyzed in that state. The individual opportunity assessments are provided in the appendices.',
+    'Assets are grouped into three prioritization groups reflecting deployment potential and site readiness, as set out in Proposed Asset Prioritization. A market one-pager for each state summarizes the utility billing framework, REC program availability and key development considerations, and summarizes the projects analyzed in that state. The individual opportunity assessments are provided in the appendices.',
     'System sizing and generation estimates are derived from solar production simulation; roof and parking areas from aerial measurement; and avoided-emissions estimates from published regional grid-emissions factors. All figures are preliminary desktop estimates and are subject to the further detailed analysis described in each asset assessment and in the Next Steps section at the end of this document.',
   ].join('\n\n'),
 
   // ── Next steps (narrative; stage-gate chips render beneath it) ──
   nextSteps: [
     'GCS pre-feasibility for all assets in this document is complete and is reflected in the individual reports.',
-    'For assets selected to advance, the recommended path is a stage-gated sequence of GCS-conducted pre-feasibility and third-party studies.',
+    'For assets selected to advance, the recommended path is a stage-gated sequence of studies, beginning with electrical load analysis and followed by third-party engineering studies.',
   ].join('\n\n'),
 
   // Rendered beneath the stage-gate diagram, at the reviewer’s direction —
@@ -111,8 +112,8 @@ export const PORTFOLIO_DEFAULTS = {
   // ── Methodology & basis of estimates (renders after the TOC) ──
   methodology: [
     'System sizing in this report reflects the maximum buildable rooftop and carport layouts identified for each asset using solar design software, subject to the site conditions visible from aerial imagery and available drawings. Actual buildable capacity may be further constrained by site electrical loads and consumption profiles, which are assessed in the next stage of analysis.',
-    'Year-one generation is calculated as DC capacity multiplied by the modelled specific production for each array. The monthly figures apply the modelled seasonal profile for each site to that annual total, and are therefore indicative of distribution across the year rather than independent monthly estimates.',
-    'Avoided-emissions estimates apply regional grid output emission factors published by the U.S. Environmental Protection Agency (eGRID) for each asset’s grid subregion to modelled generation, summed over a 25-year term with 0.5% annual module degradation. Household equivalents reflect average U.S. residential electricity consumption as published by the U.S. Energy Information Administration.',
+    'Year-one generation is calculated as DC capacity multiplied by the modeled specific production for each array. The monthly figures apply the modeled seasonal profile for each site to that annual total, and are therefore indicative of distribution across the year rather than independent monthly estimates.',
+    'Avoided-emissions estimates apply regional grid output emission factors published by the U.S. Environmental Protection Agency (eGRID) for each asset’s grid subregion to modeled generation, summed over a 25-year term with 0.5% annual module degradation. Household equivalents reflect average U.S. residential electricity consumption as published by the U.S. Energy Information Administration.',
     'Indicative feasibility costs are based on quotations obtained from independent, licensed engineering firms for comparable scopes, scaled where noted by site characteristics such as the number of points of interconnection. All figures are preliminary desktop estimates prepared for screening purposes.',
   ].join('\n\n'),
 
@@ -336,7 +337,7 @@ export const PORTFOLIO_DEFAULTS = {
         'A deregulated energy market creates uncertainty with near- and long-term energy rates.',
       ].join('\n'),
       groupingRationale: [
-        '1201 Avenue S | Deployment is gated by the delivery utility and the tenant’s retailer, but a credible candidate once those are confirmed.',
+        '1201 Avenue S | Deployment is gated by the delivery utility and the tenant’s retailer, and is best aligned with the tentative 2027 roof replacement; a credible candidate once those are confirmed.',
         'Post & Paddock | Deployment is best aligned with the tentative 2033 roof replacement.',
         'Lakeside B | Deployment is best aligned with the tentative 2033 roof replacement.',
         'Lakeside A | Deployment is best aligned with the tentative 2033 roof replacement.',

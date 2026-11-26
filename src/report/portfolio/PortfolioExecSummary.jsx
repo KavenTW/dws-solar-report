@@ -4,9 +4,11 @@ import PortfolioGeneration from './PortfolioGeneration';
 const AVG_HOME_KWH_YR = 10632; // U.S. EIA average annual household consumption
 
 /**
- * Executive summary: editable narrative, KPI strip and portfolio-wide
- * generation and emissions — figures computed live from the included projects
- * so headline numbers always match the body reports.
+ * Portfolio Generation & Emissions: KPI strip, portfolio-wide generation and
+ * emissions, and an editable narrative — figures computed live from the
+ * included projects so headline numbers always match the body reports. Titled
+ * to match its contents entry; the written Executive Summary is
+ * PortfolioNarrativeSummary.
  */
 export default function PortfolioExecSummary({ pf, projects }) {
   const ok = projects.filter(x => x.calc);
@@ -28,7 +30,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
 
   return (
     <div className="section portfolio-page" id="exec-summary">
-      <div className="section-title">Executive Summary</div>
+      <div className="section-title">Portfolio Generation &amp; Emissions</div>
       <div className="kpi-grid" style={{ marginBottom: '16px' }}>
         <div className="kpi-card">
           <div className="kpi-label">Sites Reviewed</div>
@@ -43,7 +45,7 @@ export default function PortfolioExecSummary({ pf, projects }) {
         <div className="kpi-card">
           <div className="kpi-label">Estimated Yr-1 Generation</div>
           <div className="kpi-value">{Math.round(totalMwh).toLocaleString()} <span style={{ fontSize: '0.55em', fontWeight: 600, color: 'var(--primary)' }}>MWh</span></div>
-          <div className="kpi-unit">≈ {equivHomes.toLocaleString()} U.S. homes&rsquo; annual use**</div>
+          <div className="kpi-unit">≈ {equivHomes.toLocaleString()} U.S. homes&rsquo; annual use*</div>
         </div>
         <div className="kpi-card">
           <div className="kpi-label">Est. Lifetime Carbon Abatement</div>

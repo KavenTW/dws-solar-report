@@ -73,6 +73,10 @@ from that one sort, so page order never depends on localStorage ordering.
    leave it.
 4. **Karen has not reviewed the restructured document.** Her 4 Aug markup was
    against a document that no longer exists in that form.
+5. **Fund names unverified (raised 26 Nov 2026; flag before issue).** The
+   Executive Summary names the EU - BVK, EU - Grundbesitz Global, EU - HUK and
+   EU - GREF portfolios. None of these appear in the app's data; confirm
+   against "EU Portfolio 2026.09.08.xlsx" before the document is issued.
 
 ## Known traps
 

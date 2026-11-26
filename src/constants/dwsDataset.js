@@ -1933,7 +1933,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "An existing rooftop PV array is installed; the proposed system’s interaction with the existing array (available area and interconnection capacity) is to be confirmed.\nThe property lies approximately 1.6 miles from the runways at Nellis AFB; a solar glare hazard analysis may be required.\nCarport layouts to be coordinated with existing parking-lot pole lighting.\nA geotechnical assessment is recommended to confirm carport foundation feasibility.\nUnderground utility locates and trenching will be required to route carport circuits.",
+   "additionalNotes": "An existing rooftop PV array is installed; the proposed system’s interaction with the existing array (available area and interconnection capacity) is to be confirmed.\nThe maximum buildable capacity exceeds Nevada’s 1 MW cap on net-metered exporting systems; non-export systems can be considered if on-site loads are deemed suitable.\nThe property lies approximately 1.6 miles from the runways at Nellis AFB; a solar glare hazard analysis may be required.\nCarport layouts to be coordinated with existing parking-lot pole lighting.\nA geotechnical assessment is recommended to confirm carport foundation feasibility.\nUnderground utility locates and trenching will be required to route carport circuits.",
    "pointsOfInterconnection": 1,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,

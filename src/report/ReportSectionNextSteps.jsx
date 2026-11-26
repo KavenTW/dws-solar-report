@@ -23,8 +23,11 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
   const hasCarport = (p.carportSizeDCkW || 0) > 0 || (p.carportAreaUsedSqFt || 0) > 0;
   const points = Math.max(1, Math.round(p.pointsOfInterconnection || 1));
 
+  // Load analysis is the first gate but carries no figure: it is scoped once
+  // tenant consumption and interval data are in hand, so it is listed for
+  // sequence and excluded from the total rather than priced on a guess.
   const feasItems = [
-    { label: 'GCS Pre-Feasibility',                      min: null,                     max: null,                     note: '' },
+    { label: 'Electrical Load Analysis',                 min: null,                     max: null,                     note: 'First stage; scoped on receipt of tenant consumption and interval load data. Confirms the system size the studies below are scoped against.' },
     { label: 'Structural Feasibility (3rd Party)',       min: p.feasStructuralMin,      max: p.feasStructuralMax,      note: 'Cost relates to number of roof structures' },
     ...(hasCarport ? [{ label: 'Geotechnical Feasibility (3rd Party)', min: p.feasGeotechnicalMin, max: p.feasGeotechnicalMax, note: 'For carport solar' }] : []),
     ...(p.glareStudyRequired ? [{ label: 'Glare Study (3rd Party)', min: p.feasGlareMin, max: p.feasGlareMax, note: 'If required' }] : []),
@@ -104,7 +107,7 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
             return (
               <tr key={label}>
                 <td><strong>{label}</strong></td>
-                <td>{fmt(min, max)}</td>
+                <td>{hasCost ? fmt(min, max) : 'To be confirmed'}</td>
                 <td>{hasCost ? '~4 weeks' : ''}</td>
                 <td style={{ fontSize: '12px', color: 'var(--muted)' }}>{note}</td>
               </tr>
@@ -113,8 +116,8 @@ export default function ReportSectionNextSteps({ p, embedded = false, titleSuffi
           <tr className="total-row">
             <td><strong>Total</strong></td>
             <td><strong>{fmt(totalMin, totalMax)}</strong></td>
-            <td><strong>~4 weeks</strong></td>
-            <td style={{ fontSize: '12px' }}>All workstreams run concurrently, per site</td>
+            <td></td>
+            <td style={{ fontSize: '12px' }}>Per site, excluding load analysis. Studies are sequenced in stages, each taking approximately 4 weeks</td>
           </tr>
         </tbody>
       </table>
