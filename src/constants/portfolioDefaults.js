@@ -88,7 +88,7 @@ export const PORTFOLIO_DEFAULTS = {
     {
       name: 'Prioritization Group 3',
       assets: 'Citria at Fruitville Commons; London Square',
-      rationale: 'Lowest-priority projects due to limited opportunity, scale, complexity or questionable economics, where the state market framework defers deployment, or where deployment is best aligned with scheduled roof replacement.',
+      rationale: 'Lower-priority projects where jurisdictional constraints on contracting structure or monetization, or site-specific complexity, are expected to make execution challenging.',
     },
   ],
 
@@ -130,10 +130,10 @@ export const PORTFOLIO_DEFAULTS = {
     'CO₂e — Carbon-dioxide equivalent, the standard unit for greenhouse-gas accounting.',
   ].join('\n'),
 
-  // ── Proposed immediate actions (bullet list at the end of Next Steps) ──
-  nextActions: [
-    'DWS and GCS to discuss and agree upon assets to advance to full project feasibility based on project specifics and program objectives.',
-  ].join('\n'),
+  // ── Proposed immediate actions (bullet list at the end of Next Steps).
+  //     Seeded empty on 26 November 2026: its one line repeated the first row
+  //     of the Executive Summary's Action Items. The block hides while empty. ──
+  nextActions: '',
 
   // ── Document-level disclaimer (renders once, at the very end) ──
   disclaimer: [

@@ -1,7 +1,10 @@
 import MonthlyProductionChart from './MonthlyProductionChart';
 
 export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
-  const lbsMwhStr = `${Math.round(p.gridEmissionsIntensity).toLocaleString()} lbs CO₂/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂/MWh)`;
+  // eGRID total output rates are CO₂e, and the label names the source rather
+  // than a year: eGRID publishes data years in arrears, and the calendar year
+  // that used to sit here read as a 2026 data vintage.
+  const lbsMwhStr = `${Math.round(p.gridEmissionsIntensity).toLocaleString()} lbs CO₂e/MWh (${Math.round(p.gridEmissionsIntensity / (2204.62 / 1000))} kg CO₂e/MWh)`;
 
   return (
     <div className="section">
@@ -27,7 +30,7 @@ export default function ReportSectionGeneration({ p, calc, titleSuffix }) {
             <table className="fin-table">
               <tbody>
                 {p.gridEmissionsRegion && <tr><td>Jurisdiction</td><td>{p.gridEmissionsRegion}</td></tr>}
-                <tr><td>Avg Grid Emissions Factor ({new Date().getFullYear()})*</td><td>{lbsMwhStr}</td></tr>
+                <tr><td>Grid Emissions Factor (EPA eGRID)*</td><td>{lbsMwhStr}</td></tr>
                 <tr><td>Annual Generation</td><td>{Math.round(calc.annualMwh).toLocaleString()} MWh</td></tr>
                 <tr><td>Annual Avoided CO₂e</td><td><strong>{Math.round(calc.annualCO2e).toLocaleString()} tonnes</strong></td></tr>
                 <tr><td>{p.ppaTerm}-Year Avoided CO₂e</td><td><strong>{(Math.round(calc.lifetimeCO2e / 100) * 100).toLocaleString()} tonnes</strong></td></tr>

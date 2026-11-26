@@ -305,7 +305,6 @@ export default function PortfolioTab() {
               </PortfolioMethodology>
             </PortfolioScope>
             <PortfolioExecSummary pf={pf} projects={projects} />
-            <PortfolioDisclaimer pf={pf} />
             <PortfolioAssetSummary pf={pf} projects={projects} />
           </div>
           {activeStates.map(abbr => (
@@ -319,8 +318,12 @@ export default function PortfolioTab() {
               />
             </div>
           ))}
+          {/* The disclaimer closes the main body, after Next Steps; until
+              26 November 2026 it followed the Generation page and printed
+              alone on a page of its own there. */}
           <div className="container">
             <PortfolioNextSteps pf={pf} />
+            <PortfolioDisclaimer pf={pf} />
           </div>
 
           {/* Opens the appendices: the terms it defines are densest in the

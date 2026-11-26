@@ -866,7 +866,7 @@ export const DWS_DATASET = [
    "showMarketContextSection": false,
    "showNextStepsSection": true,
    "showDisclaimerSection": true,
-   "additionalNotes": "Under the City of Palo Alto municipal utility, solar systems would interconnect under NEM 2. This program compensates exported solar energy at a rate higher than the average rates of the CPUC Avoided Cost Calculator, and is therefore more attractive.\nConditioned office space; may not be a heavy power user.\nRooftop mechanical and architectural obstructions materially constrain the available layout; proposed capacity reflects the remaining usable area.\nThe property is served by the City of Palo Alto municipal utility, whose solar programs differ from the CPUC framework described on the state page.",
+   "additionalNotes": "Systems in the City of Palo Alto Utilities territory would interconnect under its NEM Successor (“NEM 2”) program, under which on-site consumption offsets retail purchases and exported energy is credited at a flat export rate reset annually based on local avoided costs. Eligibility, including compatibility with the site’s rate schedule, and the prevailing rate are subject to confirmation with the utility at interconnection.\nConditioned office space; may not be a heavy power user.\nRooftop mechanical and architectural obstructions materially constrain the available layout; proposed capacity reflects the remaining usable area.\nThe property is served by the City of Palo Alto municipal utility, whose solar programs differ from the CPUC framework described on the state page.",
    "pointsOfInterconnection": 1,
    "feasElectricalMin": 5000,
    "feasElectricalMax": 10000,
