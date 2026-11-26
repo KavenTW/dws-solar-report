@@ -30,42 +30,17 @@ export const PORTFOLIO_DEFAULTS = {
   ].join('\n'),
 
   // ── Written executive summary — its own page, ahead of Scope of
-  //     Engagement. Placeholder until the reviewer supplies the text; the
-  //     page renders the copy greyed and italic while it still starts
-  //     with '[', so an unfilled draft is obvious on paper. ──
-  // ── Written executive summary — its own page, ahead of Scope of
-  //     Engagement. Seeded 8 October 2026 from the reviewer’s own outline;
-  //     the wording is theirs. `## ` is a sub-heading, `- ` a bullet and
-  //     `-- ` a sub-bullet. ──
+  //     Engagement. Prose supplied by GCS 26 November 2026, replacing the
+  //     8 October bulleted outline. `## ` is a sub-heading, `- ` a bullet,
+  //     `-- ` a sub-bullet, anything else a paragraph. ──
   execNarrative: [
-    '## What we have done',
-    '- Engaged under Scope 1B to quantify the maximum solar deployment potential across the portfolio; the assessment is complete for all 14 assets.',
-    '- Assessed every asset for maximum buildable rooftop and carport capacity, using solar simulation and aerial measurement.',
-    '- Identified, for each asset, the technical, commercial and data constraints that must be cleared before it can advance.',
-    '- Produced a market overview for each of the six states, and an individual opportunity assessment for each asset.',
-    '## What the portfolio could support',
-    '- 31,401 kW DC of maximum buildable capacity — 22,678 kW rooftop and 8,723 kW carport.',
-    '- 51,169 MWh of estimated Year-1 generation; 15,696 tonnes CO₂e avoided annually and 369,700 tonnes over a 25-year term.',
-    '- These are upper-bound planning figures, not recommended system sizes — see Constraints below.',
-    '## How we have prioritized',
-    '- Each state is assigned a base group reflecting its market framework; individual assets move off that base where site-specific factors warrant.',
-    '- Group 1 — 6 assets, 10,726 kW: recommended to advance first.',
-    '- Group 2 — 6 assets, 17,822 kW: promising, each with one constraint to resolve.',
-    '- Group 3 — 2 assets, 2,853 kW: both in Florida, deferred by the state framework rather than by the site.',
-    '- Grouping is directional and reflects deployment potential and site readiness only. It is not an investment recommendation until DWS confirms its objectives.',
-    '## Constraints that will change these numbers',
-    '- On-site electrical load was outside this scope and has not been analyzed.',
-    '- In most of these states, net metering caps a system at the host customer’s own consumption — so the deliverable system is usually smaller than the buildable one.',
-    '- System sizes will be reviewed and revised at the next stage against confirmed load and the applicable utility framework.',
-    '## Next steps',
-    '- A stage-gated sequence per asset, so each gate is a decision point before further cost is committed:',
-    '-- Electrical load analysis — confirms the system size everything else is priced against.',
-    '-- Structural — confirms roof capacity and limitations.',
-    '-- Geotechnical — carport sites only, for foundation conditions.',
-    '-- Electrical — confirms on-site infrastructure and constraints.',
-    '-- Interconnection — single-line diagrams, submission and utility management.',
-    '- Load analysis comes first on every asset, because it determines the system size and therefore the cost of every study after it.',
-    '- All electrical, structural and geotechnical studies must be completed by locally licensed and certified engineering firms; GCS can coordinate on engagement.',
+    'Great Circle Solar Management Corp. ("GCS") was engaged under Scope 1B of the executed advisory agreement to quantify the maximum solar deployment potential across 14 assets held in the EU - BVK, EU - Grundbesitz Global, EU - HUK and EU - GREF portfolios. Each site was assessed for the largest rooftop and carport systems its roof and parking areas could reasonably accommodate, and screened for preliminary technical, commercial and data considerations that would need to be addressed before it could advance. A market overview has been prepared for each of the six states, and an individual opportunity assessment for each asset.',
+    'Across the portfolio, the assets could likely accommodate 31,401 kW DC in total — 22,678 kW DC on rooftops and 8,723 kW DC on parking canopies — producing an estimated 51,169 MWh in the first year of operation and avoiding approximately 15,696 tonnes of CO₂e annually, or 369,700 tonnes over a 25-year term.',
+    'These system sizes represent an upper bound for buildable solar. Determining deliverable solar system sizes requires detailed technical and commercial project-level feasibility studies (“Project Feasibility”).',
+    'The assets are grouped into three prioritization groups. Six assets totaling 10,726 kW fall into Group 1 and are recommended to advance to full Project Feasibility. Six assets totaling 17,822 kW fall into Group 2, each carrying project-level considerations to be addressed before advancing. The two remaining assets, both in Florida and totaling 2,853 kW, fall into Group 3, which reflects a lower prioritization for these projects. This grouping is directional only. It is intended to reflect opportunity identification for the prioritization of pursuing Project Feasibility.',
+    '## Next Steps',
+    'The immediate next step is for DWS to determine which sites it would like to move forward, setting the site-specific considerations in this document against fund-level objectives for renewable deployment, capital budgets and return requirements.',
+    'For the assets confirmed, GCS recommends proceeding to full Project Feasibility. This is a stage-gated sequence of GCS and third-party engineering studies, beginning with electrical load analysis, which determines the system size every later study is scoped against, and continuing through structural assessments, geotechnical assessments where carport structures are proposed, and electrical assessments through to interconnection applications to the local utility.',
   ].join('\n'),
 
   // One row per line: Action | Owner | Timing.
