@@ -173,7 +173,11 @@ export default function PortfolioTab() {
                 style={{ marginBottom: '8px', display: 'block' }}
                 onClick={() => {
                   if (!window.confirm('Estimate the table-of-contents page numbers from the current document and fill them in?\n\nThis measures the document against the printed page size. It is an estimate — check it against one test print before sending the document out. Any numbers you have already entered will be replaced.')) return;
-                  const result = estimateTocPages({ 'sizing-basis': 'methodology' });
+                  // Net Metering & System Sizing carries its own id inside Key
+                  // Considerations, so it resolves to the page it prints on.
+                  // It used to be mapped to Methodology, its home before
+                  // 24 September 2026, which printed page 4 in the contents.
+                  const result = estimateTocPages();
                   if (!result) { window.alert('Could not measure the document. Close the editor so the report is on screen, then try again.'); return; }
                   let filled = 0;
                   const missed = [];
